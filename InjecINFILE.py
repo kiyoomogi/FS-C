@@ -139,7 +139,7 @@ def generators():
     for i in range(len(labels)-1): 
         print(labels[i])
 
-        rates = [1e-9, 1e-9]
+        rates = [1e-6, 1e-6]
         times = [time_zero, time_final]
 
         generator = {
@@ -158,18 +158,18 @@ rates, times = generators()
 
 
 #Output parameters
-parameters["output"] = {
-    "variables": [
-        {"name": "saturation", "options": 0},
-        {"name": "coordinate"},
-        {"name": "pressure", "options": 0},
-        {"name": "capillary", "options": 1},
-        {"name": "density", "options": 0},
-        {"name": "viscosity", "options": 0},
-        {"name": "flow rate", "options":[1,2]},
-        {"name": "flow rate", "options":[2,1]}
-    ],
-}       
+#parameters["output"] = {
+#    "variables": [
+#        {"name": "saturation", "options": 0},
+#        {"name": "coordinate"},
+#        {"name": "pressure", "options": 0},
+#        {"name": "capillary", "options": 1},
+#        {"name": "density", "options": 0},
+#        {"name": "viscosity", "options": 0},
+#        {"name": "flow rate", "options":[1,2]},
+#        {"name": "flow rate", "options":[2,1]}
+#    ],
+#}       
 
 
 parameters["element_history"] = list(labels)
