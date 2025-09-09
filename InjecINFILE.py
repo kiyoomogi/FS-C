@@ -16,12 +16,19 @@ import toughio
 time_zero = 0
 time_final = 3600 * 24 * 100 
 
+diffusion = np.array([
+    [0, 0],    # Water: [gas, aqueous]
+    [3.5e-11, 3.5e-11],    # Helium: [gas, aqueous]
+    [1e-8, 1e-8]    # Helium: [gas, aqueous]
+])
+
 parameters = {
     "title": "InjectionCO2",
     "isothermal": True,
     "eos":"eco2n",
     "start": True,
-    "times": list(np.linspace(time_zero,time_final,100))}
+    "times": list(np.linspace(time_zero,time_final,100)),
+    "diffusion": diffusion}
 
 
 a = {
@@ -88,15 +95,15 @@ parameters["rocks"] = {
         "initial_condition": [ini_pres,0, 0,15],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
        # "relative_permeability": {
-       #     "id": 5, #van genuchten 
-       #     "parameters": [],
-       # },
-       # "capillarity": {
-       #     "id": 8, #van genuchten 
-       #     "parameters": []
-       # },
+            "id": 5, #van genuchten 
+            "parameters": [],
+        },
+        "capillarity": {
+            "id": 8, #van genuchten 
+            "parameters": []
+        },
     }
-}
+
 
 parameters["options"] = {
     "n_cycle": -19,
