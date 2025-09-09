@@ -21,7 +21,7 @@ parameters = {
     "isothermal": True,
     "eos":"eco2n",
     "start": True,
-    "times": list(np.linspace(time_zero,time_final,2))}
+    "times": list(np.linspace(time_zero,time_final,100))}
 
 
 a = {
@@ -85,7 +85,7 @@ ini_pres = 3.5e6
 #Rock parameters
 parameters["rocks"] = {
     "TANK": { 
-        "initial_condition": [ini_pres, 0,15],
+        "initial_condition": [ini_pres, 0.1,15],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         "relative_permeability": {
             "id": 5, #van genuchten 
@@ -126,9 +126,6 @@ parameters['extra_options'] = {
         21: 8
 }
 
-parameters['more_options'] = {
-        1: 2
-}
 
 
 labels = mesh.labels
@@ -157,7 +154,7 @@ def generators():
     return rates, times
 
 
-#rates, times = generators() 
+rates, times = generators() 
 
 
 #Output parameters
@@ -180,4 +177,5 @@ parameters["element_history"] = list(labels)
 mesh.write("/Users/matthijsnuus/Desktop/FS-C/InjectionRates/mesh.pickle")
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/InjectionRates/INFILE", parameters)  
 mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/InjectionRates/MESH", incon=True)
-
+mesh.write("/Users/matthijsnuus/Desktop/FS-C/InjectionRates/mesh.vtk")
+    
