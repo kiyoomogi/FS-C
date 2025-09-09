@@ -114,7 +114,7 @@ parameters["options"] = {
     "t_step_max": 120,
     
     "t_reduce_factor": 4,
-    "eps1": 1.0e-6,
+    "eps1": 1.0e-8,
     "gravity": 9.8,
 }
 
@@ -146,7 +146,7 @@ def generators():
     for i in range(len(labels)-1): 
         print(labels[i])
 
-        rates = [1e-9, 1e-9]
+        rates = [1e-8, 1e-8]
         times = [time_zero, time_final]
 
         generator = {
