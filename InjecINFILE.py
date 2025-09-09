@@ -87,14 +87,14 @@ parameters["rocks"] = {
     "TANK": { 
         "initial_condition": [ini_pres,0, 0,15],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        "relative_permeability": {
-            "id": 5, #van genuchten 
-            "parameters": [],
-        },
-        "capillarity": {
-            "id": 8, #van genuchten 
-            "parameters": []
-        },
+       # "relative_permeability": {
+       #     "id": 5, #van genuchten 
+       #     "parameters": [],
+       # },
+       # "capillarity": {
+       #     "id": 8, #van genuchten 
+       #     "parameters": []
+       # },
     }
 }
 
