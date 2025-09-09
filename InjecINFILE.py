@@ -14,7 +14,7 @@ import toughio
 
 
 time_zero = 0
-time_final = 3600 * 24 * 10 
+time_final = 3600 * 24 * 100 
 
 parameters = {
     "title": "InjectionCO2",
@@ -139,7 +139,7 @@ def generators():
     for i in range(len(labels)-1): 
         print(labels[i])
 
-        rates = [1e-6, 1e-6]
+        rates = [1e-9, 1e-9]
         times = [time_zero, time_final]
 
         generator = {
