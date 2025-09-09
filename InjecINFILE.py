@@ -92,7 +92,7 @@ ini_pres = 3.5e6
 #Rock parameters
 parameters["rocks"] = {
     "TANK": { 
-        "initial_condition": [ini_pres,0, 0,15],
+        "initial_condition": [ini_pres,0, 10.5,15],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
        # "relative_permeability": {
             "id": 5, #van genuchten 
@@ -161,7 +161,7 @@ def generators():
     return rates, times
 
 
-rates, times = generators() 
+#rates, times = generators() 
 
 
 #Output parameters
