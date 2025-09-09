@@ -18,8 +18,8 @@ time_final = 3600 * 24 * 100
 
 diffusion = np.array([
     [0, 0],    # Water: [gas, aqueous]
-    [3.5e-11, 3.5e-11],    # Helium: [gas, aqueous]
-    [1e-8, 1e-8]    # Helium: [gas, aqueous]
+    [3.5e-2, 3.5e-2],    # Helium: [gas, aqueous]
+    [1e-2, 1e-2]    # Helium: [gas, aqueous]
 ])
 
 parameters = {
