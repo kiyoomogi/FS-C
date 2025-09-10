@@ -53,7 +53,7 @@ Liquid density at these conditions:
 - $\dot{m}_{\text{NaCl}} = 0.0164389 \times 0.0900149 \approx \mathbf{1.47974\times10^{-3}\ \text{kg/s}}$
 - $\dot{m}_{\text{CO₂}} = 0.0444189 \times 0.0900149 \approx \mathbf{3.99837\times10^{-3}\ \text{kg/s}}$
 
-> These are the component **kg/s** rates to use in `GENER` if specifying per-component sources, or use the **total** $\dot{m}_L$ with a **composition vector** (H₂O, NaCl, CO₂) if your build supports `COM`.
+> These are the component **kg/s** rates to use in `GENER` if specifying per-component sources.
 
 ---
 
