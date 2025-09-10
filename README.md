@@ -42,18 +42,18 @@ Liquid density at these conditions:
 **Given:** volumetric liquid rate **5.3 L/min**
 
 1. Convert to m³/s:  
-   \( Q = \frac{5.3\times10^{-3}\ \text{m}^3}{60\ \text{s}} = \mathbf{8.8333\times10^{-5}\ \text{m}^3/\text{s}} \)
+   $Q = \frac{5.3\times10^{-3}\ \text{m}^3}{60\ \text{s}} = \mathbf{8.8333\times10^{-5}\ \text{m}^3/\text{s}}$
 
 2. Convert to total **mass** rate using the saturated-brine density:  
-   \( \dot{m}_L = \rho_L\,Q = 1019.04 \times 8.8333\times10^{-5} \approx \mathbf{9.00149\times10^{-2}\ \text{kg/s}} \)
+   $\dot{m}_L = \rho_L\,Q = 1019.04 \times 8.8333\times10^{-5} \approx \mathbf{9.00149\times10^{-2}\ \text{kg/s}}$
 
 3. Split by the **liquid** mass fractions (from the flash):
 
-- \( \dot{m}_{\text{H₂O}} = 0.939142 \times 0.0900149 \approx \mathbf{8.45368\times10^{-2}\ \text{kg/s}} \)
-- \( \dot{m}_{\text{NaCl}} = 0.0164389 \times 0.0900149 \approx \mathbf{1.47974\times10^{-3}\ \text{kg/s}} \)
-- \( \dot{m}_{\text{CO₂}} = 0.0444189 \times 0.0900149 \approx \mathbf{3.99837\times10^{-3}\ \text{kg/s}} \)
+- $\dot{m}_{\text{H₂O}} = 0.939142 \times 0.0900149 \approx \mathbf{8.45368\times10^{-2}\ \text{kg/s}}$
+- $\dot{m}_{\text{NaCl}} = 0.0164389 \times 0.0900149 \approx \mathbf{1.47974\times10^{-3}\ \text{kg/s}}$
+- $\dot{m}_{\text{CO₂}} = 0.0444189 \times 0.0900149 \approx \mathbf{3.99837\times10^{-3}\ \text{kg/s}}$
 
-> These are the component **kg/s** rates to use in `GENER` if specifying per-component sources, or use the **total** \( \dot{m}_L \) with a **composition vector** (H₂O, NaCl, CO₂) if your build supports `COM`.
+> These are the component **kg/s** rates to use in `GENER` if specifying per-component sources, or use the **total** $\dot{m}_L$ with a **composition vector** (H₂O, NaCl, CO₂) if your build supports `COM`.
 
 ---
 
