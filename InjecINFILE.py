@@ -28,7 +28,8 @@ parameters = {
     "eos":"eco2n",
     "start": True,
     "times": list(np.linspace(time_zero,time_final,100)),
-    "diffusion": diffusion}
+    #"diffusion": diffusion
+    }
 
 
 a = {
@@ -94,7 +95,7 @@ parameters["rocks"] = {
     "TANK": { 
         "initial_condition": [ini_pres,0.017203, 10.5,16.5],  #pressure of 3.5 MPa, NaCl mass fraction of 1.735% (Pearson), half saturated gas and 15°C. 
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-       # "relative_permeability": {
+        "relative_permeability": {
             "id": 5, #van genuchten 
             "parameters": [],
         },
@@ -103,7 +104,7 @@ parameters["rocks"] = {
             "parameters": []
         },
     }
-
+}
 
 parameters["options"] = {
     "n_cycle": -19,
