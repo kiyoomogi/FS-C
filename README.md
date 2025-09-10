@@ -13,7 +13,7 @@ This note documents how we determined the CO₂ solubility at Mont Terri conditi
 - **Initial conditions (flash cell to read solubility):**
   - Pressure = **3.5 MPa**
   - Temperature = **16.5 °C**
-  - Liquid/gas saturations: **S<sub>L</sub> = 0.5**, **S<sub>G</sub> = 0.5**  *(two-phase so the liquid is at CO₂ solubility)*
+  - Liquid/gas saturations: **S<sub>L</sub> = 0.5**, **S<sub>G</sub> = 0.5**  *(two-phase, so in TOUGH use 10.5, so the liquid is at CO₂ solubility)*
   - NaCl mass fraction (brine, no CO₂ yet):  
     - From **0.3 M NaCl** (Pearson/OPA water):  
       $w_{\text{NaCl}} \approx \frac{0.3 \times 58.44\ \text{g/mol}}{ \rho \approx 1019\ \text{g/L} } \approx \mathbf{0.0172}$ (**1.72 wt%**)
