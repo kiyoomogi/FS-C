@@ -31,8 +31,6 @@
 (Reading ROCKS block)
 
  DOMAIN NO.  1     MATERIAL NAME -- TANK 
-
- DOMAIN NO.  2     MATERIAL NAME -- capil
 (Reading MULTI block)
 (Reading START block)
 (Reading PARAM block)
@@ -40,7 +38,6 @@
 (Reading INDOM block)
 (Reading TIMES block)
 (Reading FOFT  block)
-(Reading DIFFU block)
 (Reading ENDCY block)
 
                         ************************************************************************************
@@ -59,7 +56,7 @@
 
  PARAMETERS FOR FLEXIBLE DIMENSIONING OF MAJOR ARRAYS (MAIN PROGRAM) ARE AS FOLLOWS
 
- MNEL =      2  MNCON =       1  MNEQ =  3  MNK =  3   MNPH =  3   MNB =  8   MNOGN =    1   MGTAB =    2
+ MNEL =      2  MNCON =       1  MNEQ =  3  MNK =  3   MNPH =  3   MNB =  6   MNOGN =    1   MGTAB =    2
  ===================================================================================================================================
 
  MAXIMUM NUMBER OF VOLUME ELEMENTS (GRID BLOCKS):            MNEL  =       2
@@ -67,7 +64,7 @@
  MAXIMUM LENGTH OF PRIMARY VARIABLE ARRAYS:                  MPRIM =       8
  MAXIMUM NUMBER OF GENERATION ITEMS (SINKS/SOURCES):         MNOGN =      1
  MAXIMUM NUMBER OF TABULAR (TIME-DEPENDENT) GENERATION DATA: MGTAB =      2
- LENGTH OF SECONDARY PARAMETER ARRAY:                        MNSEC  =         280
+ LENGTH OF SECONDARY PARAMETER ARRAY:                        MNSEC  =         232
 
  MESH HAS        2 ELEMENTS AND        1 CONNECTIONS (INTERFACES) BETWEEN THEM
  GENER HAS     1 SINKS/SOURCES
@@ -229,12 +226,12 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.0006 SECONDS
  *                                ECO2: EQUATION OF STATE FOR MIXTURES OF WATER/SODIUM CHLORIDE/CO2                                *
  ***********************************************************************************************************************************
 
-    OPTIONS SELECTED ARE: (NK,NEQ,NPH,NB) = (3,3,3, 8)
+    OPTIONS SELECTED ARE: (NK,NEQ,NPH,NB) = (3,3,3, 6)
 
                           NK  =  3   - NUMBER OF FLUID COMPONENTS
                           NEQ =  3   - NUMBER OF EQUATIONS PER GRID BLOCK
                           NPH =  3   - NUMBER OF PHASES THAT CAN BE PRESENT
-                          NB  =  8   - NUMBER OF SECONDARY PARAMETERS (OTHER THAN COMPONENT MASS FRACTIONS)
+                          NB  =  6   - NUMBER OF SECONDARY PARAMETERS (OTHER THAN COMPONENT MASS FRACTIONS)
 
                    FOR NB = 6, DIFFUSION IS "OFF", FOR NB = 8, DIFFUSION IS "ON"
 
@@ -322,23 +319,6 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.0006 SECONDS
  ********** [KCYC,ITER] = [   0,  0] *****                                  THE TIME IS  0.00000E+00 SECONDS, OR  0.00000E+00 DAYS
 
 
- Balances for domain #  2, *capil*
-
-                          PHASES PRESENT                                        COMPONENT MASS IN PLACE (kg)
- ********************************************************* ************************************************************************
- PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
- ********************************************************* ************************************************************************
-            *                                              PHASES     *
- VOL. (m^3) * 0.00000000E+00 0.00000000E+00 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
- MASS (kg)  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 AQUEOUS    * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
- ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
-                                                           ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
-                                                           TOTAL      * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
-                                                           ************************************************************************
-
- **********************************************************************************************************************************
-
-
  Balances for entire system
 
                           PHASES PRESENT                                        COMPONENT MASS IN PLACE (kg)
@@ -396,7 +376,7 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.0006 SECONDS
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  5]
- ...ITERATING... AT [    3, 5] --- DELTEX = 0.120000E+03  MAX. RES. = 0.187328E-07 AT ELEMENT A11 1  EQUATION   3
+ ...ITERATING... AT [    3, 5] --- DELTEX = 0.120000E+03  MAX. RES. = 0.187328E-07 AT ELEMENT A11 0  EQUATION   3
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   3,  5]
 
@@ -408,19 +388,19 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.0006 SECONDS
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  7]
- ...ITERATING... AT [    3, 7] --- DELTEX = 0.120000E+03  MAX. RES. = 0.187328E-07 AT ELEMENT A11 1  EQUATION   3
+ ...ITERATING... AT [    3, 7] --- DELTEX = 0.120000E+03  MAX. RES. = 0.187328E-07 AT ELEMENT A11 0  EQUATION   3
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   3,  7]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  8]
- ...ITERATING... AT [    3, 8] --- DELTEX = 0.120000E+03  MAX. RES. = 0.169908E-06 AT ELEMENT A11 0  EQUATION   3
+ ...ITERATING... AT [    3, 8] --- DELTEX = 0.120000E+03  MAX. RES. = 0.187328E-07 AT ELEMENT A11 1  EQUATION   3
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   3,  8]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  9]
- ...ITERATING... AT [    3, 9] --- DELTEX = 0.120000E+03  MAX. RES. = 0.207374E-06 AT ELEMENT A11 0  EQUATION   3
+ ...ITERATING... AT [    3, 9] --- DELTEX = 0.120000E+03  MAX. RES. = 0.187328E-07 AT ELEMENT A11 0  EQUATION   3
 
  +++++++++ CONVERGENCE FAILURE ON TIME STEP #   3 WITH DT = 0.120000E+03 SECONDS, FOLLOWING TWO STEPS THAT CONVERGED ON ITER = 1
            STOP EXECUTION AFTER NEXT TIME STEP
@@ -444,30 +424,13 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.0006 SECONDS
  ELEM.  INDEX  PRES        TEMP        SAT_G       SAT_L       SAT_S       X_WATER_G   X_NaCl_G    X_CO2_G     X_WATER_L   X_NaCl_L    X_CO2_L     REL_G       REL_L       PCAP_GL     DEN_G       DEN_L       POR       
                 (PA)        (DEC-C)     (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (PA)        (KG/M**3)   (KG/M**3)   (-)       
  
- A11 0      1 0.35000E+07  0.1650E+02  0.5000E+00  0.5000E+00  0.0000E+00  0.3103E-03  0.0000E+00  0.9997E+00  0.9391E+00  0.1644E-01  0.4442E-01  0.1000E+01  0.1000E+01 -0.0000E+00  0.8336E+02  0.1019E+04  0.9900E+00
- A11 1      2 0.35000E+07  0.1650E+02  0.5000E+00  0.5000E+00  0.0000E+00  0.3103E-03  0.0000E+00  0.9997E+00  0.9391E+00  0.1644E-01  0.4442E-01  0.1000E+01  0.1000E+01 -0.0000E+00  0.8336E+02  0.1019E+04  0.9900E+00
+ A11 0      1 0.35000E+07  0.1650E+02  0.5000E+00  0.5000E+00  0.0000E+00  0.3103E-03  0.0000E+00  0.9997E+00  0.9391E+00  0.1644E-01  0.4442E-01  0.1000E+01  0.1000E+01  0.0000E+00  0.8336E+02  0.1019E+04  0.9900E+00
+ A11 1      2 0.35000E+07  0.1650E+02  0.5000E+00  0.5000E+00  0.0000E+00  0.3103E-03  0.0000E+00  0.9997E+00  0.9391E+00  0.1644E-01  0.4442E-01  0.1000E+01  0.1000E+01  0.0000E+00  0.8336E+02  0.1019E+04  0.9900E+00
 0@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  
  ********** VOLUME- AND MASS-BALANCES ********************************************************************************************
 
  ********** [KCYC,ITER] = [   3,  1] *****                                  THE TIME IS  0.66000E+02 SECONDS, OR  0.76389E-03 DAYS
-
-
- Balances for domain #  2, *capil*
-
-                          PHASES PRESENT                                        COMPONENT MASS IN PLACE (kg)
- ********************************************************* ************************************************************************
- PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
- ********************************************************* ************************************************************************
-            *                                              PHASES     *
- VOL. (m^3) * 0.00000000E+00 0.00000000E+00 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
- MASS (kg)  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 AQUEOUS    * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
- ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
-                                                           ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
-                                                           TOTAL      * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
-                                                           ************************************************************************
-
- **********************************************************************************************************************************
 
 
  Balances for entire system
@@ -489,22 +452,22 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.0006 SECONDS
  TOUGH STATUS: Write SAVE file for time =    66.000000000000000     
  EEE  
  EEE  Number of processors =            4
- EEE Time perform model computation  =    3.4664287000000002E-002
- EEE   of which spent in lin. solv. =    1.2041939999999987E-003
- EEE   and spent on other           =    3.3460093000000003E-002
+ EEE Time perform model computation  =    3.2424116999999995E-002
+ EEE   of which spent in lin. solv. =    1.2741740000000099E-003
+ EEE   and spent on other           =    3.1149942999999986E-002
  EEE  
  EEE Total number of time steps =            3
- EEE Average time in solver per time step =    4.0139799999999959E-004
- EEE Average time spent on other per time step =    1.1153364333333334E-002
+ EEE Average time in solver per time step =    4.2472466666666997E-004
+ EEE Average time spent on other per time step =    1.0383314333333329E-002
  EEE  
  EEE Total number Newton steps =            8
  EEE Average number of Newton steps per time step   2.6666666666666665     
- EEE Average time per Newton step =    1.5052424999999984E-004
- EEE Average time spent on other per Newton st =    4.1825116250000004E-003
+ EEE Average time per Newton step =    1.5927175000000123E-004
+ EEE Average time spent on other per Newton st =    3.8937428749999982E-003
  EEE  
  EEE Total number of iter =            8
  EEE Average number of iter per call    1.0000000000000000     
- EEE Average time per iter =    1.5052424999999984E-004
+ EEE Average time per iter =    1.5927175000000123E-004
  EEE  
  EEE  =============================================
  EEE  
@@ -512,7 +475,7 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.0006 SECONDS
 
 
 END OF TOUGH3 SIMULATION RUN
-ELAPSED TIME =      0.039 SEC
-DISTRIBUTION + CALCULATION TIME =      0.038 SEC
+ELAPSED TIME =      0.037 SEC
+DISTRIBUTION + CALCULATION TIME =      0.037 SEC
 DATA INPUT TIME =    0.001 SEC
  
