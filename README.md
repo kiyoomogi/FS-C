@@ -61,6 +61,6 @@ Liquid density at these conditions:
 
 - For the **flash**: use a closed, two-phase cell (no injection) to read **X_CO₂(L)** at P–T–salinity (the saturation limit).
 - For the **injection case** (full-scale model): inject **liquid only** with the above **mass fractions**, at **5.3 L/min**, for **4 hours** (14,400 s).  
-  This represents **CO₂-saturated Pearson water** at Mont Terri conditions, avoiding a separate free CO₂ phase at the well (provided local pressure remains high enough).
+- This represents **CO₂-saturated Pearson water** at Mont Terri conditions, avoiding a separate free CO₂ phase at the well (provided local pressure remains high enough).
 
 ---
