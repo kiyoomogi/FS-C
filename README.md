@@ -16,7 +16,7 @@ This note documents how we determined the CO₂ solubility at Mont Terri conditi
   - Liquid/gas saturations: **S<sub>L</sub> = 0.5**, **S<sub>G</sub> = 0.5**  *(two-phase so the liquid is at CO₂ solubility)*
   - NaCl mass fraction (brine, no CO₂ yet):  
     - From **0.3 M NaCl** (Pearson/OPA water):  
-      \[ w_{\text{NaCl}} \approx \frac{0.3 \times 58.44\ \text{g/mol}}{ \rho \approx 1019\ \text{g/L} } \approx \mathbf{0.0172} \] (**1.72 wt%**)
+      $ w_{\text{NaCl}} \approx \frac{0.3 \times 58.44\ \text{g/mol}}{ \rho \approx 1019\ \text{g/L} } \approx \mathbf{0.0172} $ (**1.72 wt%**)
 
 - **Diffusion:** Not included.
 - **Purpose of flash step:** With S<sub>L</sub> and S<sub>G</sub> both > 0, ECO2N “flashes” to equilibrium so **X_CO₂(L)** equals the **saturation limit** (mass fraction) at the given P–T–salinity.
