@@ -63,7 +63,8 @@ parameters = {
 
 
 #INITIAL CONDITIONS 
-ini_pore_pressure = 0.1e6#0.432e6 #Pa, 
+ini_pore_pressure = 0.1e6#0.432e6 #Pa,
+ini_NACL = 0.017203 
 ini_gas_content = 0.0 #-, ...
 temperature = 16.5 #°C, (1)
 
@@ -92,7 +93,7 @@ parameters["default"] = {
     "expansivity": 1.4e-5,                #°C^-1
     "conductivity_dry": 2.0,              #W/m/K
 
-    "initial_condition": [ini_pore_pressure,0.017203, ini_gas_content,temperature],
+    "initial_condition": [ini_pore_pressure,ini_NACL, ini_gas_content,temperature],
     "relative_permeability": {
         "id": 11, #Modified van genuchtn 
         "parameters": irp11,
