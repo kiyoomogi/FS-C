@@ -10,7 +10,7 @@ import pandas as pd
 import toughio
 
 
-incon = 'ns' #simulation_point or ns
+incon = 'n55s' #simulation_point or ns
 
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/avg_FSC_injecrates.csv", delimiter=',', index_col=[0])
 rates_csv = rates_csv.dropna()
