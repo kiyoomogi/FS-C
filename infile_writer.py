@@ -26,7 +26,14 @@ if incon == 'ns':
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_simple.msh")
 mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
+z_centers = mesh.centers[:,2]
+z_top = np.amax(z_centers)
+z_bot = np.amin(z_centers)
 
+p0 = rates_csv['zone P [MPa]'][0]
+
+top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top
+bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top
 
 
 #Add material
