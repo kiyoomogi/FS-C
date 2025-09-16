@@ -1,0 +1,430 @@
+ 
+       @@@@@   @@   @  @   @@@  @  @   @@       @@@  @  @   @  @  @  @      @@   @@@@@  @   @@   @   @     @@@   @  @  @   @
+         @    @  @  @  @  @     @  @  @  @     @     @  @@ @@  @  @  @     @  @    @    @  @  @  @@  @     @  @  @  @  @@  @
+         @    @  @  @  @  @ @@  @@@@    @       @@   @  @ @ @  @  @  @     @@@@    @    @  @  @  @ @ @     @@@   @  @  @ @ @
+         @    @  @  @  @  @  @  @  @  @  @        @  @  @   @  @  @  @     @  @    @    @  @  @  @  @@     @ @   @  @  @  @@
+         @     @@    @@    @@@  @  @   @@      @@@   @  @   @   @@   @@@@  @  @    @    @   @@   @   @     @  @   @@   @   @
+
+
+                    TOUGH3 IS A PROGRAM FOR MULTIPHASE MULTICOMPONENT FLOW IN PERMEABLE MEDIA, INCLUDING HEAT FLOW.
+              IT IS A MEMBER OF THE MULKOM FAMILY OF CODES, DEVELOPED  AT LAWRENCE BERKELEY LABORATORY BY KARSTEN PRUESS ET AL.
+
+                          ********************************************************************************
+                          **********************     TOUGH3 VER 1.1 (Sep. 2022)   *********************
+                          ********************************************************************************
+
+
+ SUMMARY OF DISK FILES
+
+ FILE *MESH*  EXISTS --- OPEN AS AN OLD FILE
+ WARNING: FILES *MESHA* AND *MESHB* EXIST --- information in file MESH or ELEME and CONNE blocks in input file will be ignored
+ FILE *INCON* EXISTS --- OPEN AS AN OLD FILE
+ FILE *GENER* EXISTS --- OPEN AS AN OLD FILE
+ FILE *SAVE*  EXISTS --- OPEN AS AN OLD FILE
+ FILE *TABLE* EXISTS --- OPEN AS AN OLD FILE
+
+ ===================================================================================================================================
+
+     PROBLEM TITLE:  natural state                                                                   
+
+
+(Reading ROCKS block)
+
+ DOMAIN NO.  1     MATERIAL NAME -- INJEC
+
+ DOMAIN NO.  2     MATERIAL NAME -- CLAY 
+
+ DOMAIN NO.  3     MATERIAL NAME -- FAULT
+
+ DOMAIN NO.  4     MATERIAL NAME -- BNDTO
+
+ DOMAIN NO.  5     MATERIAL NAME -- BNDBO
+(Reading RPCAP block)
+(Reading MULTI block)
+(Reading START block)
+(Reading PARAM block)
+(Reading INDOM block)
+(Reading MOMOP block)
+(Reading TIMES block)
+(Reading OUTPU block)
+(Reading ENDCY block)
+
+                        ************************************************************************************
+                        *                       EVALUATE FLOATING POINT ARITHMETIC                         *
+                        ************************************************************************************
+                        *                                                                                  *
+                        * FLOATING POINT PROCESSOR HAS APPROXIMATELY 15 SIGNIFICANT DIGITS                 *
+                        *                                                                                  *
+                        * DEFAULT VALUE OF INCREMENT FACTOR FOR NUMERICAL DERIVATIVES IS DFAC = 0.1490E-07 *
+                        * DEFAULT VALUE FOR DFAC WILL BE USED                                              *
+                        *                                                                                  *
+                        ************************************************************************************
+
+ 
+
+
+ PARAMETERS FOR FLEXIBLE DIMENSIONING OF MAJOR ARRAYS (MAIN PROGRAM) ARE AS FOLLOWS
+
+ MNEL =  25758  MNCON =   50940  MNEQ =  3  MNK =  3   MNPH =  3   MNB =  6   MNOGN =    0   MGTAB =    0
+ ===================================================================================================================================
+
+ MAXIMUM NUMBER OF VOLUME ELEMENTS (GRID BLOCKS):            MNEL  =   25758
+ MAXIMUM NUMBER OF CONNECTIONS (INTERFACES):                 MNCON =   50940
+ MAXIMUM LENGTH OF PRIMARY VARIABLE ARRAYS:                  MPRIM =  103032
+ MAXIMUM NUMBER OF GENERATION ITEMS (SINKS/SOURCES):         MNOGN =      0
+ MAXIMUM NUMBER OF TABULAR (TIME-DEPENDENT) GENERATION DATA: MGTAB =      0
+ LENGTH OF SECONDARY PARAMETER ARRAY:                        MNSEC  =     2987928
+
+ MESH HAS    25758 ELEMENTS AND    50940 CONNECTIONS (INTERFACES) BETWEEN THEM
+ GENER HAS     0 SINKS/SOURCES
+
+
+END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.0063 SECONDS
+
+ 
+ ***********************************************************************************************************************************
+ *          ARRAY *MOP* ALLOWS TO GENERATE MORE PRINTOUT IN VARIOUS SUBROUTINES, AND TO MAKE SOME CALCULATIONAL CHOICES.           *
+ ***********************************************************************************************************************************
+
+   MOP(1)  = 1 *** ALLOWS TO GENERATE A SHORT PRINTOUT FOR EACH NEWTON-RAPHSON ITERATION
+           = 0, 1, OR 2: GENERATE 0, 1, OR 2 LINES OF PRINTOUT
+
+            MORE PRINTOUT IS GENERATED FOR MOP(I) > 0 IN THE FOLLOWING SUBROUTINES (THE LARGER MOP IS, THE MORE WILL BE PRINTED).
+
+   MOP(2)  = 2 *** CYCIT       MOP(3) = 1 *** MULTI       MOP(4) = 1 *** QU       MOP(5) = 5 *** EOS       MOP(6) = 0 *** LINEQ    
+
+   MOP(7)  = 0 *** IF UNEQUAL ZERO, WILL GENERATE A PRINTOUT OF INPUT DATA
+
+            CALCULATIONAL CHOICES OFFERED BY MOP ARE AS FOLLOWS:
+
+   MOP(8)  = 0 *** IF ISOT IS NEGATIVE, CHOOSES OPTION FOR REDUCING FRACTURE-MATRIX INTERFACE AREA.
+
+   MOP(9)  = 0 *** CHOOSES FLUID COMPOSITION ON WITHDRAWAL (PRODUCTION).
+           = 0: ACCORDING TO RELATIVE MOBILITIES.
+           = 1: ACCORDING TO COMPOSITION IN PRODUCING ELEMENT.
+
+   MOP(10) = 0 *** CHOOSES INTERPOLATION FORMULA FOR DEPENDENCE OF THERMAL CONDUCTIVITY ON LIQUID SATURATION (SL).
+           = 0: K = KDRY + SQRT(SL)*(KWET-KDRY)
+           = 1: K = KDRY + SL*(KWET-KDRY)
+           = 2: K = C0+C1*T+C2*Sw+C3*POR
+
+   MOP(11) = 0 *** CHOOSES EVALUATION OF MOBILITY AND ABSOLUTE PERMEABILITY AT INTERFACES.
+           = 0: MOBILITIES ARE UPSTREAM WEIGHTED WITH WUP. (DEFAULT IS WUP = 1.0). PERMEABILITY IS UPSTREAM WEIGHTED.
+           = 1: MOBILITIES ARE AVERAGED BETWEEN ADJACENT ELEMENTS. PERMEABILITY IS UPSTREAM WEIGHTED.
+           = 2: MOBILITIES ARE UPSTREAM WEIGHTED WITH WUP. (DEFAULT IS WUP = 1.0). PERMEABILITY IS HARMONIC WEIGHTED.
+           = 3: MOBILITIES ARE AVERAGED BETWEEN ADJACENT ELEMENTS. PERMEABILITY IS HARMONIC WEIGHTED.
+           = 4: MOBILITY * PERMEABILITY PRODUCT IS HARMONIC WEIGHTED.
+
+   MOP(12) = 2 *** CHOOSES PROCEDURE FOR INTERPOLATING GENERATION RATES FROM A TIME TABLE.
+           = 0: TRIPLE LINEAR INTERPOLATION.
+           = 1: "STEP FUNCTION" OPTION.
+           = 2: RIGOROUS STEP RATE OPTION.
+
+   MOP(13) = 0 *** DEFINES CONTENT OF INCON AND SAVE FILE.
+           = 0: STANDARD CONTENT.
+           = 2: READS PARAMETERS OF HYSTERESIS MODEL FROM FILE INCON.
+
+   MOP(15) = 0 *** ALLOWS TO SELECT A SEMI-ANALYTICAL HEAT EXCHANGE CALCULATION WITH CONFINING BEDS.
+           = 0: NO SEMI-ANALYTICAL HEAT EXCHANGE.
+           = 1: SEMI-ANALYTICAL LINEAR HEAT EXCHANGE ENGAGED. INITIAL TEMPERATURE OF CONFINING BEDS IS UNIFORM.
+           = 2: SEMI-ANALYTICAL LINEAR HEAT EXCHANGE ENGAGED. INITIAL TEMPERATURE OF CONFINING LAYERS IS NOT UNIFORM.
+           = 5: SEMI-ANALYTICAL RADIAL HEAT EXCHANGE WITH PROPERTIES GIVEN IN MATERIAL QLOSS
+           = 6: SEMI-ANALYTICAL RADIAL HEAT EXCHANGE WITH DEPTH-DEPENDENT PROPERTIES (DEPTH, RADIUS, TEMPERATURE,
+                CONDUCTIVITY, DENSITY, CAPACITY) PROVIDED ON FILE radqloss.dat
+
+   MOP(16) = 0 *** PERMITS TO CHOOSE TIME STEP SELECTION OPTION
+           = 0: AUTOMATIC TIME STEPPING BASED ON MAXIMUM CHANGE IN SATURATION.
+           = 1: AUTOMATIC TIME STEPPING BASED ON NUMBER OF ITERATIONS NEEDED FOR CONVERGENCE.
+           > 1: INCREASE TIME STEP BY AT LEAST A FACTOR 2, IF CONVERGENCE OCCURS IN .LE. MOP(16) ITERATIONS.
+
+   MOP(17) = 9 *** HANDLES TIME STEPPING AFTER LINEAR EQUATION SOLVER FAILURE.
+           = 0: NO TIME STEP REDUCTION DESPITE LINEAR EQUATION SOLUTION FAILURE.
+           = 9: REDUCE TIME STEP AFTER LINEAR EQUATION SOLUTION FAILURE.
+
+   MOP(18) = 0 *** ALLOWS TO SELECT HANDLING OF INTERFACE DENSITY.
+           = 0: PERFORM UPSTREAM WEIGHTING FOR INTERFACE DENSITY.
+           > 0: COMPUTE INTERFACE DENSITY AS AVERAGE OF THE TWO GRID BLOCK DENSITIES.
+                HOWEVER, WHEN ONE OF THE TWO PHASE SATURATIONS IS ZERO, DO UPSTREAM WEIGHTING.
+
+   MOP(21) = 8 *** PERMITS TO SELECT LINEAR EQUATION SOLVER FROM PACKAGE 
+           < 2: DEFAULTS TO MOP(21) = 3
+           = 2: DSLUBC: BI-CONJUGATE GRADIENT SOLVER; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 3: DSLUCS: BI-CONJUGATE GRADIENT SOLVER - LANCZOS TYPE; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 4: DSLUGM: GENERALIZED MINIMUM RESIDUAL CONJUGATE GRADIENTS; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 5: DLUSTB: STABILIZED BI-CONJUGATE GRADIENT SOLVER; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 6: LUBAND: DIRECT SOLVER USING LU DECOMPOSITION
+           = 7: AZTEC: PARALLEL ITERATIVE SOLVER
+           = 8: PETSc: PARALLEL ITERATIVE SOLVER
+
+   MOP(24) = 0 *** PERMITS TO SELECT HANDLING OF MULTIPHASE DIFFUSIVE FLUXES AT INTERFACES
+           = 0: HARMONIC WEIGHTING OF FULLY-COUPLED EFFECTIVE MULTIPHASE DIFFUSIVITY
+           = 1: SEPARATE HARMONIC WEIGHTING  FOR EACH PHASE FLUX 
+
+ ***********************************************************************************************************************************
+
+ ADDITIONAL OPTIONS CAN BE PROVIDED ON A LINE IN FORMAT 80I1, FOLLOWING BLOCK IDENTIFIER "MOMOP"
+ NOTE THAT THIS FEATURE IS ADOPTED FROM iTOUGH2, BUT
+ THE IMPLEMENTATION IS SLIGHTLY DIFFERENT.
+
+   MOP2(1) = 2 *** MINIMUM NUMBER OF NEWTON-RAPHSON ITERATIONS
+        0 or 1: ALLOW CONVERGENCE IN ONE ITERATION (DEFAULT)
+             2: PERFORM AT LEAST 2 ITERATIONS; PRIMARY VARIABLES ARE ALWAYS UPDATED
+
+   MOP2(2) = 0 *** LENGTH OF ELEMENT NAMES
+           = 0: 5-CHARACTER ELEMENT NAMES (DEFAULT)
+          >= 5: 5 <= ELEMENT NAME LENGTH <= 9
+
+                                    FORMAT IN TOUGH3 INPUT BLOCK
+  LENGTH              ELEME                     CONNE                     INCON                             GENER
+       5: (A3,I2,I5,I5,A2,A3,6ES10.4) (2(A3,I2),I5,2I5,I5,4ES10.4) (A3,I2,I5,I5,ES15.8,4ES12.4) (A3,I2,A3,I2,I5,2I5,I5,5X,A4,A1,3ES10.4)
+       6: (A3,I3,I5,I4,A2,A3,6ES10.4) (2(A3,I3),I5,2I4,I5,4ES10.4) (A3,I3,I5,I4,ES15.8,4ES12.4) (A3,I3,A3,I2,I6,2I4,I5,5X,A4,A1,3ES10.4)
+       7: (A3,I4,I4,I4,A2,A3,6ES10.4) (2(A3,I4),I5,2I3,I5,4ES10.4) (A3,I4,I4,I4,ES15.8,4ES12.4) (A3,I4,A3,I2,I5,2I4,I5,5X,A4,A1,3ES10.4)
+       8: (A3,I5,I4,I3,A2,A3,6ES10.4) (2(A3,I5),I3,2I3,I5,4ES10.4) (A3,I5,I4,I3,ES15.8,4ES12.4) (A3,I5,A3,I2,I4,2I4,I5,5X,A4,A1,3ES10.4)
+       9: (A3,I6,I3,I3,A2,A3,6ES10.4) (2(A3,I6),I3,2I2,I5,4ES10.4) (A3,I6,I3,I3,ES15.8,4ES12.4) (A3,I6,A3,I2,I5,2I3,I5,5X,A4,A1,3ES10.4)
+
+   MOP2(3) = 0 *** HONORING GENERATION TIMES
+           = 0: GENERATION TIMES IGNORED
+           > 0: TIME STEPS ADJUSTED TO MATCH GENERATION TIMES
+
+   MOP2(4) = 0 *** REDUCE VAPOR PRESSURE
+           = 0: NO VAPOR PRESSURE REDUCTION AT LOW SATURATION
+           > 0: REDUCES VAPOR PRESSURE FOR SL < 0.02 TO PREVENT LIQUID DISAPPEARANCE (ONLY CERTAIN EOS MODULES)
+
+   MOP2(5) = 0 *** ACTIVE FRACTURE MODEL
+           = 0: ACTIVE FRACTURE MODEL APPLIED TO LIQUID PHASE ONLY
+           > 0: ACTIVE FRACTURE MODEL APPLIED TO ALL PHASES
+
+   MOP2(6) = 1 *** LEVERETT SCALING
+           > 0: RESCALE CAPILLARY PRESSURE: PC=PC_REF*SQRT(K_REF/K) IF ELEMENT-BY-ELEMENT PERMEABILITIES ARE DEFINED
+
+   MOP2(7) = 0 *** ZERO NODAL DISTANCE
+           = 0: TAKE ABSOLUTE PERMEABILITY FROM OTHER GRID BLOCK
+           > 0: TAKE ABSOLUTE AND RELATIVE PERMEABILITY FROM OTHER GRID BLOCK.
+
+   MOP2(8) = 0 *** CONVERSION OF ELEMENT NAMES
+           = 0: NO CONVERSION
+           > 0: CONVERT NON-LEADING SPACES IN ELEMENT NAMES TO ZEROS
+
+   MOP2(9) = 0 *** TIME STEP AFTER FORCED TIME-STEP REDUCTION TO HONOR PRINTOUT TIME
+           = 0: CONTINUE WITH TIME STEP USED BEFORE FORCED TIME-STEP REDUCTION
+           > 0: CONTINUE WITH TIME STEP IMPOSED BY FORCED TIME-STEP REDUCTION
+
+   MOP2(10)= 0 *** FREQUENCY OF WRITING SAVE FILE
+           = 0: WRITE FILE SAVE ONLY AT THE END OF THE SIMULATION
+           = 1: WRITE FILE SAVE AFTER EACH OUTPUT TIME
+           = 2: WRITE SEPARATE SAVE FILES AFTER EACH OUTPUT TIME
+
+   MOP2(11)= 0 *** WATER AND STEAM PROPERTIES
+           = 0: INTERNATIONAL FORMULATION COMMITTEE (1967)
+             1: INTERNATIONAL ASSOCIATION FOR PROPERTIES OF WATER AND STEAM (1997)
+
+   MOP2(12)= 0 *** LIQUID WATER ENTHALPY
+           = 0: POTENTIAL ENERGY NOT INCLUDED
+           > 0: POTENTIAL ENERGY INCLUDED
+
+   MOP2(13)= 0 *** ADJUSTMENT OF NEWTON-RAPHSON INCREMENT WEIGHTING
+           = 0: NO ADJUSTMENT
+           > 0: REDUCE WNR BY MOP2(13) PERCENT IF NEWTON-RAPHSON ITERATIONS OSCILLATE AND TIME STEP IS REDUCED BECAUSE ITER=NOITE
+
+   MOP2(14)= 0 *** PRINT INPUT FILES
+           = 0: DO NOT PRINT INPUT FILES
+           = 1: PRINT INPUT FILE AT END OF OUTPUT FILE
+
+   MOP2(15)= 0 *** POROSITY USED IN ROCK ENERGY CALCULATION
+           = 0: POROSITY FROM BLOCK ROCKS
+           > 0: POROSITY FROM BLOCK INCON
+
+   MOP2(16)= 0 *** POROSITY-PERMEABILITY RELATIONSHIPS
+           = 0: NO DETERMINISTIC CORRELATION
+           > 0: ROCK-TYPE SPECIFIC CORRELATIONS
+
+   MOP2(17)= 0 *** VARIABLES PRINTED ON FOFT FILES
+           = 0: PRINT VARIABLES ACCORDING TO INPUT DATA IN FOFT DATA BLOCK
+           = 1: PRINT VARIABLES ACCORDING TO INPUT DATA IN OUTPU DATA BLOCK
+
+   MOP2(20)= 0 *** ANISOTROPIC PERMEABILITIES AND PERMEABILITY MODIFIERS
+           = 0: READ ISOTROPIC PERMEABILITY MODIFIERS FROM COLUMNS 41-50
+           = 1: READ ANISOTROPIC PERMEABILITY MODIFIERS FROM COLUMNS 81-110
+           = 2: READ ANISOTROPIC PERMEABILITY MODIFIERS FROM COLUMNS 41-50 AND 91-110
+
+   MOP2(21)= 0 *** HONORING TIMES IN BLOCKS TIMBC
+           = 0: TIMES IN BLOCKS TIMBC IGNORED
+           > 0: TIME STEPS ADJUSTED TO MATCH TIMES IN BLOCKS TIMBC
+
+   MOP2(22)= 0 *** FORMAT FOR READING COORDINATES IN BLOCK ELEME
+           = 0: READ COORDINATES IN FORMAT 3E10.4
+           = 1: READ COORDINATES IN FORMAT 3E20.14
+
+   MOP2(25)= 0 *** CHECK MESH FOR DUPLICATE ELEMENT NAMES
+           = 0: DO NOT CHECK MESH
+           = 1: CHECK MESH
+
+   MOP2(26)= 1 *** OUTPUT FORMAT
+           = 0: TRADITIONAL OUTPUT AND CSV FORMATS
+           = 1: CSV/TECPLOT OUTPUT FORMAT (TYPES SEPARATED; TIMES COMBINED)
+           = 2: CSV/TECPLOT OUTPUT FORMAT (TYPES SEPARATED; TIMES SEPARATED)
+           = 3: CSV/TECPLOT OUTPUT FORMAT (TYPES COMBINED;  TIMES COMBINED)
+
+   MOP2(27)= 0 *** ELEMENT NAMING IN MESHMAKER
+           = 0: TRADITIONAL ELEMENT NAMING
+           = 1: ELEMENT NAME IS EQUAL TO CONSECUTIVE ELEMENT NUMBER
+
+   MOP2(40)= 0 *** Set ZERO to 10.^(-MOP2(40)) replacing default value 1.e-6
+           = 0: ZERO equals default value 1.e-6
+           > 0: Adjust zero to 10.^(-MOP2(40))
+
+ ***********************************************************************************************************************************
+
+ ***********************************************************************************************************************************
+
+
+ 
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&   Summary of capabilities for random permeability modification   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+ Modification of absolute permeability on a grid block-by-grid block basis will be made when a domain "SEED " is present in data
+ block "ROCKS", as follows.
+                                    k    --->    k' = k*m
+
+ Here, k is the absolute permeability specified for the reservoir domain to which the grid block belongs. Parameter m is a
+ "permeability modifier" which can be internally generated or externally prescribed by the user on a block-by-block basis.
+
+ When permeability modification is in effect, the strength of capillary pressure will, following Leverett (1941), automatically be
+ scaled as   Pcap ---> Pcap' = Pcap/SQRT(m).
+
+ User-supplied permeability modifiers have to be entered as parameter "PMX" in columns 41-50 of an ELEMEnt record.
+ Permeability modification options are selected through parameters in data block "ROCKS".
+
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ Summary of available permeability modification options
+          (with s - random number between 0 and 1; PMX - user-supplied modifiers in data block "ELEME"):
+      (1) externally supplied:        m = PMX - PER(2)
+      (2) "linear"      (DROK.ne.0):  m = PER(1) * s - PER(2)
+      (3) "logarithmic" (DROK.eq.0):  m = exp(- PER(1) * s) - PER(2)
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+            &&&& if a domain "SEED " is present, permeability modification will be made
+            &&&& if no domain "SEED " is present, no permeability modification will be made
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>  domain = "SEED " is not present, no permeability modification will be made  <<<<<<<<<<<<<<<<<<<<<<<<<<
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+ Data provided in domain "SEED " are used to select the following options.
+
+ DROK   = *** random number seed for internal generation of "linear" permeability modifiers.
+        = 0: (default) no internal generation of "linear" permeability modifiers.
+        > 0: perform "linear" permeability modification; random modifiers are generated internally with DROK as seed.
+
+ POR    = *** random number seed for internal generation of "logarithmic" permeability modifiers,
+        = 0: (default) no internal generation of "logarithmic" permeability modifiers.
+        > 0: perform "logarithmic" permeability modification; random modifiers are generated internally with POR as seed.
+
+            &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            &&&&& note: if both DROK and POR are specified as non-zero, DROK takes precedence                                  &&&&&
+            &&&&&       if both DROK and POR are zero, permeability modifiers as supplied through "ELEME" data will be used    &&&&&
+            &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+ PER(1) = *** scale factor (optional) for internally generated  permeability modifiers.
+        = 0: (defaults to PER(1) = 1): permeability modifiers are generated as random numbers in the interval (0, 1).
+        > 0: permeability modifiers are generated as random numbers in the interval (0, PER(1)).
+
+ PER(2) = *** shift (optional) for internal or external permeability modifiers.
+        = 0: (default) no shift is applied to permeability modifiers.
+        > 0: permeability modifiers are shifted according to m' = m - PER(2). All m' < 0 are set equal to zero.
+
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   0,  0]
+
+ FILE *CO2TAB*  EXISTS --- OPEN AS AN OLD FILE
+                               *************************************************
+                               *     CO2 PROPERTIES READ FROM FILE CO2TAB      *
+                               *         NPK=127;  NTK= 51                     *
+                               *  P(1) = 0.100000E+06;  P(127) = 0.600000E+08  *
+                               *  T(1) = 0.304000E+01;  T( 51) = 0.103040E+03  *
+                               *************************************************
+ 
+ ***********************************************************************************************************************************
+ *                                ECO2: EQUATION OF STATE FOR MIXTURES OF WATER/SODIUM CHLORIDE/CO2                                *
+ ***********************************************************************************************************************************
+
+    OPTIONS SELECTED ARE: (NK,NEQ,NPH,NB) = (3,3,3, 6)
+
+                          NK  =  3   - NUMBER OF FLUID COMPONENTS
+                          NEQ =  3   - NUMBER OF EQUATIONS PER GRID BLOCK
+                          NPH =  3   - NUMBER OF PHASES THAT CAN BE PRESENT
+                          NB  =  6   - NUMBER OF SECONDARY PARAMETERS (OTHER THAN COMPONENT MASS FRACTIONS)
+
+                   FOR NB = 6, DIFFUSION IS "OFF", FOR NB = 8, DIFFUSION IS "ON"
+
+
+    AVAILABLE OPTIONS: (NK,NEQ,NPH,NB)=(3,4,3,6 OR 8) -WATER, NACL, CO2; NON-ISOTHERMAL;      VAR. (P, XS OR SS+10, X3 OR SG+10, T)
+                                       (3,3,3,6 OR 8) -WATER, NACL, CO2; ISOTHERMAL;          VAR. (P, XS OR SS+10, X3 OR SG+10, T)
+
+    DEFAULT OPTIONS ARE (3,4,3,6) - NON-ISOTHERMAL, DIFFUSION "OFF"
+
+ ***********************************************************************************************************************************
+
+
+ THE PRIMARY VARIABLES ARE
+  P   - PRESSURE
+  XSM - SALT MASS FRACTION IN TWO-COMPONENT H2O-NaCl (XS)  OR SOLID SATURATION  (SS+10.)
+  X3  - CO2 MASS FRACTION  OR  SG+10. - GAS PHASE SATURATION + 10.
+  T   - TEMPERATURE
+
+ ******************************                                        *********************************************************
+ *         COMPONENTS         *                                        *   FLUID PHASE CONDITION        PRIMARY VARIABLES      *
+ ******************************                                        *********************************************************
+ *                            *                                        *                                                       *
+ *       # 1  -  WATER        *                                        *   SINGLE-PHASE GAS           P,     XSM,      X3,   T *
+ *                            *                                        *                                                       *
+ *       # 2  -  NACL         *                                        *   SINGLE-PHASE AQUEOUS       P,     XSM,      X3,   T *
+ *                            *                                        *                                                       *
+ *       # 3  -  CO2          *                                        *   TWO-PHASE                  P,     XSM,  SG+10.,   T *
+ *                            *                                        *                                                       *
+ *       # 4  -  HEAT         *                                        *********************************************************
+ *                            *
+ ******************************
+
+ ***********************************************************************************************************************************
+ *                           ARRAY *IE*  ALLOWS TO MAKE CHOICES AMONG DIFFERENT EOS OPTIONS                                        *
+ ***********************************************************************************************************************************
+
+    IE(1)  = 0: *** NUMBER OF ADDITIONAL RECORDS READ IN DATA BLOCK SELEC.
+
+    IE(3) = 0: *** ALLOWS CHOICE OF OPTIONS FOR CALCULATION OF BRINE VISCOSITY.
+           = 0: PHILLIPS ET AL. (1981) (DEFAULT).
+           = 1: PALLISER AND MCKIBBIN (1998).
+           = 2: MAO AND SUN (2006)
+           = 3: POTTER (1976).
+
+    IE(4)  = 1: *** ALLOWS TO CHOOSE AMONG DIFFERENT CORRELATIONS FOR THE DENSITY OF COMPRESSED BRINE.
+           = 1: ANDERSEN ET AL. (1992). (DEFAULT=0)
+           = 2: PRITCHETT (1993). 
+           = 3: BRINE COMPRESSIBILITY EQUAL TO WATER COMPRESSIBILITY AT THE SAME REDUCED TEMPERATURE.
+           = 4: BRINE COMPRESSIBILITY EQUAL TO WATER COMPRESSIBILITY AT THE SAME TEMPERATURE
+           = 5: BATZLE AND WANG (1992). 
+           = 6: DRIESNER (2007).
+
+    IE(11) = 0: *** ALLOWS CHOICE OF DEPENDENCE OF PERMEABILITY ON ACTIVE FLOW POROSITY.
+           = 0: PERMEABILITY DOES NOT VARY WITH FLOW POROSITY.
+           = 1: PERMEABILITY VARIES AS PHIF**FE(1).
+           = 2: SERIES FRACTURE MODEL.
+           = 3: SERIES TUBE MODEL.
+
+    IE(12) = 0: *** ALLOWS CHOICE OF MODEL FOR WATER SOLUBILITY IN CO2.
+           = 0: AFTER SPYCHER AND PRUESS (2005).
+           = 1: EVAPORATION MODEL (WATER DENSITY IN GAS BASED ON DENSITY OF VAPOR IN EQUILIBRIUM WITH BRINE).
+
+    IE(13) = 0: *** ALLOWS CHOICE OF DEPENDENCE OF BRINE DENSITY ON DISSOLVED CO2.
+           = 0: BRINE DENSITY VARIES WITH DISSOLVED CO2, ACCORDING TO THE CORRELATION FOR CO2 MOLAR VOLUME IN SOLUTION
+                FROM J. GARCIA (LBNL-49023).
+           = 1: BRINE DENSITY IS INDEPENDENT OF CO2 CONCENTRATION.
+
+    IE(14) = 0: *** ALLOWS CHOICE OF TREATMENT OF THERMOPHYSICAL PROPERTIES DEPENDENCE ON SALT CONTENT.
+           = 0: FULL DEPENDENCE (DEFAULT).
+           > 0: SUPPRESSION OF ALL THERMOPHYSICAL PROPERTIES DEPENDENCE OTHER THAN SALT SOLUBILITY.
+
+    IE(15) = 4: *** ALLOWS CHOICE OF CORRELATION FOR  VAPOR SATURATED BRINE ENTHALPY.
+           = 1: MICHAELIDES (1981).
+           = 2: MILLER (1978). (OBSOLETE)
