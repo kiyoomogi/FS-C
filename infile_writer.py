@@ -10,10 +10,10 @@ import pandas as pd
 import toughio
 
 
-incon = 'n55s' #simulation_point or ns
+incon = 'ns' #simulation_point or ns
 
-rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/avg_FSC_injecrates.csv", delimiter=',', index_col=[0])
-rates_csv = rates_csv.dropna()
+rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
+rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 time_zero =  0
 time_final = rates_csv["TimeElapsed"].iloc[-1] 
@@ -69,7 +69,7 @@ parameters = {
     "eos": "eco2n",
     "isothermal": True,
     "start": True,
-    "times": (list(np.linspace(time_zero, time_final, 100))), 
+    #"times": (list(np.linspace(time_zero, time_final, 100))), 
 }
 
 
@@ -149,11 +149,11 @@ parameters["options"] = {
     "n_cycle_print": 9999,
     "t_ini": time_zero,
     "t_max": time_final,
-    "t_steps": 1 * 3600,
-    "t_step_max":  2 * 24 * 3600,
+    "t_steps": 1,
+    "t_step_max":  60,
     
     "t_reduce_factor": 4,
-    "eps1": 1.0e-7,
+    "eps1": 1.0e-9,
     #"eps2": 100.0,
     "gravity": 9.8,
 }
@@ -179,7 +179,6 @@ mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model
 def relative_volumes():
     volumes = mesh.volumes
     labels = []
-    labels_seed = []
     volume_list = []
     for i in (range(len(materials))):
         if materials[i] == 'INJEC':
@@ -192,9 +191,9 @@ def relative_volumes():
         
     rel_volumes =   np.array(volume_list) / sum(volume_list)  
     
-    return rel_volumes,labels, volume_list, labels_seed
+    return rel_volumes,labels, volume_list
 
-rel_volumes,labels, volume_list, labels_seed = relative_volumes()
+rel_volumes,labels, volume_list = relative_volumes()
 
 def generators():
 
