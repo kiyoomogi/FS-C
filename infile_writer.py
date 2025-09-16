@@ -232,7 +232,7 @@ def generators():
 
     return rates, times
 
-rates, times = generators() 
+#rates, times = generators() 
 
 
 
