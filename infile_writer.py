@@ -221,31 +221,18 @@ def generators():
         }
         parameters['generators'].append(generator)
         
-        generator = {
-            "label": labels[i],
-            "type": "COM3",
-            "times": times,
-            "rates": rates_co2,
-            "specific_enthalpy": list(np.zeros(len(times))),
-        }
-        parameters['generators'].append(generator)
+        #generator = {
+        #    "label": labels[i],
+        #    "type": "COM3",
+        #    "times": times,
+        #    "rates": rates_co2,
+        #    "specific_enthalpy": list(np.zeros(len(times))),
+        #}
+        #parameters['generators'].append(generator)
 
     return rates, times
 
 rates, times = generators() 
-
-
-parameters['elements'] = {}
-#Output parameters
-parameters["output"] = {
-    "variables": [
-        {"name": "saturation", "options": 1},
-        {"name": "coordinate"},
-        {"name": "pressure"},
-        {"name": "porosity", "options": 0},
-        {"name": "absolute"}
-    ],
-}
 
 
 
