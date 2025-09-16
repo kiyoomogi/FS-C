@@ -110,7 +110,7 @@ parameters["rocks"] = {
     "INJEC": {
         "density": 2500,
         "porosity": 0.99, 
-        "permeability": [5.0e-16,5.0e-16,1.0e-17],
+        "permeability": [5.0e-19,5.0e-19,1.0e-19],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         "compressibility": 1e-99, #2.94e-7,
         #"relative_permeability": {
@@ -131,14 +131,8 @@ parameters["rocks"] = {
         "tortuosity": 0.8, #-, (4) 
         "permeability": [4e-19,4e-19,4e-19]
     },
-    "BNDTO": {
-        "porosity": 0.15,
-        "permeability": [1.0e-20,1.0e-20,1.0e-20],
-    },
-    "BNDBO": {
-        "porosity": 0.15,
-        "permeability": [1.0e-20,1.0e-20,1.0e-20],
-    },
+    "BNDTO": {"initial_condition": [top_BC_value, 0.017203, ini_gas_content, temperature]},
+    "BNDBO": {"initial_condition": [top_BC_value, 0.017203, ini_gas_content, temperature]},
 
 }
 
@@ -171,10 +165,7 @@ parameters['extra_options'] = {
         21: 8
 }
 
-parameters['more_options'] = {
-        1: 2,
-        6: 1
-}
+
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
@@ -232,7 +223,7 @@ def generators():
 
     return rates, times
 
-#rates, times = generators() 
+rates, times = generators() 
 
 
 
