@@ -129,7 +129,7 @@ parameters["rocks"] = {
         "porosity": 0.14,
     },
     "BNDTO": {"initial_condition": [top_BC_value, 0.017203, ini_gas_content, temperature]},
-    "BNDBO": {"initial_condition": [top_BC_value, 0.017203, ini_gas_content, temperature]},
+    "BNDBO": {"initial_condition": [bot_BC_value, 0.017203, ini_gas_content, temperature]},
 }
 
 parameters["options"] = {
