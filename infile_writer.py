@@ -13,7 +13,7 @@ import toughio
 incon = 'ns' #simulation_point or ns
 
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
-rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
+#rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 time_zero =  0
 time_final = rates_csv["TimeElapsed"].iloc[-1] 
@@ -94,7 +94,7 @@ irp11 = [0.5, 0.0, 0]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.14 ,                    #- 
-    "permeability": [7.3e-20, 7.3e-20,7.3e-20], #m2  
+    "permeability": [1e-18,1e-18,1e-18], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
     "compressibility": 1e-99,             #Pa^-1
@@ -117,9 +117,9 @@ parameters["rocks"] = {
     "INJEC": {
         "density": 2500,
         "porosity": 0.99, 
-        "permeability": [5.0e-19,5.0e-19,1.0e-19],
+        "permeability": [1e-7, 1e-7, 1e-7],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        "compressibility": 1e-99, #2.94e-7,
+        "compressibility": 0e-10, #2.94e-7,
         #"relative_permeability": {
         #    "id": 3, #van genuchten 
         #    "parameters": [1,0],
@@ -136,7 +136,7 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.14,
         "tortuosity": 0.8, #-, (4) 
-        "permeability": [4e-19,4e-19,4e-19]
+        "permeability": [6e-17, 6e-17, 6e-17]
     },
     "BNDTO": {"initial_condition": [top_BC_value, 0.017203, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [top_BC_value, 0.017203, ini_gas_content, temperature]},
@@ -203,7 +203,7 @@ def generators():
     rates = None  # Initialize rates
     times = None  # Initialize times
 
-    for i in range(len(labels)): 
+    for i in range(1): 
         rel_vol = rel_volumes[i]
         rates = (rates_csv['net flow [kg/s]'] * 1 * (rel_vol)).to_list()
         rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (rel_vol)).to_list()
