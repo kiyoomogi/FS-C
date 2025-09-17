@@ -28,8 +28,9 @@ z_bot = np.amin(z_centers)
 
 p0 = rates_csv['zone P [MPa]'][0]
 
-top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top
-bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top
+top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top - 165000  #slightly lower initial conditions due to initial injection
+bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top - 165000
+
 
 
 #Add material
