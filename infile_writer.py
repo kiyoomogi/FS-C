@@ -190,7 +190,7 @@ def relative_volumes():
             volume_list.append(volumes[i])
         
     rel_volumes =   np.array(volume_list) / sum(volume_list)  
-    print(sum(volume_list))
+
     return rel_volumes,labels, volume_list
 
 rel_volumes,labels, volume_list = relative_volumes()
@@ -205,7 +205,7 @@ def generators():
 
     for i in range(len(rel_volumes)): 
         rel_vol = rel_volumes[i]
-        rates = (rates_csv['net flow [kg/s]'] * 1 * (rel_vol)).to_list()
+        rates = (rates_csv['net flow [kg/s]'] * 0.001 * (rel_vol)).to_list()
         rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (rel_vol)).to_list()
         times = rates_csv['TimeElapsed'].to_list()
 
