@@ -119,7 +119,7 @@ parameters["rocks"] = {
         "porosity": 0.999, 
         "permeability": [1e-14, 1e-14,1e-14],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        "compressibility": 0e-10, #2.94e-7,
+        #"compressibility": 0e-10, #2.94e-7,
         #"relative_permeability": {
         #    "id": 3, #van genuchten 
         #    "parameters": [1,0],
@@ -136,7 +136,7 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [6e-17, 6e-17, 6e-17]
+        "permeability": [6e-15, 6e-15, 6e-15]
     },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
@@ -176,6 +176,32 @@ parameters['extra_options'] = {
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
+
+def conne_fault():
+    mesh = toughio.read_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH")
+    elements    = mesh["elements"]
+    connections = mesh["connections"]
+
+    # INJEC element names
+    injec = {ename for ename, edata in elements.items() if edata.get("material") == "INJEC"}
+    fault = {ename for ename, edata in elements.items() if edata.get("material") == "FAULT"}
+
+    # element-name length (TOUGH classic: 5)
+    elem_len = len(next(iter(elements)))
+    e1_list = []
+    for cname, cdata in connections.items():
+        if len(cname) < 2*elem_len:   # skip weird keys
+            continue
+        e1 = cname[:elem_len]
+        e2 = cname[elem_len:2*elem_len]
+
+        if (e1 in fault) and (e2 in injec):
+            e1_list.append(str(e2))
+            
+    return e1_list
+
+e1_list = conne_fault()
+
 def relative_volumes():
     injec_labels = []
     volume_list = []
@@ -201,14 +227,14 @@ def generators():
     rates = None  # Initialize rates
     times = None  # Initialize times
 
-    for i in range(len(rel_volumes)): 
-        rel_vol = rel_volumes[i]
-        rates = (rates_csv['net flow [kg/s]'] * 1* (rel_vol)).to_list()
+    for i in range(len(e1_list)): 
+        #rel_vol = rel_volumes[i]
+        rates = (rates_csv['net flow [kg/s]'] * 1* (1/30)).to_list()
         #rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (rel_vol)).to_list()
         times = rates_csv['TimeElapsed'].to_list()
 
         generator = {
-            "label": injec_labels[i],
+            "label": e1_list[i],
             "type": "COM1",
             "times": times,
             "rates": rates,
