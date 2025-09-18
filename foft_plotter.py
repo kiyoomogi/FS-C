@@ -37,6 +37,8 @@ for f in foft_files:
 
 # --- measured data (unchanged)
 ax.plot(date_series, rates_csv.iloc[:, 3] * 1000, ".-", label="Measured")
+ax2 = ax.twinx()
+ax2.plot(date_series, rates_csv.iloc[:, 1], ".-", label="kg/s")
 
 ax.set_xlabel("Date")
 ax.set_ylabel("Pressure [kPa]")

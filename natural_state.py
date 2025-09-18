@@ -65,7 +65,7 @@ parameters = {
 
 #INITIAL CONDITIONS 
 ini_pore_pressure = 0.1e6#0.432e6 #Pa,
-ini_NACL = 0.017203 
+ini_NACL = 0 #0.017203 
 ini_gas_content = 0.0 #-, ...
 temperature = 16.5 #°C, (1)
 
