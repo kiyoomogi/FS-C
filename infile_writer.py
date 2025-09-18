@@ -190,7 +190,7 @@ def relative_volumes():
             volume_list.append(volumes[i])
         
     rel_volumes =   np.array(volume_list) / sum(volume_list)  
-    
+    print(sum(volume_list))
     return rel_volumes,labels, volume_list
 
 rel_volumes,labels, volume_list = relative_volumes()
