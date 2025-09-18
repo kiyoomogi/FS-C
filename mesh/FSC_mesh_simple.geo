@@ -14,7 +14,7 @@ Rectangle(101) = {-30, -30, FaultThick/2, 60, 60};
 // ---- parameters
 Icl = 10*Pi/180;      // inclination from vertical
 Az  = 319*Pi/180;     // azimuth, clockwise from North
-Len = 1.5;            // borehole length in model unitsQ
+Len = 2;            // borehole length in model unitsQ
 R   = 0.073;         // radius
 
 // direction cosines (X=East, Y=North, Z=Up)
