@@ -10,20 +10,24 @@ connections = mesh["connections"]
 
 # INJEC element names
 injec = {ename for ename, edata in elements.items() if edata.get("material") == "INJEC"}
+fault = {ename for ename, edata in elements.items() if edata.get("material") == "FAULT"}
+
+
 
 # element-name length (TOUGH classic: 5)
 elem_len = len(next(iter(elements)))
 
 updated = []  # will collect: (conn_name, elem1, elem2, old_kdir, new_kdir)
-
+e1_list = []
 for cname, cdata in connections.items():
     if len(cname) < 2*elem_len:   # skip weird keys
         continue
     e1 = cname[:elem_len]
     e2 = cname[elem_len:2*elem_len]
-
+    
     old = cdata.get("permeability_direction")
-    if (e1 in injec) and (e2 in injec) and old != 2:
+    if (e1 in fault) and (e2 in injec) and old != 2:
+        e1_list.append(str(e2))
         cdata["permeability_direction"] = 2
         updated.append((cname, e1, e2, old, 2))
 
@@ -37,4 +41,6 @@ for row in updated[:20]:  # preview first 20
 #   .to_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/updated_connections.csv", index=False)
 
 # optional: write mesh back
-toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", mesh)
+#toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", mesh)
+
+
