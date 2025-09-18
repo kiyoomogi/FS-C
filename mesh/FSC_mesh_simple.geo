@@ -4,7 +4,7 @@ WidthCube    = 30;
 HeightCube   = 20;
 Dip          = 60*Pi/180;     // dip angle
 Strike       = -40*Pi/180;     // strike measured from X (East), which is 40° with respect to Y (North)
-FaultThick   = 0.1;
+FaultThick   = 0.15;
 
 
 Point(999) = {0,0,0};
@@ -14,7 +14,7 @@ Rectangle(101) = {-30, -30, FaultThick/2, 60, 60};
 // ---- parameters
 Icl = 10*Pi/180;      // inclination from vertical
 Az  = 319*Pi/180;     // azimuth, clockwise from North
-Len = 1.2;            // borehole length in model unitsQ
+Len = 1.5;            // borehole length in model unitsQ
 R   = 0.073;         // radius
 
 // direction cosines (X=East, Y=North, Z=Up)
