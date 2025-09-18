@@ -203,7 +203,7 @@ def generators():
     rates = None  # Initialize rates
     times = None  # Initialize times
 
-    for i in range(1): 
+    for i in range(len(rel_volumes)): 
         rel_vol = rel_volumes[i]
         rates = (rates_csv['net flow [kg/s]'] * 1 * (rel_vol)).to_list()
         rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (rel_vol)).to_list()
