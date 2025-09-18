@@ -75,7 +75,7 @@ parameters = {
 
 #INITIAL CONDITIONS 
 ini_pore_pressure = 0.45e6#0.432e6 #Pa, 
-ini_NACL = 0.017203
+ini_NACL = 0 #0.017203
 ini_gas_content = 0.0 #-, ...
 temperature = 16.5 #°C, (1)
 
@@ -138,8 +138,8 @@ parameters["rocks"] = {
         #"compressibility": 8e-9,             #Pa^-1
         "permeability": [6e-17, 6e-17, 6e-17]
     },
-    "BNDTO": {"initial_condition": [top_BC_value, 0.017203, ini_gas_content, temperature]},
-    "BNDBO": {"initial_condition": [bot_BC_value, 0.017203, ini_gas_content, temperature]},
+    "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
+    "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
 
 }
 
