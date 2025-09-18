@@ -60,7 +60,7 @@ mesh.add_cell_data("boundary_condition", bcond)
 unique_materials = set((materials).tolist())
 
 
-#mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", incon=True)
+mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", incon=True)
 mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
 
