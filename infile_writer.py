@@ -177,23 +177,21 @@ parameters['extra_options'] = {
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
 def relative_volumes():
-    volumes = mesh.volumes
-    labels = []
+    injec_labels = []
     volume_list = []
     for i in (range(len(materials))):
         if materials[i] == 'INJEC':
-            x_c = mesh.centers[i][0]
-            y_c = mesh.centers[i][1]
-            z_c = mesh.centers[i][2]
-            label = mesh.labels[mesh.near((x_c, y_c, z_c))]
-            labels.append(str(label))
-            volume_list.append(volumes[i])
+            label = mesh.labels[i]
+            volume = mesh.volumes[i]
+            injec_labels.append(str(label))
+            volume_list.append(volume)
         
     rel_volumes =   np.array(volume_list) / sum(volume_list)  
 
-    return rel_volumes,labels, volume_list
+    return rel_volumes,injec_labels, volume_list
 
-rel_volumes,labels, volume_list = relative_volumes()
+rel_volumes,injec_labels, volume_list = relative_volumes()
+
 
 def generators():
 
@@ -205,12 +203,12 @@ def generators():
 
     for i in range(len(rel_volumes)): 
         rel_vol = rel_volumes[i]
-        rates = (rates_csv['net flow [kg/s]'] * 0.001 * (rel_vol)).to_list()
-        rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (rel_vol)).to_list()
+        rates = (rates_csv['net flow [kg/s]'] * (rel_vol)).to_list()
+        #rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (rel_vol)).to_list()
         times = rates_csv['TimeElapsed'].to_list()
 
         generator = {
-            "label": labels[i],
+            "label": injec_labels[i],
             "type": "COM1",
             "times": times,
             "rates": rates,
@@ -231,7 +229,7 @@ def generators():
 
 rates, times = generators() 
 
-ref_points = labels[::30]
+ref_points = injec_labels[::30]
 parameters["element_history"] = ref_points
 
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/INFILE", parameters)  
