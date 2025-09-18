@@ -32,8 +32,8 @@ z_bot = np.amin(z_centers)
 
 p0 = rates_csv['zone P [MPa]'][0]
 
-top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top
-bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top
+top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top - 165000  #slightly lower initial conditions due to initial injection
+bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top - 165000
 
 
 #Add material
@@ -60,7 +60,7 @@ mesh.add_cell_data("boundary_condition", bcond)
 unique_materials = set((materials).tolist())
 
 
-mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", incon=True)
+#mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", incon=True)
 mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
 
@@ -93,11 +93,11 @@ irp11 = [0.5, 0.0, 0]
 
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
-    "porosity": 0.14 ,                    #- 
-    "permeability": [1e-18,1e-18,1e-18], #m2  
+    "porosity": 0.12 ,                    #- 
+    "permeability": [3e-18,3e-18,1e-18], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
-    "compressibility": 1e-99,             #Pa^-1
+    "compressibility": 2e-9,             #Pa^-1
     "expansivity": 1.4e-5,                #°C^-1
     "conductivity_dry": 2.0,              #W/m/K
 
@@ -117,9 +117,9 @@ parameters["rocks"] = {
     "INJEC": {
         "density": 2500,
         "porosity": 0.99, 
-        "permeability": [6e-17, 6e-17, 6e-17],
+        "permeability": [1e-17,1e-13,1e-17],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        "compressibility": 0e-10, #2.94e-7,
+        #"compressibility": 0e-10, #2.94e-7,
         #"relative_permeability": {
         #    "id": 3, #van genuchten 
         #    "parameters": [1,0],
@@ -130,16 +130,16 @@ parameters["rocks"] = {
         #},  
     },
     "CLAY ": {
-        "tortuosity": 0.8, #-, (4) 
+        #"tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
     "FAULT": {
-        "porosity": 0.14,
-        "tortuosity": 0.8, #-, (4) 
+        "porosity": 0.12,
+        "compressibility": 8e-9,             #Pa^-1
         "permeability": [6e-17, 6e-17, 6e-17]
     },
     "BNDTO": {"initial_condition": [top_BC_value, 0.017203, ini_gas_content, temperature]},
-    "BNDBO": {"initial_condition": [top_BC_value, 0.017203, ini_gas_content, temperature]},
+    "BNDBO": {"initial_condition": [bot_BC_value, 0.017203, ini_gas_content, temperature]},
 
 }
 
@@ -150,10 +150,10 @@ parameters["options"] = {
     "t_ini": time_zero,
     "t_max": time_final,
     "t_steps": 1,
-    "t_step_max":  60,
+    "t_step_max":  60 * 5,
     
     "t_reduce_factor": 4,
-    "eps1": 1.0e-9,
+    "eps1": 1.0e-8,
     #"eps2": 100.0,
     "gravity": 9.8,
 }
@@ -231,7 +231,9 @@ def generators():
 
 rates, times = generators() 
 
-
+ref_points = labels[::30]
+parameters["element_history"] = ref_points
 
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/INFILE", parameters)  
  
+
