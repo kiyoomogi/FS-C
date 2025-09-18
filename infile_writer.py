@@ -227,7 +227,7 @@ def generators():
 
     return rates, times
 
-rates, times = generators() 
+#rates, times = generators() 
 
 ref_points = injec_labels[::30]
 parameters["element_history"] = ref_points
