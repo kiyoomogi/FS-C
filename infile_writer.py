@@ -94,7 +94,7 @@ irp11 = [0.5, 0.0, 0]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.12 ,                    #- 
-    "permeability": [3e-18,3e-18,1e-18], #m2  
+    "permeability": [1e-18,1e-18,1e-18], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
     "compressibility": 2e-9,             #Pa^-1
@@ -116,7 +116,7 @@ parameters["default"] = {
 parameters["rocks"] = {
     "INJEC": {
         "density": 2500,
-        "porosity": 0.99, 
+        "porosity": 0.999, 
         "permeability": [1e-17,1e-13,1e-17],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         #"compressibility": 0e-10, #2.94e-7,

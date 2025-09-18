@@ -4,7 +4,7 @@ WidthCube    = 30;
 HeightCube   = 20;
 Dip          = 60*Pi/180;     // dip angle
 Strike       = -40*Pi/180;     // strike measured from X (East), which is 40° with respect to Y (North)
-FaultThick   = 0.23;
+FaultThick   = 0.55;
 Height_Injec = 3; 
 Angle_Injec  = 10*Pi/180;
 Radius_Injec = 0.073;
@@ -12,7 +12,7 @@ Radius_Injec = 0.073;
 
 Point(999) = {0,0,0};
 Box(1) = {-WidthCube/2,-WidthCube/2,-HeightCube/2, WidthCube,WidthCube,HeightCube};
-Rectangle(101) = {-30, -30,0, 60, 60};
+Rectangle(101) = {-30, -30, FaultThick/2, 60, 60};
 
 // ---- parameters
 Icl = 10*Pi/180;      // inclination from vertical
@@ -77,15 +77,15 @@ parts[] = BooleanFragments{
 };
 
 Extrude {0,0, 0.5} {   
-  Surface{4,20,13}; Layers{1}; Recombine;
+  Surface{4,13,21}; Layers{1}; Recombine;
 }
 
 Extrude {0,0, -0.5} {   
-  Surface{6,14,21}; Layers{1}; Recombine; 
+  Surface{22,14,6}; Layers{1}; Recombine; 
 }
 
 // Pick your target sizes (in model units)
-h_fault = 1.5;   // fine near/inside the fault
+h_fault = 1.9;   // fine near/inside the fault
 h_out   = 5;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
@@ -102,13 +102,13 @@ Field[2].DistMax = ramp;
 
 // ---- your distance field near the injection cylinder
 Field[3] = Distance;
-Field[3].SurfacesList = {25,17,8};
+Field[3].SurfacesList = {17};
 
 Field[4] = Threshold;
 Field[4].InField = 3;
 Field[4].SizeMin = 0.1;   
 Field[4].SizeMax = h_out;     // coarse far away
-Field[4].DistMin = 0.12;
+Field[4].DistMin = 0.06;
 Field[4].DistMax = 14;
 
 Field[99] = Min;
@@ -121,3 +121,6 @@ Physical Volume("FAULT") = {2};
 Physical Volume("INJEC") = {4,5,6};
 Physical Volume("BNDTO") = {7,8,9};
 Physical Volume("BNDBO") = {10,11,12};
+
+
+
