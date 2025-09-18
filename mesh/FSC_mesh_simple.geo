@@ -2,9 +2,9 @@ SetFactory("OpenCASCADE");
 
 WidthCube    = 30;
 HeightCube   = 20;
-Dip          = 60*Pi/180;     // dip angle
+Dip          = 40*Pi/180;     // dip angle
 Strike       = -40*Pi/180;     // strike measured from X (East), which is 40° with respect to Y (North)
-FaultThick   = 0.4;
+FaultThick   = 0.1;
 
 
 Point(999) = {0,0,0};
