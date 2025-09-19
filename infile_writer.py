@@ -75,7 +75,7 @@ parameters = {
 
 #INITIAL CONDITIONS 
 ini_pore_pressure = 0.45e6#0.432e6 #Pa, 
-ini_NACL = 0 #0.017203
+ini_NACL = 0.017203
 ini_gas_content = 0.0 #-, ...
 temperature = 16.5 #°C, (1)
 
@@ -94,7 +94,7 @@ irp11 = [0.5, 0.0, 0]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.12 ,                    #- 
-    "permeability": [6e-17, 6e-17, 6e-17], #m2  
+    "permeability": [1e-18,1e-18,1e-18], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
     "compressibility": 2e-9,             #Pa^-1
