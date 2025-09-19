@@ -195,7 +195,7 @@ def conne_fault():
         e1 = cname[:elem_len]
         e2 = cname[elem_len:2*elem_len]
 
-        if (e1 in fault) and (e2 in injec):
+        if (e1 in injec) and (e2 in fault) or (e1 in fault) and (e2 in injec):
             e1_list.append(str(e2))
             
     return e1_list
@@ -229,7 +229,7 @@ def generators():
 
     for i in range(len(e1_list)): 
         #rel_vol = rel_volumes[i]
-        rates = (rates_csv['net flow [kg/s]'] * 1* (1/30)).to_list()
+        rates = (rates_csv['net flow [kg/s]'] * 1* (1/len(e1_list))).to_list()
         #rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (rel_vol)).to_list()
         times = rates_csv['TimeElapsed'].to_list()
 
