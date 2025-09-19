@@ -4,7 +4,7 @@ WidthCube    = 30;
 HeightCube   = 20;
 Dip          = 40*Pi/180;     // dip angle
 Strike       = -40*Pi/180;     // strike measured from X (East), which is 40° with respect to Y (North)
-FaultThick   = 0.3;
+FaultThick   = 0.55;
 
 
 Point(999) = {0,0,0};
@@ -74,11 +74,11 @@ parts[] = BooleanFragments{
 };
 
 Extrude {0,0, 0.5} {   
-  Surface{4,13,20}; Layers{1}; Recombine;
+  Surface{113,120,126}; Layers{1}; Recombine;
 }
 
 Extrude {0,0, -0.5} {   
-  Surface{21,14,6}; Layers{1}; Recombine; 
+  Surface{115,121,127}; Layers{1}; Recombine; 
 }
 
 // Pick your target sizes (in model units)
@@ -88,7 +88,7 @@ ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
-Field[1].SurfacesList = {12,3};
+Field[1].SurfacesList = {112,119};
 
 Field[2] = Threshold;
 Field[2].InField = 1;
@@ -99,7 +99,7 @@ Field[2].DistMax = ramp;
 
 // ---- your distance field near the injection cylinder
 Field[3] = Distance;
-Field[3].SurfacesList = {8,17,24};
+Field[3].SurfacesList = {107,109,108};
 
 Field[4] = Threshold;
 Field[4].InField = 3;
@@ -113,10 +113,10 @@ Field[99].FieldsList = {2,4};
 Background Field = 99;
 
 
-Physical Volume("CLAY ") = {1,3};
-Physical Volume("FAULT") = {2};
-Physical Volume("INJEC") = {4,5,6};
-Physical Volume("BNDTO") = {7,8,9};
-Physical Volume("BNDBO") = {10,11,12};
+Physical Volume("CLAY ") = {302,304};
+Physical Volume("FAULT") = {303};
+Physical Volume("INJEC") = {301};
+Physical Volume("BNDTO") = {305,306,307};
+Physical Volume("BNDBO") = {308,309,310};
 
 
