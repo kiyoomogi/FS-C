@@ -117,7 +117,7 @@ parameters["rocks"] = {
     "INJEC": {
         "density": 2500,
         "porosity": 0.999, 
-        "permeability": [1e-14, 1e-14,1e-14],
+        "permeability": [1e-13, 1e-13,1e-13],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         #"compressibility": 0e-10, #2.94e-7,
         #"relative_permeability": {
@@ -136,7 +136,7 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [6e-15, 6e-15, 6e-15]
+        "permeability": [6e-14, 6e-14, 6e-14]
     },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
@@ -166,7 +166,7 @@ parameters['extra_options'] = {
         3: 1,
         4: 1,
         5: 5,
-        11: 2,   #0 or 2 
+        11: 0,   #0 or 2 
         12: 2,
         17: 9,
         21: 8
