@@ -230,7 +230,7 @@ def generators():
     for i in range(len(e1_list)): 
         #rel_vol = rel_volumes[i]
         rates = (rates_csv['net flow [kg/s]'] * 1* (1/len(e1_list))).to_list()
-        #rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (rel_vol)).to_list()
+        rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (1/len(e1_list))).to_list()
         times = rates_csv['TimeElapsed'].to_list()
 
         generator = {
@@ -242,14 +242,14 @@ def generators():
         }
         parameters['generators'].append(generator)
         
-        #generator = {
-        #    "label": labels[i],
-        #    "type": "COM3",
-        #    "times": times,
-        #    "rates": rates_co2,
-        #    "specific_enthalpy": list(np.zeros(len(times))),
-        #}
-        #parameters['generators'].append(generator)
+        generator = {
+            "label": e1_list[i],
+            "type": "COM3",
+            "times": times,
+            "rates": rates_co2,
+            "specific_enthalpy": list(np.zeros(len(times))),
+        }
+        parameters['generators'].append(generator)
 
     return rates, times
 
