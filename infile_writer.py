@@ -21,7 +21,10 @@ time_final = 3600 * 6 #rates_csv["TimeElapsed"].iloc[-1]
 
 if incon == 'ns': 
     ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/natural_state/SAVE")
+    ns.data['X1'][ns.data['porosity'] == 0.99] = 0.05e6
     incon1 = ns.data
+
+
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_simple.msh")
 mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
@@ -119,7 +122,6 @@ parameters["rocks"] = {
         "porosity": 0.999, 
         "permeability": [2.5e-16, 2.5e-16, 2.5e-16], #[1e-13, 1e-13,1e-13],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        #"compressibility": 0e-10, #2.94e-7,
         #"relative_permeability": {
         #    "id": 3, #van genuchten 
         #    "parameters": [1,0],
@@ -136,7 +138,7 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [2.5e-16, 2.5e-16, 2.5e-16] #[2.5e-14, 2.5e-14, 2.5e-14]
+        "permeability": [6e-17, 6e-17, 6e-17] #[2.5e-14, 2.5e-14, 2.5e-14]
     },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},

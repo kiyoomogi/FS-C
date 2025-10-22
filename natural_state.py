@@ -12,7 +12,7 @@ import toughio
 import matplotlib.pyplot as plt 
 
 
-rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/avg_FSC_injecrates.csv", delimiter=',', index_col=[0])
+rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
 
 time_zero =  0
 time_final = 3600 * 24 * 365 * 50
@@ -26,10 +26,10 @@ z_centers = mesh.centers[:,2]
 z_top = np.amax(z_centers)
 z_bot = np.amin(z_centers)
 
-p0 = rates_csv['zone P [MPa]'][0]
+p0 = rates_csv['zone P [MPa]'].min()
 
-top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top - 165000  #slightly lower initial conditions due to initial injection
-bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top - 165000
+top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top #- 165000  #slightly lower initial conditions due to initial injection
+bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top #- 165000
 
 
 
