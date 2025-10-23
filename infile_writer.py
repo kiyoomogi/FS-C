@@ -16,12 +16,12 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 time_zero =  0
-time_final = 6 * 3600 #rates_csv["TimeElapsed"].iloc[-1] 
+time_final = 11 * 3600 #rates_csv["TimeElapsed"].iloc[-1] 
 
 
 if incon == 'ns': 
     ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/natural_state/SAVE")
-    ns.data['X1'][ns.data['porosity'] == 0.99] = 0.05e3
+    ns.data['X1'][ns.data['porosity'] == 0.99] = 0.3e6
     incon1 = ns.data
 
 
@@ -122,6 +122,7 @@ parameters["rocks"] = {
         "porosity": 0.999, 
         "permeability": [1e-13, 1e-13,1e-13],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
+        "compressibility": 1e-99,             #Pa^-1
         #"relative_permeability": {
         #    "id": 3, #van genuchten 
         #    "parameters": [1,0],
@@ -139,7 +140,7 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [6e-17, 6e-17, 6e-17]
+        "permeability": [2e-15, 2e-15, 2e-15]
     },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
@@ -198,7 +199,7 @@ def conne_fault():
         e1 = cname[:elem_len]
         e2 = cname[elem_len:2*elem_len]
 
-        if (e1 in injec) and (e2 in fault) or (e1 in fault) and (e2 in injec):
+        if (e1 in injec) and (e2 in fault) or (e1 in fault) and (e2 in injec) or (e1 in injec) and (e2 in injec):
             e1_list.append(str(e2))
             
     return e1_list
@@ -212,6 +213,7 @@ def relative_volumes():
         if materials[i] == 'INJEC':
             label = mesh.labels[i]
             volume = mesh.volumes[i]
+
             injec_labels.append(str(label))
             volume_list.append(volume)
         
@@ -230,10 +232,10 @@ def generators():
     rates = None  # Initialize rates
     times = None  # Initialize times
 
-    for i in range(len(e1_list)): 
-        #rel_vol = rel_volumes[i]
-        rates = (rates_csv['net flow [kg/s]'] * 1* (1/len(e1_list))).to_list()
-        rates_co2 = (rates_csv['CO2 rate [kg/s]'] * 1 * (1/len(e1_list))).to_list()
+    for i in range(len(rel_volumes)): 
+        rel_vol = rel_volumes[i]
+        rates = (rates_csv['net flow [kg/s]'] * rel_vol).to_list()
+        rates_co2 = (rates_csv['CO2 rate [kg/s]'] * rel_vol).to_list()
         times = rates_csv['TimeElapsed'].to_list()
 
         generator = {
@@ -258,7 +260,7 @@ def generators():
 
 rates, times = generators() 
 
-ref_points = injec_labels[::30]
+ref_points = injec_labels[::40]
 parameters["element_history"] = ref_points
 
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/INFILE", parameters)  
