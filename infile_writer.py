@@ -15,7 +15,7 @@ incon = 'ns' #simulation_point or ns
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
-time_zero =  0
+time_zero =  32480
 time_final = 32480 + 120 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
 
 
