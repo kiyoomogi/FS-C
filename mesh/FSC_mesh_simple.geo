@@ -2,9 +2,9 @@ SetFactory("OpenCASCADE");
 
 WidthCube    = 30;
 HeightCube   = 20;
-Dip          = 40*Pi/180;     // dip angle
-Strike       = -40*Pi/180;     // strike measured from X (East), which is 40° with respect to Y (North)
-FaultThick   = 0.55;
+Dip      = 55*Pi/180;
+Strike  =  -50*Pi/180;   // strike measured clockwise from North
+FaultThick   = 1.5;
 
 
 Point(999) = {0,0,0};
@@ -14,8 +14,8 @@ Rectangle(101) = {-30, -30, FaultThick/2, 60, 60};
 // ---- parameters
 Icl = 10*Pi/180;      // inclination from vertical
 Az  = 319*Pi/180;     // azimuth, clockwise from North
-Len = 0.5;            // borehole length in model unitsQ
-R   = 0.073;         // radius
+Len = 1.2;            // borehole length in model unitsQ
+R   = 0.207/2;         // radius
 
 // direction cosines (X=East, Y=North, Z=Up)
 ux = Sin(Icl)*Sin(Az);
@@ -44,23 +44,25 @@ Rotate { {0, 0, 1}, {0, 0, 0}, Strike } {  //let it strike 60°N
 }
 
 
-// ---- Normal components after the two rotations
+// ---- Normal components that match the actual rotated plane
 sinDip = Sin(Dip);
 cosDip = Cos(Dip);
 sinStr = Sin(Strike);
 cosStr = Cos(Strike);
 
-// n = (-sinDip*sinStr, -sinDip*cosStr, cosDip)
-nx = -sinDip * sinStr;
-ny = -sinDip * cosStr;
+nx =  sinDip * cosStr;
+ny =  sinDip * sinStr;
 nz =  cosDip;
 
-
-out[] = Extrude {-nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
+// Extrude orthogonal to the plane by FaultThick
+out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
   Surface{101}; Layers{4}; Recombine;
 };
 
 Cylinder(301) = { x0, y0, z0,  dx, dy, dz,  R };
+
+Point(789) = {10.576, 8.696, -0.195};
+
 
 // --- clip both tools to the box (keep only inside-the-box parts)
 fault_in[] = BooleanIntersection{ Volume{1}; }{ Volume{ out[1] }; Delete; };
@@ -82,7 +84,7 @@ Extrude {0,0, -0.5} {
 }
 
 // Pick your target sizes (in model units)
-h_fault = 1.9;   // fine near/inside the fault
+h_fault = 1.6;   // fine near/inside the fault
 h_out   = 5;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
