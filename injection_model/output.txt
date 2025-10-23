@@ -1,0 +1,207 @@
+ 
+       @@@@@   @@   @  @   @@@  @  @   @@       @@@  @  @   @  @  @  @      @@   @@@@@  @   @@   @   @     @@@   @  @  @   @
+         @    @  @  @  @  @     @  @  @  @     @     @  @@ @@  @  @  @     @  @    @    @  @  @  @@  @     @  @  @  @  @@  @
+         @    @  @  @  @  @ @@  @@@@    @       @@   @  @ @ @  @  @  @     @@@@    @    @  @  @  @ @ @     @@@   @  @  @ @ @
+         @    @  @  @  @  @  @  @  @  @  @        @  @  @   @  @  @  @     @  @    @    @  @  @  @  @@     @ @   @  @  @  @@
+         @     @@    @@    @@@  @  @   @@      @@@   @  @   @   @@   @@@@  @  @    @    @   @@   @   @     @  @   @@   @   @
+
+
+                    TOUGH3 IS A PROGRAM FOR MULTIPHASE MULTICOMPONENT FLOW IN PERMEABLE MEDIA, INCLUDING HEAT FLOW.
+              IT IS A MEMBER OF THE MULKOM FAMILY OF CODES, DEVELOPED  AT LAWRENCE BERKELEY LABORATORY BY KARSTEN PRUESS ET AL.
+
+                          ********************************************************************************
+                          **********************     TOUGH3 VER 1.1 (Sep. 2022)   *********************
+                          ********************************************************************************
+
+
+ SUMMARY OF DISK FILES
+
+ FILE *MESH*  EXISTS --- OPEN AS AN OLD FILE
+ FILE *INCON* EXISTS --- OPEN AS AN OLD FILE
+ FILE *GENER* DOES NOT EXIST --- OPEN AS A NEW FILE
+ FILE *SAVE* DOES NOT EXIST --- OPEN AS A NEW FILE
+ FILE *TABLE* DOES NOT EXIST --- OPEN AS A NEW FILE
+
+ ===================================================================================================================================
+
+     PROBLEM TITLE:  injection model                                                                 
+
+
+(Reading ROCKS block)
+
+ DOMAIN NO.  1     MATERIAL NAME -- INJEC
+
+ DOMAIN NO.  2     MATERIAL NAME -- CLAY 
+
+ DOMAIN NO.  3     MATERIAL NAME -- FAULT
+
+ DOMAIN NO.  4     MATERIAL NAME -- BNDTO
+
+ DOMAIN NO.  5     MATERIAL NAME -- BNDBO
+(Reading RPCAP block)
+(Reading MULTI block)
+(Reading START block)
+(Reading PARAM block)
+(Reading INDOM block)
+(Reading FOFT  block)
+(Reading GENER block)
+     
+ WRITE FILE *GENER* FROM INPUT DATA
+(Reading ENDCY block)
+
+                        ************************************************************************************
+                        *                       EVALUATE FLOATING POINT ARITHMETIC                         *
+                        ************************************************************************************
+                        *                                                                                  *
+                        * FLOATING POINT PROCESSOR HAS APPROXIMATELY 15 SIGNIFICANT DIGITS                 *
+                        *                                                                                  *
+                        * DEFAULT VALUE OF INCREMENT FACTOR FOR NUMERICAL DERIVATIVES IS DFAC = 0.1490E-07 *
+                        * DEFAULT VALUE FOR DFAC WILL BE USED                                              *
+                        *                                                                                  *
+                        ************************************************************************************
+
+ 
+
+ ALL NCON =  35057 CONNECTIONS READ FROM FILE *MESH* REFERENCE KNOWN ELEMENTS
+
+
+
+ PARAMETERS FOR FLEXIBLE DIMENSIONING OF MAJOR ARRAYS (MAIN PROGRAM) ARE AS FOLLOWS
+
+ MNEL =  17781  MNCON =   35057  MNEQ =  3  MNK =  3   MNPH =  3   MNB =  6   MNOGN =  440   MGTAB =73480
+ ===================================================================================================================================
+
+ MAXIMUM NUMBER OF VOLUME ELEMENTS (GRID BLOCKS):            MNEL  =   17781
+ MAXIMUM NUMBER OF CONNECTIONS (INTERFACES):                 MNCON =   35057
+ MAXIMUM LENGTH OF PRIMARY VARIABLE ARRAYS:                  MPRIM =   71124
+ MAXIMUM NUMBER OF GENERATION ITEMS (SINKS/SOURCES):         MNOGN =    440
+ MAXIMUM NUMBER OF TABULAR (TIME-DEPENDENT) GENERATION DATA: MGTAB =  73480
+ LENGTH OF SECONDARY PARAMETER ARRAY:                        MNSEC  =     2062596
+
+ MESH HAS    17781 ELEMENTS AND    35057 CONNECTIONS (INTERFACES) BETWEEN THEM
+ GENER HAS   440 SINKS/SOURCES
+
+
+END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.4247 SECONDS
+
+ 
+ ***********************************************************************************************************************************
+ *          ARRAY *MOP* ALLOWS TO GENERATE MORE PRINTOUT IN VARIOUS SUBROUTINES, AND TO MAKE SOME CALCULATIONAL CHOICES.           *
+ ***********************************************************************************************************************************
+
+   MOP(1)  = 1 *** ALLOWS TO GENERATE A SHORT PRINTOUT FOR EACH NEWTON-RAPHSON ITERATION
+           = 0, 1, OR 2: GENERATE 0, 1, OR 2 LINES OF PRINTOUT
+
+            MORE PRINTOUT IS GENERATED FOR MOP(I) > 0 IN THE FOLLOWING SUBROUTINES (THE LARGER MOP IS, THE MORE WILL BE PRINTED).
+
+   MOP(2)  = 2 *** CYCIT       MOP(3) = 1 *** MULTI       MOP(4) = 1 *** QU       MOP(5) = 5 *** EOS       MOP(6) = 0 *** LINEQ    
+
+   MOP(7)  = 0 *** IF UNEQUAL ZERO, WILL GENERATE A PRINTOUT OF INPUT DATA
+
+            CALCULATIONAL CHOICES OFFERED BY MOP ARE AS FOLLOWS:
+
+   MOP(8)  = 0 *** IF ISOT IS NEGATIVE, CHOOSES OPTION FOR REDUCING FRACTURE-MATRIX INTERFACE AREA.
+
+   MOP(9)  = 0 *** CHOOSES FLUID COMPOSITION ON WITHDRAWAL (PRODUCTION).
+           = 0: ACCORDING TO RELATIVE MOBILITIES.
+           = 1: ACCORDING TO COMPOSITION IN PRODUCING ELEMENT.
+
+   MOP(10) = 0 *** CHOOSES INTERPOLATION FORMULA FOR DEPENDENCE OF THERMAL CONDUCTIVITY ON LIQUID SATURATION (SL).
+           = 0: K = KDRY + SQRT(SL)*(KWET-KDRY)
+           = 1: K = KDRY + SL*(KWET-KDRY)
+           = 2: K = C0+C1*T+C2*Sw+C3*POR
+
+   MOP(11) = 0 *** CHOOSES EVALUATION OF MOBILITY AND ABSOLUTE PERMEABILITY AT INTERFACES.
+           = 0: MOBILITIES ARE UPSTREAM WEIGHTED WITH WUP. (DEFAULT IS WUP = 1.0). PERMEABILITY IS UPSTREAM WEIGHTED.
+           = 1: MOBILITIES ARE AVERAGED BETWEEN ADJACENT ELEMENTS. PERMEABILITY IS UPSTREAM WEIGHTED.
+           = 2: MOBILITIES ARE UPSTREAM WEIGHTED WITH WUP. (DEFAULT IS WUP = 1.0). PERMEABILITY IS HARMONIC WEIGHTED.
+           = 3: MOBILITIES ARE AVERAGED BETWEEN ADJACENT ELEMENTS. PERMEABILITY IS HARMONIC WEIGHTED.
+           = 4: MOBILITY * PERMEABILITY PRODUCT IS HARMONIC WEIGHTED.
+
+   MOP(12) = 2 *** CHOOSES PROCEDURE FOR INTERPOLATING GENERATION RATES FROM A TIME TABLE.
+           = 0: TRIPLE LINEAR INTERPOLATION.
+           = 1: "STEP FUNCTION" OPTION.
+           = 2: RIGOROUS STEP RATE OPTION.
+
+   MOP(13) = 0 *** DEFINES CONTENT OF INCON AND SAVE FILE.
+           = 0: STANDARD CONTENT.
+           = 2: READS PARAMETERS OF HYSTERESIS MODEL FROM FILE INCON.
+
+   MOP(15) = 0 *** ALLOWS TO SELECT A SEMI-ANALYTICAL HEAT EXCHANGE CALCULATION WITH CONFINING BEDS.
+           = 0: NO SEMI-ANALYTICAL HEAT EXCHANGE.
+           = 1: SEMI-ANALYTICAL LINEAR HEAT EXCHANGE ENGAGED. INITIAL TEMPERATURE OF CONFINING BEDS IS UNIFORM.
+           = 2: SEMI-ANALYTICAL LINEAR HEAT EXCHANGE ENGAGED. INITIAL TEMPERATURE OF CONFINING LAYERS IS NOT UNIFORM.
+           = 5: SEMI-ANALYTICAL RADIAL HEAT EXCHANGE WITH PROPERTIES GIVEN IN MATERIAL QLOSS
+           = 6: SEMI-ANALYTICAL RADIAL HEAT EXCHANGE WITH DEPTH-DEPENDENT PROPERTIES (DEPTH, RADIUS, TEMPERATURE,
+                CONDUCTIVITY, DENSITY, CAPACITY) PROVIDED ON FILE radqloss.dat
+
+   MOP(16) = 0 *** PERMITS TO CHOOSE TIME STEP SELECTION OPTION
+           = 0: AUTOMATIC TIME STEPPING BASED ON MAXIMUM CHANGE IN SATURATION.
+           = 1: AUTOMATIC TIME STEPPING BASED ON NUMBER OF ITERATIONS NEEDED FOR CONVERGENCE.
+           > 1: INCREASE TIME STEP BY AT LEAST A FACTOR 2, IF CONVERGENCE OCCURS IN .LE. MOP(16) ITERATIONS.
+
+   MOP(17) = 9 *** HANDLES TIME STEPPING AFTER LINEAR EQUATION SOLVER FAILURE.
+           = 0: NO TIME STEP REDUCTION DESPITE LINEAR EQUATION SOLUTION FAILURE.
+           = 9: REDUCE TIME STEP AFTER LINEAR EQUATION SOLUTION FAILURE.
+
+   MOP(18) = 0 *** ALLOWS TO SELECT HANDLING OF INTERFACE DENSITY.
+           = 0: PERFORM UPSTREAM WEIGHTING FOR INTERFACE DENSITY.
+           > 0: COMPUTE INTERFACE DENSITY AS AVERAGE OF THE TWO GRID BLOCK DENSITIES.
+                HOWEVER, WHEN ONE OF THE TWO PHASE SATURATIONS IS ZERO, DO UPSTREAM WEIGHTING.
+
+   MOP(21) = 8 *** PERMITS TO SELECT LINEAR EQUATION SOLVER FROM PACKAGE 
+           < 2: DEFAULTS TO MOP(21) = 3
+           = 2: DSLUBC: BI-CONJUGATE GRADIENT SOLVER; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 3: DSLUCS: BI-CONJUGATE GRADIENT SOLVER - LANCZOS TYPE; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 4: DSLUGM: GENERALIZED MINIMUM RESIDUAL CONJUGATE GRADIENTS; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 5: DLUSTB: STABILIZED BI-CONJUGATE GRADIENT SOLVER; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 6: LUBAND: DIRECT SOLVER USING LU DECOMPOSITION
+           = 7: AZTEC: PARALLEL ITERATIVE SOLVER
+           = 8: PETSc: PARALLEL ITERATIVE SOLVER
+
+   MOP(24) = 0 *** PERMITS TO SELECT HANDLING OF MULTIPHASE DIFFUSIVE FLUXES AT INTERFACES
+           = 0: HARMONIC WEIGHTING OF FULLY-COUPLED EFFECTIVE MULTIPHASE DIFFUSIVITY
+           = 1: SEPARATE HARMONIC WEIGHTING  FOR EACH PHASE FLUX 
+
+ ***********************************************************************************************************************************
+
+ ***********************************************************************************************************************************
+
+
+ 
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&   Summary of capabilities for random permeability modification   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+ Modification of absolute permeability on a grid block-by-grid block basis will be made when a domain "SEED " is present in data
+ block "ROCKS", as follows.
+                                    k    --->    k' = k*m
+
+ Here, k is the absolute permeability specified for the reservoir domain to which the grid block belongs. Parameter m is a
+ "permeability modifier" which can be internally generated or externally prescribed by the user on a block-by-block basis.
+
+ When permeability modification is in effect, the strength of capillary pressure will, following Leverett (1941), automatically be
+ scaled as   Pcap ---> Pcap' = Pcap/SQRT(m).
+
+ User-supplied permeability modifiers have to be entered as parameter "PMX" in columns 41-50 of an ELEMEnt record.
+ Permeability modification options are selected through parameters in data block "ROCKS".
+
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ Summary of available permeability modification options
+          (with s - random number between 0 and 1; PMX - user-supplied modifiers in data block "ELEME"):
+      (1) externally supplied:        m = PMX - PER(2)
+      (2) "linear"      (DROK.ne.0):  m = PER(1) * s - PER(2)
+      (3) "logarithmic" (DROK.eq.0):  m = exp(- PER(1) * s) - PER(2)
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+            &&&& if a domain "SEED " is present, permeability modification will be made
+            &&&& if no domain "SEED " is present, no permeability modification will be made
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>  domain = "SEED " is not present, no permeability modification will be made  <<<<<<<<<<<<<<<<<<<<<<<<<<
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+ Data provided in domain "SEED " are used to select the following options.
+
+ DROK   = *** random number seed for internal generation of "linear" permeability modifiers.
+        = 0: (default) no internal generation of "linear" permeability modifiers.
+        > 0: perform "linear" permeability modification; random modifiers are generated internally with DROK as seed.
