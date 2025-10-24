@@ -15,12 +15,28 @@ incon = 'ns' #simulation_point or ns
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
-time_zero =  32480 + 75
-time_final = 3600 * 24 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
 
+stage = 0 #0, 1, 2
+sec_stage_2 = 65
+
+if stage == 0: 
+    time_zero = 0 
+    time_final = 32480
+    time_step = 5
+    time_max = 60
+elif stage == 1:
+    time_zero = 32480
+    time_final = 32480 + sec_stage_2
+    time_step = 1
+    time_max = 10
+elif stage == 2:
+    time_zero =  32480 + sec_stage_2
+    time_final = 3600 * 24  #rates_csv["TimeElapsed"].iloc[-1] 
+    time_step = 5
+    time_max = 60
 
 if incon == 'ns': 
-    ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE2")
+    ns = toughio.read_output(f"/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE{stage}")
     #ns.data['X1'][ns.data['porosity'] == 0.99] = 0.3e6
     incon1 = ns.data
 
@@ -153,8 +169,8 @@ parameters["options"] = {
     "n_cycle_print": 9999,
     "t_ini": time_zero,
     "t_max": time_final,
-    "t_steps": 0.5,
-    "t_step_max":  10,
+    "t_steps": time_step,
+    "t_step_max":  time_max,
     
     "t_reduce_factor": 4,
     "eps1": 1.0e-8,
