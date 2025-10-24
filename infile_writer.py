@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 time_zero =  32480
-time_final = 32480 + 72 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
+time_final = 32480 + 60 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
 
 
 if incon == 'ns': 
