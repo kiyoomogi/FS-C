@@ -21,7 +21,7 @@ sec_stage_2 = 65
 
 if stage == 0: 
     time_zero = 0 
-    time_final = 3600 * 24 #32480 
+    time_final = 32480 + 60
     time_step = 5
     time_max = 60
 elif stage == 1:
