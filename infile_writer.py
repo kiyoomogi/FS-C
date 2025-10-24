@@ -239,7 +239,7 @@ def relative_volumes():
 
 rel_volumes,injec_labels, volume_list = relative_volumes()
 
-
+sum(volume_list * 1000)
 def generators():
 
 
