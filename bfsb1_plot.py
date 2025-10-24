@@ -25,6 +25,7 @@ ax.plot(utc, pres35, label="34.9 m")
 ax.plot(utc, pres31, label="31.0 m")
 ax.plot(utc, pres29, label="29.0 m")
 plt.legend()
+ax.set_ylabel('Pressure [bar]')
 plt.show()
 
 
