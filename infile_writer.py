@@ -140,7 +140,7 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [8e-14, 8e-14, 8e-14]
+        "permeability": [8e-15, 8e-15, 8e-15]
     },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
@@ -153,8 +153,8 @@ parameters["options"] = {
     "n_cycle_print": 9999,
     "t_ini": time_zero,
     "t_max": time_final,
-    "t_steps": 0.1,
-    "t_step_max":  10,
+    "t_steps": 1,
+    "t_step_max":  60,
     
     "t_reduce_factor": 4,
     "eps1": 1.0e-8,
