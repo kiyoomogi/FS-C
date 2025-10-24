@@ -41,10 +41,10 @@ for f in foft_files:
 
 
 #ax2.plot(date_series, rates_csv.iloc[:, 1], ".-", label="kg/s")
-ax.set_ylim(0,11000)
+ax.set_ylim(0,8500)
 ax.set_xlabel("Date")
 ax.set_ylabel("Pressure [kPa]")
-ax.legend(ncol=2, fontsize=8)
+ax.legend(loc='upper right' , ncol=2, fontsize=8)
 fig.autofmt_xdate()
 plt.savefig('/Users/matthijsnuus/Desktop/FS-C/model/injection_model/results.png', bbox_inches='tight')
 plt.show()

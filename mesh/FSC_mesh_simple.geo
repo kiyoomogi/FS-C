@@ -4,7 +4,7 @@ WidthCube    = 30;
 HeightCube   = 20;
 Dip      = 55*Pi/180;
 Strike  =  -46*Pi/180;   // strike measured clockwise from North
-FaultThick   = 1.5;
+FaultThick   = 2;
 
 
 Point(999) = {0,0,0};
