@@ -3,7 +3,7 @@ SetFactory("OpenCASCADE");
 WidthCube    = 30;
 HeightCube   = 20;
 Dip      = 55*Pi/180;
-Strike  =  -50*Pi/180;   // strike measured clockwise from North
+Strike  =  -46*Pi/180;   // strike measured clockwise from North
 FaultThick   = 1.5;
 
 
@@ -61,7 +61,7 @@ out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
 
 Cylinder(301) = { x0, y0, z0,  dx, dy, dz,  R };
 
-Point(789) = {10.576, 8.696, -0.195};
+Point(789) = {10.576, 8.696, -1.559};
 
 
 // --- clip both tools to the box (keep only inside-the-box parts)
