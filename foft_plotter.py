@@ -22,6 +22,9 @@ start_utc = pd.to_datetime(rates_csv['new dates'].iloc[0], utc=True, errors='coe
 
 fig, ax = plt.subplots()
 
+# --- measured data (unchanged)
+ax.plot(date_series, rates_csv.iloc[:, 3] * 1000, ".-", label="Measured")
+
 # --- plot each FOFT file
 for f in foft_files:
     df = pd.read_csv(f)
@@ -35,8 +38,7 @@ for f in foft_files:
     m = secs.notna() & p_kPa.notna() & t_utc.notna()
     ax.plot(t_utc[m], p_kPa[m], "-", lw=1, alpha=0.9, label=f.stem)
 
-# --- measured data (unchanged)
-ax.plot(date_series, rates_csv.iloc[:, 3] * 1000, ".-", label="Measured")
+
 
 #ax2.plot(date_series, rates_csv.iloc[:, 1], ".-", label="kg/s")
 ax.set_ylim(0,11000)
