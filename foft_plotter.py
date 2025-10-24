@@ -41,7 +41,7 @@ for f in foft_files:
 
 
 #ax2.plot(date_series, rates_csv.iloc[:, 1], ".-", label="kg/s")
-ax.set_ylim(0,10000)
+ax.set_ylim(0,14000)
 ax.set_xlabel("Date")
 ax.set_ylabel("Pressure [kPa]")
 ax.legend(loc='upper right' , ncol=2, fontsize=8)
