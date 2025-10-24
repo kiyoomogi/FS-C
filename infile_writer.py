@@ -15,12 +15,12 @@ incon = 'ns' #simulation_point or ns
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
-time_zero =  32480 
-time_final = 32480 + 75 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
+time_zero =  32480 + 75
+time_final = 3600 * 24 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
 
 
 if incon == 'ns': 
-    ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE1")
+    ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE2")
     #ns.data['X1'][ns.data['porosity'] == 0.99] = 0.3e6
     incon1 = ns.data
 
@@ -140,7 +140,7 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [2e-15, 2e-15, 2e-15]
+        "permeability": [8e-15, 8e-15, 8e-15]
     },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
