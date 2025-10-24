@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 time_zero =  32480
-time_final = 32480 + 70 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
+time_final = 32480 + 75 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
 
 
 if incon == 'ns': 
@@ -153,8 +153,8 @@ parameters["options"] = {
     "n_cycle_print": 9999,
     "t_ini": time_zero,
     "t_max": time_final,
-    "t_steps": 1,
-    "t_step_max":  60 * 5,
+    "t_steps": 0.1,
+    "t_step_max":  10,
     
     "t_reduce_factor": 4,
     "eps1": 1.0e-8,
