@@ -15,12 +15,12 @@ incon = 'ns' #simulation_point or ns
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
-time_zero =  32480 + 60 
-time_final = 3600 * 24  #32480 + 60 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
+time_zero =  32480 
+time_final = 32480 + 75 #plus a minte  #rates_csv["TimeElapsed"].iloc[-1] 
 
 
 if incon == 'ns': 
-    ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE2")
+    ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE1")
     #ns.data['X1'][ns.data['porosity'] == 0.99] = 0.3e6
     incon1 = ns.data
 
@@ -153,8 +153,8 @@ parameters["options"] = {
     "n_cycle_print": 9999,
     "t_ini": time_zero,
     "t_max": time_final,
-    "t_steps": 1,
-    "t_step_max":  60,
+    "t_steps": 0.5,
+    "t_step_max":  10,
     
     "t_reduce_factor": 4,
     "eps1": 1.0e-8,
