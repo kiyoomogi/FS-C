@@ -42,7 +42,7 @@ if incon == 'ns':
 
 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cuber.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_simple.msh")
 mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 z_centers = mesh.centers[:,2]
@@ -61,7 +61,6 @@ mesh.add_material("FAULT", 2)
 mesh.add_material("INJEC", 3)
 mesh.add_material("BNDTO", 4)
 mesh.add_material("BNDBO", 5)
-mesh.add_material("CLAYI", 6)
 
 if incon == 'ns':
     incon = np.full((len(incon1['X1']), 4), -1.0e9)
