@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 
-stage = 2 #0, 1, 2
+stage = 0 #0, 1, 2
 sec_stage_2 = 67
 
 if stage == 0: 
@@ -42,7 +42,7 @@ if incon == 'ns':
 
 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_simple.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cuber.msh")
 mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 z_centers = mesh.centers[:,2]
@@ -61,6 +61,7 @@ mesh.add_material("FAULT", 2)
 mesh.add_material("INJEC", 3)
 mesh.add_material("BNDTO", 4)
 mesh.add_material("BNDBO", 5)
+mesh.add_material("CLAYI", 6)
 
 if incon == 'ns':
     incon = np.full((len(incon1['X1']), 4), -1.0e9)
@@ -156,7 +157,13 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [8e-15, 8e-15, 8e-15]
+        "permeability": [8e-17, 8e-17, 8e-17]
+    },
+    "CLAYI": {
+        "porosity": 0.12,
+        #"compressibility": 8e-9,             #Pa^-1
+        #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
+        "permeability": [4e-15, 4e-15, 4e-15]
     },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
