@@ -19,7 +19,7 @@ time_final = 3600 * 24 * 365 * 50
 
 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cuber.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_simple.msh")
 mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 z_centers = mesh.centers[:,2]
@@ -44,7 +44,6 @@ mesh.add_material("FAULT", 2)
 mesh.add_material("INJEC", 3)
 mesh.add_material("BNDTO", 4)
 mesh.add_material("BNDBO", 5)
-mesh.add_material("CLAYI", 6)
 
 
 materials = (mesh.materials )
