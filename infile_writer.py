@@ -282,7 +282,12 @@ def generators():
 rates, times = generators() 
 
 ref_points = injec_labels[::40]
+ref_points.append(str(mesh.labels[mesh.near((10.576, 8.696, -1.559))]))
+
 parameters["element_history"] = ref_points
+
+#label = mesh.labels[mesh.near((10.576, 8.696, -1.559))]
+
 
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/INFILE", parameters)  
  
