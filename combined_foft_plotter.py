@@ -26,7 +26,7 @@ start_utc = rates_csv["new dates"].iloc[0]  # FOFT time zero
 fig, ax = plt.subplots()
 
 # --- plot measured
-ax.plot(date_series, rates_csv.iloc[:, 3] * 1000, ".-", label="Measured")  # adjust col if needed
+ax.plot(date_series, rates_csv.iloc[:, 3] * 1000, ".-",color='grey',label="Measured")  # adjust col if needed
 
 # --- COMBINE all FOFTs from the previous_fofts folder
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
@@ -57,12 +57,11 @@ if frames:
     foft_all = pd.concat(frames, ignore_index=True)
     foft_all.sort_values("t_utc", inplace=True)
     foft_all = foft_all.drop_duplicates(subset="t_utc", keep="last")
-    ax.plot(foft_all["t_utc"], foft_all["p_kPa"], "-", lw=1.2, alpha=0.95, label="FOFT (combined)")
+    ax.plot(foft_all["t_utc"], foft_all["p_kPa"], "-", lw=1.2, alpha=0.95, color='green', label="FOFT (combined)")
 
     # --- draw vertical dashed lines for each FOFT file's active period
     for i, (t0, t1, name) in enumerate(periods):
-        ax.axvline(t0, color="0.8", linestyle="--", linewidth=1,
-                   label="FOFT file period" if i == 0 else None)
+        ax.axvline(t0, color="0.8", linestyle="--", linewidth=1)
         ax.axvline(t1, color="0.8", linestyle="--", linewidth=1)
 
         # (optional) add a faint label at midpoint
