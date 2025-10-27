@@ -4,7 +4,7 @@ WidthCube    = 30;
 HeightCube   = 20;
 Dip      = 55*Pi/180;
 Strike  =  -46*Pi/180;   // strike measured clockwise from North
-FaultThick   = 2;
+FaultThick   = 0.5;
 
 
 Point(999) = {0,0,0};
@@ -14,7 +14,7 @@ Rectangle(101) = {-30, -30, FaultThick/2, 60, 60};
 // ---- parameters
 Icl = 10*Pi/180;      // inclination from vertical
 Az  = 319*Pi/180;     // azimuth, clockwise from North
-Len = 1.2;            // borehole length in model unitsQ
+Len = 0.3;            // borehole length in model unitsQ
 R   = 0.207/2;        // radius
 
 // direction cosines (X=East, Y=North, Z=Up)
@@ -84,7 +84,7 @@ Extrude {0,0, -0.5} {
 }
 
 // Pick your target sizes (in model units)
-h_fault = 1.6;   // fine near/inside the fault
+h_fault = 1.2;   // fine near/inside the fault
 h_out   = 5;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
