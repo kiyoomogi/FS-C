@@ -32,7 +32,7 @@ for f in foft_files:
     t_utc = start_utc + pd.to_timedelta(secs, unit="s")
     m = secs.notna() & p_kPa.notna() & t_utc.notna()
 
-    if f.stem == "FOFT_A3G38":
+    if f.stem == "FOFT_A3Q85":
         # skip here; plot on bottom
         pass
     else:
@@ -41,12 +41,12 @@ for f in foft_files:
 ax_top.set_ylabel("Pressure [kPa]")
 ax_top.set_ylim(0, 14000)
 ax_top.legend(loc="upper right", ncol=2, fontsize=8)
-ax_top.set_title("FOFTs (except A3G38) + measured")
+ax_top.set_title("FOFTs (except A3Q85) + measured")
 
 # ----- BOTTOM: FOFT_A3G38 + BFSB1_meas.csv (4th column)
 # Plot FOFT_A3G38 if present
 for f in foft_files:
-    if f.stem == "FOFT_A3G38":
+    if f.stem == "FOFT_A3Q85":
         df = pd.read_csv(f)
         if df.shape[1] >= 2:
             secs  = pd.to_numeric(df.iloc[:, 0], errors="coerce")
