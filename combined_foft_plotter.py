@@ -45,7 +45,7 @@ def load_and_combine_foft(pattern: str) -> pd.DataFrame:
 
 # --- combine groups
 foft_A11 = load_and_combine_foft("FOFT_A11_0_*.csv")
-foft_A3  = load_and_combine_foft("FOFT_A3G38_*.csv")
+foft_A3  = load_and_combine_foft("FOFT_A3Q85_*.csv")
 
 # --- figure with two subplots
 fig, (ax_top, ax_bot) = plt.subplots(2, 1, sharex=True, figsize=(10, 7), dpi=150)
