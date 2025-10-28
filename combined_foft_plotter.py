@@ -51,16 +51,17 @@ foft_A3  = load_and_combine_foft("FOFT_A3Q85_*.csv")
 fig, (ax_top, ax_bot) = plt.subplots(2, 1, sharex=True, figsize=(10, 7), dpi=150)
 
 # TOP: measured + combined A11
-ax_top.plot(date_series, rates_csv.iloc[:, 3] * 1000, ".-", color="grey",label="Measured BFSB2 (40.5 m)")  # adjust col if needed
+
 if not foft_A11.empty:
-    ax_top.plot(foft_A11["t_utc"], foft_A11["p_kPa"], "-", lw=2, alpha=0.95,color="green", label="FOFT_A11_0 (combined)")
+    ax_top.plot(foft_A11["t_utc"], foft_A11["p_kPa"], "-", lw=2, alpha=0.95,color="green",label="Modelled BFSB2 (40.5 m)" )
+ax_top.plot(date_series, rates_csv.iloc[:, 3] * 1000, ".-", color="grey",label="Measured")  # adjust col if needed
 ax_top.set_ylabel("Pressure [kPa]")
 ax_top.set_ylim(0, 14000)
 ax_top.legend(loc="upper right", ncol=2)
 
 # BOTTOM: combined A3G38 + BFSB1_meas (4th column in bar -> kPa)
 if not foft_A3.empty:
-    ax_bot.plot(foft_A3["t_utc"], foft_A3["p_kPa"], "-", lw=2,color="orange", alpha=0.95, label="Measured BFSB1 (42.2 m)")
+    ax_bot.plot(foft_A3["t_utc"], foft_A3["p_kPa"], "-", lw=2,color="orange", alpha=0.95, label="Modelled BFSB1 (42.2 m)")
 
 # BFSB1_meas: parse time (first column), take 4th column, bar->kPa
 bfsb1 = pd.read_csv(bfsb1_path, delimiter=",")
@@ -69,7 +70,7 @@ t_bfs = pd.to_datetime(bfsb1[t_col].astype(str).str.slice(0, 26), utc=True, erro
 y_bfs_bar = pd.to_numeric(bfsb1.iloc[:, 4], errors="coerce")   # 4th column = index 3
 y_bfs_kPa = y_bfs_bar * 100.0
 m_bfs = t_bfs.notna() & y_bfs_kPa.notna()
-ax_bot.plot(t_bfs[m_bfs], y_bfs_kPa[m_bfs], ".-", lw=0.9, color="grey",label="BFSB1_meas (kPa)")
+ax_bot.plot(t_bfs[m_bfs], y_bfs_kPa[m_bfs], ".-", lw=0.9, color="grey",label="Measured")
 
 ax_bot.set_xlabel("Date")
 ax_bot.set_ylabel("Pressure [kPa]")

@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 
-stage = 1 #0, 1, 2
+stage = 2 #0, 1, 2
 sec_stage_2 = 67
 
 if stage == 0: 
@@ -156,7 +156,7 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [2.68e-14, 2.68e-14, 2.68e-14]
+        "permeability": [8e-15, 8e-15, 8e-15]
     },
 
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
