@@ -45,8 +45,8 @@ def load_and_combine_foft(pattern: str) -> pd.DataFrame:
 
 # --- combine groups
 foft_A11 = load_and_combine_foft("FOFT_A11_0_*.csv")
-foft_A3  = load_and_combine_foft("FOFT_A3Q85_*.csv")
-
+foft_A3  = load_and_combine_foft("FOFT_A3G38_*.csv")
+foft_A5  = load_and_combine_foft("FOFT_A3Q85_*.csv")
 # --- figure with two subplots
 fig, (ax_top, ax_bot) = plt.subplots(2, 1, sharex=True, figsize=(10, 7), dpi=150)
 
@@ -61,7 +61,11 @@ ax_top.legend(loc="upper right", ncol=2)
 
 # BOTTOM: combined A3G38 + BFSB1_meas (4th column in bar -> kPa)
 if not foft_A3.empty:
-    ax_bot.plot(foft_A3["t_utc"], foft_A3["p_kPa"], "-", lw=2,color="orange", alpha=0.95, label="Modelled BFSB1 (42.2 m)")
+    ax_bot.plot(foft_A3["t_utc"], foft_A3["p_kPa"], "-", lw=2,color="orange", alpha=0.95, label="Modelled BFSB1 (42.2 m) [2.0 m]")
+if not foft_A5.empty:
+    ax_bot.plot(foft_A5["t_utc"], foft_A5["p_kPa"], "-", lw=2,color="red", alpha=0.8, label="Modelled BFSB1 (42.2 m) [0.5 m]")
+
+
 
 # BFSB1_meas: parse time (first column), take 4th column, bar->kPa
 bfsb1 = pd.read_csv(bfsb1_path, delimiter=",")
