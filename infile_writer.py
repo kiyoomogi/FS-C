@@ -34,6 +34,13 @@ elif stage == 2:
     time_final = 123574.7 + 20 #rates_csv["TimeElapsed"].iloc[-1] 
     time_step = 1
     time_max = 60
+elif stage == 3:
+    time_zero =  123574.7 + 20
+    time_final =  142626.4 #rates_csv["TimeElapsed"].iloc[-1] 
+    time_step = 1
+    time_max = 60
+
+
 
 if incon == 'ns': 
     ns = toughio.read_output(f"/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE{stage}")
@@ -156,7 +163,7 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [8e-15, 8e-15, 8e-15]
+        "permeability": [2.68e-14,2.68e-14,2.68e-14]
     },
 
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
