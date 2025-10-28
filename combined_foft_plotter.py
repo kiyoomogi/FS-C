@@ -63,7 +63,7 @@ ax_top.legend(loc="upper right", ncol=2)
 if not foft_A3.empty:
     ax_bot.plot(foft_A3["t_utc"], foft_A3["p_kPa"], "-", lw=2,color="orange", alpha=0.95, label="Modelled BFSB1 (42.2 m) [2.0 m]")
 if not foft_A5.empty:
-    ax_bot.plot(foft_A5["t_utc"], foft_A5["p_kPa"], "-", lw=2,color="red", alpha=0.8, label="Modelled BFSB1 (42.2 m) [0.5 m]")
+    ax_bot.plot(foft_A5["t_utc"], foft_A5["p_kPa"], "-", lw=2,color="red", alpha=0.8, label="Modelled BFSB1 (42.2 m)")
 
 
 
