@@ -31,7 +31,7 @@ elif stage == 1:
     time_max = 60
 elif stage == 2:
     time_zero =  47580
-    time_final = rates_csv["TimeElapsed"].iloc[-1] 
+    time_final = 123574.7 + 20 #rates_csv["TimeElapsed"].iloc[-1] 
     time_step = 1
     time_max = 60
 
