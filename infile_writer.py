@@ -17,7 +17,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 
 
 stage = 0 #0, 1, 2
-sec_stage_1 = 20
+sec_stage_1 = 35
 
 if stage == 0: 
     time_zero = 0 
