@@ -1,6 +1,0 @@
-sphinx
-sphinx-argparse
-sphinx-gallery
-sphinxcontrib-bibtex
-pybtex-apa-style
-pydata-sphinx-theme
