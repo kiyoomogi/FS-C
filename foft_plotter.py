@@ -17,8 +17,8 @@ bfsb12_path = foft_dir / "BFSB12_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_mid_stem = "FOFT_A5Y21"  # goes to middle panel
-special_bot_stem = "FOFT_A6O67"  # goes to bottom panel
+special_mid_stem = "FOFT_A6G67"  # goes to middle panel
+special_bot_stem = "FOFT_A7P86"  # goes to bottom panel
 
 # ---------------- measured injection series ----------------
 rates_csv = pd.read_csv(
