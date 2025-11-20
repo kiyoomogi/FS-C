@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 
-stage = 1 #0, 1, 2
+stage = 0 #0, 1, 2
 sec_stage_1 = 35
 
 if stage == 0: 
@@ -147,7 +147,7 @@ parameters["rocks"] = {
     "INJEC": {
         "density": 2500,
         "porosity": 0.999, 
-        "permeability": [1e-15, 1e-15, 1e-15],
+        "permeability": [1e-13, 1e-13, 1e-13],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         "compressibility": 1e-99,             #Pa^-1
         #"relative_permeability": {
@@ -198,7 +198,7 @@ parameters['extra_options'] = {
         3: 1,
         4: 1,
         5: 5,
-        11: 0,   #0 or 2 
+        11: 2,   #0 or 2 
         12: 2,
         17: 9,
         21: 8
