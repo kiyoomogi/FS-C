@@ -18,8 +18,8 @@ Rectangle(101) = {-100, -100, FaultThick/2, 200, 200};
 // ---- parameters
 Icl = 10*Pi/180;      // inclination from vertical
 Az  = 319*Pi/180;     // azimuth, clockwise from North
-Len = 0.3;            // borehole length in model unitsQ
-R   = 0.207/2;        // radius
+Len = 2;            // borehole length in model unitsQ
+R   = 0.146/2;        // radius
 
 // direction cosines (X=East, Y=North, Z=Up)
 ux = Sin(Icl)*Sin(Az);
@@ -66,7 +66,7 @@ out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
 Cylinder(301) = { x0, y0, z0,  dx, dy, dz,  R };
 
 Point(789) = {14.668, 4.132, -3.507};
-//Point(790) = {10.789, 4.052, -1.099};
+Point(790) = {10.789, 4.052, -1.099};
 
 // --- clip both tools to the box (keep only inside-the-box parts)
 fault_in[] = BooleanIntersection{ Volume{1}; }{ Volume{ out[1] }; Delete; };
