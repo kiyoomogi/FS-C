@@ -1,15 +1,15 @@
 SetFactory("OpenCASCADE");
 
-WidthCube    = 30;
-HeightCube   = 20;
+WidthCube    = 80;
+HeightCube   = 60;
 Dip      = 55*Pi/180;
 Strike  =  -46*Pi/180;   // strike measured clockwise from North
-FaultThick   = 0.5;
+FaultThick   = 2;
 
 
 Point(999) = {0,0,0};
 Box(1) = {-WidthCube/2,-WidthCube/2,-HeightCube/2, WidthCube,WidthCube,HeightCube};
-Rectangle(101) = {-30, -30, FaultThick/2, 60, 60};
+Rectangle(101) = {-100, -100, FaultThick/2, 200, 200};
 
 // ---- parameters
 Icl = 10*Pi/180;      // inclination from vertical
@@ -84,8 +84,8 @@ Extrude {0,0, -0.5} {
 }
 
 // Pick your target sizes (in model units)
-h_fault = 1.2;   // fine near/inside the fault
-h_out   = 5;   // coarser elsewhere
+h_fault = 2;   // fine near/inside the fault
+h_out   = 10;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
