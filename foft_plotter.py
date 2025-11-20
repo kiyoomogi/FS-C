@@ -46,7 +46,7 @@ ax_top.set_title("FOFTs (except A3Q85) + measured")
 # ----- BOTTOM: FOFT_A3G38 + BFSB1_meas.csv (4th column)
 # Plot FOFT_A3G38 if present
 for f in foft_files:
-    if f.stem == "FOFT_A3Q85":
+    if f.stem == "FOFT_A6O67":
         df = pd.read_csv(f)
         if df.shape[1] >= 2:
             secs  = pd.to_numeric(df.iloc[:, 0], errors="coerce")
