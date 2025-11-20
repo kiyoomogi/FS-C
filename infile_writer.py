@@ -147,7 +147,7 @@ parameters["rocks"] = {
     "INJEC": {
         "density": 2500,
         "porosity": 0.999, 
-        "permeability": [1e-13, 1e-13,1e-13],
+        "permeability": [1e-10, 1e-10,1e-10],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         "compressibility": 1e-99,             #Pa^-1
         #"relative_permeability": {
