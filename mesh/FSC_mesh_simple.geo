@@ -1,14 +1,18 @@
 SetFactory("OpenCASCADE");
 
 WidthCube    = 50;
-HeightCube   = 20;
-Dip      = 55*Pi/180;
-Strike  =  -46*Pi/180;   // strike measured clockwise from North
+HeightCube   = 40;
+zTop         = 10;  // keep this as the original top elevation
+
+Dip      = 58*Pi/180;
+Strike  =  -66*Pi/180;   // strike measured clockwise from North
 FaultThick   = 2;
 
 
 Point(999) = {0,0,0};
-Box(1) = {-WidthCube/2,-WidthCube/2,-HeightCube/2, WidthCube,WidthCube,HeightCube};
+Box(1) = { -WidthCube/2, -WidthCube/2, zTop - HeightCube,
+            WidthCube,    WidthCube,    HeightCube };
+
 Rectangle(101) = {-100, -100, FaultThick/2, 200, 200};
 
 // ---- parameters
@@ -61,8 +65,8 @@ out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
 
 Cylinder(301) = { x0, y0, z0,  dx, dy, dz,  R };
 
-Point(789) = {10.576, 8.696, -1.559};
-
+Point(789) = {14.668, 4.132, -3.507};
+//Point(790) = {10.789, 4.052, -1.099};
 
 // --- clip both tools to the box (keep only inside-the-box parts)
 fault_in[] = BooleanIntersection{ Volume{1}; }{ Volume{ out[1] }; Delete; };
@@ -76,11 +80,11 @@ parts[] = BooleanFragments{
 };
 
 Extrude {0,0, 0.5} {   
-  Surface{113,120,126}; Layers{1}; Recombine;
+  Surface{125,120,113}; Layers{1}; Recombine;
 }
 
 Extrude {0,0, -0.5} {   
-  Surface{115,121,127}; Layers{1}; Recombine; 
+  Surface{126,121,115}; Layers{1}; Recombine; 
 }
 
 // Pick your target sizes (in model units)
