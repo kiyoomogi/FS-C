@@ -167,7 +167,7 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [2.68e-14,2.68e-14,2.68e-14]
+        "permeability": [1e-15,1e-15,1e-15]
     },
 
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
@@ -289,7 +289,9 @@ def generators():
 rates, times = generators() 
 
 ref_points = injec_labels[::40]
-ref_points.append(str(mesh.labels[mesh.near((10.576, 8.696, -1.559))]))
+ref_points.append(str(mesh.labels[mesh.near((14.668, 4.132, -3.507))]))
+ref_points.append(str(mesh.labels[mesh.near((10.789, 4.052, -1.099))]))
+
 
 parameters["element_history"] = ref_points
 
