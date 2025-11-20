@@ -1,0 +1,80 @@
+\ProvidesPackage{tfreport}
+
+% New packages
+%==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}		
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{ae, aecompl}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{titlesec}
+\usepackage[titletoc, title]{appendix}
+%==============================================================================
+
+% Theme colours
+%===============
+\definecolor{PSLBlue}{RGB}{36,56,141}
+\definecolor{PSLWhite}{RGB}{255,255,255}
+
+% Required packages
+%==============================================================================
+\RequirePackage{graphicx} 
+\RequirePackage{color}
+\RequirePackage[pdfstartview = FitH, %
+  bookmarks = true, %
+  bookmarksopen = true, %
+  breaklinks = true, %
+  colorlinks = true, %
+  linkcolor = PSLBlue, %
+  anchorcolor = PSLBlue, %
+  citecolor = PSLBlue, %
+  filecolor = PSLBlue, %
+  menucolor = PSLBlue, %
+  urlcolor = PSLBlue]{hyperref}
+\RequirePackage{lineno}
+\RequirePackage[a4paper, margin = 2.5cm]{geometry}
+\RequirePackage{natbib}
+%==============================================================================
+
+% Fancy HDR
+%==============================================================================
+\RequirePackage{fancyhdr}
+\addtolength{\headheight}{1.7pt}
+\fancyhead[LE,RO]{\bfseries{\thepage}}
+\fancyhead[RE]{\rightmark}
+\fancyhead[LO]{\leftmark}
+\fancyfoot{}
+\pagestyle{fancyplain}
+\parskip 8pt plus1pt minus1pt
+\parindent 0pt
+
+\fancypagestyle{plain}{
+	% Same style for chapters pages
+	\fancyhead[LE,RO]{\bfseries{\thepage}}
+	\fancyhead[RE]{\rightmark}
+	\fancyhead[LO]{\leftmark}
+	\fancyfoot{}
+	\pagestyle{fancyplain}
+	\parskip 8pt plus1pt minus1pt
+	\parindent 0pt
+	
+	% Empty style for chapters pages
+%	\fancyhead{} 						% Remove header
+%    \renewcommand{\headrulewidth}{0pt}	% Remove the line
+}
+%==============================================================================
+
+% Remove hyphenation
+%==============================================================================
+%\pretolerance = 10000
+%\tolerance = 2000 
+%\emergencystretch = 10pt
+%==============================================================================
+
+% Sections format
+%==============================================================================
+\titleformat{\section}
+{\color{PSLBlue}\normalfont\fontsize{18}{22}\selectfont}
+{\color{PSLBlue}\thesection}{1em}{}
+%==============================================================================
