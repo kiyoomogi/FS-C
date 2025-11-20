@@ -1,0 +1,55 @@
+; Author: Keurfon Luu <keurfonluu@lbl.gov>
+; License: MIT
+
+
+; FLAC3D model configuration
+model new
+model configure thermal
+model configure fluid
+
+; Load mesh
+zone import '../mesh.f3grid'
+
+; Hydraulic parameters
+zone fluid cmodel assign isotropic
+zone fluid property biot 1.0
+zone fluid property permeability 1.0e-17
+zone fluid property porosity 0.01
+zone gridpoint initialize fluid-modulus 1.0
+
+; Mechanical parameters
+zone cmodel assign elastic
+zone property young 5e9
+zone property poisson 0.25
+
+; Thermal parameters
+zone thermal cmodel assign isotropic
+zone thermal property conductivity 1.8
+zone thermal property expansion 0.0
+zone thermal property specific-heat 1500
+
+; In situ stress
+zone initialize stress-xx 0.0 gradient 0 0 22170.6
+zone initialize stress-yy 0.0 gradient 0 0 22170.6
+zone initialize stress-zz 0.0 gradient 0 0 22170.6
+zone initialize density 2260
+model gravity 0 0 -9.81
+
+; In situ pressure and temperature
+zone gridpoint initialize pore-pressure 1.e5 gradient 0 0 -9810.0
+zone gridpoint initialize temperature 10.0 gradient 0 0 -0.025
+
+; Mechanical boundaries
+zone gridpoint fix velocity-y
+zone gridpoint fix velocity-z range position-z -3000.1
+zone gridpoint fix velocity-x range position-x -350000.0
+zone gridpoint fix velocity-x range position-x 350000.0
+
+; Disable large strain (only FLAC3D v7)
+model large-strain off
+
+; Solve model for mechanical equilibrium
+model solve mech ratio 1.0e-8
+
+; Save model
+model save '../tf_in.f3sav'

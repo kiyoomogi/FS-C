@@ -1,0 +1,5 @@
+__version__ = "1.2.3"
+__author__ = "Keurfon Luu, Antonio Pio Rinaldi"
+__author_email__ = "keurfonluu@lbl.gov, antoniopio.rinaldi@sed.ethz.ch"
+__website__ = "https://github.com/keurfonluu/toughflac"
+__license__ = "BSD 3-Clause License"
