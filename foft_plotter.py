@@ -2,85 +2,183 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 
-folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model")
-foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g., FOFT_A*.csv
+# ---------------- basic style ----------------
+mpl.rcParams.update({"font.size": 14})
 
-# --- measured series (unchanged)
+# ---------------- paths ----------------
+folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model")
+foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
+
+bfsb1_path  = foft_dir / "BFSB1_meas.csv"
+bfsb12_path = foft_dir / "BFSB12_meas.csv"
+
+foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
+
+# special FOFTs
+special_mid_stem = "FOFT_A5Y21"  # goes to middle panel
+special_bot_stem = "FOFT_A6O67"  # goes to bottom panel
+
+# ---------------- measured injection series ----------------
 rates_csv = pd.read_csv(
     "/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv",
     delimiter=",", index_col=0
 )
-date_series = pd.to_datetime(rates_csv["UTC"].str.slice(0, 19), utc=True, errors="coerce")
+
+date_series = pd.to_datetime(
+    rates_csv["UTC"].str.slice(0, 19),
+    utc=True,
+    errors="coerce"
+)
 rates_csv["new dates"] = date_series
 
-# FOFT time zero (same as before)
+# FOFT time zero
 start_utc = rates_csv["new dates"].iloc[0]
 
-# --- figure with two subplots (share x for aligned time axis)
-fig, (ax_top, ax_bot) = plt.subplots(2, 1, sharex=True, figsize=(10, 7), dpi=150)
 
-# ----- TOP: measured rates + all FOFTs except FOFT_A3G38
-ax_top.plot(date_series, rates_csv.iloc[:, 3] * 1000, ".-", label="Measured rate (kPa equiv?)")
-
-for f in foft_files:
-    df = pd.read_csv(f)
+def load_foft_to_kpa(path: Path, start_time) -> pd.DataFrame:
+    """Load a single FOFT CSV, convert seconds→UTC and Pa→kPa."""
+    df = pd.read_csv(path)
     if df.shape[1] < 2:
-        continue
+        return pd.DataFrame(columns=["t_utc", "p_kPa"])
+
     secs  = pd.to_numeric(df.iloc[:, 0], errors="coerce")
     p_kPa = pd.to_numeric(df.iloc[:, 1], errors="coerce") * 1e-3  # Pa -> kPa
-    t_utc = start_utc + pd.to_timedelta(secs, unit="s")
+    t_utc = start_time + pd.to_timedelta(secs, unit="s")
     m = secs.notna() & p_kPa.notna() & t_utc.notna()
 
-    if f.stem == "FOFT_A3Q85":
-        # skip here; plot on bottom
-        pass
-    else:
-        ax_top.plot(t_utc[m], p_kPa[m], "-", lw=1, alpha=0.9, label=f.stem)
+    return pd.DataFrame({"t_utc": t_utc[m], "p_kPa": p_kPa[m]})
+
+
+# ---------------- figure with three subplots ----------------
+fig, (ax_top, ax_mid, ax_bot) = plt.subplots(
+    3, 1, sharex=True, figsize=(10, 9), dpi=150
+)
+
+# ---------------- TOP: measured + all FOFTs except A5Y21 & A6O67 ----------------
+ax_top.plot(
+    date_series,
+    rates_csv.iloc[:, 3] * 1000,  # same as your previous scripts
+    ".-",
+    color="grey",
+    label="Measured"
+)
+
+for f in foft_files:
+    stem = f.stem
+    if stem in (special_mid_stem, special_bot_stem):
+        continue  # skip; those go to mid/bot
+    df_foft = load_foft_to_kpa(f, start_utc)
+    if not df_foft.empty:
+        ax_top.plot(
+            df_foft["t_utc"],
+            df_foft["p_kPa"],
+            "-",
+            lw=1.0,
+            alpha=0.9,
+            label=stem
+        )
 
 ax_top.set_ylabel("Pressure [kPa]")
 ax_top.set_ylim(0, 14000)
 ax_top.legend(loc="upper right", ncol=2, fontsize=8)
-ax_top.set_title("FOFTs (except A3Q85) + measured")
+ax_top.set_title("All FOFTs (except A5Y21 & A6O67) + measured")
 
-# ----- BOTTOM: FOFT_A3G38 + BFSB1_meas.csv (4th column)
-# Plot FOFT_A3G38 if present
+
+# ---------------- MIDDLE: FOFT_A5Y21 + BFSB1_meas ----------------
+# FOFT_A5Y21 modelled
 for f in foft_files:
-    if f.stem == "FOFT_A6O67":
-        df = pd.read_csv(f)
-        if df.shape[1] >= 2:
-            secs  = pd.to_numeric(df.iloc[:, 0], errors="coerce")
-            p_kPa = pd.to_numeric(df.iloc[:, 1], errors="coerce") * 1e-3
-            t_utc = start_utc + pd.to_timedelta(secs, unit="s")
-            m = secs.notna() & p_kPa.notna() & t_utc.notna()
-            ax_bot.plot(t_utc[m], p_kPa[m], "-", lw=1.2, alpha=0.95, label="FOFT_A3G38")
-        break  # only one file expected with this name
+    if f.stem == special_mid_stem:
+        df_mid = load_foft_to_kpa(f, start_utc)
+        if not df_mid.empty:
+            ax_mid.plot(
+                df_mid["t_utc"],
+                df_mid["p_kPa"],
+                "-",
+                lw=1.2,
+                alpha=0.95,
+                label=f"{special_mid_stem} (modelled)"
+            )
+        break
 
-# Plot BFSB1_meas.csv 4th column (iloc[:,3]) vs its timestamp (assume col0 is time)
-bfsb1_path = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts/BFSB1_meas.csv")
+# BFSB1_meas (4th or 5th column? you used iloc[:,4] before)
 bfsb1 = pd.read_csv(bfsb1_path, delimiter=",")
-
-# time parse (assumes first column is timestamp)
 t_col = bfsb1.columns[0]
-t_bfs = pd.to_datetime(bfsb1[t_col].astype(str).str.slice(0, 26), utc=True, errors="coerce")
+t_bfs1 = pd.to_datetime(
+    bfsb1[t_col].astype(str).str.slice(0, 26),
+    utc=True,
+    errors="coerce"
+)
+y_bfs1_bar = pd.to_numeric(bfsb1.iloc[:, 4], errors="coerce")  # bar
+y_bfs1_kPa = y_bfs1_bar * 100.0
 
-# 4th column in BAR  → convert to kPa
-y_bfs_bar = pd.to_numeric(bfsb1.iloc[:, 4], errors="coerce")
-y_bfs_kPa = y_bfs_bar * 100.0   # 1 bar = 100 kPa
+m_bfs1 = t_bfs1.notna() & y_bfs1_kPa.notna()
+ax_mid.plot(
+    t_bfs1[m_bfs1],
+    y_bfs1_kPa[m_bfs1],
+    ".-",
+    lw=0.8,
+    color="grey",
+    label="BFSB1 measured"
+)
 
-m_bfs = t_bfs.notna() & y_bfs_kPa.notna()
-ax_bot.plot(t_bfs[m_bfs], y_bfs_kPa[m_bfs], ".-", lw=0.8, label="BFSB1_meas (kPa)")
+ax_mid.set_ylabel("Pressure [kPa]")
+ax_mid.set_ylim(0, 3500)
+ax_mid.legend(loc="upper right", ncol=2, fontsize=8)
+ax_mid.set_title("FOFT_A5Y21 (modelled) + BFSB1 (measured)")
+
+
+# ---------------- BOTTOM: FOFT_A6O67 + BFSB12_meas ----------------
+# FOFT_A6O67 modelled
+for f in foft_files:
+    if f.stem == special_bot_stem:
+        df_bot = load_foft_to_kpa(f, start_utc)
+        if not df_bot.empty:
+            ax_bot.plot(
+                df_bot["t_utc"],
+                df_bot["p_kPa"],
+                "-",
+                lw=1.2,
+                alpha=0.95,
+                label=f"{special_bot_stem} (modelled)"
+            )
+        break
+
+# BFSB12_meas (downhole pressure [kPa])
+bfsb12 = pd.read_csv(bfsb12_path, delimiter=",")
+t12 = pd.to_datetime(
+    bfsb12["UTC"].astype(str).str.slice(0, 26),
+    utc=True,
+    errors="coerce"
+)
+p12_kPa = pd.to_numeric(bfsb12["downhole pressure [kPa]"], errors="coerce")
+m12 = t12.notna() & p12_kPa.notna()
+
+ax_bot.plot(
+    t12[m12],
+    p12_kPa[m12],
+    ".-",
+    lw=0.9,
+    color="grey",
+    label="BFSB12 measured"
+)
 
 ax_bot.set_xlabel("Date")
 ax_bot.set_ylabel("Pressure [kPa]")
-ax_bot.set_ylim(0, 2500)
+ax_bot.set_ylim(0, 3500)
 ax_bot.legend(loc="upper right", ncol=2, fontsize=8)
-ax_bot.set_title("FOFT_A3G38 + BFSB1_meas (4th column)")
+ax_bot.set_title("FOFT_A6O67 (modelled) + BFSB12 (measured)")
 
-# --- tidy up
+
+# ---------------- shared x-limits & tidy ----------------
+xmin = date_series.min()
+xmax = date_series.max()
+ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
+
 fig.autofmt_xdate()
 plt.tight_layout()
-out_png = folder / "results_two_panel.png"
+out_png = folder / "results_three_panel_all_fofts.png"
 plt.savefig(out_png, bbox_inches="tight")
 plt.show()
 print("Saved:", out_png)
