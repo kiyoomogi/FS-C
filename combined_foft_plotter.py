@@ -12,6 +12,7 @@ mpl.rcParams.update({"font.size": 14})   # pick your size
 folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model")
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 bfsb1_path = foft_dir / "BFSB1_meas.csv"
+bfsb12_path = foft_dir / "BFSB12_meas.csv"  
 
 # --- measured series
 rates_csv = pd.read_csv(
@@ -47,8 +48,26 @@ def load_and_combine_foft(pattern: str) -> pd.DataFrame:
 foft_A11 = load_and_combine_foft("FOFT_A11_0_*.csv")
 foft_A3  = load_and_combine_foft("FOFT_A3G38_*.csv")
 foft_A5  = load_and_combine_foft("FOFT_A3Q85_*.csv")
+
+
+
+# --- THIRD PANEL: BFSB12 measured downhole pressure
+bfsb12 = pd.read_csv(bfsb12_path, delimiter=",")
+
+# parse time from 'UTC' column
+t12 = pd.to_datetime(
+    bfsb12["UTC"].astype(str).str.slice(0, 26),
+    utc=True,
+    errors="coerce"
+)
+# downhole pressure is already in kPa
+p12_kPa = pd.to_numeric(bfsb12["downhole pressure [kPa]"], errors="coerce")
+m12 = t12.notna() & p12_kPa.notna()
+
+
+
 # --- figure with two subplots
-fig, (ax_top, ax_bot) = plt.subplots(2, 1, sharex=True, figsize=(10, 7), dpi=150)
+fig, (ax_top, ax_bot, ax_bfsb12) = plt.subplots(3, 1, sharex=True, figsize=(10, 9), dpi=150)
 
 # TOP: measured + combined A11
 
@@ -56,7 +75,7 @@ if not foft_A11.empty:
     ax_top.plot(foft_A11["t_utc"], foft_A11["p_kPa"], "-", lw=2, alpha=0.95,color="green",label="Modelled BFSB2 (40.5 m)" )
 ax_top.plot(date_series, rates_csv.iloc[:, 3] * 1000, ".-", color="grey",label="Measured")  # adjust col if needed
 ax_top.set_ylabel("Pressure [kPa]")
-ax_top.set_ylim(0, 14000)
+ax_top.set_ylim(0, 10000)
 ax_top.legend(loc="upper right", ncol=2)
 
 # BOTTOM: combined A3G38 + BFSB1_meas (4th column in bar -> kPa)
@@ -78,8 +97,20 @@ ax_bot.plot(t_bfs[m_bfs], y_bfs_kPa[m_bfs], ".-", lw=0.9, color="grey",label="Me
 
 ax_bot.set_xlabel("Date")
 ax_bot.set_ylabel("Pressure [kPa]")
-ax_bot.set_ylim(0, 2500)
+ax_bot.set_ylim(0, 3500)
 ax_bot.legend(loc="upper right", ncol=2)
+
+ax_bfsb12.plot(t12[m12], p12_kPa[m12], ".-", lw=0.9, color="grey",
+               label="BFSB12 measured")
+
+ax_bfsb12.set_xlabel("Date")
+ax_bfsb12.set_ylabel("Pressure [kPa]")
+ax_bfsb12.set_ylim(0, 3500)
+ax_bfsb12.legend(loc="upper right")
+
+xmin = date_series.min()
+xmax = date_series.max()
+ax_top.set_xlim(xmin, xmax)   # all subplots share this x-range
 
 # tidy & save
 fig.autofmt_xdate()

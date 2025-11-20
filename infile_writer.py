@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 
-stage = 3 #0, 1, 2
+stage = 0 #0, 1, 2
 sec_stage_2 = 67
 
 if stage == 0: 
