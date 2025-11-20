@@ -50,7 +50,8 @@ if incon == 'ns':
     ns = toughio.read_output(f"/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE{stage}")
     #ns.data['X1'][ns.data['porosity'] == 0.99] = 0.3e6
     incon1 = ns.data
-
+    data_ns_injec = incon1['porosity'] == 0.99
+    incon1['X1'][data_ns_injec] = 0.01
 
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_simple.msh")
@@ -124,7 +125,7 @@ irp11 = [0.5, 0.0, 0]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.12 ,                    #- 
-    "permeability": [1e-19,1e-19,1e-19], #m2  
+    "permeability": [4e-19,4e-19,4e-19], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
     "compressibility": 2e-9,             #Pa^-1
