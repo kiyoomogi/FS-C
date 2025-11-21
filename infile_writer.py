@@ -50,8 +50,7 @@ if incon == 'ns':
     ns = toughio.read_output(f"/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE{stage}")
     #ns.data['X1'][ns.data['porosity'] == 0.99] = 0.3e6
     incon1 = ns.data
-    data_ns_injec = incon1['porosity'] == 0.99
-    incon1['X1'][data_ns_injec] = 0.01
+
 
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_simple.msh")
@@ -264,7 +263,7 @@ def generators():
     for i in range(len(rel_volumes)): 
         rel_vol = rel_volumes[i]
         if stage == 0:
-            rates = (rates_csv['net flow [kg/s]'] * rel_vol * 0.1).to_list()
+            rates = (rates_csv['net flow [kg/s]'] * rel_vol /1000).to_list()
         else:
             rates = (rates_csv['net flow [kg/s]'] * rel_vol * 1).to_list()
         rates_co2 = (rates_csv['CO2 rate [kg/s]'] * rel_vol).to_list()
