@@ -44,7 +44,7 @@ def load_foft_to_kpa(path: Path, start_time) -> pd.DataFrame:
         return pd.DataFrame(columns=["t_utc", "p_kPa"])
 
     secs  = pd.to_numeric(df.iloc[:, 0], errors="coerce")
-    p_kPa = pd.to_numeric(df.iloc[:, 1], errors="coerce") * 1e-3  # Pa -> kPa
+    p_kPa = pd.to_numeric(df.iloc[:, 1], errors="coerce") / 1000  # Pa -> kPa
     t_utc = start_time + pd.to_timedelta(secs, unit="s")
     m = secs.notna() & p_kPa.notna() & t_utc.notna()
 
