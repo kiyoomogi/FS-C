@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 
-stage = 1 #0, 1, 2
+stage = 2 #0, 1, 2
 sec_stage_1 = -10
 
 if stage == 0: 
@@ -36,17 +36,17 @@ elif stage == 2:
     time_final = 47567  #rates_csv["TimeElapsed"].iloc[-1] 
     time_step = 1
     time_max = 60
-elif stage == 2:
+elif stage == 3:
     time_zero =  47580
     time_final = 123574.7 + 20 #rates_csv["TimeElapsed"].iloc[-1] 
     time_step = 1
     time_max = 60
-elif stage == 3:
+elif stage == 4:
     time_zero =  123574.7 + 20
     time_final =  142626.4 #rates_csv["TimeElapsed"].iloc[-1] 
     time_step = 0.5
     time_max = 10
-elif stage == 4:
+elif stage == 5:
     time_zero =  142626.4
     time_final = rates_csv["TimeElapsed"].iloc[-1] 
     time_step = 1
@@ -174,7 +174,7 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [1e-17,1e-17,1e-17]
+        "permeability": [1e-15,1e-15,1e-15]
     },
 
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
