@@ -165,10 +165,10 @@ parameters["rocks"] = {
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
     "FAULT": {
-        "porosity": 0.18,
+        "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [1e-15,1e-15,1e-15]
+        "permeability": [1e-17,1e-17,1e-17]
     },
 
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
@@ -199,7 +199,7 @@ parameters['extra_options'] = {
         3: 1,
         4: 1,
         5: 5,
-        11: 2,   #0 or 2 
+        11: 0,   #0 or 2 
         12: 2,
         17: 9,
         21: 8
@@ -263,7 +263,10 @@ def generators():
 
     for i in range(len(rel_volumes)): 
         rel_vol = rel_volumes[i]
-        rates = (rates_csv['net flow [kg/s]'] * rel_vol).to_list()
+        if stage == 0:
+            rates = (rates_csv['net flow [kg/s]'] * rel_vol * 0.1).to_list()
+        else:
+            rates = (rates_csv['net flow [kg/s]'] * rel_vol * 1).to_list()
         rates_co2 = (rates_csv['CO2 rate [kg/s]'] * rel_vol).to_list()
         times = rates_csv['TimeElapsed'].to_list()
 
