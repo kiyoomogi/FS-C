@@ -20,7 +20,9 @@ b1_df  = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B1_loc
 b2_df  = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B2_location.csv',  sep=r'\s+')
 b12_df = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B12_location.csv', sep=r'\s+')
 
-view_angle = 30  # azimuth angle for 3D view
+view_angle = 20  # azimuth angle for 3D view
+MD_target_B1  = 42.2     # measured distance along B1 from collar [m]
+MD_target_B12 = 44   # measured distance along B12 from collar [m]
 
 # -------------------------------------------------------------------
 # Define a common depth coordinate D = vertical depth below B2 collar
@@ -40,8 +42,8 @@ b12x, b12y, b12z = b12_df["X"], b12_df["Y"], b12_df["D"]
 # Plane definition: strike, dip, and target depth on B2
 # -------------------------------------------------------------------
 strike_deg   = 66.0   # from North, clockwise
-dip_deg      = 58.0   # from horizontal, downward
-target_depth = 40.5   # vertical depth below B2 collar (m), positive downward
+dip_deg      = 60.0   # from horizontal, downward
+target_depth = 40.97   # vertical depth below B2 collar (m), positive downward
 
 phi = np.deg2rad(strike_deg)
 dip = np.deg2rad(dip_deg)
@@ -153,13 +155,13 @@ ax.plot(b12x, b12y, b12z, zdir='z', label='BFS-B12', color='red', linestyle='--'
 
 # Mark B2 intersection at D0
 ax.scatter([x0], [y0], [D0], s=60, color='blue')
-ax.text(
-    x0 - 15, y0, D0,
-    f"intersect B2 @{D0:.1f} m",
-    color="blue",
-    zdir=None,
-    bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)
-)
+#ax.text(
+#    x0 - 15, y0, D0,
+#    f"intersect B2 @{D0:.1f} m",
+#    color="blue",
+#    zdir=None,
+#    bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)
+#)
 
 # Mark B1 intersections
 if not ints_B1:
@@ -169,13 +171,13 @@ else:
         print(f"Plane ∩ B1 at X={xi:.3f}, Y={yi:.3f}, depth={Di:.3f} m "
               f"(segment {i}->{j}, t={t:.3f})")
         ax.scatter([xi], [yi], [Di], s=80, marker='o', color='green', zorder=5)
-        ax.text(
-            xi + 3, yi, Di,
-            f"intersect B1 @{Di:.1f} m",
-            color="green",
-            zdir=None,
-            bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)
-        )
+        #ax.text(
+        #    xi + 3, yi, Di,
+        #    f"intersect B1 @{Di:.1f} m",
+        #    color="green",
+        #    zdir=None,
+        #    bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)
+        #)
 
 # Mark B12 intersections
 if not ints_B12:
@@ -185,13 +187,147 @@ else:
         print(f"Plane ∩ B12 at X={xi:.3f}, Y={yi:.3f}, depth={Di:.3f} m "
               f"(segment {i}->{j}, t={t:.3f})")
         ax.scatter([xi], [yi], [Di], s=80, marker='x', color='red', zorder=5)
-        ax.text(
-            xi + 3, yi, Di,
-            f"intersect B12 @{Di:.1f} m",
-            color="red",
-            zdir=None,
-            bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)
-        )
+        #ax.text(
+        #    xi + 3, yi, Di,
+        #    f"intersect B12 @{Di:.1f} m",
+        #    color="red",
+        #    zdir=None,
+        #    bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)
+        #)
+
+
+# -------------------------------------------------------------------
+# Point 42.2 m along B1 (along borehole, not vertical)
+# ------------------------------------------------------------------
+
+# Sort B1 from top to bottom by depth D (you already defined D earlier)
+b1_sorted_MD = b1_df.sort_values("D").reset_index(drop=True)
+
+xB = b1_sorted_MD["X"].to_numpy()
+yB = b1_sorted_MD["Y"].to_numpy()
+zB = b1_sorted_MD["Z"].to_numpy()   # use true Z (elevation), not D, for geometry
+
+# Segment lengths between consecutive points (3D Euclidean)
+dx = np.diff(xB)
+dy = np.diff(yB)
+dz = np.diff(zB)
+seg_len = np.sqrt(dx**2 + dy**2 + dz**2)
+
+# Cumulative distance from collar along B1
+cum_len = np.concatenate(([0.0], np.cumsum(seg_len)))
+
+# Check range
+total_len = cum_len[-1]
+print(f"Total B1 length (from data) ≈ {total_len:.2f} m")
+
+
+# -------------------------------------------------------------------
+# Point 42.2 m along B1 (along borehole, not vertical)
+# -------------------------------------------------------------------
+b1_sorted_MD = b1_df.sort_values("D").reset_index(drop=True)
+
+xB  = b1_sorted_MD["X"].to_numpy()
+yB  = b1_sorted_MD["Y"].to_numpy()
+zB  = b1_sorted_MD["Z"].to_numpy()  # true elevation
+
+dx = np.diff(xB)
+dy = np.diff(yB)
+dz = np.diff(zB)
+seg_len = np.sqrt(dx**2 + dy**2 + dz**2)
+
+cum_len = np.concatenate(([0.0], np.cumsum(seg_len)))
+total_len_B1 = cum_len[-1]
+print(f"Total B1 length (from data) ≈ {total_len_B1:.2f} m")
+
+if MD_target_B1 < 0 or MD_target_B1 > total_len_B1:
+    print(f"Target MD={MD_target_B1} m is outside B1 length (0–{total_len_B1:.2f} m).")
+else:
+    i = np.searchsorted(cum_len, MD_target_B1) - 1
+    i = max(0, min(i, len(seg_len)-1))
+
+    L0 = cum_len[i]
+    L1 = cum_len[i+1]
+    t = 0.0 if L1 == L0 else (MD_target_B1 - L0) / (L1 - L0)
+
+    x_MD  = xB[i]  + t * (xB[i+1]  - xB[i])
+    y_MD  = yB[i]  + t * (yB[i+1]  - yB[i])
+    z_MD  = zB[i]  + t * (zB[i+1]  - zB[i])
+    D_MD  = Z0 - z_MD
+
+    ax.scatter([x_MD], [y_MD], [D_MD], s=80, color="green", marker="*", zorder=10)
+    ax.text(
+        x_MD + 3, y_MD, D_MD + 8,
+        "B1 @42.2 m",
+        color="green",
+        zdir=None,
+        bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)
+    )
+
+    # origin-shifted coords with plane∩B2 as origin, same convention as intersections
+    x_MD_loc = x_MD - x0
+    y_MD_loc = y_MD - y0
+    D_MD_loc = (D_MD - D0) * -1
+
+    print(
+        "B1 @42.2 m in origin-shifted coords (plane∩B2 as origin): "
+        f"({x_MD_loc:.3f}, {y_MD_loc:.3f}, {D_MD_loc:.3f})"
+    )
+
+# -------------------------------------------------------------------
+# Point 43.565 m along B12 (along borehole, not vertical)
+# -------------------------------------------------------------------
+b12_sorted_MD = b12_df.sort_values("D").reset_index(drop=True)
+
+xB12 = b12_sorted_MD["X"].to_numpy()
+yB12 = b12_sorted_MD["Y"].to_numpy()
+zB12 = b12_sorted_MD["Z"].to_numpy()  # true elevation
+
+dx12 = np.diff(xB12)
+dy12 = np.diff(yB12)
+dz12 = np.diff(zB12)
+seg_len_12 = np.sqrt(dx12**2 + dy12**2 + dz12**2)
+
+cum_len_12 = np.concatenate(([0.0], np.cumsum(seg_len_12)))
+total_len_B12 = cum_len_12[-1]
+print(f"Total B12 length (from data) ≈ {total_len_B12:.2f} m")
+
+if MD_target_B12 < 0 or MD_target_B12 > total_len_B12:
+    print(f"Target MD={MD_target_B12} m is outside B12 length (0–{total_len_B12:.2f} m).")
+else:
+    i12 = np.searchsorted(cum_len_12, MD_target_B12) - 1
+    i12 = max(0, min(i12, len(seg_len_12)-1))
+
+    L0_12 = cum_len_12[i12]
+    L1_12 = cum_len_12[i12+1]
+    t12   = 0.0 if L1_12 == L0_12 else (MD_target_B12 - L0_12) / (L1_12 - L0_12)
+
+    x_MD12 = xB12[i12] + t12 * (xB12[i12+1] - xB12[i12])
+    y_MD12 = yB12[i12] + t12 * (yB12[i12+1] - yB12[i12])
+    z_MD12 = zB12[i12] + t12 * (zB12[i12+1] - zB12[i12])
+    D_MD12 = Z0 - z_MD12
+
+    # plot on existing 3D plot
+    ax.scatter([x_MD12], [y_MD12], [D_MD12], s=80, color="magenta", marker="*", zorder=10)
+    ax.text(
+        x_MD12 + 3, y_MD12, D_MD12,
+        f"B12 @{MD_target_B12} m",
+        color="magenta",
+        zdir=None,
+        bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)
+    )
+
+    # origin-shifted coords with plane∩B2 as origin
+    x_MD12_loc  = x_MD12 - x0
+    y_MD12_loc  = y_MD12 - y0
+    D_MD12_loc  = (D_MD12 - D0) * -1
+
+    print(
+        f"B12 @{MD_target_B12} m in origin-shifted coords (plane∩B2 as origin): "
+        f"({x_MD12_loc:.3f}, {y_MD12_loc:.3f}, {D_MD12_loc:.3f})"
+    )
+
+
+
 
 # Axes labels & view
 ax.legend()
@@ -235,3 +371,6 @@ if ints_B12:
         "B12 intersection in origin-shifted coords (plane∩B2 as origin): "
         f"({xi12_loc:.3f}, {yi12_loc:.3f}, {D12i_loc:.3f})"
     )
+
+
+

@@ -6,7 +6,7 @@ zTop         = 10;  // keep this as the original top elevation
 
 Dip      = 58*Pi/180;
 Strike  =  -66*Pi/180;   // strike measured clockwise from North
-FaultThick   = 0.8;
+FaultThick   = 0.2;
 
 
 Point(999) = {0,0,0};
@@ -18,8 +18,8 @@ Rectangle(101) = {-100, -100, FaultThick/2, 200, 200};
 // ---- parameters
 Icl = 10*Pi/180;      // inclination from vertical
 Az  = 319*Pi/180;     // azimuth, clockwise from North
-Len = 0.5;            // borehole length in model unitsQ
-R   = 0.2;        // radius
+Len = 0.05;            // borehole length in model unitsQ
+R   = 0.02;        // radius
 
 // direction cosines (X=East, Y=North, Z=Up)
 ux = Sin(Icl)*Sin(Az);
@@ -88,8 +88,8 @@ Extrude {0,0, -0.5} {
 }
 
 // Pick your target sizes (in model units)
-h_fault = 1.6;   // fine near/inside the fault
-h_out   = 8;   // coarser elsewhere
+h_fault = 1;   // fine near/inside the fault
+h_out   = 14;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
