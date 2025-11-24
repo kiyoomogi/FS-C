@@ -269,10 +269,7 @@ def generators():
 
     for i in range(len(rel_volumes)): 
         rel_vol = rel_volumes[i]
-        if stage == 0:
-            rates = (rates_csv['net flow [kg/s]'] * rel_vol /1000).to_list()
-        else:
-            rates = (rates_csv['net flow [kg/s]'] * rel_vol * 1).to_list()
+        rates = (rates_csv['net flow [kg/s]'] * rel_vol * 1).to_list()
         rates_co2 = (rates_csv['CO2 rate [kg/s]'] * rel_vol).to_list()
         times = rates_csv['TimeElapsed'].to_list()
 
