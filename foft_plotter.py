@@ -17,8 +17,8 @@ bfsb12_path = foft_dir / "BFSB12_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_bot_stem = "FOFT_A4R65"  # goes to middle panel
-special_mid_stem = "FOFT_A5861"  # goes to bottom panel
+special_bot_stem = "FOFT_A6M73"  # goes to middle panel
+special_mid_stem = "FOFT_A6W48"  # goes to bottom panel
 
 # ---------------- measured injection series ----------------
 rates_csv = pd.read_csv(
@@ -126,7 +126,7 @@ ax_mid.plot(
 ax_mid.set_ylabel("Pressure [kPa]")
 ax_mid.set_ylim(0, 3500)
 ax_mid.legend(loc="upper right", ncol=2, fontsize=8)
-ax_mid.set_title("FOFT_A5Y21 (modelled) + BFSB1 (measured)")
+ax_mid.set_title("BFSB1")
 
 
 # ---------------- BOTTOM: FOFT_A6O67 + BFSB12_meas ----------------
@@ -168,7 +168,7 @@ ax_bot.set_xlabel("Date")
 ax_bot.set_ylabel("Pressure [kPa]")
 ax_bot.set_ylim(0, 3500)
 ax_bot.legend(loc="upper right", ncol=2, fontsize=8)
-ax_bot.set_title("FOFT_A6O67 (modelled) + BFSB12 (measured)")
+ax_bot.set_title("BFSB12")
 
 
 # ---------------- shared x-limits & tidy ----------------
