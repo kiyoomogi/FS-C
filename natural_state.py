@@ -26,7 +26,7 @@ z_centers = mesh.centers[:,2]
 z_top = np.amax(z_centers)
 z_bot = np.amin(z_centers)
 
-p0 = rates_csv['zone P [MPa]'].min()
+p0 = rates_csv['zone P [MPa]'].min() * 1e6
 
 #p0 = 1.298302 * 100000
 z_bfsb1 = -1.559
