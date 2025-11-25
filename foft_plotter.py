@@ -17,8 +17,8 @@ bfsb12_path = foft_dir / "BFSB12_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_bot_stem = "FOFT_A1X46"  # goes to middle panel
-special_mid_stem = "FOFT_A2C_2"  # goes to bottom panel
+special_bot_stem = "FOFT_A1R29"  # goes to middle panel
+special_mid_stem = "FOFT_A23_7"  # goes to bottom panel
 
 # ---------------- measured injection series ----------------
 rates_csv = pd.read_csv(
@@ -173,8 +173,8 @@ ax_bot.set_title("BFSB12")
 
 # ---------------- shared x-limits & tidy ----------------
 xmin = date_series.min()
-#xmax = date_series.max()
-xmax = date_series[77]
+xmax = date_series.max()
+#xmax = date_series[77]
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
 fig.autofmt_xdate()

@@ -21,9 +21,15 @@ sec_stage_1 = 15
 
 if stage == 0: 
     time_zero = 0 
-    time_final = 32480 + sec_stage_1
+    time_final = 24000
     time_step = 1
     time_max = 60
+    
+#if stage == 0: 
+#    time_zero = 0 
+#    time_final = 32480 + sec_stage_1
+#    time_step = 1
+#    time_max = 60
 
 elif stage == 1:
     time_zero =  32480 + sec_stage_1
@@ -269,7 +275,7 @@ def generators():
 
     for i in range(len(rel_volumes)): 
         rel_vol = rel_volumes[i]
-        rates = (rates_csv['net flow [kg/s]'] * rel_vol * 1).to_list()
+        rates = (rates_csv['net flow cor [kg/s]'] * rel_vol * 1).to_list()
         rates_co2 = (rates_csv['CO2 rate [kg/s]'] * rel_vol).to_list()
         times = rates_csv['TimeElapsed'].to_list()
 
