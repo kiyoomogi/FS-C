@@ -81,7 +81,7 @@ for f in foft_files:
         )
 
 ax_top.set_ylabel("Pressure [kPa]")
-ax_top.set_ylim(0, 134000)
+ax_top.set_ylim(0, 14000)
 ax_top.legend(loc="upper right", ncol=2, fontsize=8)
 ax_top.set_title("All FOFTs (except A5Y21 & A6O67) + measured")
 
