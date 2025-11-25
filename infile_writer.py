@@ -16,8 +16,8 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 
-stage = 1 #0, 1, 2
-sec_stage_1 = 5
+stage = 0 #0, 1, 2
+sec_stage_1 = 15
 
 if stage == 0: 
     time_zero = 0 
@@ -54,7 +54,7 @@ if incon == 'ns':
 
 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_simple.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
 mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 z_centers = mesh.centers[:,2]
@@ -69,10 +69,11 @@ bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top - 165000
 
 #Add material
 mesh.add_material("CLAY ", 1)
-mesh.add_material("FAULT", 2)
-mesh.add_material("INJEC", 3)
-mesh.add_material("BNDTO", 4)
-mesh.add_material("BNDBO", 5)
+mesh.add_material("EDZ  ", 2)
+mesh.add_material("FAULT", 3)
+mesh.add_material("INJEC", 4)
+mesh.add_material("BNDTO", 5)
+mesh.add_material("BNDBO", 6)
 
 if incon == 'ns':
     incon = np.full((len(incon1['X1']), 4), -1.0e9)
@@ -168,7 +169,11 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [1e-14,1e-14,1e-14]
+        "permeability": [5e-14,5e-14,5e-14]
+    },
+    "EDZ  ": {
+        "permeability": [1e-13, 1e-13, 1e-13],
+        #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
