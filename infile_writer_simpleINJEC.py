@@ -29,9 +29,15 @@ sec_stage_1 = 15
 
 if stage == 0: 
     time_zero = 0 
-    time_final = 32480 + sec_stage_1
+    time_final = 24000
     time_step = 1
     time_max = 60
+    
+#if stage == 0: 
+#    time_zero = 0 
+#    time_final = 32480 + sec_stage_1
+#    time_step = 1
+#    time_max = 60
 
 elif stage == 1:
     time_zero =  32480 + sec_stage_1
@@ -254,7 +260,7 @@ def generators():
     times = None  # Initialize times
 
 
-    rates = (rates_csv['net flow [kg/s]']).to_list()
+    rates = (rates_csv['net flow cor [kg/s]']).to_list()
     times = rates_csv['TimeElapsed'].to_list()
 
     generator = {
