@@ -28,7 +28,7 @@ stage = 0 #0, 1, 2
 sec_stage_1 = 15
 
 if stage == 0: 
-    time_zero = 0 
+    time_zero = 23300
     time_final = 24000
     time_step = 1
     time_max = 60
