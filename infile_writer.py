@@ -126,7 +126,7 @@ irp11 = [0.5, 0.0, 0]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.12 ,                    #- 
-    "permeability": [4e-19,4e-19,4e-19], #m2  
+    "permeability": [1e-18,1e-18,1e-18], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
     "compressibility": 2e-9,             #Pa^-1
@@ -169,7 +169,7 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [5e-14,5e-14,5e-14]
+        "permeability": [1e-16,1e-16,1e-16]
     },
     "EDZ  ": {
         "permeability": [1e-13, 1e-13, 1e-13],
