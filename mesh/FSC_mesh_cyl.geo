@@ -6,7 +6,7 @@ zTop         = 10;  // keep this as the original top elevation
 
 Dip      = 58*Pi/180;
 Strike  =  -66*Pi/180;   // strike measured clockwise from North
-FaultThick   = 0.5;
+FaultThick   = 2.5;
 
 
 Point(999) = {0,0,0};
@@ -99,7 +99,7 @@ Extrude {0,0, -0.5} {
 }
 
 // Pick your target sizes (in model units)
-h_fault = 1;   // fine near/inside the fault
+h_fault = 1.5;   // fine near/inside the fault
 h_out   = 14;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
