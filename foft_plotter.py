@@ -13,6 +13,8 @@ foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
 bfsb12_path = foft_dir / "BFSB12_meas.csv"
+bfsb2_path = foft_dir / "BFSB12_meas.csv"
+
 
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
@@ -44,7 +46,7 @@ def load_foft_to_kpa(path: Path, start_time) -> pd.DataFrame:
         return pd.DataFrame(columns=["t_utc", "p_kPa"])
 
     secs  = pd.to_numeric(df.iloc[:, 0], errors="coerce")
-    p_kPa = pd.to_numeric(df.iloc[:, 1], errors="coerce") / 1000  # Pa -> kPa
+    p_kPa = pd.to_numeric(df.iloc[:, 1], errors="coerce") / 1e6  # Pa -> kPa
     t_utc = start_time + pd.to_timedelta(secs, unit="s")
     m = secs.notna() & p_kPa.notna() & t_utc.notna()
 
@@ -57,13 +59,25 @@ fig, (ax_top, ax_mid, ax_bot) = plt.subplots(
 )
 
 # ---------------- TOP: measured + all FOFTs except A5Y21 & A6O67 ----------------
+rates_csv = pd.read_csv(
+    "/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/FSC_injecrates.csv",
+    delimiter=",",
+    index_col=0,
+)
+
+# Parse to datetime and remove timezone info (keep it in UTC numerically)
+rates_csv["UTC"] = pd.to_datetime(rates_csv["UTC"], utc=True, errors="coerce").dt.tz_localize(None)
+
+dates = rates_csv["UTC"]  # already datetime, no need to convert again
+
 ax_top.plot(
-    date_series,
-    rates_csv.iloc[:, 3] * 1000,  # same as your previous scripts
+    dates,
+    rates_csv.iloc[:, 1],
     ".-",
     color="grey",
-    label="Measured"
+    label="Measured",
 )
+
 
 for f in foft_files:
     stem = f.stem
@@ -80,8 +94,8 @@ for f in foft_files:
             label=stem
         )
 
-ax_top.set_ylabel("Pressure [kPa]")
-ax_top.set_ylim(0, 14000)
+ax_top.set_ylabel("Pressure [MPa]")
+ax_top.set_ylim(0, 14)
 ax_top.legend(loc="upper right", ncol=2, fontsize=8)
 ax_top.set_title("BFSB2")
 
@@ -111,7 +125,7 @@ t_bfs1 = pd.to_datetime(
     errors="coerce"
 )
 y_bfs1_bar = pd.to_numeric(bfsb1.iloc[:, 4], errors="coerce")  # bar
-y_bfs1_kPa = y_bfs1_bar * 100.0
+y_bfs1_kPa = y_bfs1_bar / 10
 
 m_bfs1 = t_bfs1.notna() & y_bfs1_kPa.notna()
 ax_mid.plot(
@@ -123,8 +137,8 @@ ax_mid.plot(
     label="BFSB1 measured"
 )
 
-ax_mid.set_ylabel("Pressure [kPa]")
-ax_mid.set_ylim(0, 3500)
+ax_mid.set_ylabel("Pressure [MPa]")
+ax_mid.set_ylim(0, 4)
 ax_mid.legend(loc="upper right", ncol=2, fontsize=8)
 ax_mid.set_title("BFSB1")
 
@@ -165,8 +179,8 @@ ax_bot.plot(
 )
 
 ax_bot.set_xlabel("Date")
-ax_bot.set_ylabel("Pressure [kPa]")
-ax_bot.set_ylim(0, 3500)
+ax_bot.set_ylabel("Pressure [MPa]")
+ax_bot.set_ylim(0, 4)
 ax_bot.legend(loc="upper right", ncol=2, fontsize=8)
 ax_bot.set_title("BFSB12")
 
@@ -174,7 +188,8 @@ ax_bot.set_title("BFSB12")
 # ---------------- shared x-limits & tidy ----------------
 xmin = date_series.min()
 xmax = date_series.max()
-#xmax = date_series[77]
+xmin = date_series[2]
+xmax = date_series[77]
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
 fig.autofmt_xdate()
