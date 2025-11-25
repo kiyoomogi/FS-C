@@ -15,13 +15,12 @@ Box(1) = { -WidthCube/2, -WidthCube/2, zTop - HeightCube,
 
 Rectangle(101) = {-100, -100, FaultThick/2, 200, 200};
 
-Cylinder(102) = {0, 0, -FaultThick/2,  0, 0, FaultThick,  0.35 };
 
 // ---- parameters
 Icl = 10*Pi/180;      // inclination from vertical
 Az  = 319*Pi/180;     // azimuth, clockwise from North
-Len = 0.05;            // borehole length in model unitsQ
-R   = 0.02;        // radius
+Len = 0.5;            // borehole length in model unitsQ
+R   = 0.146/2;        // radius
 
 // direction cosines (X=East, Y=North, Z=Up)
 ux = Sin(Icl)*Sin(Az);
@@ -48,15 +47,7 @@ Rotate { {0, 0, 1}, {0, 0, 0}, 90 * Pi/180 } {  //let it dip to east with strike
 Rotate { {0, 0, 1}, {0, 0, 0}, Strike } {  //let it strike 60°N
   Surface{101};  
 }
-Rotate { {1, 0, 0}, {0, 0, 0}, Dip } {
-  Volume{102};  
-}
-Rotate { {0, 0, 1}, {0, 0, 0}, 90 * Pi/180 } {  //let it dip to east with strike to 0N
-  Volume{102};  
-}
-Rotate { {0, 0, 1}, {0, 0, 0}, Strike } {  //let it strike 60°N
-  Volume{102};  
-}
+
 
 // ---- Normal components that match the actual rotated plane
 sinDip = Sin(Dip);
@@ -72,6 +63,8 @@ nz =  cosDip;
 out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
   Surface{101}; Layers{4}; Recombine;
 };
+
+Cylinder(102) = {x0, y0, z0,  dx, dy, dz,  R * 3};
 
 Cylinder(301) = { x0, y0, z0,  dx, dy, dz,  R };
 
@@ -91,11 +84,11 @@ parts[] = BooleanFragments{
 };
 
 Extrude {0,0, 0.5} {   
-  Surface{129,116,122}; Layers{1}; Recombine;
+  Surface{116,131,122}; Layers{1}; Recombine;
 }
 
 Extrude {0,0, -0.5} {   
-  Surface{130,118,124}; Layers{1}; Recombine; 
+  Surface{118,132,124}; Layers{1}; Recombine; 
 }
 
 // Pick your target sizes (in model units)
@@ -105,7 +98,7 @@ ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
-Field[1].SurfacesList = {115,117};
+Field[1].SurfacesList = {115,123};
 
 Field[2] = Threshold;
 Field[2].InField = 1;
