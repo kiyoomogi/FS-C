@@ -222,7 +222,7 @@ def conne_fault():
 
     # INJEC element names
     injec = {ename for ename, edata in elements.items() if edata.get("material") == "INJEC"}
-    fault = {ename for ename, edata in elements.items() if edata.get("material") == "FAULT"}
+    fault = {ename for ename, edata in elements.items() if edata.get("material") == "EDZ  "}
 
     # element-name length (TOUGH classic: 5)
     elem_len = len(next(iter(elements)))
@@ -234,6 +234,7 @@ def conne_fault():
         e2 = cname[elem_len:2*elem_len]
 
         if (e1 in injec) and (e2 in fault) or (e1 in fault) and (e2 in injec) or (e1 in injec) and (e2 in injec):
+            print(e1,e2)
             e1_list.append(str(e2))
             
     return e1_list
