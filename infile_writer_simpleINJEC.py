@@ -29,7 +29,7 @@ sec_stage_1 = 15
 
 if stage == 0: 
     time_zero = 23300
-    time_final = 24000
+    time_final = 29353.75
     time_step = 1
     time_max = 60
     
