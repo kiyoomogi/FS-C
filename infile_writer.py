@@ -178,7 +178,7 @@ parameters["rocks"] = {
         "permeability": [1e-17,1e-17,1e-17]
     },
     "EDZ  ": {
-        "permeability": [5e-17, 5e-17, 5e-17],
+        "permeability": [1e-16,1e-16,1e-16],
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
