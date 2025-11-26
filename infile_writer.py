@@ -21,7 +21,7 @@ sec_stage_1 = 15
 
 if stage == 0: 
     time_zero = 23620
-    time_final = 23620 + 5 * 60
+    time_final = 23620 + 15 * 60
     time_step = 0.5
     time_max = 5
     
@@ -157,7 +157,7 @@ parameters["rocks"] = {
         "porosity": 0.98, 
         "permeability": [1e-13, 1e-13, 1e-13],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        "compressibility": 5e-8,             #Pa^-1
+        "compressibility": 1e-8,             #Pa^-1
         #"relative_permeability": {
         #    "id": 3, #van genuchten 
         #    "parameters": [1,0],
