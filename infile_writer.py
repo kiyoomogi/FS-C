@@ -34,8 +34,8 @@ if stage == 0:
 elif stage == 1:
     time_zero =  32480 + sec_stage_1
     time_final = 47567  #rates_csv["TimeElapsed"].iloc[-1] 
-    time_step = 1
-    time_max = 60
+    time_step = 0.1
+    time_max = 5
 elif stage == 2:
     time_zero =  47580
     time_final = 123574.7 + 20 #rates_csv["TimeElapsed"].iloc[-1] 
@@ -135,7 +135,7 @@ parameters["default"] = {
     "permeability": [1e-18,1e-18,1e-18], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
-    "compressibility": 2e-9,             #Pa^-1
+    "compressibility": 5e-9,             #Pa^-1
     "expansivity": 1.4e-5,                #°C^-1
     "conductivity_dry": 2.0,              #W/m/K
 
@@ -175,10 +175,10 @@ parameters["rocks"] = {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [1e-16,1e-16,1e-16]
+        "permeability": [5e-17,5e-17,5e-17]
     },
     "EDZ  ": {
-        "permeability": [1e-13, 1e-13, 1e-13],
+        "permeability": [1e-15, 1e-15, 1e-15],
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
