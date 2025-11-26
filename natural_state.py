@@ -26,7 +26,7 @@ z_centers = mesh.centers[:,2]
 z_top = np.amax(z_centers)
 z_bot = np.amin(z_centers)
 
-p0 = rates_csv['zone P [MPa]'].min() * 1e6
+p0 = rates_csv['zone P [MPa]'][0] * 1e6
 
 #p0 = 1.298302 * 100000
 z_bfsb1 = -1.559
@@ -34,8 +34,8 @@ z_bfsb1 = -1.559
 dist_top = z_top - z_bfsb1
 dist_bot = abs(z_bot - z_bfsb1)
 
-bot_BC_value = p0 + 1020 * 9.81 * dist_bot
-top_BC_value = p0 - 1020 * 9.81 * dist_top
+bot_BC_value = p0 + 1000 * 9.81 * dist_bot
+top_BC_value = p0 - 1000 * 9.81 * dist_top
 
 
 #Add material
