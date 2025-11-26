@@ -188,8 +188,8 @@ ax_bot.set_title("BFSB12")
 # ---------------- shared x-limits & tidy ----------------
 xmin = date_series.min()
 xmax = date_series.max()
-xmin = date_series[2]
-xmax = date_series[77]
+xmin = dates[21000]
+xmax = dates[23000]
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
 fig.autofmt_xdate()
