@@ -21,7 +21,7 @@ sec_stage_1 = 15
 
 if stage == 0: 
     time_zero = 23620
-    time_final = 29353.75
+    time_final = 23620 + 5 * 60
     time_step = 0.5
     time_max = 5
     
@@ -178,7 +178,7 @@ parameters["rocks"] = {
         "permeability": [5e-17,5e-17,5e-17]
     },
     "EDZ  ": {
-        "permeability": [1e-15, 1e-15, 1e-15],
+        "permeability": [1e-16, 1e-16, 1e-16],
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
