@@ -20,8 +20,8 @@ stage = 0 #0, 1, 2
 sec_stage_1 = 15
 
 if stage == 0: 
-    time_zero = 0 
-    time_final = 24000
+    time_zero = 23300
+    time_final = 29353.75
     time_step = 1
     time_max = 60
     
@@ -69,8 +69,8 @@ z_bot = np.amin(z_centers)
 
 p0 = rates_csv['zone P [MPa]'][0]
 
-top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top - 165000  #slightly lower initial conditions due to initial injection
-bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top - 165000
+top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top 
+bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top 
 
 
 #Add material
@@ -154,10 +154,10 @@ parameters["default"] = {
 parameters["rocks"] = {
     "INJEC": {
         "density": 2500,
-        "porosity": 0.999, 
+        "porosity": 0.98, 
         "permeability": [1e-13, 1e-13, 1e-13],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        "compressibility": 1e-99,             #Pa^-1
+        "compressibility": 5e-8,             #Pa^-1
         #"relative_permeability": {
         #    "id": 3, #van genuchten 
         #    "parameters": [1,0],
