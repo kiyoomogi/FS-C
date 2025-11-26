@@ -20,10 +20,10 @@ stage = 0 #0, 1, 2
 sec_stage_1 = 15
 
 if stage == 0: 
-    time_zero = 23300
-    time_final = 27000
-    time_step = 0.1
-    time_max = 2
+    time_zero = 23620
+    time_final = 29353.75
+    time_step = 0.5
+    time_max = 5
     
 #if stage == 0: 
 #    time_zero = 0 
@@ -35,7 +35,7 @@ elif stage == 1:
     time_zero =  32480 + sec_stage_1
     time_final = 47567  #rates_csv["TimeElapsed"].iloc[-1] 
     time_step = 0.1
-    time_max = 1
+    time_max = 5
 elif stage == 2:
     time_zero =  47580
     time_final = 123574.7 + 20 #rates_csv["TimeElapsed"].iloc[-1] 
