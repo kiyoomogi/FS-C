@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 hydr_test = False
-stage = 0 #0, 1, 2
+stage = 1 #0, 1, 2
 sec_stage_1 = 15
 
 if hydr_test == True and stage == 0:
@@ -26,15 +26,15 @@ if hydr_test == True and stage == 0:
         time_max = 5
 elif hydr_test == False and stage == 0:
         time_zero = 94878 
-        time_final = 94878 + 50
-        time_step = 0.1
-        time_max = 0.3
+        time_final = 94933.0
+        time_step = 0.8
+        time_max = 1.3
 
 elif stage == 1:
-    time_zero =  32480 + sec_stage_1
-    time_final = 47567  #rates_csv["TimeElapsed"].iloc[-1] 
-    time_step = 0.1
-    time_max = 5
+    time_zero =  94933.0
+    time_final = 94933.0 + 4 * 3600
+    time_step = 1
+    time_max = 30
 elif stage == 2:
     time_zero =  47580
     time_final = 123574.7 + 20 #rates_csv["TimeElapsed"].iloc[-1] 
@@ -173,11 +173,12 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        #"permeability": [2.5e-14, 2.5e-14, 2.5e-14]
-        "permeability": [6.5e-17,5e-17,5e-17]
+        "permeability": [2.5e-14, 2.5e-14, 2.5e-14]
+        #"permeability": [6.5e-17,5e-17,5e-17]
     },
     "EDZ  ": {
-        "permeability": [6.5e-17,5e-17,5e-17],
+        #"permeability": [6.5e-17,5e-17,5e-17],
+        "permeability": [2.5e-14, 2.5e-14, 2.5e-14]
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
