@@ -26,9 +26,9 @@ if hydr_test == True and stage == 0:
         time_max = 5
 elif hydr_test == False and stage == 0:
         time_zero = 94878 
-        time_final = 94878 + 120
-        time_step = 0.2
-        time_max = 2
+        time_final = 94878 + 20
+        time_step = 0.1
+        time_max = 0.3
 
 elif stage == 1:
     time_zero =  32480 + sec_stage_1
