@@ -15,21 +15,20 @@ incon = 'ns' #simulation_point or ns
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
-
+hydr_test = False
 stage = 0 #0, 1, 2
 sec_stage_1 = 15
 
-if stage == 0: 
-    time_zero = 23620
-    time_final = 23620 + 55 * 60
-    time_step = 0.5
-    time_max = 5
-    
-#if stage == 0: 
-#    time_zero = 0 
-#    time_final = 32480 + sec_stage_1
-#    time_step = 1
-#    time_max = 60
+if hydr_test == True and stage == 0:
+        time_zero = 23620
+        time_final = 23620 + 55 * 60
+        time_step = 0.5
+        time_max = 5
+elif hydr_test == False and stage == 0:
+        time_zero = 94878 
+        time_final = 94878 + 120
+        time_step = 0.2
+        time_max = 2
 
 elif stage == 1:
     time_zero =  32480 + sec_stage_1
