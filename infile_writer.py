@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 hydr_test = False
-stage = 0 #0, 1, 2
+stage = 1 #0, 1, 2
 sec_stage_1 = 15
 
 if hydr_test == True and stage == 0:
@@ -32,7 +32,7 @@ elif hydr_test == False and stage == 0:
 
 elif stage == 1:
     time_zero =  94933.0
-    time_final = 94933.0 + 4 * 3600
+    time_final = 94933.0 + 6 * 3600
     time_step = 1
     time_max = 30
 elif stage == 2:
@@ -173,12 +173,12 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        #"permeability": [1e-15, 1e-15, 1e-15]
-        "permeability": [6.5e-17,5e-17,5e-17]
+        "permeability": [3e-15, 1e-15, 1e-15]
+        #"permeability": [6.5e-17,5e-17,5e-17]
     },
     "EDZ  ": {
-        "permeability": [6.5e-17,5e-17,5e-17],
-        #"permeability": [1e-15, 1e-15, 1e-15]
+        #"permeability": [6.5e-17,5e-17,5e-17],
+        "permeability": [3e-15, 1e-15, 1e-15]
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
