@@ -20,9 +20,9 @@ b1_df  = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B1_loc
 b2_df  = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B2_location.csv',  sep=r'\s+')
 b12_df = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B12_location.csv', sep=r'\s+')
 
-view_angle = 20  # azimuth angle for 3D view
+view_angle = 7  # azimuth angle for 3D view
 MD_target_B1  = 42.2     # measured distance along B1 from collar [m]
-MD_target_B12 = 44   # measured distance along B12 from collar [m]
+MD_target_B12 = 43.565   # measured distance along B12 from collar [m]
 
 # -------------------------------------------------------------------
 # Define a common depth coordinate D = vertical depth below B2 collar
@@ -41,8 +41,8 @@ b12x, b12y, b12z = b12_df["X"], b12_df["Y"], b12_df["D"]
 # -------------------------------------------------------------------
 # Plane definition: strike, dip, and target depth on B2
 # -------------------------------------------------------------------
-strike_deg   = 66.0   # from North, clockwise
-dip_deg      = 60.0   # from horizontal, downward
+strike_deg   = 50.0   # from North, clockwise
+dip_deg      = 55.0   # from horizontal, downward
 target_depth = 40.97   # vertical depth below B2 collar (m), positive downward
 
 phi = np.deg2rad(strike_deg)
