@@ -13,7 +13,7 @@ foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
 bfsb12_path = foft_dir / "BFSB12_meas.csv"
-bfsb2_path = foft_dir / "BFSB12_meas.csv"
+bfsb2_path = foft_dir / "BFSB2_meas.csv"
 
 
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
@@ -166,7 +166,7 @@ t12 = pd.to_datetime(
     utc=True,
     errors="coerce"
 )
-p12_kPa = pd.to_numeric(bfsb12["downhole pressure [kPa]"], errors="coerce")
+p12_kPa = pd.to_numeric(bfsb12["downhole pressure [kPa]"], errors="coerce") /1e3
 m12 = t12.notna() & p12_kPa.notna()
 
 ax_bot.plot(

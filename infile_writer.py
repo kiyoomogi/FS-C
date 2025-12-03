@@ -173,12 +173,12 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [2.5e-14, 2.5e-14, 2.5e-14]
+        "permeability": [1e-15, 1e-15, 1e-15]
         #"permeability": [6.5e-17,5e-17,5e-17]
     },
     "EDZ  ": {
         #"permeability": [6.5e-17,5e-17,5e-17],
-        "permeability": [2.5e-14, 2.5e-14, 2.5e-14]
+        "permeability": [1e-15, 1e-15, 1e-15]
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
@@ -240,7 +240,6 @@ def conne_fault():
         e2 = cname[elem_len:2*elem_len]
 
         if (e1 in injec) and (e2 in fault) or (e1 in fault) and (e2 in injec) or (e1 in injec) and (e2 in injec):
-            print(e1,e2)
             e1_list.append(str(e2))
             
     return e1_list
@@ -302,9 +301,10 @@ def generators():
 rates, times = generators() 
 
 ref_points = injec_labels[::40]
-ref_points.append(str(mesh.labels[mesh.near((14.668, 4.132, -3.507))]))
-ref_points.append(str(mesh.labels[mesh.near((10.789, 4.052, -1.099))]))
+ref_points.append(str(mesh.labels[mesh.near((7.434, 8.137, -0.900))]))
+ref_points.append(str(mesh.labels[mesh.near((1.904, 5.158, 7.779))]))
 
+print("B1 label = ", str(mesh.labels[mesh.near((7.434, 8.137, -0.900))]))
 
 parameters["element_history"] = ref_points
 

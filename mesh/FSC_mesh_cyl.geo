@@ -5,15 +5,15 @@ HeightCube   = 40;
 zTop         = 10;  // keep this as the original top elevation
 
 Dip      = 58*Pi/180;
-Strike  =  -66*Pi/180;   // strike measured clockwise from North
-FaultThick   = 2.5;
+Strike  =  -50 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
+FaultThick   = 2.8;
 
 
 Point(999) = {0,0,0};
 Box(1) = { -WidthCube/2, -WidthCube/2, zTop - HeightCube,
             WidthCube,    WidthCube,    HeightCube };
 
-Rectangle(101) = {-100, -100, FaultThick/2, 200, 200};
+Rectangle(101) = {-100, -100, 0.5, 200, 200};
 
 
 // ---- parameters
@@ -69,8 +69,8 @@ Cylinder(102) = {x0, y0, z0,  dx, dy, dz,  R * 3};
 Cylinder(301) = { x0, y0, z0,  dx, dy, dz,  R };
 
 
-Point(789) = {14.668, 4.132, -3.507};
-Point(790) = {10.789, 4.052, -1.099};
+Point(789) = {7.434, 8.137, -0.900};
+Point(790) = {1.904, 5.158, 7.779};
 
 // --- clip both tools to the box (keep only inside-the-box parts)
 fault_in[] = BooleanIntersection{ Volume{1}; }{ Volume{ out[1],102 }; Delete; };
@@ -84,11 +84,11 @@ parts[] = BooleanFragments{
 };
 
 Extrude {0,0, 0.5} {   
-  Surface{116,131,122}; Layers{1}; Recombine;
+  Surface{116,132,122}; Layers{1}; Recombine;
 }
 
 Extrude {0,0, -0.5} {   
-  Surface{118,132,124}; Layers{1}; Recombine; 
+  Surface{118,133,124}; Layers{1}; Recombine; 
 }
 
 // Pick your target sizes (in model units)
