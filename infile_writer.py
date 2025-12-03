@@ -26,7 +26,7 @@ if hydr_test == True and stage == 0:
         time_max = 5
 elif hydr_test == False and stage == 0:
         time_zero = 94878 
-        time_final = 94945.0
+        time_final = 94933.0
         time_step = 0.8
         time_max = 1.3
 
@@ -173,12 +173,12 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [1e-15, 1e-15, 1e-15]
-        #"permeability": [6.5e-17,5e-17,5e-17]
+        #"permeability": [1e-15, 1e-15, 1e-15]
+        "permeability": [6.5e-17,5e-17,5e-17]
     },
     "EDZ  ": {
-        #"permeability": [6.5e-17,5e-17,5e-17],
-        "permeability": [1e-15, 1e-15, 1e-15]
+        "permeability": [6.5e-17,5e-17,5e-17],
+        #"permeability": [1e-15, 1e-15, 1e-15]
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
