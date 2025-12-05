@@ -30,7 +30,7 @@ z_bot = np.amin(z_centers)
 p0 = rates_csv['zone P [MPa]'][0] * 1e6
 
 #p0 = 1.298302 * 100000
-z_bfsb1 = -1.559
+z_bfsb1 = 0
 
 dist_top = z_top - z_bfsb1
 dist_bot = abs(z_bot - z_bfsb1)
