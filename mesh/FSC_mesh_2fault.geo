@@ -122,6 +122,12 @@ Extrude {0,0, -0.5} {
   Surface{surfBelow[]}; Layers{1}; Recombine; 
 }
 
+volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
+volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -29.9};
+
+volClay[] = Volume In BoundingBox{-1e9, -1e9, -30.1,  1e9, 1e9, 10.1};
+
+
 // start point chosen so the cylinder is centered at the origin
 dx = Len*ux;
 dy = Len*uy;
@@ -133,73 +139,50 @@ y0 = -0.5*dy;
 z0 = -0.5*dz;
 Cylinder(1001) = {x0, y0, z0,  dx, dy, dz,  R};
 
-allVols[] = {parts[]};   // all volumes before cylinder
-
-allFrag[] = BooleanFragments{
-  Volume{ allVols[] }; Delete;
+// --- intersect cylinder ONLY with the fault zone inside the box
+cyl_fault[] = BooleanIntersection{
+  Volume{1001}; Delete;        // delete original full cylinder
 }{
-  Volume{1001}; Delete;
+  Volume{fault_in[]};          // only keep part inside the fault
 };
 
+// --- now fragment box + faults + fault cylinder together
+parts[] = BooleanFragments{
+  Volume{parts[]}; Delete;
+}{
+  Volume{ fault_in[], cyl_fault[]}; Delete;
+};
 
 // Pick your target sizes (in model units)
-h_fault = 1.5;   // fine near/inside the fault
+h_fault = 0.8;   // fine near/inside the fault
 h_out   = 8;   // coarser elsewhere
 h_inj   = 0.1;   // fine near/inside the fault
 h_injo  = 4;   // coarser elsewhere
 ramp    = 4;   // distance over which to transition to h_out
 
-// ---- your distance field near the fault faces
-Field[1] = Distance;
-Field[1].SurfacesList = {106,96,95,101}; 
+MeshSize{ PointsOf{ Volume{7,8,9,10}; } } = 7; //CLAY
+MeshSize{ PointsOf{ Volume{2,6,1001}; } } = 5; //FLT_M
+MeshSize{ PointsOf{ Volume{3,4,1002}; } } = 1.2; //FLT_I
 
-Field[2] = Threshold;
-Field[2].InField = 1;
-Field[2].SizeMin = h_inj;   // fine near the fault
-Field[2].SizeMax = h_injo;     // coarse far away
-Field[2].DistMin = 0.06;
-Field[2].DistMax = 5;
 
-// ---- your distance field near the main fault
-Field[3] = Distance;
-Field[3].SurfacesList = {33,30}; 
-
-Field[4] = Threshold;
-Field[4].InField = 1;
-Field[4].SizeMin = h_fault;   // fine near the fault
-Field[4].SizeMax = h_out;     // coarse far away
-Field[4].DistMin = 1.0;
-Field[4].DistMax = ramp;
-
-// ---- your distance field near the injection fault
-Field[5] = Distance;
-Field[5].SurfacesList = {18,16,92,90};
-
-Field[6] = Threshold;
-Field[6].InField = 3;
-Field[6].SizeMin = h_fault/2;   
-Field[6].SizeMax = h_out;     // coarse far away
-Field[6].DistMin = 0.1;
-Field[6].DistMax = 5;
-
-Field[99] = Min;
-Field[99].FieldsList = {2,4,6};
-Background Field = 99;
-
-Physical Volume("INJEC") = {22,24,26}; //v
-Physical Volume("CLAY ") = {7,9,23,25}; //v
-Physical Volume("FLT_I") = {21,3}; //v
+Physical Volume("INJEC") = {1001}; //v
+Physical Volume("CLAY ") = {7,8,9,10}; //v
+Physical Volume("FLT_I") = {3,1002}; //v
 Physical Volume("FLT_M") = {2,4,6}; //v
-Physical Volume("BNDTO") = {11,12,13,14,15,16,17}; //v
-Physical Volume("BNDBO") = {19,20,18}; //v
+Physical Volume("BNDTO") = {volAbove[]}; //v
+Physical Volume("BNDBO") = {volBelow[]}; //v
 
 // Collect all surfaces whose bounding box intersects z >= 9.9
 
 // Print them
-//Printf("Surfaces with z >= 9.9:");
-//For i In {0 : #surfAbove[] - 1}
-//  Printf("  Surface %g", surfAbove[i]);
-//EndForq
-//+
+Printf("Volumes with z >= 9.9:");
+For i In {0 : #volClay[] - 1}
+  Printf("  Volumes %g", volClay[i]);
+EndFor
 
-
+////+
+//Show "*";
+////+
+//Hide {
+//  Volume{volClay[]}; 
+//}
