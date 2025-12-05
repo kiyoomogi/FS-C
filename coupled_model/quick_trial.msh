@@ -1,0 +1,52 @@
+SetFactory("OpenCASCADE");
+
+WidthCube    = 50;
+HeightCube   = 40;
+zTop         = 10;  // keep this as the original top elevation
+
+
+Box(1) = { -WidthCube/2, -WidthCube/2, zTop - HeightCube,
+            WidthCube,    WidthCube,    HeightCube };
+Rotate {{0, 0, 1}, {0, 0, 0}, -50*Pi/180} {
+  Volume{1};
+}
+
+
+surfAbove[] = Surface In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
+surfBelow[] = Surface In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -29.9};
+
+Extrude {0,0, 0.5} {   
+  Surface{surfAbove[]}; Layers{1}; Recombine;
+}
+
+Extrude {0,0, -0.5} {   
+  Surface{surfBelow[]}; Layers{1}; Recombine; 
+}
+
+
+
+// Pick your target sizes (in model units)
+h_fault = 1.5;   // fine near/inside the fault
+h_out   = 8;   // coarser elsewhere
+h_inj   = 0.1;   // fine near/inside the fault
+h_injo  = 4;   // coarser elsewhere
+ramp    = 4;   // distance over which to transition to h_out
+
+// ---- your distance field near the fault faces
+MeshSize{ PointsOf{ Volume{1}; } } = 5; //CLAY
+
+
+Physical Volume("CLAY ") = {1}; //v
+Physical Volume("BNDTO") = {2}; //v
+Physical Volume("BNDBO") = {3}; //v
+
+// Collect all surfaces whose bounding box intersects z >= 9.9
+
+// Print them
+//Printf("Surfaces with z >= 9.9:");
+//For i In {0 : #surfAbove[] - 1}
+//  Printf("  Surface %g", surfAbove[i]);
+//EndForq
+//+
+
+
