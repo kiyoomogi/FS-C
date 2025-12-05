@@ -59,9 +59,9 @@ zone initialize stress-xx -3.8e6 gradient (0, 0, 8e3)
 zone initialize stress-yy -4.7e6 gradient (0, 0, 18.25e3)
 zone initialize stress-zz -5.5e6 gradient (0, 0, 25e3)
 
-zone face apply stress-xx=-3.8e6, gradient=(0, 0, 8e3) range group 'North' or 'South'
-zone face apply stress-yy=-4.7e6, gradient=(0, 0, 18.25e3) range group 'East' or 'West'
-zone face apply stress-zz=-5.5e6 range group 'Top' 
+zone face apply stress-normal=-3.8e6, gradient=(0, 0, 8e3) range group 'North' or 'South'
+zone face apply stress-normal=-4.7e6, gradient=(0, 0, 18.25e3) range group 'East' or 'West'
+zone face apply stress-normal=-5.5e6 range group 'Top' 
 zone face apply velocity-normal=0 range group 'Bottom'
 ;zone face apply stress-yz=-0.3846e6 range group 'Top' or 'Bottom'
 ;zone face apply stress-yz=-0.3846e6 range group 'South' or 'North'
