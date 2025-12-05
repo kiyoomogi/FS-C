@@ -32,7 +32,7 @@ elif hydr_test == False and stage == 11:
 
 elif stage == 0:
     time_zero =  94878 
-    time_final = 94933.0 + 6 * 3600
+    time_final = 94933.0 + 4 * 3600
     time_step = 1
     time_max = 30
 elif stage == 2:
@@ -173,12 +173,12 @@ parameters["rocks"] = {
     "FLT_I": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [8.7e-15, 8.7e-15, 8.7e-15]
+        "permeability": [8.7e-13, 8.7e-13, 8.7e-13]
         #"permeability": [6.5e-17,5e-17,5e-17]
     },
     "FLT_M": {
         #"permeability": [6.5e-17,5e-17,5e-17],
-        "permeability": [8.7e-15, 8.7e-15, 8.7e-15]
+        "permeability": [8.7e-13, 8.7e-13, 8.7e-13]
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
