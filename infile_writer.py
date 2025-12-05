@@ -16,7 +16,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
 hydr_test = False
-stage = 1 #0, 1, 2
+stage = 0 #0, 1, 2
 sec_stage_1 = 15
 
 if hydr_test == True and stage == 0:
@@ -24,14 +24,14 @@ if hydr_test == True and stage == 0:
         time_final = 23620 + 55 * 60
         time_step = 0.5
         time_max = 5
-elif hydr_test == False and stage == 0:
+elif hydr_test == False and stage == 11:
         time_zero = 94878 
         time_final = 94933.0
         time_step = 0.8
         time_max = 1.3
 
-elif stage == 1:
-    time_zero =  94933.0
+elif stage == 0:
+    time_zero =  94878 
     time_final = 94933.0 + 6 * 3600
     time_step = 1
     time_max = 30
@@ -59,7 +59,7 @@ if incon == 'ns':
 
 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_2fault.msh")
 mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 z_centers = mesh.centers[:,2]
@@ -73,10 +73,10 @@ bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top
 
 
 #Add material
-mesh.add_material("CLAY ", 1)
-mesh.add_material("EDZ  ", 2)
-mesh.add_material("FAULT", 3)
-mesh.add_material("INJEC", 4)
+mesh.add_material("INJEC", 1)
+mesh.add_material("CLAY ", 2)
+mesh.add_material("FLT_I", 3)
+mesh.add_material("FLT_M", 4)
 mesh.add_material("BNDTO", 5)
 mesh.add_material("BNDBO", 6)
 
@@ -131,7 +131,7 @@ irp11 = [0.5, 0.0, 0]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.12 ,                    #- 
-    "permeability": [1e-18,1e-18,1e-18], #m2  
+    "permeability": [3e-18,3e-18,3e-18], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
     "compressibility": 5e-9,             #Pa^-1
@@ -170,13 +170,13 @@ parameters["rocks"] = {
         #"tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
-    "FAULT": {
+    "FLT_I": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
         "permeability": [8.7e-15, 8.7e-15, 8.7e-15]
         #"permeability": [6.5e-17,5e-17,5e-17]
     },
-    "EDZ  ": {
+    "FLT_M": {
         #"permeability": [6.5e-17,5e-17,5e-17],
         "permeability": [8.7e-15, 8.7e-15, 8.7e-15]
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
