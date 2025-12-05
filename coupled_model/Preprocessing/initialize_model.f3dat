@@ -32,20 +32,19 @@ zone property friction 29       ;ENSI matrix
 zone property tension 1e9       ;prevent tensile failure of matrix
 
 
-zone property dip 33
-zone property dip-direction 180 
+zone property dip 37
+zone property dip-direction 129 
 
 ;joint 
-zone property joint-cohesion 0
-zone property joint-dilation 0
-zone property joint-friction 19.7
-zone property joint-tension 1.1e6
-;zone property joint-cohesion 1e9 range group 'PACK '
+zone property joint-cohesion 0.5e6
+zone property joint-dilation 10
+zone property joint-friction 22
+zone property joint-tension 0.5e6
 
 
 zone property table-joint-friction 'fric-j' 
 ;zone property table-joint-cohesion 'coh-j'
-table 'fric-j' add (0.0e+00 1.97e+01) (1.3e-10 1.42e+01) (2.5e-10 1.38e+01) (3.8e-10 1.37e+01) (5.0e-10 1.37e+01)
+table 'fric-j' add (0.0e+00 22) (1.3e-10 22) (2.5e-10 22) 
 zone initialize density 2500
 
 ;zone property young 1e6 range group 'INJEC'
@@ -53,16 +52,16 @@ zone initialize density 2500
 
 model gravity 0 0 -9.81
 ; In situ pressure and temperature  
-zone gridpoint initialize pore-pressure 645.88e3 gradient 0 0 -148.44e3
+zone gridpoint initialize pore-pressure -0.5e6
 
 
-zone initialize stress-xx -2.6e6 gradient (0, 0, 8e3)
+zone initialize stress-xx -3.8e6 gradient (0, 0, 8e3)
 zone initialize stress-yy -4.7e6 gradient (0, 0, 18.25e3)
-zone initialize stress-zz -6.79e6 gradient (0, 0, 25e3)
+zone initialize stress-zz -5.5e6 gradient (0, 0, 25e3)
 
-zone face apply stress-xx=-2.6e6, gradient=(0, 0, 8e3) range group 'East' or 'West'
-zone face apply stress-yy=-4.7e6, gradient=(0, 0, 18.25e3) range group 'North' or 'South'
-zone face apply stress-zz=-6.6875e6 range group 'Top' 
+zone face apply stress-xx=-3.8e6, gradient=(0, 0, 8e3) range group 'North' or 'South'
+zone face apply stress-yy=-4.7e6, gradient=(0, 0, 18.25e3) range group 'East' or 'West'
+zone face apply stress-zz=-5.5e6 range group 'Top' 
 zone face apply velocity-normal=0 range group 'Bottom'
 ;zone face apply stress-yz=-0.3846e6 range group 'Top' or 'Bottom'
 ;zone face apply stress-yz=-0.3846e6 range group 'South' or 'North'
