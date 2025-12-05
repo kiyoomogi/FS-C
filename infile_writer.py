@@ -173,12 +173,12 @@ parameters["rocks"] = {
     "FLT_I": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [8.7e-13, 8.7e-13, 8.7e-13]
+        "permeability": [6e-14, 6e-14, 6e-14]
         #"permeability": [6.5e-17,5e-17,5e-17]
     },
     "FLT_M": {
         #"permeability": [6.5e-17,5e-17,5e-17],
-        "permeability": [8.7e-13, 8.7e-13, 8.7e-13]
+        "permeability": [6e-14, 6e-14, 6e-14]
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
