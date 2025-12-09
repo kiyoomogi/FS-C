@@ -20,7 +20,7 @@ b1_df  = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B1_loc
 b2_df  = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B2_location.csv',  sep=r'\s+')
 b12_df = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B12_location.csv', sep=r'\s+')
 
-view_angle = 7  # azimuth angle for 3D view
+view_angle = -30  # azimuth angle for 3D view
 MD_target_B1  = 42.2     # measured distance along B1 from collar [m]
 MD_target_B12 = 43.565   # measured distance along B12 from collar [m]
 
@@ -257,7 +257,7 @@ else:
     ax.scatter([x_MD], [y_MD], [D_MD], s=80, color="green", marker="*", zorder=10)
     ax.text(
         x_MD + 3, y_MD, D_MD + 8,
-        "B1 @42.2 m",
+        "B1 @41 m",
         color="green",
         zdir=None,
         bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)

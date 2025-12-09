@@ -4,16 +4,18 @@ WidthCube    = 50;
 HeightCube   = 40;
 zTop         = 10;  // keep this as the original top elevation
 
-Dip      = 58*Pi/180;
-Strike  =  -50 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
+Dip      = 55*Pi/180;
+Strike  =  -52 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
 FaultThick   = 2.8;
 
 
 Point(999) = {0,0,0};
 Box(1) = { -WidthCube/2, -WidthCube/2, zTop - HeightCube,
             WidthCube,    WidthCube,    HeightCube };
-
-Rectangle(101) = {-100, -100, 0.5, 200, 200};
+Rotate {{0, 0, 1}, {0, 0, 0}, -50*Pi/180} {
+  Volume{1};
+}
+Rectangle(101) = {-100, -100, 0, 200, 200};
 
 
 // ---- parameters
@@ -64,41 +66,57 @@ out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
   Surface{101}; Layers{4}; Recombine;
 };
 
-Cylinder(102) = {x0, y0, z0,  dx, dy, dz,  R * 3};
 
-Cylinder(301) = { x0, y0, z0,  dx, dy, dz,  R };
-
-
-Point(789) = {7.434, 8.137, -0.900};
+Point(789) = {7.434, 8.137, -0.900}; //B1
 Point(790) = {1.904, 5.158, 7.779};
 
 // --- clip both tools to the box (keep only inside-the-box parts)
-fault_in[] = BooleanIntersection{ Volume{1}; }{ Volume{ out[1],102 }; Delete; };
-cyl_in[]   = BooleanIntersection{ Volume{1}; }{ Volume{301};     Delete; };
+fault_in[] = BooleanIntersection{ Volume{1}; }{ Volume{ out[1] }; Delete; };
+//cyl_in[]   = BooleanIntersection{ Volume{1}; }{ Volume{301};     Delete; };
 
 // --- fragment box, fault, and cylinder together (no overlaps; conformal interfaces)
 parts[] = BooleanFragments{
   Volume{1}; Delete;
 }{
-  Volume{ fault_in[], cyl_in[] }; Delete;
+  Volume{ fault_in[]}; Delete;
 };
 
+
+Cylinder(1001) = {x0, y0, z0,  dx, dy, dz,  R};
+
+// --- intersect cylinder ONLY with the fault zone inside the box
+cyl_fault[] = BooleanIntersection{
+  Volume{1001}; Delete;        // delete original full cylinder
+}{
+  Volume{fault_in[]};          // only keep part inside the fault
+};
+
+// --- now fragment box + faults + fault cylinder together
+parts[] = BooleanFragments{
+  Volume{parts[]}; Delete;
+}{
+  Volume{ fault_in[], cyl_fault[]}; Delete;
+};
+
+surfAbove[] = Surface In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
+surfBelow[] = Surface In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -29.9};
+
 Extrude {0,0, 0.5} {   
-  Surface{116,132,122}; Layers{1}; Recombine;
+  Surface{surfAbove[]}; Layers{1}; Recombine;
 }
 
 Extrude {0,0, -0.5} {   
-  Surface{118,133,124}; Layers{1}; Recombine; 
+  Surface{surfBelow[]}; Layers{1}; Recombine; 
 }
 
 // Pick your target sizes (in model units)
 h_fault = 1.5;   // fine near/inside the fault
-h_out   = 14;   // coarser elsewhere
+h_out   = 15;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
-Field[1].SurfacesList = {115,123};
+Field[1].SurfacesList = {28,11};
 
 Field[2] = Threshold;
 Field[2].InField = 1;
@@ -109,24 +127,25 @@ Field[2].DistMax = ramp;
 
 // ---- your distance field near the injection cylinder
 Field[3] = Distance;
-Field[3].SurfacesList = {110,111,112};
+Field[3].SurfacesList = {23,24,25};
 
 Field[4] = Threshold;
 Field[4].InField = 3;
 Field[4].SizeMin = 0.1;   
 Field[4].SizeMax = h_out;     // coarse far away
 Field[4].DistMin = 0.06;
-Field[4].DistMax = 14;
+Field[4].DistMax = 8;
 
 Field[99] = Min;
 Field[99].FieldsList = {2,4};
 Background Field = 99;
 
+volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
+volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -29.9};
 
-Physical Volume("CLAY ") = {303,304};
-Physical Volume("EDZ  ") = {305};
-Physical Volume("FAULT") = {302};
-Physical Volume("INJEC") = {301};
-Physical Volume("BNDTO") = {306,307,308};
-Physical Volume("BNDBO") = {309,310,311};
+Physical Volume("CLAY ") = {3,4};
+Physical Volume("FAULT") = {1002};
+Physical Volume("INJEC") = {1001};
+Physical Volume("BNDTO") = {volAbove[]};
+Physical Volume("BNDBO") = {volBelow[]};
 
