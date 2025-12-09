@@ -69,6 +69,8 @@ out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
 
 Point(789) = {7.434, 8.137, -0.900}; //B1
 Point(790) = {1.904, 5.158, 7.779};
+Point(791) = {10.1119, 5.72288, -3.66476};
+
 
 // --- clip both tools to the box (keep only inside-the-box parts)
 fault_in[] = BooleanIntersection{ Volume{1}; }{ Volume{ out[1] }; Delete; };
