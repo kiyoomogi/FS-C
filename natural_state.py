@@ -19,8 +19,8 @@ time_final = 3600 * 24 * 365 * 50
 
 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_2fault.msh")
-#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
+#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_2fault.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
 mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 z_centers = mesh.centers[:,2]
@@ -40,12 +40,11 @@ top_BC_value = p0 - 1000 * 9.81 * dist_top
 
 
 #Add material
-mesh.add_material("INJEC", 1)
-mesh.add_material("CLAY ", 2)
-mesh.add_material("FLT_I", 3)
-mesh.add_material("FLT_M", 4)
-mesh.add_material("BNDTO", 5)
-mesh.add_material("BNDBO", 6)
+mesh.add_material("CLAY ", 1)
+mesh.add_material("FAULT", 2)
+mesh.add_material("INJEC", 3)
+mesh.add_material("BNDTO", 4)
+mesh.add_material("BNDBO", 5)
 
 
 materials = (mesh.materials )
@@ -132,12 +131,10 @@ parameters["rocks"] = {
         "tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
-    "FLT_I": {
+    "FAULT": {
         "porosity": 0.14,
     },
-    "FLT_M": {
-        "porosity": 0.14,
-    },
+
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
 }
