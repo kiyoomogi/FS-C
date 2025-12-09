@@ -32,7 +32,7 @@ elif hydr_test == False and stage == 11:
 
 elif stage == 0:
     time_zero =  94878 
-    time_final = 94933.0 + 4 * 3600
+    time_final = 94933.0 + 1 * 3600
     time_step = 1
     time_max = 30
 elif stage == 2:
