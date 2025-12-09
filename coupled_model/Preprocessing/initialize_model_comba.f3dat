@@ -2,7 +2,7 @@ model new
 ;call 'flac_python.py'
 model large-strain off
 
-zone import 'mesh.f3grid'
+zone import "/home/manuus/Desktop/FS-C/model/coupled_model/mesh.f3grid"
 zone face skin
 
 zone cmodel assign columnar-basalt
@@ -14,16 +14,15 @@ zone cmodel assign columnar-basalt
 [global sig_h = -3.8e6] ;
 [global u0 = 0.5e6]
 
-[global space = 1]
 [global dip_i = 37]
 [global dip_m = 57]
 [global young = 7.2e9]
 ;[global young = 1.6e9]
 [global poisson = 0.24]
 
-[global ks = 100e9] ;shear joint stiffness
-[global kn = 100e9]
-[global space = 0.5]
+[global ks = 1e9] ;shear joint stiffness
+[global kn = 1e9]
+[global space = 0]
 
 ;fluid
 model configure fluid-flow
@@ -34,58 +33,104 @@ zone fluid property pore-pressure-generation on
 zone fluid property porosity 0.12
 zone fluid property mobility-coefficient 5e-18 ; Permeability / viscosity
 zone gridpoint initialize pore-pressure [u0]
+model gravity 0 0 -9.81
 
 
-;initialize and BC
-zone initialize stress xx [sig_h] yy [sig_H] zz [sig_v] xy 0 xz 0 yz 0
-zone face apply velocity-z 0 range group 'Bottom'
-zone face apply stress-normal [sig_h] range group 'East' or 'West'
-zone face apply stress-normal [sig_H] range group 'North' or 'South'
-zone face apply stress-normal [sig_v] range group 'Top' 
+; In situ stress
+zone initialize stress-xx -3.8e6
+zone initialize stress-yy -4.7e6 
+zone initialize stress-zz -5.5e6
 
+zone face apply stress-normal -3.8e6  range group 'North' or 'South'
+zone face apply stress-normal -4.7e6 range group 'East' or 'West'
+zone face apply stress-normal -5.5e6 range group 'Top' 
+zone face apply velocity-normal 0 range group 'Bottom'
 
 ;mechanical parameters
 zone initialize density 2500
 zone property cohesion 1e10 ;very high
-zone property friction 15
+zone property friction 30
 zone property tension 3e8
 zone property young [young]
 zone property poisson [poisson]
 
 ;joint parameters
-zone property dip-1 [dip_i]
-zone property dip-direction-1 129
-zone property joint-tension-1 1e50
-zone property dip-2 [dip_m]
-zone property dip-direction-2 140
-zone property joint-tension-2 1e50
+zone property dip-1 [dip_i] range group 'FLT_I'
+zone property dip-direction-1 129 range group 'FLT_I'
+zone property joint-tension-1 1e6 range group 'FLT_I'
+zone property dip-2 [dip_m] range group 'FLT_M'
+zone property dip-direction-2 140 range group 'FLT_M'
+zone property joint-tension-2 1e6 range group 'FLT_M'
+zone property dip-3 40 range group 'CLAY '
+zone property dip-direction-3 120 range group 'CLAY '
+zone property joint-tension-3 1e6 range group 'CLAY '
 ;
-zone property joint-dilation-1 10 
-zone property joint-dilation-2 10
+zone property joint-dilation-1 10 range group 'FLT_I'
+zone property joint-dilation-2 10 range group 'FLT_M'
+zone property joint-dilation-3 1 range group 'CLAY '
 ;
-table 'fric-1' add (0 80) (0.000157115 22) 
-table 'coh-1' add (0 0.5e9) (0.000157115 0.5e6) 
+table 'fric-1' add (0 22) (0.000157115 22) 
+table 'coh-1' add (0 0.5e6) (0.000157115 0.5e6) 
 
-table 'fric-2' add (0 80) (0.000157115 22) 
-table 'coh-2' add (0 0.5e9) (0.000157115 0.5e6) 
+table 'fric-2' add (0 22) (0.000157115 22) 
+table 'coh-2' add (0 0.5e6) (0.000157115 0.5e6)
 
-zone property table-joint-friction-1 'fric-1' range group 'BNDTO'
-zone property table-joint-cohesion-1 'coh-1' range group 'BNDTO'
-zone property table-joint-friction-2 'fric-2' range group 'BNDBO'
-zone property table-joint-cohesion-2 'coh-2' range group 'BNDBO'
+table 'fric-3' add (0 32) (0.000157115 32) 
+table 'coh-3' add (0 0.5e7) (0.000157115 0.5e7) 
 
-zone property space-1 [space]
+zone property table-joint-friction-3 'fric-3' range group 'CLAY '
+zone property table-joint-cohesion-3 'coh-3' range group 'CLAY '
+zone property table-joint-friction-3 'fric-3' range group 'FLT_I'
+zone property table-joint-cohesion-3 'coh-3' range group 'FLT_I'
+zone property table-joint-friction-3 'fric-3' range group 'FLT_M'
+zone property table-joint-cohesion-3 'coh-3' range group 'FLT_M'
+zone property table-joint-friction-3 'fric-3' range group 'BNDTO'
+zone property table-joint-cohesion-3 'coh-3' range group 'BNDTO'
+zone property table-joint-friction-3 'fric-3' range group 'BNDBO'
+zone property table-joint-cohesion-3 'coh-3' range group 'BNDBO'
+zone property table-joint-friction-3 'fric-3' range group 'INJEC'
+zone property table-joint-cohesion-3 'coh-3' range group 'INJEC'
+
+zone property table-joint-friction-2 'fric-3' range group 'CLAY '
+zone property table-joint-cohesion-2 'coh-3' range group 'CLAY '
+zone property table-joint-friction-2 'fric-3' range group 'FLT_I'
+zone property table-joint-cohesion-2 'coh-3' range group 'FLT_I'
+zone property table-joint-friction-2 'fric-2' range group 'FLT_M'
+zone property table-joint-cohesion-2 'coh-2' range group 'FLT_M'
+zone property table-joint-friction-2 'fric-3' range group 'BNDTO'
+zone property table-joint-cohesion-2 'coh-3' range group 'BNDTO'
+zone property table-joint-friction-2 'fric-3' range group 'BNDBO'
+zone property table-joint-cohesion-2 'coh-3' range group 'BNDBO'
+zone property table-joint-friction-2 'fric-3' range group 'INJEC'
+zone property table-joint-cohesion-2 'coh-3' range group 'INJEC'
+
+zone property table-joint-friction-1 'fric-3' range group 'CLAY '
+zone property table-joint-cohesion-1 'coh-3' range group 'CLAY '
+zone property table-joint-friction-1 'fric-1' range group 'FLT_I'
+zone property table-joint-cohesion-1 'coh-1' range group 'FLT_I'
+zone property table-joint-friction-1 'fric-2' range group 'FLT_M'
+zone property table-joint-cohesion-1 'coh-2' range group 'FLT_M'
+zone property table-joint-friction-1 'fric-3' range group 'BNDTO'
+zone property table-joint-cohesion-1 'coh-3' range group 'BNDTO'
+zone property table-joint-friction-1 'fric-3' range group 'BNDBO'
+zone property table-joint-cohesion-1 'coh-3' range group 'BNDBO'
+zone property table-joint-friction-1 'fric-1' range group 'INJEC'
+zone property table-joint-cohesion-1 'coh-1' range group 'INJEC'
+
+zone property space-1 1
 zone property stiffness-normal-1 [kn]
 zone property stiffness-shear-1 [ks]
 
-zone property space-2 [space]
+zone property space-2 1
 zone property stiffness-normal-2 [kn]
 zone property stiffness-shear-2 [ks]
 
-zone property flag-matrix-plastic off
+zone property space-3 0.5
+zone property stiffness-normal-3 [kn]
+zone property stiffness-shear-3 [ks]
 
-; Disable large strain (only FLAC3D v7)
-model largestrain off
+zone property flag-matrix-plastic on
+
 
 ; Solve model for mechanical equilibrium
 model solve mech ratio 1e-8
