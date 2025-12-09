@@ -188,7 +188,7 @@ parameters["rocks"] = {
 }
 
 parameters["options"] = {
-    #"n_iteration": 9,
+    "n_iteration": 9,
     "n_cycle": 9999,
     "n_cycle_print": 9999,
     "t_ini": time_zero,
@@ -196,7 +196,7 @@ parameters["options"] = {
     "t_steps": time_step,
     "t_step_max":  time_max,
     
-    "t_reduce_factor": 4,
+    "t_reduce_factor": 8,
     "eps1": 1.0e-8,
     #"eps2": 100.0,
     "gravity": 9.8,
