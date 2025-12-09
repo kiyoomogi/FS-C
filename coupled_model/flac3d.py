@@ -39,10 +39,8 @@ fish_func_flac = ()  # After mechanical analysis
 
 # Permeability functions as a dict of functions per group
 permeability_func = {
-    "UPPER": lambda g: rutqvist2002(g, k0 = 1.0e-15, phi0 = 0.1, phir = 0.09),
-    "CAPRO": lambda g: rutqvist2002(g, k0 = 1.0e-17, phi0 = 0.01, phir = 0.009),
-    "AQFER": lambda g: rutqvist2002(g, k0 = 1.0e-13, phi0 = 0.1, phir = 0.09),
-    "BASEM": lambda g: rutqvist2002(g, k0 = 1.0e-17, phi0 = 0.01, phir = 0.009),
+    "FLT_I": lambda g: rutqvist2002(g, k0 = 1.0e-15, phi0 = 0.1, phir = 0.09),
+    "FLT_M": lambda g: rutqvist2002(g, k0 = 1.0e-15, phi0 = 0.01, phir = 0.009),
 }
 
 # History variables

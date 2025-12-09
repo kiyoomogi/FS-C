@@ -6,4 +6,4 @@ echo "" >> INCON
 cp ../flac3d.py .
 cp ../flac3d.sh .
 cp ../tf_in.f3sav tf_in.f3sav
-time mpiexec -n 12 tough3-flac-eco2n 2dldV6.dat
+time mpiexec -n 20 tough3-flac-eco2n INFILE_coupled
