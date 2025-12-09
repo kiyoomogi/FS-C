@@ -257,7 +257,7 @@ else:
     ax.scatter([x_MD], [y_MD], [D_MD], s=80, color="green", marker="*", zorder=10)
     ax.text(
         x_MD + 3, y_MD, D_MD + 8,
-        "B1 @41 m",
+        "B1 @42.2 m",
         color="green",
         zdir=None,
         bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9)

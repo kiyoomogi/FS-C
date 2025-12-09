@@ -59,7 +59,7 @@ if incon == 'ns':
 
 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_2fault.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
 mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 z_centers = mesh.centers[:,2]
@@ -73,12 +73,11 @@ bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top
 
 
 #Add material
-mesh.add_material("INJEC", 1)
-mesh.add_material("CLAY ", 2)
-mesh.add_material("FLT_I", 3)
-mesh.add_material("FLT_M", 4)
-mesh.add_material("BNDTO", 5)
-mesh.add_material("BNDBO", 6)
+mesh.add_material("CLAY ", 1)
+mesh.add_material("FAULT", 2)
+mesh.add_material("INJEC", 3)
+mesh.add_material("BNDTO", 4)
+mesh.add_material("BNDBO", 5)
 
 if incon == 'ns':
     incon = np.full((len(incon1['X1']), 4), -1.0e9)
@@ -156,7 +155,7 @@ parameters["rocks"] = {
         "porosity": 0.98, 
         "permeability": [1e-13, 1e-13, 1e-13],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        "compressibility": 2e-8,             #Pa^-1
+        #"compressibility": 2e-8,             #Pa^-1
         #"relative_permeability": {
         #    "id": 3, #van genuchten 
         #    "parameters": [1,0],
@@ -170,16 +169,11 @@ parameters["rocks"] = {
         #"tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
-    "FLT_I": {
+    "FAULT": {
         "porosity": 0.12,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [1e-14, 1e-14, 1e-14]
+        "permeability": [1e-15, 1e-15, 1e-15]
         #"permeability": [6.5e-17,5e-17,5e-17]
-    },
-    "FLT_M": {
-        #"permeability": [6.5e-17,5e-17,5e-17],
-        "permeability": [1e-14, 1e-14, 1e-14]
-        #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
