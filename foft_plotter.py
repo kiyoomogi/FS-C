@@ -8,7 +8,7 @@ import matplotlib as mpl
 mpl.rcParams.update({"font.size": 14})
 
 # ---------------- paths ----------------
-folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model")
+folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM")
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
@@ -95,7 +95,7 @@ for f in foft_files:
         )
 
 ax_top.set_ylabel("Pressure [MPa]")
-ax_top.set_ylim(0, 10)
+ax_top.set_ylim(0, 50)
 ax_top.legend(loc="upper right", ncol=2, fontsize=8)
 ax_top.set_title("BFSB2")
 
