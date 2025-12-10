@@ -1,6 +1,7 @@
 model new
 ;call 'flac_python.py'
 model large-strain off
+model configure thermal
 
 zone import "/home/manuus/Desktop/FS-C/model/coupled_model/mesh.f3grid"
 zone face skin
@@ -15,7 +16,7 @@ zone cmodel assign columnar-basalt
 [global u0 = 0.5e6]
 
 [global dip_i = 37]
-[global dip_m = 57]
+[global dip_m = 55]
 [global young = 7.2e9]
 ;[global young = 1.6e9]
 [global poisson = 0.24]
@@ -54,66 +55,74 @@ zone property tension 3e8
 zone property young [young]
 zone property poisson [poisson]
 
+; Thermal parameters
+zone thermal cmodel assign isotropic
+zone thermal property conductivity 1
+zone thermal property expansion 0.0
+zone thermal property specific-heat 1
+zone gridpoint initialize temperature 15
+
 ;joint parameters
-zone property dip-1 [dip_i] range group 'FLT_I'
-zone property dip-direction-1 129 range group 'FLT_I'
-zone property joint-tension-1 1e6 range group 'FLT_I'
-zone property dip-2 [dip_m] range group 'FLT_M'
-zone property dip-direction-2 140 range group 'FLT_M'
-zone property joint-tension-2 1e6 range group 'FLT_M'
-zone property dip-3 40 range group 'CLAY '
-zone property dip-direction-3 120 range group 'CLAY '
-zone property joint-tension-3 1e6 range group 'CLAY '
+;zone property dip-1 [dip_i] range group 'FLT_I'
+;zone property dip-direction-1 129 range group 'FLT_I'
+;zone property joint-tension-1 1e6 range group 'FLT_I'
+zone property dip-1 [dip_m] 
+zone property dip-direction-1 142 
+zone property joint-tension-1 1e6 
+
+zone property dip-2 40 
+zone property dip-direction-2 120 
+zone property joint-tension-2 1e6 
 ;
-zone property joint-dilation-1 10 range group 'FLT_I'
-zone property joint-dilation-2 10 range group 'FLT_M'
-zone property joint-dilation-3 1 range group 'CLAY '
+;zone property joint-dilation-1 10 range group 'FLT_I'
+zone property joint-dilation-1 10 
+zone property joint-dilation-2 1 
 ;
 table 'fric-1' add (0 22) (0.000157115 22) 
 table 'coh-1' add (0 0.5e6) (0.000157115 0.5e6) 
 
-table 'fric-2' add (0 22) (0.000157115 22) 
-table 'coh-2' add (0 0.5e6) (0.000157115 0.5e6)
+table 'fric-2' add (0 32) (0.000157115 22) 
+table 'coh-2' add (0 0.5e7) (0.000157115 0.5e6)
 
-table 'fric-3' add (0 32) (0.000157115 32) 
-table 'coh-3' add (0 0.5e7) (0.000157115 0.5e7) 
+;table 'fric-3' add (0 32) (0.000157115 32) 
+;table 'coh-3' add (0 0.5e7) (0.000157115 0.5e7) 
 
-zone property table-joint-friction-3 'fric-3' range group 'CLAY '
-zone property table-joint-cohesion-3 'coh-3' range group 'CLAY '
-zone property table-joint-friction-3 'fric-3' range group 'FLT_I'
-zone property table-joint-cohesion-3 'coh-3' range group 'FLT_I'
-zone property table-joint-friction-3 'fric-3' range group 'FLT_M'
-zone property table-joint-cohesion-3 'coh-3' range group 'FLT_M'
-zone property table-joint-friction-3 'fric-3' range group 'BNDTO'
-zone property table-joint-cohesion-3 'coh-3' range group 'BNDTO'
-zone property table-joint-friction-3 'fric-3' range group 'BNDBO'
-zone property table-joint-cohesion-3 'coh-3' range group 'BNDBO'
-zone property table-joint-friction-3 'fric-3' range group 'INJEC'
-zone property table-joint-cohesion-3 'coh-3' range group 'INJEC'
+;zone property table-joint-friction-3 'fric-3' range group 'CLAY '
+;zone property table-joint-cohesion-3 'coh-3' range group 'CLAY '
+;zone property table-joint-friction-3 'fric-3' range group 'FLT_I'
+;zone property table-joint-cohesion-3 'coh-3' range group 'FLT_I'
+;zone property table-joint-friction-3 'fric-3' range group 'FAULT'
+;zone property table-joint-cohesion-3 'coh-3' range group 'FAULT'
+;zone property table-joint-friction-3 'fric-3' range group 'BNDTO'
+;zone property table-joint-cohesion-3 'coh-3' range group 'BNDTO'
+;zone property table-joint-friction-3 'fric-3' range group 'BNDBO'
+;zone property table-joint-cohesion-3 'coh-3' range group 'BNDBO'
+;zone property table-joint-friction-3 'fric-3' range group 'INJEC'
+;zone property table-joint-cohesion-3 'coh-3' range group 'INJEC'
 
-zone property table-joint-friction-2 'fric-3' range group 'CLAY '
-zone property table-joint-cohesion-2 'coh-3' range group 'CLAY '
-zone property table-joint-friction-2 'fric-3' range group 'FLT_I'
-zone property table-joint-cohesion-2 'coh-3' range group 'FLT_I'
-zone property table-joint-friction-2 'fric-2' range group 'FLT_M'
-zone property table-joint-cohesion-2 'coh-2' range group 'FLT_M'
-zone property table-joint-friction-2 'fric-3' range group 'BNDTO'
-zone property table-joint-cohesion-2 'coh-3' range group 'BNDTO'
-zone property table-joint-friction-2 'fric-3' range group 'BNDBO'
-zone property table-joint-cohesion-2 'coh-3' range group 'BNDBO'
-zone property table-joint-friction-2 'fric-3' range group 'INJEC'
-zone property table-joint-cohesion-2 'coh-3' range group 'INJEC'
+zone property table-joint-friction-2 'fric-2' range group 'CLAY '
+zone property table-joint-cohesion-2 'coh-2' range group 'CLAY '
+;zone property table-joint-friction-2 'fric-3' range group 'FLT_I'
+;zone property table-joint-cohesion-2 'coh-3' range group 'FLT_I'
+zone property table-joint-friction-2 'fric-2' range group 'FAULT'
+zone property table-joint-cohesion-2 'coh-2' range group 'FAULT'
+zone property table-joint-friction-2 'fric-2' range group 'BNDTO'
+zone property table-joint-cohesion-2 'coh-2' range group 'BNDTO'
+zone property table-joint-friction-2 'fric-2' range group 'BNDBO'
+zone property table-joint-cohesion-2 'coh-2' range group 'BNDBO'
+zone property table-joint-friction-2 'fric-2' range group 'INJEC'
+zone property table-joint-cohesion-2 'coh-2' range group 'INJEC'
 
-zone property table-joint-friction-1 'fric-3' range group 'CLAY '
-zone property table-joint-cohesion-1 'coh-3' range group 'CLAY '
-zone property table-joint-friction-1 'fric-1' range group 'FLT_I'
-zone property table-joint-cohesion-1 'coh-1' range group 'FLT_I'
-zone property table-joint-friction-1 'fric-2' range group 'FLT_M'
-zone property table-joint-cohesion-1 'coh-2' range group 'FLT_M'
-zone property table-joint-friction-1 'fric-3' range group 'BNDTO'
-zone property table-joint-cohesion-1 'coh-3' range group 'BNDTO'
-zone property table-joint-friction-1 'fric-3' range group 'BNDBO'
-zone property table-joint-cohesion-1 'coh-3' range group 'BNDBO'
+zone property table-joint-friction-1 'fric-2' range group 'CLAY '
+zone property table-joint-cohesion-1 'coh-2' range group 'CLAY '
+;zone property table-joint-friction-1 'fric-1' range group 'FLT_I'
+;zone property table-joint-cohesion-1 'coh-1' range group 'FLT_I'
+zone property table-joint-friction-1 'fric-1' range group 'FAULT'
+zone property table-joint-cohesion-1 'coh-1' range group 'FAULT'
+zone property table-joint-friction-1 'fric-2' range group 'BNDTO'
+zone property table-joint-cohesion-1 'coh-2' range group 'BNDTO'
+zone property table-joint-friction-1 'fric-2' range group 'BNDBO'
+zone property table-joint-cohesion-1 'coh-2' range group 'BNDBO'
 zone property table-joint-friction-1 'fric-1' range group 'INJEC'
 zone property table-joint-cohesion-1 'coh-1' range group 'INJEC'
 
@@ -121,13 +130,13 @@ zone property space-1 1
 zone property stiffness-normal-1 [kn]
 zone property stiffness-shear-1 [ks]
 
-zone property space-2 1
+zone property space-2 0.5
 zone property stiffness-normal-2 [kn]
 zone property stiffness-shear-2 [ks]
 
-zone property space-3 0.5
-zone property stiffness-normal-3 [kn]
-zone property stiffness-shear-3 [ks]
+;zone property space-3 0.5
+;zone property stiffness-normal-3 [kn]
+;zone property stiffness-shear-3 [ks]
 
 zone property flag-matrix-plastic on
 
