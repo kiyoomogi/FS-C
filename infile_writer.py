@@ -99,7 +99,7 @@ unique_materials = set((materials).tolist())
 mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", incon=True)
 mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
-times_list1 = np.arange(time_zero, time_zero+30, 1)
+times_list1 = np.arange(time_zero, time_zero+30, 5)
 times_list2 = np.arange(time_zero + 31, time_final, 240)
 times_list = np.append(times_list1, times_list2)
 
@@ -108,7 +108,7 @@ parameters = {
     "eos": "eco2n",
     "isothermal": True,
     "start": True,
-    "times": times_list, 
+    #"times": times_list, 
 }
 
 
