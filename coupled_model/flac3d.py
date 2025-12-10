@@ -40,7 +40,7 @@ fish_func_flac = ()  # After mechanical analysis
 
 # Permeability functions as a dict of functions per group
 permeability_func = {
-    "FAULT": lambda g: constant(g, k0 = 6.0e-14, phi0 = 0.12),
+    "FAULT": lambda g: constant(g, k0 = 2.0e-14, phi0 = 0.12),
     #"FLT_M": lambda g: rutqvist2002(g, k0 = 1.0e-15, phi0 = 0.01, phir = 0.009),
 }
 
