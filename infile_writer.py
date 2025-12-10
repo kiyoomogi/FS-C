@@ -108,7 +108,7 @@ parameters = {
     "eos": "eco2n",
     "isothermal": True,
     "start": True,
-    "times": times_list, 
+    #"times": times_list, 
 }
 
 
