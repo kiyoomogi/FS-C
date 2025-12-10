@@ -39,8 +39,8 @@ fish_func_flac = ()  # After mechanical analysis
 
 # Permeability functions as a dict of functions per group
 permeability_func = {
-    "FLT_I": lambda g: rutqvist2002(g, k0 = 1.0e-15, phi0 = 0.1, phir = 0.09),
-    "FLT_M": lambda g: rutqvist2002(g, k0 = 1.0e-15, phi0 = 0.01, phir = 0.009),
+    "FAULT": lambda g: rutqvist2002(g, k0 = 6.0e-14, phi0 = 0.12, phir = 0.01),
+    #"FLT_M": lambda g: rutqvist2002(g, k0 = 1.0e-15, phi0 = 0.01, phir = 0.009),
 }
 
 # History variables

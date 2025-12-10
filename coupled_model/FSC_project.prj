@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2025-12-08T22:11:53" ,
+        "DateTime" : "2025-12-09T22:37:58" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -61,7 +61,8 @@
             "Entry" : {
                 "DataFiles" : {
                     "Files" : [ 
-                        "Preprocessing/initialize_model_comba.f3dat" 
+                        "Preprocessing/initialize_model_comba.f3dat" ,
+                        "Preprocessing/load_mesh.py" 
                     ]
                 },
                 "OpenFiles" : [  ]
@@ -527,7 +528,8 @@
                 "movieIndex" : 1 ,
                 "template" : "%1_%2" ,
                 "expanded" : [ 
-                    "Project" 
+                    "Project" ,
+                    "Data Files" 
                 ],
                 "filtered" : [ 
                     "Project" ,
@@ -575,17 +577,21 @@
                 {
                     "Name" : "Viewer-ROOT #2" ,
                     "Geom" : [ 1309 ,1308  ],
-                    "Child1" : "Editor_initialize_model_comba" ,
+                    "Child1" : "Editor_load_mesh" ,
                     "Child2" : "Placeholder #3 dock" ,
                     "Hor" : true ,
                     "Added" : 1 ,
-                    "Ext1" : "f3dat" ,
+                    "Ext1" : "py" ,
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Placeholder #3 dock" 
+            "Focus" : "Editor_load_mesh" 
         },
-        "Recent" : { },
+        "Recent" : {
+            "MRUMagic" : [ 
+                "Edit /home/manuus/Desktop/FS-C/model/coupled_model/Preprocessing/initialize_model_comba.f3dat" 
+            ]
+        },
         "ProjVis" : true ,
         "ConsVis" : true ,
         "Splitter4" : "AAAA/wAAAAEAAAACAAACpAAAAPoA/////wEAAAABAA==" ,
