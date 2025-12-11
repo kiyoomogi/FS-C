@@ -21,13 +21,13 @@ time_final = 3600 * 24 * 365 * 50
 
 #mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_2fault.msh")
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
-mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
+#mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 z_centers = mesh.centers[:,2]
 z_top = np.amax(z_centers)
 z_bot = np.amin(z_centers)
 
-p0 = rates_csv['zone P [MPa]'][0] * 1e6
+p0 = 0.35e6  #rates_csv['zone P [MPa]'][0] * 1e6
 
 #p0 = 1.298302 * 100000
 z_bfsb1 = 0
@@ -40,9 +40,9 @@ top_BC_value = p0 - 1000 * 9.81 * dist_top
 
 
 #Add material
-mesh.add_material("CLAY ", 1)
-mesh.add_material("FAULT", 2)
-mesh.add_material("INJEC", 3)
+mesh.add_material("INJEC", 1)
+mesh.add_material("CLAY ", 2)
+mesh.add_material("FAULT", 3)
 mesh.add_material("BNDTO", 4)
 mesh.add_material("BNDBO", 5)
 
@@ -51,8 +51,6 @@ materials = (mesh.materials )
 bcond = (materials == "BNDTO").astype(int) #+ (materials == "BNDBO").astype(int) 
 mesh.add_cell_data("boundary_condition", bcond)
 
-
-unique_materials = set((materials).tolist())
 
 
 mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/natural_state/MESH", incon=True)

@@ -144,9 +144,9 @@ Background Field = 99;
 volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
 volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -29.9};
 
+Physical Volume("INJEC") = {1001};
 Physical Volume("CLAY ") = {3,4};
 Physical Volume("FAULT") = {1002};
-Physical Volume("INJEC") = {1001};
 Physical Volume("BNDTO") = {volAbove[]};
 Physical Volume("BNDBO") = {volBelow[]};
 
