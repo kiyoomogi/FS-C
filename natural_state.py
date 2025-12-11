@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 import toughio
 import matplotlib.pyplot as plt 
-
+ 
 
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
 
