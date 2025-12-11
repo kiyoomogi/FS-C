@@ -60,22 +60,27 @@ if incon == 'ns':
 
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
-mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
+#mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
+
+p0 = 0.35e6  #rates_csv['zone P [MPa]'][0] * 1e6
 
 z_centers = mesh.centers[:,2]
 z_top = np.amax(z_centers)
 z_bot = np.amin(z_centers)
 
-p0 = rates_csv['zone P [MPa]'][0]
+#p0 = 1.298302 * 100000
+z_bfsb1 = 0
 
-top_BC_value = p0 * 1e6 - 1000 * 9.81 * z_top 
-bot_BC_value = p0 * 1e6 + 1000 * 9.81 * z_top 
+dist_top = z_top - z_bfsb1
+dist_bot = abs(z_bot - z_bfsb1)
 
+bot_BC_value = p0 + 1000 * 9.81 * dist_bot
+top_BC_value = p0 - 1000 * 9.81 * dist_top
 
 #Add material
-mesh.add_material("CLAY ", 1)
-mesh.add_material("FAULT", 2)
-mesh.add_material("INJEC", 3)
+mesh.add_material("INJEC", 1)
+mesh.add_material("CLAY ", 2)
+mesh.add_material("FAULT", 3)
 mesh.add_material("BNDTO", 4)
 mesh.add_material("BNDBO", 5)
 
@@ -220,30 +225,25 @@ parameters['extra_options'] = {
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
 
-def conne_fault():
+def find_injec():
     mesh = toughio.read_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH")
     elements    = mesh["elements"]
     connections = mesh["connections"]
-
+    
     # INJEC element names
     injec = {ename for ename, edata in elements.items() if edata.get("material") == "INJEC"}
-    fault = {ename for ename, edata in elements.items() if edata.get("material") == "EDZ  "}
-
+    
     # element-name length (TOUGH classic: 5)
     elem_len = len(next(iter(elements)))
     e1_list = []
-    for cname, cdata in connections.items():
-        if len(cname) < 2*elem_len:   # skip weird keys
-            continue
+    for cname, cdata in elements.items():
         e1 = cname[:elem_len]
-        e2 = cname[elem_len:2*elem_len]
-
-        if (e1 in injec) and (e2 in fault) or (e1 in fault) and (e2 in injec) or (e1 in injec) and (e2 in injec):
-            e1_list.append(str(e2))
-            
+    
+        if (e1 in injec):
+            e1_list.append(str(e1))
     return e1_list
 
-e1_list = conne_fault()
+e1_list = find_injec()
 
 def relative_volumes():
     injec_labels = []
@@ -262,7 +262,7 @@ def relative_volumes():
 
 rel_volumes,injec_labels, volume_list = relative_volumes()
 
-sum(rel_volumes)
+
 def generators():
 
 
@@ -278,7 +278,7 @@ def generators():
         times = rates_csv['TimeElapsed'].to_list()
 
         generator = {
-            "label": e1_list[i],
+            "label": injec_labels[i],
             "type": "COM1",
             "times": times,
             "rates": rates,
@@ -287,7 +287,7 @@ def generators():
         parameters['generators'].append(generator)
         
         generator = {
-            "label": e1_list[i],
+            "label": injec_labels[i],
             "type": "COM3",
             "times": times,
             "rates": rates_co2,
