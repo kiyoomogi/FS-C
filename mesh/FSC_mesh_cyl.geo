@@ -3,7 +3,6 @@ SetFactory("OpenCASCADE");
 WidthCube    = 50;
 HeightCube   = 40;
 zTop         = 10;  // keep this as the original top elevation
-
 Dip      = 55*Pi/180;
 Strike  =  -52 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
 FaultThick   = 2.8;
@@ -12,7 +11,7 @@ FaultThick   = 2.8;
 Point(999) = {0,0,0};
 Box(1) = { -WidthCube/2, -WidthCube/2, zTop - HeightCube,
             WidthCube,    WidthCube,    HeightCube };
-Rotate {{0, 0, 1}, {0, 0, 0}, -50*Pi/180} {
+Rotate {{0, 0, 1}, {0, 0, 0}, 50*Pi/180} {
   Volume{1};
 }
 Rectangle(101) = {-100, -100, 0, 200, 200};
@@ -118,7 +117,7 @@ ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
-Field[1].SurfacesList = {28,11};
+Field[1].SurfacesList = {30,9};
 
 Field[2] = Threshold;
 Field[2].InField = 1;
@@ -129,7 +128,7 @@ Field[2].DistMax = ramp;
 
 // ---- your distance field near the injection cylinder
 Field[3] = Distance;
-Field[3].SurfacesList = {23,24,25};
+Field[3].SurfacesList = {24,25,26};
 
 Field[4] = Threshold;
 Field[4].InField = 3;
