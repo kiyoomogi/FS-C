@@ -50,8 +50,8 @@ zone property joint-tension 0.5e6
 table 'fric-j' add (0.0e+00 22) (0.005 12) 
 table 'coh-j' add (0.0e+00 0.5e6) (0.005 0e6) 
 
-zone property table-joint-friction 'fric-j' 
-zone property table-joint-cohesion 'coh-j'
+zone property table-joint-friction 'fric-j' range group 'INJEC'
+zone property table-joint-cohesion 'coh-j' range group 'INJEC'
 
 zone initialize density 2500
 
