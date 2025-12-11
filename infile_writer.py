@@ -56,33 +56,22 @@ if incon == 'ns':
     ns = toughio.read_output(f"/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE{stage}")
     #ns.data['X1'][ns.data['porosity'] == 0.99] = 0.3e6
     incon1 = ns.data
-
+    print()
 
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
 #mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
-p0 = 0.35e6  #rates_csv['zone P [MPa]'][0] * 1e6
 
-z_centers = mesh.centers[:,2]
-z_top = np.amax(z_centers)
-z_bot = np.amin(z_centers)
-
-#p0 = 1.298302 * 100000
-z_bfsb1 = 0
-
-dist_top = z_top - z_bfsb1
-dist_bot = abs(z_bot - z_bfsb1)
-
-bot_BC_value = p0 + 1000 * 9.81 * dist_bot
-top_BC_value = p0 - 1000 * 9.81 * dist_top
+bot_BC_value = np.amax(incon1['X1'])
+top_BC_value = np.amin(incon1['X1'])
 
 #Add material
-mesh.add_material("INJEC", 1)
-mesh.add_material("CLAY ", 2)
-mesh.add_material("FAULT", 3)
-mesh.add_material("BNDTO", 4)
-mesh.add_material("BNDBO", 5)
+#mesh.add_material("INJEC", 1)
+mesh.add_material("CLAY ", 1)
+mesh.add_material("FAULT", 2)
+mesh.add_material("BNDTO", 3)
+mesh.add_material("BNDBO", 4)
 
 if incon == 'ns':
     incon = np.full((len(incon1['X1']), 4), -1.0e9)
@@ -161,11 +150,11 @@ parameters["default"] = {
 
 #Rock parameters
 parameters["rocks"] = {
-    "INJEC": {
-        "density": 2500,
-        "porosity": 0.98, 
-        "permeability": [1e-13, 1e-13, 1e-13],
-        "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
+#    "INJEC": {
+#        "density": 2500,
+#        "porosity": 0.98, 
+#        "permeability": [1e-13, 1e-13, 1e-13],
+#        "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         #"relative_permeability": {
         #    "id": 3, #van genuchten 
         #    "parameters": [1,0],
@@ -174,13 +163,13 @@ parameters["rocks"] = {
         #    "id": 8, #van genuchten 
         #    "parameters": []
         #},  
-    },
+#    },
     "CLAY ": {
         #"tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
     "FAULT": {
-        "porosity": 0.12,
+        "porosity": 0.14,
         #"compressibility": 8e-9,             #Pa^-1
         "permeability": [2e-14, 2e-14, 2e-14]
         #"permeability": [6.5e-17,5e-17,5e-17]
@@ -243,7 +232,7 @@ def find_injec():
             e1_list.append(str(e1))
     return e1_list
 
-e1_list = find_injec()
+#e1_list = find_injec()
 
 def relative_volumes():
     injec_labels = []
