@@ -68,21 +68,31 @@ zone gridpoint initialize temperature 15
 ;zone property joint-tension-1 1e6 range group 'FLT_I'
 zone property dip-1 [dip_m] 
 zone property dip-direction-1 142 
-zone property joint-tension-1 1e6 
+zone property joint-tension-1 1e6  
+zone property joint-tension-1 1e6 range grou 'FAULT'
+zone property joint-tension-1 1e6 range grou 'CLAY '
+zone property joint-tension-1 1e6 range grou 'INJEC'
+zone property joint-tension-1 1e6 range grou 'BNDTO'
+zone property joint-tension-1 1e6 range grou 'BNDBO'
+
 
 zone property dip-2 40 
 zone property dip-direction-2 120 
-zone property joint-tension-2 1e6 
+zone property joint-tension-2 1e6 range grou 'FAULT'
+zone property joint-tension-2 1e6 range grou 'CLAY '
+zone property joint-tension-2 1e6 range grou 'INJEC'
+zone property joint-tension-2 1e6 range grou 'BNDTO'
+zone property joint-tension-2 1e6 range grou 'BNDBO'
 ;
 ;zone property joint-dilation-1 10 range group 'FLT_I'
 zone property joint-dilation-1 10 
 zone property joint-dilation-2 1 
 ;
-table 'fric-1' add (0 22) (0.000157115 22) 
-table 'coh-1' add (0 0.5e6) (0.000157115 0.5e6) 
+table 'fric-1' add (0 22) (0.005 22) 
+table 'coh-1' add (0 0.5e6) (0.005 0.5e6) 
 
-table 'fric-2' add (0 32) (0.000157115 22) 
-table 'coh-2' add (0 0.5e7) (0.000157115 0.5e6)
+table 'fric-2' add (0 32) (0.000157115 32) 
+table 'coh-2' add (0 0.5e8) (0.000157115 0.5e8)
 
 ;table 'fric-3' add (0 32) (0.000157115 32) 
 ;table 'coh-3' add (0 0.5e7) (0.000157115 0.5e7) 
@@ -102,8 +112,6 @@ table 'coh-2' add (0 0.5e7) (0.000157115 0.5e6)
 
 zone property table-joint-friction-2 'fric-2' range group 'CLAY '
 zone property table-joint-cohesion-2 'coh-2' range group 'CLAY '
-;zone property table-joint-friction-2 'fric-3' range group 'FLT_I'
-;zone property table-joint-cohesion-2 'coh-3' range group 'FLT_I'
 zone property table-joint-friction-2 'fric-2' range group 'FAULT'
 zone property table-joint-cohesion-2 'coh-2' range group 'FAULT'
 zone property table-joint-friction-2 'fric-2' range group 'BNDTO'
@@ -115,16 +123,14 @@ zone property table-joint-cohesion-2 'coh-2' range group 'INJEC'
 
 zone property table-joint-friction-1 'fric-2' range group 'CLAY '
 zone property table-joint-cohesion-1 'coh-2' range group 'CLAY '
-;zone property table-joint-friction-1 'fric-1' range group 'FLT_I'
-;zone property table-joint-cohesion-1 'coh-1' range group 'FLT_I'
 zone property table-joint-friction-1 'fric-1' range group 'FAULT'
 zone property table-joint-cohesion-1 'coh-1' range group 'FAULT'
 zone property table-joint-friction-1 'fric-2' range group 'BNDTO'
 zone property table-joint-cohesion-1 'coh-2' range group 'BNDTO'
 zone property table-joint-friction-1 'fric-2' range group 'BNDBO'
 zone property table-joint-cohesion-1 'coh-2' range group 'BNDBO'
-zone property table-joint-friction-1 'fric-1' range group 'INJEC'
-zone property table-joint-cohesion-1 'coh-1' range group 'INJEC'
+zone property table-joint-friction-1 'fric-2' range group 'INJEC'
+zone property table-joint-cohesion-1 'coh-2' range group 'INJEC'
 
 zone property space-1 1
 zone property stiffness-normal-1 [kn]
