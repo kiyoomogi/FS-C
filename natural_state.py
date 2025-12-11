@@ -40,11 +40,11 @@ top_BC_value = p0 - 1000 * 9.81 * dist_top
 
 
 #Add material
-mesh.add_material("INJEC", 1)
-mesh.add_material("CLAY ", 2)
-mesh.add_material("FAULT", 3)
-mesh.add_material("BNDTO", 4)
-mesh.add_material("BNDBO", 5)
+#mesh.add_material("INJEC", 1)
+mesh.add_material("CLAY ", 1)
+mesh.add_material("FAULT", 2)
+mesh.add_material("BNDTO", 3)
+mesh.add_material("BNDBO", 4)
 
 
 materials = (mesh.materials )
@@ -110,21 +110,21 @@ parameters["default"] = {
 
 #Rock parameters
 parameters["rocks"] = {
-    "INJEC": {
-        "density": 2500,
-        "porosity": 0.99, 
-        "permeability": [5.0e-16,5.0e-16,1.0e-17],
-        "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        "compressibility": 1e-99, #2.94e-7,
-        "relative_permeability": {
-            "id": 3, #van genuchten 
-            "parameters": [1,0],
-        },
-        "capillarity": {
-            "id": 8, #van genuchten 
-            "parameters": []
-        },  
-    },
+   # "INJEC": {
+   #     "density": 2500,
+   #     "porosity": 0.99, 
+   #     "permeability": [5.0e-16,5.0e-16,1.0e-17],
+   #     "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
+   #     "compressibility": 1e-99, #2.94e-7,
+   #     "relative_permeability": {
+   #         "id": 3, #van genuchten 
+   #         "parameters": [1,0],
+   #     },
+   #     "capillarity": {
+   #         "id": 8, #van genuchten 
+   #         "parameters": []
+   #     },  
+   # },
     "CLAY ": {
         "tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
