@@ -4,7 +4,7 @@ import toughflac as tf
 
 
 mesh = toughio.read_mesh("/home/manuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
-mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
+#mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 
 # Import mesh

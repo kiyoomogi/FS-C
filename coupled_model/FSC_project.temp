@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2025-12-11T19:08:21" ,
+        "DateTime" : "2025-12-11T19:20:21" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
+                "SaveFile" : "" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -66,7 +66,7 @@
                     "Files" : [ 
                         "Preprocessing/initialize_model_comba.f3dat" ,
                         "Preprocessing/load_mesh.py" ,
-                        "../../../../../../tmp/tmpa3ld0rq5/mesh.f3grid" 
+                        "../../../../../../tmp/tmpipld7l8q/mesh.f3grid" 
                     ]
                 },
                 "OpenFiles" : [  ]
@@ -566,9 +566,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : -1.461075624591854e+01  , "y" : -2.402214076053808e+00  , "z" : -2.420757511913511e+01 } ,
-                            "ViewCenter" : { "x" : 1.175822349904593e+01  , "y" : -6.874047245000880e+00  , "z" : -2.410270556554570e+01 } ,
-                            "Up" : { "x" : 2.473135803465298e-04  , "y" : 2.490218935262415e-02  , "z" : 9.996898618078706e-01 } ,
+                            "EyePosition" : { "x" : 3.552713678800501e-15  , "y" : -1.477892824594353e+02  , "z" : -1.000000000000000e+01 } ,
+                            "ViewCenter" : { "x" : 3.552713678800501e-15  , "y" : 0.000000000000000e+00  , "z" : -1.000000000000000e+01 } ,
+                            "Up" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -808,7 +808,7 @@
                                     "TransLocked" : true ,
                                     "Range" : [ 
                                         {
-                                            "Active" : true ,
+                                            "Active" : false ,
                                             "RenderModeSpecific" : true ,
                                             "ExtentModel" : true ,
                                             "Type" : 1283546101 ,
@@ -835,46 +835,6 @@
                                                                     {
                                                                         "First" : "Default" ,
                                                                         "Second" : "CLAY " 
-                                                                    }
-                                                                ],
-                                                                "And" : true ,
-                                                                "Only" : false ,
-                                                                "Matches" : 1 ,
-                                                                "CheckBy" : false 
-                                                            }
-                                                        }, 
-                                                        {
-                                                            "Type" : 1283546004 ,
-                                                            "Element" : {
-                                                                "Not" : true ,
-                                                                "Extent" : false ,
-                                                                "By" : "" ,
-                                                                "ByAll" : false ,
-                                                                "Entries" : [ 
-                                                                    
-                                                                    {
-                                                                        "First" : "Default" ,
-                                                                        "Second" : "BNDTO" 
-                                                                    }
-                                                                ],
-                                                                "And" : true ,
-                                                                "Only" : false ,
-                                                                "Matches" : 1 ,
-                                                                "CheckBy" : false 
-                                                            }
-                                                        }, 
-                                                        {
-                                                            "Type" : 1283546004 ,
-                                                            "Element" : {
-                                                                "Not" : true ,
-                                                                "Extent" : false ,
-                                                                "By" : "" ,
-                                                                "ByAll" : false ,
-                                                                "Entries" : [ 
-                                                                    
-                                                                    {
-                                                                        "First" : "Default" ,
-                                                                        "Second" : "INJEC" 
                                                                     }
                                                                 ],
                                                                 "And" : true ,
@@ -938,7 +898,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 1 ,
+                                    "ColorScheme" : 0 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -956,7 +916,7 @@
                                             "PieceName" : "" ,
                                             "UsePiece" : false 
                                         },
-                                        "ColorName" : "State" ,
+                                        "ColorName" : "Group" ,
                                         "Property" : "" ,
                                         "StateBy" : 0 ,
                                         "UsesFaceOnly" : false ,
@@ -996,9 +956,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 3.000000000000000e-18 ,
-                                        "Maximum" : 9.999999999999999e-12 ,
-                                        "Interval" : 1.000000000000000e-12 ,
+                                        "Minimum" : 1.797693134862316e+308 ,
+                                        "Maximum" : -1.797693134862316e+308 ,
+                                        "Interval" : 0.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1023,7 +983,7 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : true ,
+                                        "Active" : false ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
@@ -1033,7 +993,7 @@
                                                 "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : true ,
+                                                "Active" : false ,
                                                 "Keyword" : "extra" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
@@ -1042,7 +1002,7 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1054,13 +1014,13 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "extra" ,
                                                     "Property" : "" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
@@ -1081,7 +1041,7 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1099,7 +1059,7 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "extra" ,
                                                     "Property" : "" ,
                                                     "PropType" : 0 
@@ -1133,14 +1093,23 @@
                                         "Global" : true ,
                                         "MapSto" : [ 
                                             {
-                                                "Key" : "State By Average" ,
+                                                "Key" : "Group" ,
                                                 "Value" : {
                                                     "Array" : [ 
                                                         
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "None" ,
+                                                            "Label" : "Default=CLAY " ,
+                                                            "Bool" : true ,
+                                                            "Used2" : true ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#00ffffFF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1149,7 +1118,7 @@
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "None" ,
+                                                            "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1158,7 +1127,7 @@
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "None" ,
+                                                            "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1167,7 +1136,7 @@
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "None" ,
+                                                            "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1176,7 +1145,7 @@
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "None" ,
+                                                            "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1185,7 +1154,7 @@
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "None" ,
+                                                            "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1194,124 +1163,7 @@
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "None" ,
+                                                            "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1320,133 +1172,34 @@
                                                         {
                                                             "Color" : "#2e8b56FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "shear-n shear-p tension-p j-shear-p j-tension-p" ,
+                                                            "Label" : "Default=FAULT" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
                                                         {
                                                             "Color" : "#ff0000FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "shear-n shear-p tension-p j-shear-n j-tension-n j-shear-p j-tension-p" ,
+                                                            "Label" : "Default=BNDTO" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
                                                         {
                                                             "Color" : "#ff00d5FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "shear-n shear-p j-shear-p j-tension-p" ,
+                                                            "Label" : "Default=BNDBO" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
                                                         {
                                                             "Color" : "#ff4000FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "j-shear-n j-shear-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#0080ffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "shear-n shear-p tension-p j-shear-n j-shear-p j-tension-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#b7001fFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "shear-p j-tension-n j-shear-p j-tension-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#aa00ffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "shear-n shear-p j-shear-n j-tension-n j-shear-p j-tension-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#ff8000FF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "shear-p j-shear-p j-tension-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#663333FF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "j-shear-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#663333FF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "j-shear-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#4f632dFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "j-shear-n j-shear-p j-tension-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#50755eFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "j-shear-p j-tension-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#6666ffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "j-shear-n j-tension-n j-shear-p j-tension-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#5500ffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "shear-p j-shear-p" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#0000ffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "j-tension-n j-shear-p j-tension-p" ,
+                                                            "Label" : "Default=INJEC" ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1456,7 +1209,7 @@
                                                 }
                                             }
                                         ],
-                                        "Category" : "State By Average" ,
+                                        "Category" : "Group" ,
                                         "CLabel" : {
                                             "Active" : true ,
                                             "Enabled" : true ,
@@ -1517,6 +1270,7 @@
                 "expanded" : [ 
                     "Project" ,
                     "Data Files" ,
+                    "Plots" ,
                     "Model State" 
                 ],
                 "filtered" : [ 
@@ -1736,7 +1490,7 @@
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Plot_Plot01" 
+            "Focus" : "Editor_load_mesh" 
         },
         "Recent" : {
             "MRUMagic" : [ 
