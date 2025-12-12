@@ -32,9 +32,9 @@ elif hydr_test == False and stage == 11:
 
 elif stage == 0:
     time_zero =  94878 
-    time_final = 94933.0 + 1 * 3600
-    time_step = 2
-    time_max = 30
+    time_final = 94878 + 30
+    time_step = 1
+    time_max = 2
 elif stage == 2:
     time_zero =  47580
     time_final = 123574.7 + 20 #rates_csv["TimeElapsed"].iloc[-1] 
