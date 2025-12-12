@@ -95,7 +95,7 @@ for f in foft_files:
         )
 
 ax_top.set_ylabel("Pressure [MPa]")
-ax_top.set_ylim(0, 10)
+ax_top.set_ylim(0, 20)
 ax_top.legend(loc="upper right", ncol=2, fontsize=8)
 ax_top.set_title("BFSB2")
 
@@ -189,7 +189,7 @@ ax_bot.set_title("BFSB12")
 xmin = date_series.min()
 xmax = date_series.max()
 xmin = dates[91000]
-xmax = dates[96000]
+xmax = dates[94000]
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
 fig.autofmt_xdate()
