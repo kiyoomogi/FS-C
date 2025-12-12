@@ -67,11 +67,11 @@ bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
 
 #Add material
-#mesh.add_material("INJEC", 1)
-mesh.add_material("CLAY ", 1)
-mesh.add_material("FAULT", 2)
-mesh.add_material("BNDTO", 3)
-mesh.add_material("BNDBO", 4)
+mesh.add_material("EDZ  ", 1)
+mesh.add_material("CLAY ", 2)
+mesh.add_material("FAULT", 3)
+mesh.add_material("BNDTO", 4)
+mesh.add_material("BNDBO", 5)
 
 if incon == 'ns':
     incon = np.full((len(incon1['X1']), 4), -1.0e9)
@@ -168,6 +168,11 @@ parameters["rocks"] = {
         #"tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
+
+    "EDZ  ": {
+        "porosity": 0.14, #-, (4) 
+        "permeability": [1e-13, 1e-13, 1e-13],
+    },
     "FAULT": {
         "porosity": 0.14,
         #"compressibility": 8e-9,             #Pa^-1
@@ -215,9 +220,9 @@ mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model
 
 
 def relative_volumes():
-    idx = mesh.near((0, 0, 0))  # nearest cell in whole mesh
+    idx = mesh.near((0, 0, -0.025))  # nearest cell in whole mesh
 
-    if materials[idx] == 'FAULT':
+    if materials[idx] == 'EDZ  ':
         
         return mesh.labels[idx]
 
