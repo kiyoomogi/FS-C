@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2025-12-12T00:49:08" ,
+        "DateTime" : "2025-12-12T01:10:08" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -569,9 +569,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 4.206902666883596e+00  , "y" : 2.385168546844136e-01  , "z" : 3.565682921096714e-01 } ,
-                            "ViewCenter" : { "x" : -1.987819783406025e-01  , "y" : 2.385168546844136e-01  , "z" : 3.565682921096714e-01 } ,
-                            "Up" : { "x" : 0.000000000000000e+00  , "y" : -0.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
+                            "EyePosition" : { "x" : -6.436165454304528e-01  , "y" : -9.193701257108325e+00  , "z" : -4.906268720622776e-01 } ,
+                            "ViewCenter" : { "x" : -1.228395271093615e+00  , "y" : -1.317306371167777e+00  , "z" : -4.906268720622776e-01 } ,
+                            "Up" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -865,6 +865,26 @@
                                                                 "Matches" : 1 ,
                                                                 "CheckBy" : false 
                                                             }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "ByAll" : false ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "BNDBO" 
+                                                                    }
+                                                                ],
+                                                                "And" : true ,
+                                                                "Only" : false ,
+                                                                "Matches" : 1 ,
+                                                                "CheckBy" : false 
+                                                            }
                                                         }
                                                     ]
                                                 }
@@ -979,10 +999,10 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 8.457347514676016e-19 ,
-                                        "Maximum" : 2.253943350786187e-16 ,
-                                        "Interval" : 2.500000000000000e-17 ,
-                                        "MinAuto" : true ,
+                                        "Minimum" : 1.148640000000000e-14 ,
+                                        "Maximum" : 7.160197790217766e-13 ,
+                                        "Interval" : 1.000000000000000e-13 ,
+                                        "MinAuto" : false ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
                                         "Reversed" : false ,
