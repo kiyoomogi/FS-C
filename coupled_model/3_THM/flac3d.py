@@ -1,6 +1,6 @@
 from toughflac.coupling import extra, run
 from toughflac.coupling.permeability import rutqvist2002
-from toughflac.coupling.permeability import constant
+from toughflac.coupling.permeability import nuus2025
 from toughflac.coupling.permeability import hsiung2005
 import itasca as it
 
@@ -136,21 +136,17 @@ fish_func_tough = ()  # Before mechanical analysis
 fish_func_flac = ()  # After mechanical analysis
 
 
-n_fault   = np.array([0.50432, -0.645501, 0.573576])  # unit normal to plane
-psi_fault = 5.0    # dilation angle [deg] – adjust as you like
-a_fault   = 2e-12    # inverse stiffness – adjust as you like
-sig0_val  = 4.965794e6  # Pa, initial normal effective stress
+#n_fault   = np.array([0.50432, -0.645501, 0.573576])  # unit normal to plane
+#psi_fault = 5.0    # dilation angle [deg] – adjust as you like
+a_fault   = 5e2    # inverse stiffness – adjust as you like
+#sig0_val  = 4.965794e6  # Pa, initial normal effective stress
 
 permeability_func = {
-    "FAULT": lambda g: hsiung2005(
+    "FAULT": lambda g: nuus2025(
         g,
         k0   = 5.0e-17,
         phi0 = 0.14,
-        n    = n_fault,
-        psi  = psi_fault,
         a    = a_fault,
-        # make sig0 an array of length = number of zones in this group
-        sig0 = np.full(g.sum(), sig0_val),
         joint=True,
     ),
 }
