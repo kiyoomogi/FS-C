@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2025-12-12T05:32:21" ,
+        "DateTime" : "2025-12-12T05:44:21" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -568,9 +568,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 8.338625572848237e+00  , "y" : -1.388839636058274e+02  , "z" : 3.983356285241710e+01 } ,
-                            "ViewCenter" : { "x" : 3.552713678800501e-15  , "y" : 0.000000000000000e+00  , "z" : -1.000000000000001e+01 } ,
-                            "Up" : { "x" : -1.380736686775350e-02  , "y" : 3.369646200315194e-01  , "z" : 9.414160618277092e-01 } ,
+                            "EyePosition" : { "x" : 4.999765046833816e+00  , "y" : -1.246046542310729e+02  , "z" : 3.606178105393163e+01 } ,
+                            "ViewCenter" : { "x" : 8.970108747575102e-02  , "y" : -4.771940098967489e+00  , "z" : -7.694405225313039e+00 } ,
+                            "Up" : { "x" : -5.970498720961718e-03  , "y" : 3.427714964159336e-01  , "z" : 9.393998373375443e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -897,7 +897,7 @@
                                             "PieceName" : "" ,
                                             "UsePiece" : false 
                                         },
-                                        "ColorName" : "Group" ,
+                                        "ColorName" : "Face Applied Conditions" ,
                                         "Property" : "" ,
                                         "StateBy" : 0 ,
                                         "UsesFaceOnly" : false ,
@@ -1074,14 +1074,14 @@
                                         "Global" : true ,
                                         "MapSto" : [ 
                                             {
-                                                "Key" : "Group" ,
+                                                "Key" : "Face Applied Conditions" ,
                                                 "Value" : {
                                                     "Array" : [ 
                                                         
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "Default=CLAY " ,
+                                                            "Label" : "1 Normal Stress -3800000" ,
                                                             "Bool" : true ,
                                                             "Used2" : true ,
                                                             "Default" : false 
@@ -1090,7 +1090,7 @@
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "Default=CLAY " ,
+                                                            "Label" : "1 Normal Stress -3800000" ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1099,52 +1099,7 @@
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "Default=CLAY " ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "Default=CLAY " ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "Default=CLAY " ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "Default=CLAY " ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "Default=CLAY " ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "Default=CLAY " ,
+                                                            "Label" : "1 Normal Stress -3800000" ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1153,7 +1108,7 @@
                                                         {
                                                             "Color" : "#2e8b56FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "Default=FAULT" ,
+                                                            "Label" : "2 Normal Stress -4700000" ,
                                                             "Bool" : true ,
                                                             "Used2" : true ,
                                                             "Default" : false 
@@ -1162,7 +1117,7 @@
                                                         {
                                                             "Color" : "#ff0000FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "Default=BNDTO" ,
+                                                            "Label" : "3 Normal Stress -5500000" ,
                                                             "Bool" : true ,
                                                             "Used2" : true ,
                                                             "Default" : false 
@@ -1171,16 +1126,25 @@
                                                         {
                                                             "Color" : "#ff00d5FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "Default=BNDBO" ,
+                                                            "Label" : "4 Normal Velocity 0" ,
                                                             "Bool" : true ,
                                                             "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
                                                         {
-                                                            "Color" : "#ff4000FF" ,
+                                                            "Color" : "#ff00d5FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "Default=INJEC" ,
+                                                            "Label" : "4 Normal Velocity 0" ,
+                                                            "Bool" : true ,
+                                                            "Used2" : false ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#2e8b56FF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "2 Normal Stress -4700000" ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1190,7 +1154,7 @@
                                                 }
                                             }
                                         ],
-                                        "Category" : "Group" ,
+                                        "Category" : "Face Applied Conditions" ,
                                         "CLabel" : {
                                             "Active" : true ,
                                             "Enabled" : true ,
@@ -1320,6 +1284,39 @@
                         "Key" : "Default=INJEC" ,
                         "Value" : {
                             "Color" : "#ff4000FF" ,
+                            "Alias" : "" 
+                        }
+                    }
+                ]
+            }, 
+            {
+                "Key" : "Face Applied Conditions" ,
+                "Value" : [ 
+                    {
+                        "Key" : "1 Normal Stress -3800000" ,
+                        "Value" : {
+                            "Color" : "#00ffffFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "2 Normal Stress -4700000" ,
+                        "Value" : {
+                            "Color" : "#2e8b56FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "4 Normal Velocity 0" ,
+                        "Value" : {
+                            "Color" : "#ff00d5FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "3 Normal Stress -5500000" ,
+                        "Value" : {
+                            "Color" : "#ff0000FF" ,
                             "Alias" : "" 
                         }
                     }
