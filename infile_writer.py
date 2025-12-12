@@ -67,11 +67,11 @@ bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
 
 #Add material
-#mesh.add_material("INJEC", 1)
-mesh.add_material("CLAY ", 1)
-mesh.add_material("FAULT", 2)
-mesh.add_material("BNDTO", 3)
-mesh.add_material("BNDBO", 4)
+mesh.add_material("EDZ  ", 1)
+mesh.add_material("CLAY ", 2)
+mesh.add_material("FAULT", 3)
+mesh.add_material("BNDTO", 4)
+mesh.add_material("BNDBO", 5)
 
 if incon == 'ns':
     incon = np.full((len(incon1['X1']), 4), -1.0e9)
@@ -167,6 +167,10 @@ parameters["rocks"] = {
     "CLAY ": {
         #"tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
+    },
+    "EDZ  ": {
+        "porosity": 0.14, #-, (4) 
+        "permeability": [1e-14, 1e-14, 1e-14],
     },
     "FAULT": {
         "porosity": 0.14,
