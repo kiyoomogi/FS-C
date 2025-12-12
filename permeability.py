@@ -1,4 +1,3 @@
-manuus@geomech01:/opt/itascasoftware/subscription/python310/lib/python3.10/site-packages/toughflac/coupling$ cat permeability.py
 from __future__ import division
 
 from functools import wraps
@@ -218,38 +217,10 @@ def minkoff2004(group, k0, phi0, ke):
 
     return k, phi
 
-
 @permeability
 def hsiung2005(group, k0, phi0, n, psi, a, sig0, joint=False):
     """
     After Hsiung et al. (2005).
-
-    Parameters
-    ----------
-    group : array_like
-        Mask array for queried group.
-    k0 : scalar
-        Stress-free permeability.
-    phi0 : scalar
-        Stress-free porosity.
-    n : array_like
-        Unit normal vector (3 components).
-    psi : scalar
-        Dilation angle.
-    a : scalar
-        Inverse of stiffness.
-    sig0 : array_like
-        Initial normal effective stress. Compressions are positive.
-    joint : bool, optional, default False
-        If `True`, shear and tensile strains are read from joint values.
-
-    Returns
-    -------
-    array_like
-        New permeability array for queried group.
-    array_like
-        New porosity array for queried group.
-
     """
 
     # Pore pressure
@@ -260,52 +231,82 @@ def hsiung2005(group, k0, phi0, n, psi, a, sig0, joint=False):
     strain_shear = za.prop_scalar("strain-shear-plastic{}".format(suffix))[group]
     strain_tensile = za.prop_scalar("strain-tensile-plastic{}".format(suffix))[group]
 
-    # Effective stress
+    # Effective stress tensor for grouped zones
     stress = numpy.array(
         [-z.stress_effective() for z, g in zip(it.zone.list(), group) if g]
     )
 
-    # Effective normal stresses
-    sig = normal_stress(stress, n)
+    # Effective normal stresses on plane n
+    sig = normal_stress(stress, n)   # shape (nzone,)
 
-    # Porosity change
-    br = (12.0 * k0[:,0] / phi0) ** 0.5
-    c = 0.5 * (-1.0 + (1.0 + 4.0 * sig0 * a / br) ** 0.5) / sig0
+    # ----- Porosity change -----
+    br = (12.0 * k0[:, 0] / phi0) ** 0.5
     dphi = strain_tensile + strain_shear * numpy.tan(numpy.deg2rad(psi))
 
-    # Permeability factor
-    kf = a / c / (1.0 + c * sig) / br + dphi / phi0
+    # ----- Two possible c-values (± in the square root) -----
+    # sqrt term
+    disc = numpy.sqrt(1.0 + 4.0 * sig0 * a / br)
 
-    # New porosity and permeability arrays
+    # c_plus = (-1 + sqrt(...)) / (2 sig0)
+    c_plus  = 0.5 * (-1.0 + disc) / sig0
+    # c_minus = (-1 - sqrt(...)) / (2 sig0)
+    c_minus = 0.5 * (-1.0 - disc) / sig0
+
+    # ----- Permeability factor kf for both branches -----
+    # kf = a / (c * (1 + c*sig) * br) + dphi / phi0
+    kf_plus  = a / (c_plus  * (1.0 + c_plus  * sig) * br) + dphi / phi0
+    kf_minus = a / (c_minus * (1.0 + c_minus * sig) * br) + dphi / phi0
+
+    # ----- New porosity -----
     phi = phi0 + dphi
-    #k = numpy.einsum("ij, i-> ij", k0, kf * kf * kf)
 
-    k = k0 * kf**3
-    print(numpy.shape(k), "shape k0: ", numpy.shape(k0), " shape kf: ", numpy.shape(kf))
-    # Use the first column (k is isotropic if k0 is isotropic)
+    # ----- Compute k for each branch and choose the larger -----
+    # Raw updated permeability (scalar per zone) for each branch
+    k_temp_plus  = k0[:, 0] * (kf_plus  ** 3)
+    k_temp_minus = k0[:, 0] * (kf_minus ** 3)
+
+    # Per-zone max of the two branches
+    k_temp = numpy.maximum(k_temp_plus, k_temp_minus)
+
+    k_temp = numpy.abs(k_temp)
+
+    # Upper cap only (no lower bound at k0 anymore)
+    k_max_cap = 5e-13
+    k_temp = numpy.minimum(k_temp, k_max_cap)
+
+    # Make it isotropic (3 components equal)
+    k_temp = k_temp.reshape(-1, 1)
+    k = numpy.concatenate((k_temp, k_temp, k_temp), axis=1)
+
+    # For debug / max search
     k_col = k[:, 0]
-
-    idx_max = numpy.argmax(k_col)
-    k_max   = k_col[idx_max]
+    idx_sorted  = numpy.argsort(k_col)[::-1]
+    idx_max     = idx_sorted[0]
+    idx_second  = idx_sorted[1]
+    idx_min     = idx_sorted[-1]
+    k_max       = k_col[idx_max]
+    k_second    = k_col[idx_second]
 
     print("=== Hsiung2005 debug (FAULT group) ===")
-    print("Max k       :", k_max)
-    print("Index       :", idx_max)
-    print("k0 at idx   :", k0[idx_max, :])
+    print("Max k 2      :", k[idx_second, :])
+    print("Min k        :", k[idx_min, :])
+    print("Index       :", idx_second)
+    print("k0 at idx   :", k0[idx_second, :])
     print("phi0        :", phi0)
-    print("phi at idx  :", phi[idx_max])
-    print("sig  at idx :", sig[idx_max])
-    print("sig0 at idx :", sig0[idx_max])
-    print("strain_tens :", strain_tensile[idx_max])
-    print("strain_shear:", strain_shear[idx_max])
+    print("phi at idx  :", phi[idx_second])
+    print("sig  at idx :", sig[idx_second])
+    print("sig0 at idx :", sig0[idx_second])
+    print("strain_tens :", strain_tensile[idx_second])
+    print("strain_shear:", strain_shear[idx_second])
     print("psi (deg)   :", psi)
     print("a           :", a)
-    print("br at idx   :", br[idx_max])
-    print("c  at idx   :", c[idx_max])
-    print("kf at idx   :", kf[idx_max])
-    print("pp max      :", numpy.amax(pp)*1e-6), " MPa"
+    print("br at idx   :", br[idx_second])
+    print("c+ at idx   :", c_plus[idx_second])
+    print("c- at idx   :", c_minus[idx_second])
+    print("kf+ at idx  :", kf_plus[idx_second])
+    print("kf- at idx  :", kf_minus[idx_second])
+    print("pp max      :", numpy.amax(pp)*1e-6, " MPa")
     print("======================================")
-
 
     return k, phi
 
