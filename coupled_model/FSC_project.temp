@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2025-12-12T22:18:26" ,
+        "DateTime" : "2025-12-12T23:09:26" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -566,8 +566,8 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 5.799390338502234e-01  , "y" : -5.113875614239980e+00  , "z" : 2.095579823550191e-01 } ,
-                            "ViewCenter" : { "x" : 1.123183164545918e-01  , "y" : 2.129155730518744e-01  , "z" : -8.047852560484804e-02 } ,
+                            "EyePosition" : { "x" : 1.807746815012821e+00  , "y" : -2.565619790860741e+01  , "z" : 3.520248746428216e+00 } ,
+                            "ViewCenter" : { "x" : -6.488275310431950e-01  , "y" : 2.327289757161043e+00  , "z" : 1.996586046362101e+00 } ,
                             "Up" : { "x" : -6.333330102870437e-02  , "y" : 4.871473697614561e-02  , "z" : 9.968027725594228e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
@@ -956,7 +956,7 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 2.751637348109755e-19 ,
+                                        "Minimum" : 3.923814607141020e-20 ,
                                         "Maximum" : 5.000000000000000e-13 ,
                                         "Interval" : 5.000000000000000e-14 ,
                                         "MinAuto" : true ,
@@ -987,7 +987,7 @@
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
-                                                "Component" : 2 ,
+                                                "Component" : 0 ,
                                                 "Quantity" : 0 ,
                                                 "Type" : 1 ,
                                                 "Extra" : 11 ,
@@ -996,7 +996,7 @@
                                                 "Active" : true ,
                                                 "Keyword" : "extra" ,
                                                 "GpData" : {
-                                                    "Component" : 2 ,
+                                                    "Component" : 0 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
@@ -1008,7 +1008,7 @@
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
                                                 "ZoneData" : {
-                                                    "Component" : 2 ,
+                                                    "Component" : 0 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
@@ -1035,7 +1035,7 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 2 ,
+                                                    "Component" : 0 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
@@ -1053,7 +1053,7 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 2 ,
+                                                    "Component" : 0 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
