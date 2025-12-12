@@ -46,7 +46,7 @@ zone property dip-direction 142
 
 ;joint 
 zone property joint-cohesion 0.5e6
-zone property joint-dilation 10
+zone property joint-dilation 5
 zone property joint-friction 22
 zone property joint-tension 0.5e6
 
