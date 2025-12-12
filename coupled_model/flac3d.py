@@ -137,18 +137,29 @@ fish_func_flac = ()  # After mechanical analysis
 
 
 n_fault   = np.array([0.50432, -0.645501, 0.573576])  # unit normal to plane
-psi_fault = 1.0    # dilation angle [deg] – adjust as you like
-a_fault   = 1e-12    # inverse stiffness – adjust as you like
+psi_fault = 5.0    # dilation angle [deg] – adjust as you like
+a_fault   = 3e-12    # inverse stiffness – adjust as you like
 sig0_val  = 4.965794e6  # Pa, initial normal effective stress
 
 permeability_func = {
     "FAULT": lambda g: hsiung2005(
         g,
         k0   = 1.0e-16,
-        phi0 = 0.12,
+        phi0 = 0.14,
         n    = n_fault,
         psi  = psi_fault,
         a    = a_fault,
+        # make sig0 an array of length = number of zones in this group
+        sig0 = np.full(g.sum(), sig0_val),
+        joint=True,
+    ),
+    "CLAY ": lambda g: hsiung2005(
+        g,
+        k0   = 5.0e-18,
+        phi0 = 0.12,
+        n    = n_fault,
+        psi  = psi_fault,
+        a    = 1e-14,
         # make sig0 an array of length = number of zones in this group
         sig0 = np.full(g.sum(), sig0_val),
         joint=True,
