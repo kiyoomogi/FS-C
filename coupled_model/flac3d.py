@@ -11,6 +11,8 @@ import itasca as it
 import numpy as np
 import csv 
 
+a_fault = 5e3
+
 # FLAC3D solver parameters
 model_save = "tf_in.f3sav"
 deterministic = False
@@ -138,7 +140,6 @@ fish_func_flac = ()  # After mechanical analysis
 
 #n_fault   = np.array([0.50432, -0.645501, 0.573576])  # unit normal to plane
 #psi_fault = 5.0    # dilation angle [deg] – adjust as you like
-a_fault   = 5e4    # inverse stiffness – adjust as you like
 #sig0_val  = 4.965794e6  # Pa, initial normal effective stress
 
 permeability_func = {
