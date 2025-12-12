@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2025-12-12T01:37:08" ,
+        "DateTime" : "2025-12-12T03:01:08" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -569,8 +569,8 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : -9.494476731351442e-01  , "y" : -1.209471555450593e+01  , "z" : -3.137555958094687e-01 } ,
-                            "ViewCenter" : { "x" : -1.733107094126591e+00  , "y" : -1.539593104015964e+00  , "z" : -3.137555958094687e-01 } ,
+                            "EyePosition" : { "x" : 6.227042758684057e-01  , "y" : -2.264156639121959e+01  , "z" : 3.656322259045692e-01 } ,
+                            "ViewCenter" : { "x" : 6.227042758684057e-01  , "y" : 1.224094566469526e+00  , "z" : 3.656322259045692e-01 } ,
                             "Up" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
@@ -941,7 +941,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 1 ,
+                                    "ColorScheme" : 0 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -999,10 +999,10 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.148640000000000e-18 ,
-                                        "Maximum" : 7.160197790217766e-13 ,
-                                        "Interval" : 1.000000000000000e-14 ,
-                                        "MinAuto" : false ,
+                                        "Minimum" : 1.797693134862316e+308 ,
+                                        "Maximum" : 1.797693134862316e+308 ,
+                                        "Interval" : 1.000000000000000e+04 ,
+                                        "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : false ,
                                         "Reversed" : false ,
@@ -1026,26 +1026,26 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : true ,
+                                        "Active" : false ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
                                                 "Component" : 2 ,
                                                 "Quantity" : 7 ,
-                                                "Type" : 1 ,
-                                                "Extra" : 11 ,
+                                                "Type" : 0 ,
+                                                "Extra" : 15 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : true ,
+                                                "Active" : false ,
                                                 "Keyword" : "extra" ,
                                                 "GpData" : {
                                                     "Component" : 2 ,
                                                     "Quantity" : 7 ,
-                                                    "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 15 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1053,17 +1053,17 @@
                                                 "ZoneData" : {
                                                     "Component" : 2 ,
                                                     "Quantity" : 7 ,
-                                                    "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 15 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "extra" ,
                                                     "Property" : "angle" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
@@ -1080,11 +1080,11 @@
                                                 {
                                                     "Component" : 2 ,
                                                     "Quantity" : 7 ,
-                                                    "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 15 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1098,11 +1098,11 @@
                                                 {
                                                     "Component" : 2 ,
                                                     "Quantity" : 7 ,
-                                                    "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 15 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "extra" ,
                                                     "Property" : "angle" ,
                                                     "PropType" : 0 
@@ -1145,7 +1145,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "None" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1226,7 +1226,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                     ],
