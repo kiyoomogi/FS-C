@@ -156,7 +156,7 @@ sig0_val  = 4.965794e6  # Pa, initial normal effective stress
 #}
 
 permeability_func = {
-    "FAULT": lambda g: constant(
+    "FAULT": lambda g: rutqvist2002(
         g,
         k0   = 1.0e-16,
         phi0 = 0.12,

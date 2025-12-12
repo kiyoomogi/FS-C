@@ -2,10 +2,12 @@
 
 ; FLAC3D model configuration
 model new
-model configure thermal
-model configure fluid
+
 ; Load mesh
 zone import "/home/manuus/Desktop/FS-C/model/coupled_model/mesh.f3grid"
+
+model configure thermal
+model configure fluid 
 
 zone face skin
 
@@ -17,9 +19,9 @@ zone cmodel assign softening-ubiquitous
 ;zone fluid biot on
 
 zone fluid property biot 1
-zone fluid property permeability-xx 5e-18
-zone fluid property permeability-yy 5e-18
-zone fluid property permeability-zz 1e-18
+zone fluid property permeability-xx 5e-10
+zone fluid property permeability-yy 5e-10
+zone fluid property permeability-zz 1e-10
 zone fluid property porosity 0.12
 
 ; Thermal parameters
@@ -36,6 +38,7 @@ zone property poisson 0.25      ;NAGRA, Xu
 zone property dilation 0        ;NAGRA, Xu
 zone property friction 29       ;ENSI matrix
 zone property tension 1e9       ;prevent tensile failure of matrix
+zone initialize density 2500
 
 
 zone property dip 55
@@ -50,35 +53,28 @@ zone property joint-tension 0.5e6
 table 'fric-j' add (0.0e+00 22) (0.005 12) 
 table 'coh-j' add (0.0e+00 0.5e6) (0.005 0e6) 
 
-zone property table-joint-friction 'fric-j' range group 'INJEC'
-zone property table-joint-cohesion 'coh-j' range group 'INJEC'
+zone property table-joint-friction 'fric-j' 
+zone property table-joint-cohesion 'coh-j' 
 
-zone initialize density 2500
-
-;zone property young 1e6 range group 'INJEC'
 
 
 model gravity 0 0 -9.81
 ; In situ pressure and temperature  
-zone gridpoint initialize pore-pressure 0.08e6 gradient(0,0,-10000)
+zone gridpoint initialize pore-pressure 0.15e6 gradient(0,0,-10000)
 
 
-zone initialize stress-xx -3.8e6  
-zone initialize stress-yy -4.7e6  
-zone initialize stress-zz -5.5e6  
+zone initialize stress-principal direction-maximum (-0.615661, -0.788011, 0) maximum -3.8e6 direction-minimum (0,0,-1) minimum -5.5e6 direction-intermediate (-0.788, 0.61566,0) intermediate -4.8e6
 
 zone face apply stress-normal=-3.8e6 range group 'North' or 'South'
 zone face apply stress-normal=-4.7e6 range group 'East' or 'West'
 zone face apply stress-normal=-5.5e6 range group 'Top' 
 zone face apply velocity-normal=0 range group 'Bottom'
-;zone face apply stress-yz=-0.3846e6 range group 'Top' or 'Bottom'
-;zone face apply stress-yz=-0.3846e6 range group 'South' or 'North'
 
 ; Disable large strain (only FLAC3D v7)
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 1e-8
+model solve mech ratio 1e-9
 
 ; Save model
 model save '../tf_in.f3sav'
