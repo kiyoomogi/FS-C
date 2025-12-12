@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2025-12-12T05:44:21" ,
+        "DateTime" : "2025-12-12T06:20:21" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "tf_in.f3sav" ,
+                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -31,7 +31,8 @@
                 "SaveFiles" : {
                     "Files" : [ 
                         "Postprocessing/tf_fi.f3sav" ,
-                        "tf_in.f3sav" 
+                        "tf_in.f3sav" ,
+                        "3_THM/f3out/tf_fi.f3sav" 
                     ]
                 },
                 "ResultFiles" : {
@@ -568,9 +569,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 4.999765046833816e+00  , "y" : -1.246046542310729e+02  , "z" : 3.606178105393163e+01 } ,
-                            "ViewCenter" : { "x" : 8.970108747575102e-02  , "y" : -4.771940098967489e+00  , "z" : -7.694405225313039e+00 } ,
-                            "Up" : { "x" : -5.970498720961718e-03  , "y" : 3.427714964159336e-01  , "z" : 9.393998373375443e-01 } ,
+                            "EyePosition" : { "x" : 1.417216145024064e+00  , "y" : -9.762635554080729e+00  , "z" : 1.964683682301988e+00 } ,
+                            "ViewCenter" : { "x" : -1.971179928688772e-01  , "y" : 5.998596855705675e-01  , "z" : 4.051644772443554e-01 } ,
+                            "Up" : { "x" : -1.366412135996172e-02  , "y" : 1.467248368708751e-01  , "z" : 9.890829662028739e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -824,7 +825,28 @@
                                                     "Selected" : false ,
                                                     "Deselected" : false ,
                                                     "UseHidden" : false ,
-                                                    "Elements" : [  ]
+                                                    "Elements" : [ 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "ByAll" : false ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "CLAY " 
+                                                                    }
+                                                                ],
+                                                                "And" : true ,
+                                                                "Only" : false ,
+                                                                "Matches" : 1 ,
+                                                                "CheckBy" : false 
+                                                            }
+                                                        }
+                                                    ]
                                                 }
                                             ]
                                         }
@@ -879,7 +901,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 0 ,
+                                    "ColorScheme" : 1 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -897,7 +919,7 @@
                                             "PieceName" : "" ,
                                             "UsePiece" : false 
                                         },
-                                        "ColorName" : "Face Applied Conditions" ,
+                                        "ColorName" : "Group" ,
                                         "Property" : "" ,
                                         "StateBy" : 0 ,
                                         "UsesFaceOnly" : false ,
@@ -937,10 +959,10 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.797693134862316e+308 ,
-                                        "Maximum" : -1.797693134862316e+308 ,
-                                        "Interval" : 0.000000000000000e+00 ,
-                                        "MinAuto" : true ,
+                                        "Minimum" : 1.000000000000000e-18 ,
+                                        "Maximum" : 5.000000000000000e-13 ,
+                                        "Interval" : 5.000000000000000e-14 ,
+                                        "MinAuto" : false ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
                                         "Reversed" : false ,
@@ -964,51 +986,51 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : false ,
+                                        "Active" : true ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
-                                                "Component" : 3 ,
-                                                "Quantity" : 0 ,
-                                                "Type" : 0 ,
-                                                "Extra" : 1 ,
+                                                "Component" : 2 ,
+                                                "Quantity" : 6 ,
+                                                "Type" : 1 ,
+                                                "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : false ,
-                                                "Keyword" : "displacement" ,
+                                                "Active" : true ,
+                                                "Keyword" : "extra" ,
                                                 "GpData" : {
-                                                    "Component" : 3 ,
-                                                    "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 1 ,
+                                                    "Component" : 2 ,
+                                                    "Quantity" : 6 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "displacement" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
                                                 "ZoneData" : {
-                                                    "Component" : 3 ,
-                                                    "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 1 ,
+                                                    "Component" : 2 ,
+                                                    "Quantity" : 6 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
                                                     "Tolerance" : 1.000000000000000e-07 ,
                                                     "HideNull" : true 
                                                 },
-                                                "Source" : 1 
+                                                "Source" : 0 
                                             }
                                         ],
                                         "Gp" : {
@@ -1016,14 +1038,14 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 3 ,
-                                                    "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 1 ,
+                                                    "Component" : 2 ,
+                                                    "Quantity" : 6 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "displacement" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 }
@@ -1034,14 +1056,14 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 3 ,
-                                                    "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 1 ,
+                                                    "Component" : 2 ,
+                                                    "Quantity" : 6 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "" ,
                                                     "PropType" : 0 
                                                 }
@@ -1066,7 +1088,7 @@
                                             "Tolerance" : 1.000000000000000e-07 
                                         },
                                         "CompressionPositive" : false ,
-                                        "Source" : 1 
+                                        "Source" : 0 
                                     },
                                     "ColorMap" : {
                                         "Active" : true ,
@@ -1074,23 +1096,14 @@
                                         "Global" : true ,
                                         "MapSto" : [ 
                                             {
-                                                "Key" : "Face Applied Conditions" ,
+                                                "Key" : "Group" ,
                                                 "Value" : {
                                                     "Array" : [ 
                                                         
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "1 Normal Stress -3800000" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : true ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#00ffffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "1 Normal Stress -3800000" ,
+                                                            "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1099,7 +1112,61 @@
                                                         {
                                                             "Color" : "#00ffffFF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "1 Normal Stress -3800000" ,
+                                                            "Label" : "Default=CLAY " ,
+                                                            "Bool" : true ,
+                                                            "Used2" : false ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#00ffffFF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "Default=CLAY " ,
+                                                            "Bool" : true ,
+                                                            "Used2" : false ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#00ffffFF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "Default=CLAY " ,
+                                                            "Bool" : true ,
+                                                            "Used2" : false ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#00ffffFF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "Default=CLAY " ,
+                                                            "Bool" : true ,
+                                                            "Used2" : false ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#00ffffFF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "Default=CLAY " ,
+                                                            "Bool" : true ,
+                                                            "Used2" : false ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#00ffffFF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "Default=CLAY " ,
+                                                            "Bool" : true ,
+                                                            "Used2" : false ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#00ffffFF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1108,43 +1175,43 @@
                                                         {
                                                             "Color" : "#2e8b56FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "2 Normal Stress -4700000" ,
+                                                            "Label" : "Default=FAULT" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
                                                         {
                                                             "Color" : "#ff0000FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "3 Normal Stress -5500000" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : true ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#ff00d5FF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "4 Normal Velocity 0" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : true ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#ff00d5FF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "4 Normal Velocity 0" ,
+                                                            "Label" : "Default=BNDTO" ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
                                                         {
-                                                            "Color" : "#2e8b56FF" ,
+                                                            "Color" : "#ff00d5FF" ,
                                                             "Alias" : "" ,
-                                                            "Label" : "2 Normal Stress -4700000" ,
+                                                            "Label" : "Default=BNDBO" ,
+                                                            "Bool" : true ,
+                                                            "Used2" : false ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#ff4000FF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "Default=INJEC" ,
+                                                            "Bool" : true ,
+                                                            "Used2" : false ,
+                                                            "Default" : false 
+                                                        }
+                                                        , 
+                                                        {
+                                                            "Color" : "#0080ffFF" ,
+                                                            "Alias" : "" ,
+                                                            "Label" : "Default=EDZ  " ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1154,7 +1221,7 @@
                                                 }
                                             }
                                         ],
-                                        "Category" : "Face Applied Conditions" ,
+                                        "Category" : "Group" ,
                                         "CLabel" : {
                                             "Active" : true ,
                                             "Enabled" : true ,
@@ -1286,6 +1353,13 @@
                             "Color" : "#ff4000FF" ,
                             "Alias" : "" 
                         }
+                    }, 
+                    {
+                        "Key" : "Default=EDZ  " ,
+                        "Value" : {
+                            "Color" : "#0080ffFF" ,
+                            "Alias" : "" 
+                        }
                     }
                 ]
             }, 
@@ -1296,6 +1370,13 @@
                         "Key" : "1 Normal Stress -3800000" ,
                         "Value" : {
                             "Color" : "#00ffffFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "None" ,
+                        "Value" : {
+                            "Color" : "#ff4000FF" ,
                             "Alias" : "" 
                         }
                     }, 
@@ -1315,6 +1396,32 @@
                     }, 
                     {
                         "Key" : "3 Normal Stress -5500000" ,
+                        "Value" : {
+                            "Color" : "#ff0000FF" ,
+                            "Alias" : "" 
+                        }
+                    }
+                ]
+            }, 
+            {
+                "Key" : "State By Average" ,
+                "Value" : [ 
+                    {
+                        "Key" : "None" ,
+                        "Value" : {
+                            "Color" : "#00ffffFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "j-shear-p j-tension-p" ,
+                        "Value" : {
+                            "Color" : "#2e8b56FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "j-shear-p" ,
                         "Value" : {
                             "Color" : "#ff0000FF" ,
                             "Alias" : "" 
@@ -1344,7 +1451,7 @@
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Editor_initialize_model" 
+            "Focus" : "Plot_Plot01" 
         },
         "Recent" : {
             "MRUMagic" : [ 
