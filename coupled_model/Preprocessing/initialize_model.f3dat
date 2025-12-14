@@ -32,7 +32,7 @@ zone thermal property specific-heat 1
 zone gridpoint initialize temperature 15
 
 ;SUBI
-zone property cohesion 5.1e6    ;3.1 ENSI matrix
+zone property cohesion 2e6    ;3.1 ENSI matrix
 zone property young 7e9         ;NAGRA, Xu
 zone property poisson 0.25      ;NAGRA, Xu
 zone property dilation 0        ;NAGRA, Xu
@@ -46,11 +46,11 @@ zone property dip-direction 142
 
 ;joint 
 zone property joint-cohesion 0.5e6
-zone property joint-dilation 5
+zone property joint-dilation 11
 zone property joint-friction 22
 zone property joint-tension 0.5e6
 
-table 'fric-j' add (0.0e+00 22) (0.005 12) 
+table 'fric-j' add (0.0e+00 22) (0.005 14) 
 table 'coh-j' add (0.0e+00 0.5e6) (0.005 0e6) 
 
 zone property table-joint-friction 'fric-j' 

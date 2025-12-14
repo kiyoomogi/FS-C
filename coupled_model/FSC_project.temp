@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2025-12-13T08:03:26" ,
+        "DateTime" : "2025-12-14T07:06:26" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
+                "SaveFile" : "tf_in.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -31,7 +31,8 @@
                 "SaveFiles" : {
                     "Files" : [ 
                         "Postprocessing/tf_fi.f3sav" ,
-                        "3_THM/f3out/tf_fi.f3sav" 
+                        "3_THM/f3out/tf_fi.f3sav" ,
+                        "tf_in.f3sav" 
                     ]
                 },
                 "ResultFiles" : {
@@ -66,7 +67,9 @@
                     "Files" : [ 
                         "Preprocessing/initialize_model_comba.f3dat" ,
                         "Preprocessing/load_mesh.py" ,
-                        "../../../../../../tmp/tmpa3ld0rq5/mesh.f3grid" 
+                        "../../../../../../tmp/tmpa3ld0rq5/mesh.f3grid" ,
+                        "Preprocessing/initialize_model.f3dat" ,
+                        "mesh.f3grid" 
                     ]
                 },
                 "OpenFiles" : [  ]
@@ -554,8 +557,8 @@
                                 "Text" : "" 
                             },
                             "SyncName" : "Default" ,
-                            "Normal" : { "x" : 5.043203561029898e-01  , "y" : -6.455006197386552e-01  , "z" : 5.735764363510462e-01 } ,
-                            "NormalIncrement" : 3.060816258404313e+00 ,
+                            "Normal" : { "x" : 6.156614753256584e-01  , "y" : -7.880107536067219e-01  , "z" : 6.123233995736766e-17 } ,
+                            "NormalIncrement" : 3.060816258404314e+00 ,
                             "AutoNormalIncrement" : true ,
                             "TargetNormalIncrement" : 5.000000000000000e-02 
                         }
@@ -566,9 +569,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 1.807746815012821e+00  , "y" : -2.565619790860741e+01  , "z" : 3.520248746428216e+00 } ,
-                            "ViewCenter" : { "x" : -6.488275310431950e-01  , "y" : 2.327289757161043e+00  , "z" : 1.996586046362101e+00 } ,
-                            "Up" : { "x" : -6.333330102870437e-02  , "y" : 4.871473697614561e-02  , "z" : 9.968027725594228e-01 } ,
+                            "EyePosition" : { "x" : 6.643195866584696e+00  , "y" : -1.712595455518131e+01  , "z" : -1.370586465824148e+00 } ,
+                            "ViewCenter" : { "x" : -7.219385098357931e-01  , "y" : -5.568427565158124e-01  , "z" : -1.645588265655580e+00 } ,
+                            "Up" : { "x" : 9.407549546231911e-02  , "y" : 5.831277022662625e-02  , "z" : 9.938558356130007e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -735,7 +738,7 @@
                                         "Text" : "" 
                                     },
                                     "CutPlaneInfo" : {
-                                        "Active" : false ,
+                                        "Active" : true ,
                                         "On" : true ,
                                         "Front" : false ,
                                         "Back" : false ,
@@ -785,8 +788,8 @@
                                                     "Text" : "" 
                                                 },
                                                 "SyncName" : "Default" ,
-                                                "Normal" : { "x" : 5.043203561029898e-01  , "y" : -6.455006197386552e-01  , "z" : 5.735764363510462e-01 } ,
-                                                "NormalIncrement" : 3.060816258404313e+00 ,
+                                                "Normal" : { "x" : 6.156614753256584e-01  , "y" : -7.880107536067219e-01  , "z" : 6.123233995736766e-17 } ,
+                                                "NormalIncrement" : 3.060816258404314e+00 ,
                                                 "AutoNormalIncrement" : true ,
                                                 "TargetNormalIncrement" : 5.000000000000000e-02 
                                             }
@@ -808,7 +811,7 @@
                                     "TransLocked" : true ,
                                     "Range" : [ 
                                         {
-                                            "Active" : true ,
+                                            "Active" : false ,
                                             "RenderModeSpecific" : true ,
                                             "ExtentModel" : true ,
                                             "Type" : 1283546101 ,
@@ -898,7 +901,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 1 ,
+                                    "ColorScheme" : 0 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -956,9 +959,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 3.923814607141020e-20 ,
-                                        "Maximum" : 5.000000000000000e-13 ,
-                                        "Interval" : 5.000000000000000e-14 ,
+                                        "Minimum" : 1.797693134862316e+308 ,
+                                        "Maximum" : -1.797693134862316e+308 ,
+                                        "Interval" : 0.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -983,44 +986,44 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : true ,
+                                        "Active" : false ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
-                                                "Component" : 0 ,
+                                                "Component" : 2 ,
                                                 "Quantity" : 0 ,
                                                 "Type" : 1 ,
                                                 "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : true ,
-                                                "Keyword" : "extra" ,
+                                                "Active" : false ,
+                                                "Keyword" : "pore-pressure" ,
                                                 "GpData" : {
-                                                    "Component" : 0 ,
+                                                    "Component" : 2 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
                                                 "ZoneData" : {
-                                                    "Component" : 0 ,
+                                                    "Component" : 2 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "pore-pressure" ,
                                                     "Property" : "strain-shear-plastic-joint" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
@@ -1035,13 +1038,13 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 0 ,
+                                                    "Component" : 2 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1053,14 +1056,14 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 0 ,
+                                                    "Component" : 2 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "pore-pressure" ,
                                                     "Property" : "strain-shear-plastic-joint" ,
                                                     "PropType" : 0 
                                                 }
@@ -1102,7 +1105,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "Default=CLAY " ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1174,7 +1177,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "Default=FAULT" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1183,7 +1186,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "Default=BNDTO" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1192,7 +1195,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "Default=BNDBO" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1210,7 +1213,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "Default=EDZ  " ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                     ],
@@ -1278,7 +1281,8 @@
                 "template" : "%1_%2" ,
                 "expanded" : [ 
                     "Project" ,
-                    "Data Files" 
+                    "Data Files" ,
+                    "Saved States" 
                 ],
                 "filtered" : [ 
                     "Project" ,
@@ -1421,18 +1425,19 @@
                 {
                     "Name" : "Viewer-ROOT #2" ,
                     "Geom" : [ 1309 ,1308  ],
-                    "Child1" : "Editor_load_mesh" ,
+                    "Child1" : "Editor_initialize_model" ,
                     "Child2" : "Plot_Plot01" ,
                     "Hor" : true ,
                     "Added" : 1 ,
-                    "Ext1" : "py" ,
+                    "Ext1" : "f3dat" ,
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Plot_Plot01" 
+            "Focus" : "Editor_initialize_model" 
         },
         "Recent" : {
             "MRUMagic" : [ 
+                "Edit /home/manuus/Desktop/FS-C/model/coupled_model/Preprocessing/load_mesh.py" ,
                 "Edit /home/manuus/Desktop/FS-C/model/coupled_model/Preprocessing/initialize_model_comba.f3dat" 
             ]
         },
