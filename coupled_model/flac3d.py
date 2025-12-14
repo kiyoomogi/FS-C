@@ -11,13 +11,13 @@ import itasca as it
 import numpy as np
 import csv 
 
-a_fault = 5e3
+a_fault = 1e2
 
 # FLAC3D solver parameters
 model_save = "tf_in.f3sav"
 deterministic = False
 damping = "combined"
-mechanical_ratio = 1.0e-7
+mechanical_ratio = 1.0e-8
 n_threads = 20
 thermal = True
 
@@ -148,6 +148,15 @@ permeability_func = {
         k0   = 5.0e-17,
         phi0 = 0.14,
         a    = a_fault,
+	k_jump_factor = 500,
+        joint=True,
+    ),
+    "CLAY ": lambda g: nuus2025(
+        g,
+        k0   = 2.0e-18,
+        phi0 = 0.12,
+        a    = 10,
+        k_jump_factor = 50,
         joint=True,
     ),
 }
