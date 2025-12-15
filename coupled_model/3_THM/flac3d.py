@@ -148,17 +148,17 @@ permeability_func = {
         k0   = 5.0e-17,
         phi0 = 0.14,
         a    = a_fault,
-	k_jump_factor = 500,
+	k_jump_factor = 600,
         joint=True,
     ),
-    "CLAY ": lambda g: nuus2025(
-        g,
-        k0   = 3.0e-18,
-        phi0 = 0.12,
-        a    = 50,
-        k_jump_factor = 50,
-        joint=True,
-    ),
+    #"CLAY ": lambda g: nuus2025(
+    #    g,
+    #    k0   = 3.0e-18,
+    #    phi0 = 0.12,
+    #    a    = 50,
+    #    k_jump_factor = 50,
+    #    joint=True,
+    #),
 }
 
 #permeability_func = {
