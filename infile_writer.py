@@ -305,4 +305,4 @@ parameters["element_history"] = ref_points
 
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/INFILE", parameters)  
  
-toughio.write_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/mesh.f3grid", mesh, file_format="flac3d", binary=True)
+toughio.write_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/mesh.f3grid", mesh, file_format="flac3d")
