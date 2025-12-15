@@ -6,8 +6,8 @@ Created on Fri Jul 12 16:59:18 2024
 # Define the values
 NRES = 2
 MDN = 1
-RESTIM = [94878, 94910, 94878 + 3600 * 4]
-DTM = [1, 1, 60]
+RESTIM = [94878, 95200, 94878 + 3600 * 4]
+DTM = [1, 30, 60]
  
 # Format the header
 header = "RESDT----1----*----2----*----3----*----4----*----5----*----6----*----7----*----8\n"

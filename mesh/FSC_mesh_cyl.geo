@@ -61,7 +61,7 @@ nz =  cosDip;
 
 // Extrude orthogonal to the plane by FaultThick
 out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
-  Surface{101}; Layers{4}; Recombine;
+  Surface{101}; Layers{12}; Recombine;
 };
 
 
@@ -71,7 +71,7 @@ Point(791) = {10.1119, 5.72288, -3.66476};
 
 
 // --- clip both tools to the box (keep only inside-the-box parts)
-fault_in[] = BooleanIntersection{ Volume{1}; }{ Volume{ out[1] }; Delete; };
+//fault_in[] = BooleanIntersection{ Volume{1}; }{ Volume{ out[1] }; Delete; };
 //cyl_in[]   = BooleanIntersection{ Volume{1}; }{ Volume{301};     Delete; };
 
 // --- fragment box, fault, and cylinder together (no overlaps; conformal interfaces)
@@ -82,20 +82,20 @@ parts[] = BooleanFragments{
 };
 
 
-Cylinder(1001) = {x0, y0, z0,  dx, dy, dz,  R};
+//Cylinder(1001) = {x0, y0, z0,  dx, dy, dz,  R};
 
-// --- intersect cylinder ONLY with the fault zone inside the box
-cyl_fault[] = BooleanIntersection{
-  Volume{1001}; Delete;        // delete original full cylinder
-}{
-  Volume{fault_in[]};          // only keep part inside the fault
-};
+//// --- intersect cylinder ONLY with the fault zone inside the box
+//cyl_fault[] = BooleanIntersection{
+//  Volume{1001}; Delete;        // delete original full cylinder
+//}{
+//  Volume{fault_in[]};          // only keep part inside the fault
+//};
 
 // --- now fragment box + faults + fault cylinder together
 parts[] = BooleanFragments{
   Volume{parts[]}; Delete;
 }{
-  Volume{ fault_in[], cyl_fault[]}; Delete;
+  Volume{ fault_in[] }; Delete;
 };
 
 surfAbove[] = Surface In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};

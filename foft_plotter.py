@@ -96,7 +96,7 @@ for f in foft_files:
 
 ax_top.set_ylabel("Pressure [MPa]")
 ax_top.set_ylim(0, 10)
-ax_top.legend(loc="upper right", ncol=2, fontsize=14)
+ax_top.legend(loc="lower left", ncol=2, fontsize=14)
 ax_top.set_title("BFSB2")
 
 
