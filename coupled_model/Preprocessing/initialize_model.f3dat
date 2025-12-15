@@ -60,13 +60,16 @@ zone property table-joint-cohesion 'coh-j'
 
 model gravity 0 0 -9.81
 ; In situ pressure and temperature  
-zone gridpoint initialize pore-pressure 0.15e6 gradient(0,0,-10000)
+zone gridpoint initialize pore-pressure 0.15e6 gradient(0,0,-10e3)
 
 
-zone initialize stress-principal direction-maximum (-0.615661, -0.788011, 0) maximum -3.8e6 direction-minimum (0,0,-1) minimum -5.5e6 direction-intermediate (-0.788, 0.61566,0) intermediate -4.8e6
+zone initialize stress-principal ...
+    direction-maximum (-0.615661, -0.788011, 0) maximum -3.8e6 gradient (0,0,24.525e3) ...
+    direction-minimum (0,0,-1) minimum -5.5e6 gradient (0,0,16.945e3) ...
+    direction-intermediate (-0.788, 0.61566,0) intermediate -4.8e6 gradient (0,0,20.958e3)
 
-zone face apply stress-normal=-3.8e6 range group 'North' or 'South'
-zone face apply stress-normal=-4.7e6 range group 'East' or 'West'
+zone face apply stress-normal=-3.8e6, gradient=(0,0,16.945e3) range group 'North' or 'South'
+zone face apply stress-normal=-4.7e6, gradient=(0,0,20.958e3) range group 'East' or 'West'
 zone face apply stress-normal=-5.5e6 range group 'Top' 
 zone face apply velocity-normal=0 range group 'Bottom'
 
@@ -74,7 +77,7 @@ zone face apply velocity-normal=0 range group 'Bottom'
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 1e-9
+model solve mech ratio 2e-8
 
 ; Save model
 model save '../tf_in.f3sav'
