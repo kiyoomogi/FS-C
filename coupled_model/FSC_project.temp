@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2025-12-15T01:09:26" ,
+        "DateTime" : "2025-12-15T16:36:26" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "tf_in.f3sav" ,
+                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -558,7 +558,7 @@
                             },
                             "SyncName" : "Default" ,
                             "Normal" : { "x" : 6.156614753256584e-01  , "y" : -7.880107536067219e-01  , "z" : 6.123233995736766e-17 } ,
-                            "NormalIncrement" : 3.060816258404314e+00 ,
+                            "NormalIncrement" : 5.236254112344755e-01 ,
                             "AutoNormalIncrement" : true ,
                             "TargetNormalIncrement" : 5.000000000000000e-02 
                         }
@@ -569,9 +569,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 9.300150725120047e-01  , "y" : -1.252930745951975e+01  , "z" : 2.659883554850890e-01 } ,
-                            "ViewCenter" : { "x" : 9.300150725120047e-01  , "y" : 2.253063809743783e+00  , "z" : 2.659883554850890e-01 } ,
-                            "Up" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
+                            "EyePosition" : { "x" : 2.928479835598836e+01  , "y" : -9.106240164252966e+00  , "z" : 9.228052207790100e+00 } ,
+                            "ViewCenter" : { "x" : 1.684487889294564e+00  , "y" : 5.032758199541036e+00  , "z" : 3.095629103220068e-01 } ,
+                            "Up" : { "x" : -3.323711746170287e-01  , "y" : -5.490864868256620e-02  , "z" : 9.415489592068760e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -738,7 +738,7 @@
                                         "Text" : "" 
                                     },
                                     "CutPlaneInfo" : {
-                                        "Active" : false ,
+                                        "Active" : true ,
                                         "On" : true ,
                                         "Front" : false ,
                                         "Back" : false ,
@@ -789,7 +789,7 @@
                                                 },
                                                 "SyncName" : "Default" ,
                                                 "Normal" : { "x" : 6.156614753256584e-01  , "y" : -7.880107536067219e-01  , "z" : 6.123233995736766e-17 } ,
-                                                "NormalIncrement" : 3.060816258404314e+00 ,
+                                                "NormalIncrement" : 5.236254112344755e-01 ,
                                                 "AutoNormalIncrement" : true ,
                                                 "TargetNormalIncrement" : 5.000000000000000e-02 
                                             }
@@ -811,7 +811,7 @@
                                     "TransLocked" : true ,
                                     "Range" : [ 
                                         {
-                                            "Active" : true ,
+                                            "Active" : false ,
                                             "RenderModeSpecific" : true ,
                                             "ExtentModel" : true ,
                                             "Type" : 1283546101 ,
@@ -960,10 +960,10 @@
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
                                         "Minimum" : 1.797693134862316e+308 ,
-                                        "Maximum" : 1.797693134862316e+308 ,
+                                        "Maximum" : 5.000000000000000e-14 ,
                                         "Interval" : 0.000000000000000e+00 ,
                                         "MinAuto" : true ,
-                                        "MaxAuto" : true ,
+                                        "MaxAuto" : false ,
                                         "IntAuto" : true ,
                                         "Reversed" : false ,
                                         "AboveAuto" : true ,
@@ -997,7 +997,7 @@
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : false ,
-                                                "Keyword" : "stress-effective" ,
+                                                "Keyword" : "extra" ,
                                                 "GpData" : {
                                                     "Component" : 2 ,
                                                     "Quantity" : 0 ,
@@ -1015,10 +1015,10 @@
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
-                                                    "Stress" : true ,
+                                                    "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : false ,
-                                                    "Keyword" : "stress-effective" ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "strain-shear-plastic-joint" ,
                                                     "PropType" : 0 
                                                 },
@@ -1060,10 +1060,10 @@
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
                                                     "Extra" : 11 ,
-                                                    "Stress" : true ,
+                                                    "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : false ,
-                                                    "Keyword" : "stress-effective" ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "strain-shear-plastic-joint" ,
                                                     "PropType" : 0 
                                                 }
@@ -1114,7 +1114,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1123,7 +1123,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p j-tension-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1132,7 +1132,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "shear-p j-shear-p j-tension-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1159,7 +1159,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "shear-p j-shear-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
