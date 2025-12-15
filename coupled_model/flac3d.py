@@ -11,7 +11,7 @@ import itasca as it
 import numpy as np
 import csv 
 
-a_fault = 5e2
+a_fault = 5e3
 
 # FLAC3D solver parameters
 model_save = "tf_in.f3sav"
