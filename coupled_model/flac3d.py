@@ -17,7 +17,7 @@ a_fault = 5e3
 model_save = "tf_in.f3sav"
 deterministic = False
 damping = "combined"
-mechanical_ratio = 1.0e-8
+mechanical_ratio = 1.0e-7
 n_threads = 20
 thermal = True
 
