@@ -67,11 +67,11 @@ bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
 
 #Add material
-mesh.add_material("EDZ  ", 1)
-mesh.add_material("CLAY ", 2)
-mesh.add_material("FAULT", 3)
-mesh.add_material("BNDTO", 4)
-mesh.add_material("BNDBO", 5)
+#mesh.add_material("EDZ  ", 1)
+#mesh.add_material("CLAY ", 2)
+#mesh.add_material("FAULT", 3)
+#mesh.add_material("BNDTO", 4)
+#mesh.add_material("BNDBO", 5)
 
 if incon == 'ns':
     incon = np.full((len(incon1['X1']), 4), -1.0e9)
