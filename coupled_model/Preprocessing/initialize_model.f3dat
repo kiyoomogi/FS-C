@@ -41,14 +41,14 @@ zone property tension 1e9       ;prevent tensile failure of matrix
 zone initialize density 2500
 
 
-zone property dip 55
+zone property dip 50
 zone property dip-direction 142 
 
 ;joint 
 zone property joint-cohesion 0.5e6
-zone property joint-dilation 5
+zone property joint-dilation 2
 zone property joint-friction 22
-zone property joint-tension 0.5e6
+;zone property joint-tension 0.5e6
 
 table 'fric-j' add (0.0e+00 22) (0.005 10) 
 table 'coh-j' add (0.0e+00 0.5e6) (0.005 0e6) 
@@ -60,7 +60,7 @@ zone property table-joint-cohesion 'coh-j'
 
 model gravity 0 0 -9.81
 ; In situ pressure and temperature  
-zone gridpoint initialize pore-pressure 0.15e6 gradient(0,0,-10e3)
+zone gridpoint initialize pore-pressure 0.15e6 gradient(0,0,-9.81e3)
 
 
 zone initialize stress-principal ...
@@ -77,7 +77,7 @@ zone face apply velocity-normal=0 range group 'Bottom'
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 2e-8
+model solve mech ratio 4.3e-8
 
 ; Save model
 model save '../tf_in.f3sav'
