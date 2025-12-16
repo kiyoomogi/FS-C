@@ -88,14 +88,14 @@ Cylinder(1001) = {x0, y0, z0,  dx, dy, dz,  R};
 cyl_fault[] = BooleanIntersection{
   Volume{1001}; Delete;        // delete original full cylinder
 }{
-  Volume{fault_in[]};          // only keep part inside the fault
+  Volume{fault_in[]};         // only keep part inside the fault
 };
 
 // --- now fragment box + faults + fault cylinder together
 parts[] = BooleanFragments{
   Volume{parts[]}; Delete;
 }{
-  Volume{ fault_in[] }; Delete;
+  Volume{ fault_in[], cyl_fault[]}; Delete;
 };
 
 surfAbove[] = Surface In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
@@ -116,7 +116,7 @@ ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
-Field[1].SurfacesList = {11,9};
+Field[1].SurfacesList = {31,9};
 
 Field[2] = Threshold;
 Field[2].InField = 1;
@@ -149,3 +149,5 @@ Physical Volume("CLAY ") = {3,4};
 Physical Volume("FAULT") = {1002};
 Physical Volume("BNDTO") = {volAbove[]};
 Physical Volume("BNDBO") = {volBelow[]};
+
+
