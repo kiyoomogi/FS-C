@@ -48,7 +48,7 @@ zone property dip-direction 142
 zone property joint-cohesion 0.5e6
 zone property joint-dilation 2
 zone property joint-friction 22
-;zone property joint-tension 0.5e6
+zone property joint-tension 0.8e6
 
 table 'fric-j' add (0.0e+00 22) (0.005 10) 
 table 'coh-j' add (0.0e+00 0.5e6) (0.005 0e6) 
@@ -77,7 +77,7 @@ zone face apply velocity-normal=0 range group 'Bottom'
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 4.3e-8
+model solve mech ratio 2.4e-8
 
 ; Save model
 model save '../tf_in.f3sav'
