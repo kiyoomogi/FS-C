@@ -21,7 +21,7 @@ __all__ = [
     "rutqvist2002",
     "minkoff2004",
     "hsiung2005",
-    "rinaldi2014",
+    "nuus2025",
 ]
 
 
@@ -311,86 +311,132 @@ def hsiung2005(group, k0, phi0, n, psi, a, sig0, joint=False):
     return k, phi
 
 @permeability
-def rinaldi2014(
-    group,
-    k0,
-    phi0,
-    phir=0.0,
-    ke=22.2,
-    phie=5.0e-8,
-    pp_threshold=4.18e6,
-    pp_injec_threshold=4.18e6,
-):
-    # --- 1. Normal effective stress on the plane (ALL zones) ---
-    zones = list(it.zone.list())
-    n = numpy.asarray([0.50432, -0.645501, 0.573576])
+def nuus2025(group, k0, phi0, a,k_jump_factor, joint=False):
+    """
+    Simple strain-driven permeability model (Nuus 2025).
 
-    # Effective stress tensor for all zones: (N_all, 3, 3)
-    sigma_eff_all = numpy.array([-z.stress_effective() for z in zones])
+    k = k0 * exp(a * eps_eq)
 
-    # Traction & normal stress for all zones
-    T_all = numpy.einsum("ijk,k->ij", sigma_eff_all, n)   # (N_all, 3)
-    sigma_n_all = numpy.einsum("ij,j->i", T_all, n)       # (N_all,)
+    where eps_eq is an 'equivalent' plastic strain built from
+    tensile and shear plastic strains on the fault.
 
-    # Restrict to group
-    sigma_n_g = sigma_n_all[group]                        # (nzone,)
+    Parameters
+    ----------
+    group : array_like
+        Mask array for queried group.
+    k0 : array_like, shape (nzone, 3)
+        Initial permeability tensor (from decorator).
+    phi0 : scalar
+        Initial porosity.
+    n, psi, sig0 : unused in this simplified model.
+        Kept only for API compatibility.
+    a : scalar
+        Sensitivity of permeability to equivalent plastic strain.
+        Larger a -> faster permeability growth with strain.
+    joint : bool, optional
+        If True, read joint plastic strains; otherwise zone plastic strains.
+    """
 
-    # --- 2. Store initial σ′ₙ (for ALL zones) once and reuse ---
-    if not hasattr(rinaldi2014, "sigma_n0_all"):
-        # First call: store initial σ′ₙ for every zone
-        rinaldi2014.sigma_n0_all = sigma_n_all.copy()
+    # --- Plastic shear and tensile strain ---
+    suffix = "-joint" if joint else ""
+    strain_shear   = za.prop_scalar("strain-shear-plastic{}".format(suffix))[group]
+    strain_tensile = za.prop_scalar("strain-tensile-plastic{}".format(suffix))[group]
+    failed_mask = strain_shear > 0.0      # or > threshold if you prefer
 
-    sigma_n0_all = rinaldi2014.sigma_n0_all               # (N_all,)
-    sigma_n0_g   = sigma_n0_all[group]                    # (nzone,)
+    # --- Equivalent plastic strain eps_eq ---
+    # eps_eq = sqrt( eps_tens^2 + (2/3)*gamma_shear^2 )
+    eps_eq = numpy.sqrt(
+        strain_tensile**2 + (2.0 / 3.0) * strain_shear**2
+    )
 
-    nzone = sigma_n_g.shape[0]
+    # --- Permeability update: k_scalar = k0 * exp(a * eps_eq) ---
+    # k0 comes in as shape (nzone, 3) from the decorator;
+    # use the first component as the base scalar.
+    k0_scalar = k0[:, 0]
 
-    # --- 3. k0, phi0 for the group ---
-    # k0 is already (nzone, 3) because of the decorator
-    k0_g = k0                                            # (nzone, 3)
+    # Sensitivity 'a' is passed from the FLAC input.
+    k_scalar = k0_scalar * numpy.exp(a * eps_eq)
 
-    # phi0 is scalar → make a (nzone,) array
-    phi0_g = numpy.full(nzone, phi0, dtype=float)        # (nzone,)
+    k_scalar[failed_mask] = (
+        k0_scalar[failed_mask] *
+        k_jump_factor *
+        numpy.exp(a * eps_eq[failed_mask])
+    )
 
-    # --- 4. Strain terms and parameters ---
-    e_pts = za.prop_scalar("strain-tensile-plastic-1")[group]   # (nzone,)
-    e_pss = za.prop_scalar("strain-shear-plastic-1")[group]     # (nzone,)
+    # Always use non-negative permeability
+    k_scalar = numpy.abs(k_scalar)
 
-    dil = numpy.deg2rad(1.0)
-    a   = 1e3
+    # Cap permeability
+    k_max_cap = 1.0e-12
+    k_scalar = numpy.minimum(k_scalar, k_max_cap)
 
-    # --- 5. Rinaldi 2014 formula ---
-    # Use, e.g., only the first permeability direction for the geometric factor
-    root_phi = numpy.sqrt(phi0_g / (12.0 * k0_g[:, 0]))        # (nzone,)
+    # Build isotropic tensor: same value in xx, yy, zz
+    k_scalar = k_scalar.reshape(-1, 1)          # (nzone, 1)
+    k = numpy.concatenate((k_scalar, k_scalar, k_scalar), axis=1)
 
-    # c = (-1 + sqrt(1 + 4 σ'_n a sqrt(phi0/(12 k0)))) / (2 σ'_{n0})
-    c = (-1.0 + numpy.sqrt(1.0 + 4.0 * sigma_n_g * a * root_phi)) / (2.0 * sigma_n0_g)
+    # Porosity: simplest choice -> constant phi0 for all zones
+    nzone = group.sum()
+    phi = numpy.full(nzone, phi0, dtype=float)
 
-    term1 = a / (c * (c * sigma_n_g + 1.0)) * root_phi         # (nzone,)
-    term2 = (e_pts + e_pss * numpy.tan(dil)) / phi0_g          # (nzone,)
+    # ----------------- DEBUG BLOCK -----------------
+    k_col = k[:, 0]   # representative component
 
-    # Permeability factor per zone
-    factor = (term1 + term2) ** 3                              # (nzone,)
+    idx_sorted  = numpy.argsort(k_col)[::-1]
+    idx_max     = idx_sorted[0]
+    idx_second  = idx_sorted[1]
 
-    # Scale the 3D permeability per zone; factor[:,None] → (nzone, 1)
-    k   = k0_g * factor[:, None]                               # (nzone, 3)
-    phi = phi0_g                                               # (nzone,)
+    # --- minimum k among FAILED zones only ---
+    if numpy.any(failed_mask):
+        # indices of failed zones in this group
+        failed_indices = numpy.nonzero(failed_mask)[0]        # e.g. [3, 7, 12, ...]
+        # corresponding k values
+        k_failed = k_col[failed_indices]
+        # index (within k_failed) of the minimum k
+        rel_idx_min_failed = numpy.argmin(k_failed)
+        # map back to the original indexing
+        idx_min_failed = failed_indices[rel_idx_min_failed]
+    else:
+        # no failed zones → fall back to global minimum
+        idx_min_failed = idx_sorted[-1]
 
-    # Debug output
-    idx_min = numpy.argmin(sigma_n_g)   # returns an integer index
+    # Pore pressure for this group only
+    pp_all   = tza.pp()          # all zones
+    pp_group = pp_all[group]     # just FAULT (or whatever group)
+    pp_sorted = numpy.sort(pp_group)
 
-    # Use that index to extract corresponding values
-    sigma_n_min   = sigma_n_g[idx_min]
-    sigma_n0_min  = sigma_n0_g[idx_min]
-    e_pts_min     = e_pts[idx_min]
-    e_pss_min     = e_pss[idx_min]
-    k_min         = k[idx_min, :]       # this is a 3-component vector
+    if pp_sorted.size >= 2:
+        pp_max      = pp_sorted[-1]
+        pp_second   = pp_sorted[-2]
+    else:
+        pp_max    = pp_sorted[-1]
+        pp_second = pp_sorted[-1]
 
-    print("Index of min normal stress      =", idx_min)
-    print("Min current normal stress       =", sigma_n_min)
-    print("Initial normal stress at that   =", sigma_n0_min)
-    print("Permeability at that (k1,k2,k3) =", k_min)
-    print("Tensile strain at that          =", e_pts_min)
-    print("Shear strain at that            =", e_pss_min)
+    # -------- failure statistics (based on shear plastic strain) --------
+    # Define "failed" zones as those with positive plastic shear strain
+    failed_mask = strain_shear > 0.0
+
+    n_failed = numpy.count_nonzero(failed_mask)
+    n_total  = strain_shear.size
+
+    # Optionally: fraction of failed zones
+    frac_failed = n_failed / n_total if n_total > 0 else 0.0
+
+    print("=== nuus2025 debug (FAULT group) ===")
+    print("k (2nd highest)       :", k[idx_second, :])
+    print("k (min, failed only)  :", k[idx_min_failed, :])
+    print("Index (2nd max k)     :", idx_second)
+    print("Index (min k failed)  :", idx_min_failed)
+    print("k0 at idx (2nd max)   :", k0[idx_second, :])
+    print("phi0                  :", phi0)
+    print("phi at idx (2nd max)  :", phi[idx_second])
+    print("strain_tens @2nd max  :", strain_tensile[idx_second])
+    print("strain_shear @2nd max :", strain_shear[idx_second])
+    print("strain_tens @min fail :", strain_tensile[idx_min_failed])
+    print("strain_shear@min fail :", strain_shear[idx_min_failed])
+    print("a (sensitiv.)         :", a)
+    print("pp 2nd max            : {:.3f} MPa".format(pp_second * 1e-6))
+    print("failed zones          : {} / {}"
+          .format(numpy.count_nonzero(failed_mask), strain_shear.size))
+    print("====================================")
 
     return k, phi
