@@ -9,7 +9,7 @@ Created on Tue Sep 16 08:28:43 2025
 import numpy as np
 import pandas as pd
 import toughio
-import matplotlib.pyplot as plt 
+
  
 
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
@@ -27,7 +27,7 @@ z_centers = mesh.centers[:,2]
 z_top = np.amax(z_centers)
 z_bot = np.amin(z_centers)
 
-p0 = 0.35e6  #rates_csv['zone P [MPa]'][0] * 1e6
+p0 = 1e6  #rates_csv['zone P [MPa]'][0] * 1e6
 
 #p0 = 1.298302 * 100000
 z_bfsb1 = 0
@@ -40,11 +40,11 @@ top_BC_value = p0 - 1000 * 9.81 * dist_top
 
 
 #Add material
-mesh.add_material("EDZ  ", 1)
-mesh.add_material("CLAY ", 2)
-mesh.add_material("FAULT", 3)
-mesh.add_material("BNDTO", 4)
-mesh.add_material("BNDBO", 5)
+#mesh.add_material("EDZ  ", 1)
+#mesh.add_material("CLAY ", 2)
+#mesh.add_material("FAULT", 3)
+#mesh.add_material("BNDTO", 4)
+#mesh.add_material("BNDBO", 5)
 
 
 materials = (mesh.materials )
