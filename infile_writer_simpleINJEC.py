@@ -214,7 +214,12 @@ parameters['extra_options'] = {
         21: 8
 }
 
-
+parameters["output"] = {
+    "variables": [
+        {"name": "absolute", "options": 0},
+        {"name": "coordinate"},
+    ],
+}
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
