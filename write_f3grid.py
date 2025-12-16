@@ -8,7 +8,7 @@ Created on Mon Dec 15 17:58:40 2025
 
 import toughio 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.vtk")
 
 materials = mesh.materials 
 
