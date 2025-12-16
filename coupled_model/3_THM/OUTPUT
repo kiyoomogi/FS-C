@@ -86,7 +86,7 @@
  GENER HAS     1 SINKS/SOURCES
 
 
-END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6550 SECONDS
+END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6174 SECONDS
 
  
  ***********************************************************************************************************************************
@@ -449,271 +449,271 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6550 SECONDS
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   1,  2]
  AC274(    1, 2) ST = 0.948785E+05 DT = 0.500000E+00
 
- CYCIT ..........  KC =   2  KCYC =   2  DELT = 0.150000E+01  SUMTIM = 0.948785E+05
+ CYCIT ..........  KC =   2  KCYC =   2  DELT = 0.250000E+01  SUMTIM = 0.948785E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   2,  1]
- ...ITERATING... AT [    2, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.103313E-06 AT ELEMENT AHH46  EQUATION   1
+ ...ITERATING... AT [    2, 1] --- DELTEX = 0.250000E+01  MAX. RES. = 0.172189E-06 AT ELEMENT AHH46  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   2,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   2,  2]
- AC258(    2, 2) ST = 0.948800E+05 DT = 0.150000E+01
+ AC263(    2, 2) ST = 0.948810E+05 DT = 0.250000E+01
 
- CYCIT ..........  KC =   3  KCYC =   3  DELT = 0.150000E+01  SUMTIM = 0.948800E+05
+ CYCIT ..........  KC =   3  KCYC =   3  DELT = 0.350000E+01  SUMTIM = 0.948810E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  1]
- ...ITERATING... AT [    3, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.102293E-06 AT ELEMENT AHH46  EQUATION   1
+ ...ITERATING... AT [    3, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.253596E+00 AT ELEMENT AC248  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   3,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  2]
- AC274(    3, 2) ST = 0.948815E+05 DT = 0.150000E+01
+ ...ITERATING... AT [    3, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.366033E-03 AT ELEMENT AC248  EQUATION   1
 
- CYCIT ..........  KC =   4  KCYC =   4  DELT = 0.150000E+01  SUMTIM = 0.948815E+05
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   3,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  3]
+ AC241(    3, 3) ST = 0.948845E+05 DT = 0.350000E+01
+
+ CYCIT ..........  KC =   4  KCYC =   4  DELT = 0.350000E+01  SUMTIM = 0.948845E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   4,  1]
- ...ITERATING... AT [    4, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.124210E+00 AT ELEMENT AC248  EQUATION   1
+ ...ITERATING... AT [    4, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.571601E-01 AT ELEMENT AC248  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   4,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   4,  2]
- ...ITERATING... AT [    4, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.104050E-03 AT ELEMENT AC248  EQUATION   1
+ ...ITERATING... AT [    4, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.740860E-04 AT ELEMENT AC248  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   4,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   4,  3]
- AC241(    4, 3) ST = 0.948830E+05 DT = 0.150000E+01
+ AC274(    4, 3) ST = 0.948880E+05 DT = 0.350000E+01
 
- CYCIT ..........  KC =   5  KCYC =   5  DELT = 0.150000E+01  SUMTIM = 0.948830E+05
+ CYCIT ..........  KC =   5  KCYC =   5  DELT = 0.350000E+01  SUMTIM = 0.948880E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   5,  1]
- ...ITERATING... AT [    5, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.105704E-01 AT ELEMENT AC248  EQUATION   1
+ ...ITERATING... AT [    5, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.951436E-02 AT ELEMENT AC248  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   5,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   5,  2]
- ...ITERATING... AT [    5, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.509887E-05 AT ELEMENT AC248  EQUATION   1
+ ...ITERATING... AT [    5, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.718790E-05 AT ELEMENT AC272  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   5,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   5,  3]
- AC274(    5, 3) ST = 0.948845E+05 DT = 0.150000E+01
+ AC272(    5, 3) ST = 0.948915E+05 DT = 0.350000E+01
 
- CYCIT ..........  KC =   6  KCYC =   6  DELT = 0.150000E+01  SUMTIM = 0.948845E+05
+ CYCIT ..........  KC =   6  KCYC =   6  DELT = 0.350000E+01  SUMTIM = 0.948915E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   6,  1]
- ...ITERATING... AT [    6, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.426678E-02 AT ELEMENT AC248  EQUATION   1
+ ...ITERATING... AT [    6, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.885929E-02 AT ELEMENT AC238  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   6,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   6,  2]
- ...ITERATING... AT [    6, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.163595E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [    6, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.707256E-05 AT ELEMENT AC274  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   6,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   6,  3]
- AC274(    6, 3) ST = 0.948860E+05 DT = 0.150000E+01
+ AC272(    6, 3) ST = 0.948950E+05 DT = 0.350000E+01
 
- CYCIT ..........  KC =   7  KCYC =   7  DELT = 0.150000E+01  SUMTIM = 0.948860E+05
+ CYCIT ..........  KC =   7  KCYC =   7  DELT = 0.350000E+01  SUMTIM = 0.948950E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   7,  1]
- ...ITERATING... AT [    7, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.408142E-02 AT ELEMENT AC255  EQUATION   1
+ ...ITERATING... AT [    7, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.847916E-02 AT ELEMENT AC235  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   7,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   7,  2]
- ...ITERATING... AT [    7, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.162288E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [    7, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.917015E-05 AT ELEMENT AC274  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   7,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   7,  3]
- AC272(    7, 3) ST = 0.948875E+05 DT = 0.150000E+01
+ AC274(    7, 3) ST = 0.948985E+05 DT = 0.350000E+01
 
- CYCIT ..........  KC =   8  KCYC =   8  DELT = 0.150000E+01  SUMTIM = 0.948875E+05
+ CYCIT ..........  KC =   8  KCYC =   8  DELT = 0.350000E+01  SUMTIM = 0.948985E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   8,  1]
- ...ITERATING... AT [    8, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.399436E-02 AT ELEMENT AC235  EQUATION   1
+ ...ITERATING... AT [    8, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.813080E-02 AT ELEMENT AC235  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   8,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   8,  2]
- ...ITERATING... AT [    8, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.157989E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [    8, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.859628E-05 AT ELEMENT AC274  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   8,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   8,  3]
- AC272(    8, 3) ST = 0.948890E+05 DT = 0.150000E+01
+ AC274(    8, 3) ST = 0.949020E+05 DT = 0.350000E+01
 
- CYCIT ..........  KC =   9  KCYC =   9  DELT = 0.150000E+01  SUMTIM = 0.948890E+05
+ CYCIT ..........  KC =   9  KCYC =   9  DELT = 0.350000E+01  SUMTIM = 0.949020E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   9,  1]
- ...ITERATING... AT [    9, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.391443E-02 AT ELEMENT AC235  EQUATION   1
+ ...ITERATING... AT [    9, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.780985E-02 AT ELEMENT AC235  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   9,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   9,  2]
- ...ITERATING... AT [    9, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.152937E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [    9, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.805489E-05 AT ELEMENT AC274  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   9,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   9,  3]
- AC272(    9, 3) ST = 0.948905E+05 DT = 0.150000E+01
+ AC274(    9, 3) ST = 0.949055E+05 DT = 0.350000E+01
 
- CYCIT ..........  KC =  10  KCYC =  10  DELT = 0.150000E+01  SUMTIM = 0.948905E+05
+ CYCIT ..........  KC =  10  KCYC =  10  DELT = 0.350000E+01  SUMTIM = 0.949055E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  10,  1]
- ...ITERATING... AT [   10, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.383736E-02 AT ELEMENT AC235  EQUATION   1
+ ...ITERATING... AT [   10, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.519050E+01 AT ELEMENT AC275  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  10,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  10,  2]
- ...ITERATING... AT [   10, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.148533E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [   10, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.413723E-02 AT ELEMENT AC275  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  10,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  10,  3]
- AC272(   10, 3) ST = 0.948920E+05 DT = 0.150000E+01
+ ...ITERATING... AT [   10, 3] --- DELTEX = 0.350000E+01  MAX. RES. = 0.490710E-07 AT ELEMENT AC274  EQUATION   1
 
- CYCIT ..........  KC =  11  KCYC =  11  DELT = 0.150000E+01  SUMTIM = 0.948920E+05
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  10,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  10,  4]
+ AC272(   10, 4) ST = 0.949090E+05 DT = 0.350000E+01
+
+ CYCIT ..........  KC =  11  KCYC =  11  DELT = 0.350000E+01  SUMTIM = 0.949090E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  11,  1]
- ...ITERATING... AT [   11, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.376329E-02 AT ELEMENT AC235  EQUATION   1
+ ...ITERATING... AT [   11, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.211427E+01 AT ELEMENT AHQ99  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  11,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  11,  2]
- ...ITERATING... AT [   11, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.143664E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [   11, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.129141E-02 AT ELEMENT AHQ99  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  11,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  11,  3]
- AC272(   11, 3) ST = 0.948935E+05 DT = 0.150000E+01
+ ...ITERATING... AT [   11, 3] --- DELTEX = 0.350000E+01  MAX. RES. = 0.288584E-07 AT ELEMENT AC272  EQUATION   1
 
- CYCIT ..........  KC =  12  KCYC =  12  DELT = 0.150000E+01  SUMTIM = 0.948935E+05
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  11,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  11,  4]
+ AC274(   11, 4) ST = 0.949125E+05 DT = 0.350000E+01
+
+ CYCIT ..........  KC =  12  KCYC =  12  DELT = 0.350000E+01  SUMTIM = 0.949125E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  12,  1]
- ...ITERATING... AT [   12, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.369206E-02 AT ELEMENT AC235  EQUATION   1
+ ...ITERATING... AT [   12, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.913634E-01 AT ELEMENT AHQ99  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  12,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  12,  2]
- ...ITERATING... AT [   12, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.139314E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [   12, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.847572E-04 AT ELEMENT AHQ99  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  12,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  12,  3]
- AC255(   12, 3) ST = 0.948950E+05 DT = 0.150000E+01
+ AC274(   12, 3) ST = 0.949160E+05 DT = 0.350000E+01
 
- CYCIT ..........  KC =  13  KCYC =  13  DELT = 0.150000E+01  SUMTIM = 0.948950E+05
+ CYCIT ..........  KC =  13  KCYC =  13  DELT = 0.350000E+01  SUMTIM = 0.949160E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  13,  1]
- ...ITERATING... AT [   13, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.362351E-02 AT ELEMENT AC235  EQUATION   1
+ ...ITERATING... AT [   13, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.420172E-01 AT ELEMENT AC248  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  13,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  13,  2]
- ...ITERATING... AT [   13, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.134291E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [   13, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.602899E-04 AT ELEMENT AC275  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  13,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  13,  3]
- AC255(   13, 3) ST = 0.948965E+05 DT = 0.150000E+01
+ AC274(   13, 3) ST = 0.949195E+05 DT = 0.350000E+01
 
- CYCIT ..........  KC =  14  KCYC =  14  DELT = 0.150000E+01  SUMTIM = 0.948965E+05
+ CYCIT ..........  KC =  14  KCYC =  14  DELT = 0.350000E+01  SUMTIM = 0.949195E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  14,  1]
- ...ITERATING... AT [   14, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.355750E-02 AT ELEMENT AC235  EQUATION   1
+ ...ITERATING... AT [   14, 1] --- DELTEX = 0.350000E+01  MAX. RES. = 0.634024E-01 AT ELEMENT AC248  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  14,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  14,  2]
- ...ITERATING... AT [   14, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.129853E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [   14, 2] --- DELTEX = 0.350000E+01  MAX. RES. = 0.451298E-04 AT ELEMENT AC248  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  14,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  14,  3]
- AC255(   14, 3) ST = 0.948980E+05 DT = 0.150000E+01
+ AC255(   14, 3) ST = 0.949230E+05 DT = 0.350000E+01
 
- CYCIT ..........  KC =  15  KCYC =  15  DELT = 0.150000E+01  SUMTIM = 0.948980E+05
+ CYCIT ..........  KC =  15  KCYC =  15  DELT = 0.100000E+01  SUMTIM = 0.949230E+05
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  15,  1]
- ...ITERATING... AT [   15, 1] --- DELTEX = 0.150000E+01  MAX. RES. = 0.349389E-02 AT ELEMENT AC235  EQUATION   1
+ ...ITERATING... AT [   15, 1] --- DELTEX = 0.100000E+01  MAX. RES. = 0.207864E-01 AT ELEMENT AC248  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  15,  1]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  15,  2]
- ...ITERATING... AT [   15, 2] --- DELTEX = 0.150000E+01  MAX. RES. = 0.126232E-05 AT ELEMENT AC274  EQUATION   1
+ ...ITERATING... AT [   15, 2] --- DELTEX = 0.100000E+01  MAX. RES. = 0.663760E-05 AT ELEMENT AC248  EQUATION   1
 
  %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  15,  2]
 
 
  QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  15,  3]
- AC255(   15, 3) ST = 0.948995E+05 DT = 0.150000E+01
-
- CYCIT ..........  KC =  16  KCYC =  16  DELT = 0.500000E+00  SUMTIM = 0.948995E+05
-
-
- QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  16,  1]
- ...ITERATING... AT [   16, 1] --- DELTEX = 0.500000E+00  MAX. RES. = 0.114418E-02 AT ELEMENT AC235  EQUATION   1
-
- %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  16,  1]
-
-
- QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  16,  2]
- ...ITERATING... AT [   16, 2] --- DELTEX = 0.500000E+00  MAX. RES. = 0.184420E-06 AT ELEMENT AC274  EQUATION   1
-
- %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  16,  2]
-
-
- QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  16,  3]
- AC255(   16, 3) ST = 0.949000E+05 DT = 0.500000E+00
+ AC272(   15, 3) ST = 0.949240E+05 DT = 0.100000E+01
 
  injection model                                                                 
 
-          OUTPUT DATA AFTER (   16, 3)-2-TIME STEPS                                                    THE TIME IS 0.109838E+01 DAYS
+          OUTPUT DATA AFTER (   15, 3)-2-TIME STEPS                                                    THE TIME IS 0.109866E+01 DAYS
 0@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  
   TOTAL TIME     KCYC   ITER  ITERC   KON        DX1M         DX2M         DX3M          MAX. RES.      NER    KER        DELTEX
- 0.949000E+05     16      3     45     2       0.23457E+04  0.00000E+00  0.00000E+00    0.17898E-11    8542     1       0.50000E+00
+ 0.949240E+05     15      3     45     2       0.88121E+04  0.00000E+00  0.00000E+00    0.79809E-10    8559     1       0.10000E+01
 0@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  
  ELEM.  INDEX  KABS_1      KABS_2      KABS_3    
@@ -65172,7 +65172,7 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6550 SECONDS
  
  ********** VOLUME- AND MASS-BALANCES ********************************************************************************************
 
- ********** [KCYC,ITER] = [  16,  3] *****                                  THE TIME IS  0.94900E+05 SECONDS, OR  0.10984E+01 DAYS
+ ********** [KCYC,ITER] = [  15,  3] *****                                  THE TIME IS  0.94924E+05 SECONDS, OR  0.10987E+01 DAYS
 
 
  Balances for domain #  1, *CLAY *
@@ -65199,11 +65199,11 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6550 SECONDS
  PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
  ********************************************************* ************************************************************************
             *                                              PHASES     *
- VOL. (m^3) * 0.00000000E+00 0.66066873E-02 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
- MASS (kg)  * 0.00000000E+00 0.66203791E+01 0.00000000E+00 AQUEOUS    * 0.66203791E+01 0.00000000E+00 0.00000000E+00 0.45526528E+06
+ VOL. (m^3) * 0.00000000E+00 0.68760388E-02 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ MASS (kg)  * 0.00000000E+00 0.69094198E+01 0.00000000E+00 AQUEOUS    * 0.69094198E+01 0.00000000E+00 0.00000000E+00 0.47229609E+06
  ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
                                                            ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.14741252E+07
-                                                           TOTAL      * 0.66203791E+01 0.00000000E+00 0.00000000E+00 0.19293905E+07
+                                                           TOTAL      * 0.69094198E+01 0.00000000E+00 0.00000000E+00 0.19464213E+07
                                                            ************************************************************************
 
  **********************************************************************************************************************************
@@ -65216,11 +65216,11 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6550 SECONDS
  PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
  ********************************************************* ************************************************************************
             *                                              PHASES     *
- VOL. (m^3) * 0.00000000E+00 0.10195523E+04 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
- MASS (kg)  * 0.00000000E+00 0.10186161E+07 0.00000000E+00 AQUEOUS    * 0.10186161E+07 0.00000000E+00 0.00000000E+00 0.70484371E+11
+ VOL. (m^3) * 0.00000000E+00 0.10195525E+04 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ MASS (kg)  * 0.00000000E+00 0.10186163E+07 0.00000000E+00 AQUEOUS    * 0.10186163E+07 0.00000000E+00 0.00000000E+00 0.70484381E+11
  ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
                                                            ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.23767948E+12
-                                                           TOTAL      * 0.10186161E+07 0.00000000E+00 0.00000000E+00 0.30816385E+12
+                                                           TOTAL      * 0.10186163E+07 0.00000000E+00 0.00000000E+00 0.30816387E+12
                                                            ************************************************************************
 
  **********************************************************************************************************************************
@@ -65267,34 +65267,34 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6550 SECONDS
  PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
  ********************************************************* ************************************************************************
             *                                              PHASES     *
- VOL. (m^3) * 0.00000000E+00 0.12145650E+05 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
- MASS (kg)  * 0.00000000E+00 0.12134517E+08 0.00000000E+00 AQUEOUS    * 0.12134517E+08 0.00000000E+00 0.00000000E+00 0.83965983E+12
+ VOL. (m^3) * 0.00000000E+00 0.12145651E+05 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ MASS (kg)  * 0.00000000E+00 0.12134518E+08 0.00000000E+00 AQUEOUS    * 0.12134518E+08 0.00000000E+00 0.00000000E+00 0.83965986E+12
  ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
                                                            ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.33340722E+13
-                                                           TOTAL      * 0.12134517E+08 0.00000000E+00 0.00000000E+00 0.41737321E+13
+                                                           TOTAL      * 0.12134518E+08 0.00000000E+00 0.00000000E+00 0.41737321E+13
                                                            ************************************************************************
 
  **********************************************************************************************************************************
 
- TOUGH STATUS: Write SAVE file for time =    94900.000000000000     
+ TOUGH STATUS: Write SAVE file for time =    94924.000000000000     
  EEE  
  EEE  Number of processors =            6
- EEE Time perform model computation  =    135.34674849698786     
- EEE   of which spent in lin. solv. =   0.91870214929804206     
- EEE   and spent on other           =    134.42804634768981     
+ EEE Time perform model computation  =    124.43653099506628     
+ EEE   of which spent in lin. solv. =    1.1402272960403934     
+ EEE   and spent on other           =    123.29630369902588     
  EEE  
- EEE Total number of time steps =           16
- EEE Average time in solver per time step =    5.7418884331127629E-002
- EEE Average time spent on other per time step =    8.4017528967306134     
+ EEE Total number of time steps =           15
+ EEE Average time in solver per time step =    7.6015153069359562E-002
+ EEE Average time spent on other per time step =    8.2197535799350590     
  EEE  
- EEE Total number Newton steps =           29
- EEE Average number of Newton steps per time step   1.8125000000000000     
- EEE Average time per Newton step =    3.1679384458553173E-002
- EEE Average time spent on other per Newton st =    4.6354498740582697     
+ EEE Total number Newton steps =           30
+ EEE Average number of Newton steps per time step   2.0000000000000000     
+ EEE Average time per Newton step =    3.8007576534679781E-002
+ EEE Average time spent on other per Newton st =    4.1098767899675295     
  EEE  
- EEE Total number of iter =          339
- EEE Average number of iter per call    11.689655172413794     
- EEE Average time per iter =    2.7100358386372924E-003
+ EEE Total number of iter =          408
+ EEE Average number of iter per call    13.600000000000000     
+ EEE Average time per iter =    2.7946747451970426E-003
  EEE  
  EEE  =============================================
  EEE  
@@ -65302,7 +65302,7 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6550 SECONDS
 
 
 END OF TOUGH3 SIMULATION RUN
-ELAPSED TIME =    136.142 SEC
-DISTRIBUTION + CALCULATION TIME =    135.487 SEC
-DATA INPUT TIME =    0.655 SEC
+ELAPSED TIME =    125.191 SEC
+DISTRIBUTION + CALCULATION TIME =    124.574 SEC
+DATA INPUT TIME =    0.617 SEC
  
