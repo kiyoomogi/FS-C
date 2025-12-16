@@ -116,7 +116,7 @@ ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
-Field[1].SurfacesList = {31,9};
+Field[1].SurfacesList = {31,9,33,28};
 
 Field[2] = Threshold;
 Field[2].InField = 1;
