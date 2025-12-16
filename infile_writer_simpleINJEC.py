@@ -220,14 +220,13 @@ mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model
 
 
 def relative_volumes():
-    idx = mesh.near((0, 0, -0.025))  # nearest cell in whole mesh
+    idx = mesh.near((0, 0, -0.035))  # nearest cell in whole mesh
 
     if materials[idx] == 'EDZ  ':
         
         return mesh.labels[idx]
 
 injec_label = relative_volumes()
-
 
 
 
