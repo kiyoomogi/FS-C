@@ -11,7 +11,7 @@ import itasca as it
 import numpy as np
 import csv 
 
-a_fault = 5e3
+a_fault = 0.05
 
 # FLAC3D solver parameters
 model_save = "tf_in.f3sav"
@@ -149,7 +149,7 @@ permeability_func = {
         k0=np.tile(k0_fault, (g.sum(), 1)),   # (n_fault, 3)
         phi0=0.14,
         a=a_fault,
-        k_jump_factor=600,
+        k_jump_factor=10,
         joint=True,
 	group_name="FAULT",
     ),
@@ -158,27 +158,6 @@ permeability_func = {
         k0=np.tile(k0_clay, (g.sum(), 1)),
         phi0=0.12,
     ),
-<<<<<<< HEAD
-#    "EDZ": lambda g: nuus2025(
-#        g,
-#        k0=np.tile(k0_edz, (g.sum(), 1)),
-#        phi0=0.12,
-#        a=50,
-#        k_jump_factor=50,
-#        joint=True,
-#	group_name="EDZ",
-#    ),
-=======
- #   "EDZ": lambda g: nuus2025(
- #       g,
- #       k0=np.tile(k0_edz, (g.sum(), 1)),
- #       phi0=0.12,
- #       a=50,
- #       k_jump_factor=50,
- #       joint=True,
- #	group_name="EDZ",
- #   ),
->>>>>>> e8ef432dfdef24e6742f74c1da415c283261f3d1
     "BNDTO": lambda g: constant(
         g,
         k0=np.tile(k0_bnd, (g.sum(), 1)),
