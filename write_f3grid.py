@@ -8,9 +8,14 @@ Created on Mon Dec 15 17:58:40 2025
 
 import toughio 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_norot.msh")
 
 materials = mesh.materials 
+
+
+
+faults = materials == "FAULT"
+print(sum(faults))
 
 mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/MESH")
 mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/natural_state/mesh.pickle")
