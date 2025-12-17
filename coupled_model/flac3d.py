@@ -151,6 +151,7 @@ permeability_func = {
         a=a_fault,
         k_jump_factor=600,
         joint=True,
+	group_name="FAULT",
     ),
     "CLAY": lambda g: constant(
         g,
@@ -163,9 +164,10 @@ permeability_func = {
         phi0=0.12,
         a=50,
         k_jump_factor=50,
-        joint=True,      
+        joint=True,
+	group_name="EDZ",
     ),
-    "BDNTO": lambda g: constant(
+    "BNDTO": lambda g: constant(
         g,
         k0=np.tile(k0_bnd, (g.sum(), 1)),
         phi0=0.12,   
