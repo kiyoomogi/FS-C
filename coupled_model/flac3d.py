@@ -11,7 +11,7 @@ import itasca as it
 import numpy as np
 import csv 
 
-a_fault = 0.05
+a_fault = 50
 
 # FLAC3D solver parameters
 model_save = "tf_in.f3sav"
@@ -137,7 +137,7 @@ python_func_flac = () #(stress_on_plane,)  # After mechanical analysis
 fish_func_tough = ()  # Before mechanical analysis
 fish_func_flac = ()  # After mechanical analysis
 
-k0_fault = np.array([5.0e-17, 1.0e-17, 1.0e-18], dtype=float)
+k0_fault = np.array([5.0e-17, 5.0e-17, 1.0e-18], dtype=float)
 k0_clay = np.array([5.0e-18, 5.0e-18, 1.0e-18], dtype=float)
 k0_edz = np.array([5.0e-13, 5.0e-13, 5.0e-13], dtype=float)
 k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
@@ -149,9 +149,18 @@ permeability_func = {
         k0=np.tile(k0_fault, (g.sum(), 1)),   # (n_fault, 3)
         phi0=0.14,
         a=a_fault,
-        k_jump_factor=10,
+        k_jump_factor=400,
         joint=True,
 	group_name="FAULT",
+    ),
+    "EDZ": lambda g: nuus2025(
+        g,
+        k0=np.tile(k0_edz, (g.sum(), 1)),   # (n_fault, 3)
+        phi0=0.14,
+        a=a_fault,
+        k_jump_factor=400,
+        joint=True,
+    group_name="EDZ",
     ),
     "CLAY": lambda g: constant(
         g,
