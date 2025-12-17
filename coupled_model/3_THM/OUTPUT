@@ -84,7 +84,7 @@
  GENER HAS     1 SINKS/SOURCES
 
 
-END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.5004 SECONDS
+END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6122 SECONDS
 
  
  ***********************************************************************************************************************************
@@ -50535,22 +50535,22 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.5004 SECONDS
  TOUGH STATUS: Write SAVE file for time =    94908.000000000000     
  EEE  
  EEE  Number of processors =           20
- EEE Time perform model computation  =    73.715040144976228     
- EEE   of which spent in lin. solv. =    7.4384437291882932E-002
- EEE   and spent on other           =    73.640655707684346     
+ EEE Time perform model computation  =    75.984012236003764     
+ EEE   of which spent in lin. solv. =    8.2589086960069835E-002
+ EEE   and spent on other           =    75.901423149043694     
  EEE  
  EEE Total number of time steps =           10
- EEE Average time in solver per time step =    7.4384437291882934E-003
- EEE Average time spent on other per time step =    7.3640655707684344     
+ EEE Average time in solver per time step =    8.2589086960069835E-003
+ EEE Average time spent on other per time step =    7.5901423149043694     
  EEE  
  EEE Total number Newton steps =           17
  EEE Average number of Newton steps per time step   1.7000000000000000     
- EEE Average time per Newton step =    4.3755551348166428E-003
- EEE Average time spent on other per Newton st =    4.3318032769226082     
+ EEE Average time per Newton step =    4.8581815858864605E-003
+ EEE Average time spent on other per Newton st =    4.4647895970025706     
  EEE  
  EEE Total number of iter =           51
  EEE Average number of iter per call    3.0000000000000000     
- EEE Average time per iter =    1.4585183782722143E-003
+ EEE Average time per iter =    1.6193938619621536E-003
  EEE  
  EEE  =============================================
  EEE  
@@ -50558,7 +50558,7 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.5004 SECONDS
 
 
 END OF TOUGH3 SIMULATION RUN
-ELAPSED TIME =     74.298 SEC
-DISTRIBUTION + CALCULATION TIME =     73.797 SEC
-DATA INPUT TIME =    0.500 SEC
+ELAPSED TIME =     76.682 SEC
+DISTRIBUTION + CALCULATION TIME =     76.070 SEC
+DATA INPUT TIME =    0.612 SEC
  
