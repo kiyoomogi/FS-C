@@ -137,20 +137,20 @@ python_func_flac = () #(stress_on_plane,)  # After mechanical analysis
 fish_func_tough = ()  # Before mechanical analysis
 fish_func_flac = ()  # After mechanical analysis
 
-nzone = 60225
-k0_row = np.array([5.0e-17, 1.0e-17, 1.0e-18], dtype=float)  # (3,)
-k0 = np.tile(k0_row, (nzone, 1))
-
+k0_row = np.array([5.0e-17, 1.0e-17, 1.0e-18], dtype=float)
 
 permeability_func = {
     "FAULT": lambda g: nuus2025(
         g,
-        k0 = np.tile(k0_row, (nzone, 1)),
-        phi0 = 0.14,
-        a    = a_fault,
-	    k_jump_factor = 600,
+        k0=np.tile(k0_row, (g.sum(), 1)),  # <-- (19944, 3)
+        phi0=0.14,
+        a=a_fault,
+        k_jump_factor=600,
         joint=True,
-    ),
+    )
+}
+
+
     #"CLAY ": lambda g: nuus2025(
     #    g,
     #    k0   = 3.0e-18,
@@ -159,7 +159,7 @@ permeability_func = {
     #    k_jump_factor = 50,
     #    joint=True,
     #),
-}
+
 
 #permeability_func = {
 #    "FAULT": lambda g: rutqvist2002(
