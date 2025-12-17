@@ -3,8 +3,8 @@ $MeshFormat
 $EndMeshFormat
 $PhysicalNames
 5
-3 1 "EDZ  "
-3 2 "CLAY "
+3 1 "EDZ"
+3 2 "CLAY"
 3 3 "FAULT"
 3 4 "BNDTO"
 3 5 "BNDBO"

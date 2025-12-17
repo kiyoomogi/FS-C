@@ -59,7 +59,9 @@ if incon == 'ns':
     print()
 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
+#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/mesh.f3grid")
+
 #mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 
@@ -67,8 +69,8 @@ bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
 
 #Add material
-mesh.add_material("EDZ  ", 1)
-mesh.add_material("CLAY ", 2)
+mesh.add_material("EDZ", 1)
+mesh.add_material("CLAY", 2)
 mesh.add_material("FAULT", 3)
 mesh.add_material("BNDTO", 4)
 mesh.add_material("BNDBO", 5)
@@ -164,11 +166,11 @@ parameters["rocks"] = {
         #    "parameters": []
         #},  
 #    },
-    "CLAY ": {
+    "CLAY": {
         #"tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
-    "EDZ  ": {
+    "EDZ": {
         "porosity": 0.14, #-, (4) 
         "permeability": [1e-14, 1e-14, 1e-14],
     },
