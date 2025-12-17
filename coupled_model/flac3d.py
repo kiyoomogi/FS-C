@@ -158,6 +158,7 @@ permeability_func = {
         k0=np.tile(k0_clay, (g.sum(), 1)),
         phi0=0.12,
     ),
+<<<<<<< HEAD
 #    "EDZ": lambda g: nuus2025(
 #        g,
 #        k0=np.tile(k0_edz, (g.sum(), 1)),
@@ -167,6 +168,17 @@ permeability_func = {
 #        joint=True,
 #	group_name="EDZ",
 #    ),
+=======
+ #   "EDZ": lambda g: nuus2025(
+ #       g,
+ #       k0=np.tile(k0_edz, (g.sum(), 1)),
+ #       phi0=0.12,
+ #       a=50,
+ #       k_jump_factor=50,
+ #       joint=True,
+ #	group_name="EDZ",
+ #   ),
+>>>>>>> e8ef432dfdef24e6742f74c1da415c283261f3d1
     "BNDTO": lambda g: constant(
         g,
         k0=np.tile(k0_bnd, (g.sum(), 1)),
