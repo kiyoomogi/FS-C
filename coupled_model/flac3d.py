@@ -137,15 +137,15 @@ python_func_flac = () #(stress_on_plane,)  # After mechanical analysis
 fish_func_tough = ()  # Before mechanical analysis
 fish_func_flac = ()  # After mechanical analysis
 
+nzone = 60225
+k0_row = np.array([5.0e-17, 1.0e-17, 1.0e-18], dtype=float)  # (3,)
+k0 = np.tile(k0_row, (nzone, 1))
 
-#n_fault   = np.array([0.50432, -0.645501, 0.573576])  # unit normal to plane
-#psi_fault = 5.0    # dilation angle [deg] – adjust as you like
-#sig0_val  = 4.965794e6  # Pa, initial normal effective stress
 
 permeability_func = {
     "FAULT": lambda g: nuus2025(
         g,
-        k0   = [5.0e-17, 5.0-17, 1e-18],
+        k0 = np.tile(k0_row, (nzone, 1)),
         phi0 = 0.14,
         a    = a_fault,
 	    k_jump_factor = 600,
