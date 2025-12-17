@@ -419,7 +419,7 @@ def nuus2025(group, k0, phi0, a,k_jump_factor, joint=False):
     # Optionally: fraction of failed zones
     frac_failed = n_failed / n_total if n_total > 0 else 0.0
 
-    print("=== nuus2025 debug (FAULT group) ===")
+    print(f"=== nuus2025 debug ({group_name}) ===")
     print("k (2nd highest)       :", k[idx_second, :])
     print("k (min, failed only)  :", k[idx_min_failed, :])
     print("Index (2nd max k)     :", idx_second)

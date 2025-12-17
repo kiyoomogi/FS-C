@@ -1,5 +1,5 @@
 from toughflac.coupling import extra, run
-from toughflac.coupling.permeability import rutqvist2002
+from toughflac.coupling.permeability import constant
 from toughflac.coupling.permeability import nuus2025
 from toughflac.coupling.permeability import hsiung2005
 import itasca as it
@@ -137,29 +137,45 @@ python_func_flac = () #(stress_on_plane,)  # After mechanical analysis
 fish_func_tough = ()  # Before mechanical analysis
 fish_func_flac = ()  # After mechanical analysis
 
-k0_row = np.array([5.0e-17, 1.0e-17, 1.0e-18], dtype=float)
+k0_fault = np.array([5.0e-17, 1.0e-17, 1.0e-18], dtype=float)
+k0_clay = np.array([5.0e-18, 5.0e-18, 1.0e-18], dtype=float)
+k0_edz = np.array([5.0e-13, 5.0e-13, 5.0e-13], dtype=float)
+k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
+
 
 permeability_func = {
     "FAULT": lambda g: nuus2025(
         g,
-        k0=np.tile(k0_row, (g.sum(), 1)),  # <-- (19944, 3)
+        k0=np.tile(k0_fault, (g.sum(), 1)),   # (n_fault, 3)
         phi0=0.14,
         a=a_fault,
         k_jump_factor=600,
         joint=True,
-    )
+    ),
+    "CLAY": lambda g: constant(
+        g,
+        k0=np.tile(k0_clay, (g.sum(), 1)),
+        phi0=0.12,
+    ),
+    "EDZ": lambda g: nuus2025(
+        g,
+        k0=np.tile(k0_edz, (g.sum(), 1)),
+        phi0=0.12,
+        a=50,
+        k_jump_factor=50,
+        joint=True,      
+    ),
+    "BDNTO": lambda g: constant(
+        g,
+        k0=np.tile(k0_bnd, (g.sum(), 1)),
+        phi0=0.12,   
+    ),
+    "BNDBO": lambda g: constant(
+        g,
+        k0=np.tile(k0_bnd, (g.sum(), 1)),
+        phi0=0.12,    
+    ),
 }
-
-
-    #"CLAY ": lambda g: nuus2025(
-    #    g,
-    #    k0   = 3.0e-18,
-    #    phi0 = 0.12,
-    #    a    = 50,
-    #    k_jump_factor = 50,
-    #    joint=True,
-    #),
-
 
 #permeability_func = {
 #    "FAULT": lambda g: rutqvist2002(
