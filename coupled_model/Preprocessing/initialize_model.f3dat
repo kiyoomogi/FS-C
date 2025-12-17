@@ -19,9 +19,8 @@ zone cmodel assign softening-ubiquitous
 ;zone fluid biot on
 
 zone fluid property biot 1
-zone fluid property permeability-xx 5e-10
-zone fluid property permeability-yy 5e-10
-zone fluid property permeability-zz 1e-10
+zone fluid property permeability 5e-10
+
 zone fluid property porosity 0.12
 
 ; Thermal parameters
