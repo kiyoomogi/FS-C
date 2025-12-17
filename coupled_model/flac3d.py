@@ -145,10 +145,10 @@ fish_func_flac = ()  # After mechanical analysis
 permeability_func = {
     "FAULT": lambda g: nuus2025(
         g,
-        k0   = 5.0e-17,
+        k0   = [5.0e-17, 5.0-17, 1e-18],
         phi0 = 0.14,
         a    = a_fault,
-	k_jump_factor = 600,
+	    k_jump_factor = 600,
         joint=True,
     ),
     #"CLAY ": lambda g: nuus2025(
