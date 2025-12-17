@@ -1,0 +1,6 @@
+echo off
+call 'flac3d.py'
+exit
+echo off
+call 'flac3d.py'
+exit
