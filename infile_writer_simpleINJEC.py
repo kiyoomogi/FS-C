@@ -170,10 +170,10 @@ parameters["rocks"] = {
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
-    "EDZ": {
-        "porosity": 0.14, #-, (4) 
-        "permeability": [1e-13, 1e-13, 1e-13],
-    },
+    #"EDZ": {
+    #    "porosity": 0.14, #-, (4) 
+    #    "permeability": [1e-13, 1e-13, 1e-13],
+    #},
     "FAULT": {
         "porosity": 0.14,
         #"compressibility": 8e-9,             #Pa^-1
@@ -226,9 +226,9 @@ mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model
 
 
 def relative_volumes():
-    idx = mesh.near((0, 0, -0.1))  # nearest cell in whole mesh
+    idx = mesh.near((0, 0.1, 0))  # nearest cell in whole mesh
 
-    if materials[idx] == 'EDZ':
+    if materials[idx] == 'FAULT':
         
         return mesh.labels[idx]
 
