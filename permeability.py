@@ -45,6 +45,14 @@ def permeability(func):
             if ndim not in {1, 2}:
                 raise ValueError()
             if not (len(k0) == 3 if ndim == 1 else numpy.shape(k0) == (nzone, 3)):
+
+                print("ndim:", ndim)
+                print("nzone (decorator):", nzone)
+                print("k0 type:", type(k0))
+                print("k0 shape:", getattr(k0, "shape", None))
+                print("len(k0):", len(k0))
+
+                
                 raise ValueError()
         if not (not isinstance(phi0, str) and numpy.ndim(phi0) == 0):
             raise ValueError()
@@ -350,29 +358,19 @@ def nuus2025(group, k0, phi0, a,k_jump_factor, joint=False):
     )
 
     # --- Permeability update: k_scalar = k0 * exp(a * eps_eq) ---
-    # k0 comes in as shape (nzone, 3) from the decorator;
-    # use the first component as the base scalar.
-    k0_scalar = k0[:, 0]
+    # --- build multiplicative factor per zone (nzone,)
+    mult = numpy.exp(a * eps_eq)
+    mult[failed_mask] *= k_jump_factor
 
-    # Sensitivity 'a' is passed from the FLAC input.
-    k_scalar = k0_scalar * numpy.exp(a * eps_eq)
+    # --- apply to each component of k0 (preserves anisotropy), result (nzone, 3)
+    k = k0 * mult[:, None]
 
-    k_scalar[failed_mask] = (
-        k0_scalar[failed_mask] *
-        k_jump_factor *
-        numpy.exp(a * eps_eq[failed_mask])
-    )
+    # Always use non-negative permeability (component-wise)
+    k = numpy.abs(k)
 
-    # Always use non-negative permeability
-    k_scalar = numpy.abs(k_scalar)
-
-    # Cap permeability
+    # Cap permeability (component-wise)
     k_max_cap = 1.0e-12
-    k_scalar = numpy.minimum(k_scalar, k_max_cap)
-
-    # Build isotropic tensor: same value in xx, yy, zz
-    k_scalar = k_scalar.reshape(-1, 1)          # (nzone, 1)
-    k = numpy.concatenate((k_scalar, k_scalar, k_scalar), axis=1)
+    k = numpy.minimum(k, k_max_cap)
 
     # Porosity: simplest choice -> constant phi0 for all zones
     nzone = group.sum()
