@@ -8,7 +8,7 @@ Created on Mon Dec 15 17:58:40 2025
 
 import toughio 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.vtk")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
 
 materials = mesh.materials 
 
@@ -17,3 +17,10 @@ mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/natural_state/mesh.pickle")
 
 
 toughio.write_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/mesh.f3grid", mesh, file_format="flac3d")
+
+mesh_flac = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/mesh.f3grid")
+
+materials_flac = mesh_flac.materials 
+
+diff = [(i, a, b) for i, (a, b) in enumerate(zip(materials, materials_flac)) if a != b]
+print(diff[:10])

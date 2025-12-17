@@ -59,8 +59,9 @@ if incon == 'ns':
     print()
 
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
-#mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
+#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/mesh.f3grid")
+
 
 
 bot_BC_value = np.amax(incon1['X1'])
@@ -164,12 +165,12 @@ parameters["rocks"] = {
         #    "parameters": []
         #},  
 #    },
-    "CLAY ": {
+    "CLAY": {
         #"tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
-    "EDZ  ": {
+    "EDZ": {
         "porosity": 0.14, #-, (4) 
         "permeability": [1e-13, 1e-13, 1e-13],
     },
@@ -227,7 +228,7 @@ mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model
 def relative_volumes():
     idx = mesh.near((0, 0, -0.1))  # nearest cell in whole mesh
 
-    if materials[idx] == 'EDZ  ':
+    if materials[idx] == 'EDZ':
         
         return mesh.labels[idx]
 

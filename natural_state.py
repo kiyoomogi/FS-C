@@ -20,8 +20,8 @@ time_final = 3600 * 24 * 365 * 50
 
 
 #mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_2fault.msh")
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
-#mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
+#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/mesh.f3grid")
 
 z_centers = mesh.centers[:,2]
 z_top = np.amax(z_centers)
@@ -125,14 +125,14 @@ parameters["rocks"] = {
    #         "parameters": []
    #     },  
    # },
-    "CLAY ": {
-        "tortuosity": 0.8, #-, (4) 
+    "CLAY": {
+        "porosity": 0.12, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
     "FAULT": {
         "porosity": 0.14,
     },
-    "EDZ  ": {
+    "EDZ": {
         "porosity": 0.14,
     },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
