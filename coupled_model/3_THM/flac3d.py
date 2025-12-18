@@ -1,7 +1,7 @@
 from toughflac.coupling import extra, run
 from toughflac.coupling.permeability import constant
 from toughflac.coupling.permeability import nuus2025
-from toughflac.coupling.permeability import hsiung2005
+from toughflac.coupling.permeability import rinaldi2019
 import itasca as it
 
 from toughflac.coupling import extra, run
@@ -11,7 +11,6 @@ import itasca as it
 import numpy as np
 import csv 
 
-a_fault = 50
 
 # FLAC3D solver parameters
 model_save = "tf_in.f3sav"
@@ -128,10 +127,59 @@ def stress_on_plane(tough_time):
 
     return
 
+def printer_function(tough_time, group_name="FAULT"):
+    tought, tstep = tough_time
+
+    group = za.in_group(group_name)     # boolean mask in global zonearray order
+    if not np.any(group):
+        print(f"[printer] no zones in group {group_name}")
+        return
+
+    # --- Read permeability that is currently stored in the model (global, then subset)
+    k_all = tza.permeability()          # (nzone_total, 3)
+    k = k_all[group, :]                # (nzone_group, 3)
+
+    # --- Read strains for this group
+    suffix = "-joint"  # or "" if not joint
+    strain_shear   = za.prop_scalar(f"strain-shear-plastic{suffix}")[group]
+    strain_tensile = za.prop_scalar(f"strain-tensile-plastic{suffix}")[group]
+    failed_mask = strain_shear > 0.0
+
+    # --- Pore pressure for this group
+    pp_group = tza.pp()[group]         # or za.extra(15)[group] if that’s your pp source
+
+    # ---- diagnostics (similar to your nuus2025 debug)
+    k_col = k[:, 0]
+    idx_sorted = np.argsort(k_col)[::-1]
+
+    idx_second = int(idx_sorted[1]) if idx_sorted.size > 1 else int(idx_sorted[0])
+
+    if np.any(failed_mask):
+        failed_idx = np.nonzero(failed_mask)[0]
+        idx_min_failed = int(failed_idx[np.argmin(k_col[failed_idx])])
+    else:
+        idx_min_failed = int(idx_sorted[-1])
+
+    pp_sorted = np.sort(pp_group)
+    pp_second = float(pp_sorted[-2]) if pp_sorted.size >= 2 else float(pp_sorted[-1])
+
+    print(f"=== printer debug ({group_name}) tstep={tstep} t={tought} ===")
+    print("k (2nd highest)       :", k[idx_second, :])
+    print("k (min, failed only)  :", k[idx_min_failed, :])
+    print("Index (2nd max k)     :", idx_second)
+    print("Index (min k failed)  :", idx_min_failed)
+    print("strain_tens @2nd max  :", float(strain_tensile[idx_second]))
+    print("strain_shear @2nd max :", float(strain_shear[idx_second]))
+    print("strain_tens @min fail :", float(strain_tensile[idx_min_failed]))
+    print("strain_shear@min fail :", float(strain_shear[idx_min_failed]))
+    print("pp 2nd max            : {:.3f} MPa".format(pp_second * 1e-6))
+    print("failed zones          : {} / {}".format(np.count_nonzero(failed_mask), strain_shear.size))
+    print("==============================================")
+
 
 # Extra Python functions as a list of callables
 python_func_tough = ()  # Before mechanical analysis
-python_func_flac = () #(stress_on_plane,)  # After mechanical analysis
+python_func_flac = (printer_function,) #(stress_on_plane,)  # After mechanical analysis
 
 # Extra FISH functions as a list of strings
 fish_func_tough = ()  # Before mechanical analysis
@@ -142,16 +190,21 @@ k0_clay = np.array([5.0e-18, 5.0e-18, 1.0e-18], dtype=float)
 k0_edz = np.array([5.0e-13, 5.0e-13, 5.0e-13], dtype=float)
 k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
 
+a_fault = 500
 
 permeability_func = {
-    "FAULT": lambda g: nuus2025(
+    "FAULT": lambda g: rinaldi2019(
         g,
-        k0=np.tile(k0_fault, (g.sum(), 1)),   # (n_fault, 3)
-        phi0=0.14,
-        a=a_fault,
-        k_jump_factor=400,
-        joint=True,
-	group_name="FAULT",
+        k0 = k0_fault,
+        phi0 = 0.14,
+        n = 1,
+        w = 1,
+        br = 15e-6,
+        bmax = 500e-6, 
+        alpha = 0.4, 
+        n_vector = np.array([0.47, -0.60, 0.64]),
+        joint = True, 
+
     ),
     "EDZ": lambda g: nuus2025(
         g,
