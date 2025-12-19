@@ -46,12 +46,12 @@ zone property dip-direction 142
 
 ;joint 
 zone property joint-cohesion 0.5e6
-zone property joint-dilation 2
+zone property joint-dilation 5
 zone property joint-friction 22
-zone property joint-tension 0.8e6
+zone property joint-tension 0.5e6
 
-table 'fric-j' add (0.0e+00 22) (0.005 18) 
-table 'coh-j' add (0.0e+00 0.5e6) (0.005 0.5e6) 
+table 'fric-j' add (0.0e+00 22) (0.0002 15.4) 
+table 'coh-j' add (0.0e+00 0.5e6) (0.0002 0.0) 
 
 zone property table-joint-friction 'fric-j' 
 zone property table-joint-cohesion 'coh-j' 
@@ -60,7 +60,7 @@ zone property table-joint-cohesion 'coh-j'
 
 model gravity 0 0 -9.81
 ; In situ pressure and temperature  
-zone gridpoint initialize pore-pressure 0.15e6 gradient(0,0,-9.81e3)
+zone gridpoint initialize pore-pressure 1e6 gradient(0,0,-9.81e3)
 
 
 zone initialize stress-principal ...
