@@ -50,8 +50,8 @@ zone property joint-dilation 5
 zone property joint-friction 22
 zone property joint-tension 0.5e6
 
-table 'fric-j' add (0.0e+00 22) (0.0002 15.4) 
-table 'coh-j' add (0.0e+00 0.5e6) (0.0002 0.0) 
+table 'fric-j' add (0.0e+00 22) (0.005 18) 
+table 'coh-j' add (0.0e+00 0.5e6) (0.005 0.5e6) 
 
 zone property table-joint-friction 'fric-j' 
 zone property table-joint-cohesion 'coh-j' 
