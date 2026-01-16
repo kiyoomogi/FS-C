@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-16T18:09:54" ,
+        "DateTime" : "2026-01-16T20:50:47" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -30,9 +30,7 @@
                 },
                 "SaveFiles" : {
                     "Files" : [ 
-                        "Postprocessing/tf_fi.f3sav" ,
-                        "3_THM/f3out/tf_fi.f3sav" ,
-                        "tf_in.f3sav" 
+                        "Postprocessing/tf_fi.f3sav" 
                     ]
                 },
                 "ResultFiles" : {
@@ -68,8 +66,7 @@
                         "Preprocessing/initialize_model_comba.f3dat" ,
                         "Preprocessing/load_mesh.py" ,
                         "../../../../../../tmp/tmpa3ld0rq5/mesh.f3grid" ,
-                        "Preprocessing/initialize_model.f3dat" ,
-                        "mesh.f3grid" 
+                        "Preprocessing/initialize_model.f3dat" 
                     ]
                 },
                 "OpenFiles" : [  ]
@@ -569,9 +566,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 3.515537962185510e+00  , "y" : -1.274429678506587e+01  , "z" : 1.729750226977445e+00 } ,
-                            "ViewCenter" : { "x" : -2.238992764577347e-01  , "y" : 8.692119094066713e-01  , "z" : 3.625216959444152e-01 } ,
-                            "Up" : { "x" : -1.471328799427020e-02  , "y" : 9.591624959065938e-02  , "z" : 9.952806600255328e-01 } ,
+                            "EyePosition" : { "x" : 8.338625572848237e+00  , "y" : -1.388839636058274e+02  , "z" : 3.983356285241710e+01 } ,
+                            "ViewCenter" : { "x" : 3.552713678800501e-15  , "y" : 0.000000000000000e+00  , "z" : -1.000000000000001e+01 } ,
+                            "Up" : { "x" : -1.380736686775350e-02  , "y" : 3.369646200315194e-01  , "z" : 9.414160618277092e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -825,88 +822,7 @@
                                                     "Selected" : false ,
                                                     "Deselected" : false ,
                                                     "UseHidden" : false ,
-                                                    "Elements" : [ 
-                                                        {
-                                                            "Type" : 1283546004 ,
-                                                            "Element" : {
-                                                                "Not" : true ,
-                                                                "Extent" : false ,
-                                                                "By" : "" ,
-                                                                "ByAll" : false ,
-                                                                "Entries" : [ 
-                                                                    
-                                                                    {
-                                                                        "First" : "Default" ,
-                                                                        "Second" : "BNDTO" 
-                                                                    }
-                                                                ],
-                                                                "And" : true ,
-                                                                "Only" : false ,
-                                                                "Matches" : 1 ,
-                                                                "CheckBy" : false 
-                                                            }
-                                                        }, 
-                                                        {
-                                                            "Type" : 1283546004 ,
-                                                            "Element" : {
-                                                                "Not" : true ,
-                                                                "Extent" : false ,
-                                                                "By" : "" ,
-                                                                "ByAll" : false ,
-                                                                "Entries" : [ 
-                                                                    
-                                                                    {
-                                                                        "First" : "Default" ,
-                                                                        "Second" : "CLAY" 
-                                                                    }
-                                                                ],
-                                                                "And" : true ,
-                                                                "Only" : false ,
-                                                                "Matches" : 1 ,
-                                                                "CheckBy" : false 
-                                                            }
-                                                        }, 
-                                                        {
-                                                            "Type" : 1283546004 ,
-                                                            "Element" : {
-                                                                "Not" : true ,
-                                                                "Extent" : false ,
-                                                                "By" : "" ,
-                                                                "ByAll" : false ,
-                                                                "Entries" : [ 
-                                                                    
-                                                                    {
-                                                                        "First" : "Default" ,
-                                                                        "Second" : "BNDBO" 
-                                                                    }
-                                                                ],
-                                                                "And" : true ,
-                                                                "Only" : false ,
-                                                                "Matches" : 1 ,
-                                                                "CheckBy" : false 
-                                                            }
-                                                        }, 
-                                                        {
-                                                            "Type" : 1283546004 ,
-                                                            "Element" : {
-                                                                "Not" : true ,
-                                                                "Extent" : false ,
-                                                                "By" : "" ,
-                                                                "ByAll" : false ,
-                                                                "Entries" : [ 
-                                                                    
-                                                                    {
-                                                                        "First" : "Default" ,
-                                                                        "Second" : "EDZ" 
-                                                                    }
-                                                                ],
-                                                                "And" : true ,
-                                                                "Only" : false ,
-                                                                "Matches" : 1 ,
-                                                                "CheckBy" : false 
-                                                            }
-                                                        }
-                                                    ]
+                                                    "Elements" : [  ]
                                                 }
                                             ]
                                         }
@@ -1050,36 +966,36 @@
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
-                                                "Component" : 0 ,
+                                                "Component" : 3 ,
                                                 "Quantity" : 0 ,
-                                                "Type" : 1 ,
-                                                "Extra" : 11 ,
+                                                "Type" : 0 ,
+                                                "Extra" : 1 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : false ,
-                                                "Keyword" : "property" ,
+                                                "Keyword" : "displacement" ,
                                                 "GpData" : {
-                                                    "Component" : 0 ,
+                                                    "Component" : 3 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : false ,
-                                                    "Keyword" : "" ,
+                                                    "Keyword" : "displacement" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
                                                 "ZoneData" : {
-                                                    "Component" : 0 ,
+                                                    "Component" : 3 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : false ,
-                                                    "Keyword" : "property" ,
-                                                    "Property" : "joint-friction" ,
+                                                    "Keyword" : "" ,
+                                                    "Property" : "" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
@@ -1090,7 +1006,7 @@
                                                     "Tolerance" : 1.000000000000000e-07 ,
                                                     "HideNull" : true 
                                                 },
-                                                "Source" : 0 
+                                                "Source" : 1 
                                             }
                                         ],
                                         "Gp" : {
@@ -1098,14 +1014,14 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 0 ,
+                                                    "Component" : 3 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : false ,
-                                                    "Keyword" : "" ,
+                                                    "Keyword" : "displacement" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 }
@@ -1116,15 +1032,15 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 0 ,
+                                                    "Component" : 3 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : false ,
-                                                    "Keyword" : "property" ,
-                                                    "Property" : "joint-friction" ,
+                                                    "Keyword" : "" ,
+                                                    "Property" : "" ,
                                                     "PropType" : 0 
                                                 }
                                             ]
@@ -1148,7 +1064,7 @@
                                             "Tolerance" : 1.000000000000000e-07 
                                         },
                                         "CompressionPositive" : false ,
-                                        "Source" : 0 
+                                        "Source" : 1 
                                     },
                                     "ColorMap" : {
                                         "Active" : true ,
@@ -1237,7 +1153,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "Default=FAULT" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1263,24 +1179,6 @@
                                                             "Color" : "#ff4000FF" ,
                                                             "Alias" : "" ,
                                                             "Label" : "Default=INJEC" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#0080ffFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "Default=CLAY" ,
-                                                            "Bool" : true ,
-                                                            "Used2" : false ,
-                                                            "Default" : false 
-                                                        }
-                                                        , 
-                                                        {
-                                                            "Color" : "#b7001fFF" ,
-                                                            "Alias" : "" ,
-                                                            "Label" : "Default=EDZ" ,
                                                             "Bool" : true ,
                                                             "Used2" : false ,
                                                             "Default" : false 
@@ -1381,7 +1279,7 @@
     ],
     "Terminal" : {
         "MoveLists" : true ,
-        "LineLimit" : 11 
+        "LineLimit" : 17 
     },
     "ColorMap" : {
         "EMaps" : [ 
@@ -1422,46 +1320,6 @@
                             "Color" : "#ff4000FF" ,
                             "Alias" : "" 
                         }
-                    }, 
-                    {
-                        "Key" : "Default=CLAY" ,
-                        "Value" : {
-                            "Color" : "#0080ffFF" ,
-                            "Alias" : "" 
-                        }
-                    }, 
-                    {
-                        "Key" : "Default=EDZ" ,
-                        "Value" : {
-                            "Color" : "#b7001fFF" ,
-                            "Alias" : "" 
-                        }
-                    }
-                ]
-            }, 
-            {
-                "Key" : "State By Average" ,
-                "Value" : [ 
-                    {
-                        "Key" : "None" ,
-                        "Value" : {
-                            "Color" : "#00ffffFF" ,
-                            "Alias" : "" 
-                        }
-                    }, 
-                    {
-                        "Key" : "j-shear-p" ,
-                        "Value" : {
-                            "Color" : "#2e8b56FF" ,
-                            "Alias" : "" 
-                        }
-                    }, 
-                    {
-                        "Key" : "j-shear-p j-tension-p" ,
-                        "Value" : {
-                            "Color" : "#ff0000FF" ,
-                            "Alias" : "" 
-                        }
                     }
                 ]
             }
@@ -1478,7 +1336,7 @@
                 
                 {
                     "Name" : "Viewer-ROOT #2" ,
-                    "Geom" : [ 1133 ,1482  ],
+                    "Geom" : [ 1308 ,1307  ],
                     "Child1" : "Editor_initialize_model" ,
                     "Child2" : "Plot_Plot01" ,
                     "Hor" : true ,
