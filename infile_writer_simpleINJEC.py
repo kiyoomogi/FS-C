@@ -30,6 +30,7 @@ elif hydr_test == False and stage == 11:
         time_step = 0.8
         time_max = 1.3
 
+
 elif stage == 0:
     time_zero =  94878 
     time_final = 94878 + 3600 * 4
@@ -177,7 +178,7 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.14,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [2e-14, 2e-15, 2e-14]
+        "permeability": [5e-17, 5e-17, 1e-17]
         #"permeability": [6.5e-17,5e-17,5e-17]
     },
 
@@ -258,8 +259,9 @@ def generators():
 rates, times = generators() 
 
 ref_points = [injec_label]
-ref_points.append(str(mesh.labels[mesh.near((7.434, 8.137, -0.900))]))
-ref_points.append(str(mesh.labels[mesh.near((1.904, 5.158, 7.779))]))
+ref_points.append(str(mesh.labels[mesh.near((7.669, 8.135, 1.860))]))
+print(str(mesh.labels[mesh.near((7.434, 8.137, -0.900))]))
+ref_points.append(str(mesh.labels[mesh.near((10.288, 4.482, -4.541))]))
 
 
 parameters["element_history"] = ref_points
