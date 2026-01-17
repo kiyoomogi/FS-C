@@ -199,9 +199,9 @@ permeability_func = {
         phi0 = 0.14,
         n = 1,
         w = 2.8,
-        br = 20e-6,
-        bmax = 500e-6, 
-        alpha = 0.5, 
+        br = 20e-7,     #was 20e-6
+        bmax = 500e-7,  #was 500e-6
+        alpha = 0.55, 
         n_vector = np.array([0.47, -0.60, 0.64]),
         joint = True, 
 
