@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-17T17:56:47" ,
+        "DateTime" : "2026-01-17T22:47:47" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -941,7 +941,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 0 ,
+                                    "ColorScheme" : 1 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -999,9 +999,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.797693134862316e+308 ,
-                                        "Maximum" : -1.797693134862316e+308 ,
-                                        "Interval" : 0.000000000000000e+00 ,
+                                        "Minimum" : 2.200000000000000e+01 ,
+                                        "Maximum" : 2.200000000000000e+01 ,
+                                        "Interval" : 1.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1026,7 +1026,7 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : false ,
+                                        "Active" : true ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
@@ -1036,7 +1036,7 @@
                                                 "Extra" : 1 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : false ,
+                                                "Active" : true ,
                                                 "Keyword" : "property" ,
                                                 "GpData" : {
                                                     "Component" : 3 ,
@@ -1045,7 +1045,7 @@
                                                     "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1057,13 +1057,13 @@
                                                     "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Keyword" : "property" ,
-                                                    "Property" : "strain-shear-plastic-joint" ,
+                                                    "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
@@ -1084,7 +1084,7 @@
                                                     "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1102,9 +1102,9 @@
                                                     "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Keyword" : "property" ,
-                                                    "Property" : "strain-shear-plastic-joint" ,
+                                                    "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 }
                                             ]
@@ -1145,7 +1145,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "None" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
