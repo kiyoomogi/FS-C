@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-20T21:25:36" ,
+        "DateTime" : "2026-01-20T21:37:36" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -1042,8 +1042,8 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 0.000000000000000e+00 ,
-                                        "Maximum" : 0.000000000000000e+00 ,
+                                        "Minimum" : 1.100000000000000e+01 ,
+                                        "Maximum" : 1.100000000000000e+01 ,
                                         "Interval" : 1.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
@@ -1080,7 +1080,7 @@
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : true ,
-                                                "Keyword" : "extra" ,
+                                                "Keyword" : "property" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
@@ -1101,7 +1101,7 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Keyword" : "property" ,
                                                     "Property" : "joint-dilation" ,
                                                     "PropType" : 0 
                                                 },
@@ -1146,7 +1146,7 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Keyword" : "property" ,
                                                     "Property" : "joint-dilation" ,
                                                     "PropType" : 0 
                                                 }
@@ -1587,7 +1587,7 @@
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Plot_Plot01" 
+            "Focus" : "Editor_initialize_model" 
         },
         "Recent" : {
             "MRUMagic" : [ 
