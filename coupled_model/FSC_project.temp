@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-20T21:37:36" ,
+        "DateTime" : "2026-01-20T22:25:36" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "tf_in.f3sav" ,
+                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -571,9 +571,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 2.813432622091027e+01  , "y" : -4.809611263763504e+01  , "z" : 9.874742865661753e-01 } ,
-                            "ViewCenter" : { "x" : 3.879267744824237e+00  , "y" : 5.056723958759720e+00  , "z" : -1.656596746955450e+00 } ,
-                            "Up" : { "x" : -3.560533751760598e-03  , "y" : 4.806211370076011e-02  , "z" : 9.988380027942559e-01 } ,
+                            "EyePosition" : { "x" : 2.758510532318767e+01  , "y" : -9.119274191956167e+01  , "z" : 2.503251314427230e+01 } ,
+                            "ViewCenter" : { "x" : -1.201807510762121e+01  , "y" : -2.643526873117448e+00  , "z" : 6.082174184198580e-01 } ,
+                            "Up" : { "x" : -8.524651414059935e-02  , "y" : 2.293192069262049e-01  , "z" : 9.696111247101145e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -1042,9 +1042,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.100000000000000e+01 ,
-                                        "Maximum" : 1.100000000000000e+01 ,
-                                        "Interval" : 1.000000000000000e+00 ,
+                                        "Minimum" : 9.012802165505391e+05 ,
+                                        "Maximum" : 3.610006551263376e+06 ,
+                                        "Interval" : 2.500000000000000e+05 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1080,7 +1080,7 @@
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : true ,
-                                                "Keyword" : "property" ,
+                                                "Keyword" : "pore-pressure" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
@@ -1101,8 +1101,8 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "property" ,
-                                                    "Property" : "joint-dilation" ,
+                                                    "Keyword" : "pore-pressure" ,
+                                                    "Property" : "strain-tensile-plastic-joint" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
@@ -1146,8 +1146,8 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "property" ,
-                                                    "Property" : "joint-dilation" ,
+                                                    "Keyword" : "pore-pressure" ,
+                                                    "Property" : "strain-tensile-plastic-joint" ,
                                                     "PropType" : 0 
                                                 }
                                             ]
