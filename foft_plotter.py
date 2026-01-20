@@ -89,13 +89,14 @@ for f in foft_files:
             df_foft["t_utc"],
             df_foft["p_kPa"],
             "-",
-            lw=1.0,
+            lw=3.0,
             alpha=0.9,
             label=stem
         )
 
 ax_top.set_ylabel("Pressure [MPa]")
 ax_top.set_ylim(0, 16)
+ax_top.axhline(4.4, color='black', alpha=0.3, ls=':')
 ax_top.legend(loc="upper right", ncol=2, fontsize=14)
 ax_top.set_title("BFSB2")
 
@@ -110,7 +111,7 @@ for f in foft_files:
                 df_mid["t_utc"],
                 df_mid["p_kPa"],
                 "-",
-                lw=1.2,
+                lw=3,
                 alpha=0.95,
                 color='green',
                 label=f"{special_mid_stem} (modelled)"
@@ -154,7 +155,7 @@ for f in foft_files:
                 df_bot["t_utc"],
                 df_bot["p_kPa"],
                 "-",
-                lw=1.2,
+                lw=3,
                 alpha=0.95,
                 color='red',
                 label=f"{special_bot_stem} (modelled)"
@@ -190,8 +191,8 @@ ax_bot.set_title("BFSB12")
 # ---------------- shared x-limits & tidy ----------------
 xmin = date_series.min()
 xmax = date_series.max()
-xmin = dates[92000]
-xmax = dates[114000]
+xmin = dates[91000]
+xmax = dates[134000]
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
 fig.autofmt_xdate()
