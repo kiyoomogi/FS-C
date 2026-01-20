@@ -143,9 +143,9 @@ def printer_function(
     group_name="FAULT",
     *,
     # --- add these so we can recompute bel ---
-    br=2e-6,
-    bmax=500e-6,
-    alpha=0.45,                      # MPa^-1 (same as your input)
+    br=1.2e-6,
+    bmax=4.8e-5,
+    alpha=0.55,                      # MPa^-1 (same as your input)
     n_vector=np.array([0.47, -0.60, 0.64]),
     joint=True,
 ):
@@ -258,9 +258,9 @@ permeability_func = {
         phi0 = 0.14,
         n = 1,
         w = 1.8,
-        br = 20e-6,     #was 20e-6
-        bmax = 500e-6,  #was 500e-6
-        alpha = 0.65, 
+        br = 1.20e-6,     #was 20e-6
+        bmax = 4.80e-5,  #was 500e-6
+        alpha = 0.55, 
         n_vector = np.array([0.47, -0.60, 0.64]),
         joint = True, 
 
