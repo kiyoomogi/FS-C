@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-20T03:28:18" ,
+        "DateTime" : "2026-01-20T04:04:18" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -999,8 +999,8 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 5.000000000000000e+00 ,
-                                        "Maximum" : 5.000000000000000e+00 ,
+                                        "Minimum" : 1.100000000000000e+01 ,
+                                        "Maximum" : 1.100000000000000e+01 ,
                                         "Interval" : 1.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
@@ -1487,7 +1487,7 @@
     ],
     "Terminal" : {
         "MoveLists" : true ,
-        "LineLimit" : 11 
+        "LineLimit" : 10 
     },
     "ColorMap" : {
         "EMaps" : [ 
@@ -1525,7 +1525,7 @@
     },
     "Layout3" : {
         "PaneAction" : [  ],
-        "State" : "AAAA/wAAAAD9AAAAAQAAAAAAAAXoAAADaPwCAAAAAfsAAAAaAFcAbwByAGsAcwBwAGEAYwBlAEQAbwBjAGsBAAAAKAAAA2gAAAFZAP///gAAAAAAAANoAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAwAE0AYQBpAG4AVwBpAG4AZABvAHcAQwBhAHAAdABpAG8AbgBXAHIAYQBwAHAAZQByAQAAAAD/////AAAAAAAAAAA=" ,
+        "State" : "AAAA/wAAAAD9AAAAAQAAAAAAAAXoAAADaPwCAAAAAfsAAAAaAFcAbwByAGsAcwBwAGEAYwBlAEQAbwBjAGsBAAAAKAAAA2gAAAFnAP///gAAAAAAAANoAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAwAE0AYQBpAG4AVwBpAG4AZABvAHcAQwBhAHAAdABpAG8AbgBXAHIAYQBwAHAAZQByAQAAAAD/////AAAAAAAAAAA=" ,
         "Splitter1" : "AAAA/wAAAAEAAAACAAABKwAADEAA/////wEAAAABAA==" ,
         "Splitter2" : "AAAA/wAAAAEAAAACAAACvQAAAPoA/////wEAAAACAA==" ,
         "Splitter3" : "AAAA/wAAAAEAAAADAAAFYAAAAQ0AAAAYAP////8BAAAAAQA=" ,
@@ -1534,16 +1534,16 @@
                 
                 {
                     "Name" : "Viewer-ROOT #2" ,
-                    "Geom" : [ 543 ,542  ],
-                    "Child1" : "Placeholder #2 dock" ,
+                    "Geom" : [ 657 ,428  ],
+                    "Child1" : "Editor_initialize_model" ,
                     "Child2" : "Plot_Plot01" ,
                     "Hor" : true ,
                     "Added" : 1 ,
-                    "Ext1" : "" ,
+                    "Ext1" : "f3dat" ,
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Plot_Plot01" 
+            "Focus" : "Editor_initialize_model" 
         },
         "Recent" : {
             "MRUMagic" : [ 
