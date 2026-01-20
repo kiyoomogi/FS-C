@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-20T19:43:36" ,
+        "DateTime" : "2026-01-20T20:07:36" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
+                "SaveFile" : "tf_in.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -571,8 +571,8 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 5.831224786591627e+00  , "y" : -1.540378550133409e+01  , "z" : -6.607315690845327e-01 } ,
-                            "ViewCenter" : { "x" : -6.654518534804944e-01  , "y" : -1.166887568895424e+00  , "z" : -1.368941550730522e+00 } ,
+                            "EyePosition" : { "x" : 2.813432622091027e+01  , "y" : -4.809611263763504e+01  , "z" : 9.874742865661753e-01 } ,
+                            "ViewCenter" : { "x" : 3.879267744824237e+00  , "y" : 5.056723958759720e+00  , "z" : -1.656596746955450e+00 } ,
                             "Up" : { "x" : -3.560533751760598e-03  , "y" : 4.806211370076011e-02  , "z" : 9.988380027942559e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
@@ -888,6 +888,46 @@
                                                                 "Matches" : 1 ,
                                                                 "CheckBy" : false 
                                                             }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "ByAll" : false ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "BNDTO" 
+                                                                    }
+                                                                ],
+                                                                "And" : true ,
+                                                                "Only" : false ,
+                                                                "Matches" : 1 ,
+                                                                "CheckBy" : false 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "ByAll" : false ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "BNDBO" 
+                                                                    }
+                                                                ],
+                                                                "And" : true ,
+                                                                "Only" : false ,
+                                                                "Matches" : 1 ,
+                                                                "CheckBy" : false 
+                                                            }
                                                         }
                                                     ]
                                                 }
@@ -1002,11 +1042,11 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.000000000000000e-18 ,
-                                        "Maximum" : 4.463420000000000e-15 ,
-                                        "Interval" : 5.000000000000000e-16 ,
+                                        "Minimum" : 0.000000000000000e+00 ,
+                                        "Maximum" : 0.000000000000000e+00 ,
+                                        "Interval" : 1.000000000000000e+00 ,
                                         "MinAuto" : true ,
-                                        "MaxAuto" : false ,
+                                        "MaxAuto" : true ,
                                         "IntAuto" : true ,
                                         "Reversed" : false ,
                                         "AboveAuto" : true ,
@@ -1036,7 +1076,7 @@
                                                 "Component" : 0 ,
                                                 "Quantity" : 0 ,
                                                 "Type" : 1 ,
-                                                "Extra" : 11 ,
+                                                "Extra" : 15 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : true ,
@@ -1045,7 +1085,7 @@
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Extra" : 15 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
@@ -1057,7 +1097,7 @@
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Extra" : 15 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
@@ -1084,7 +1124,7 @@
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Extra" : 15 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
@@ -1102,7 +1142,7 @@
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
                                                     "Type" : 1 ,
-                                                    "Extra" : 11 ,
+                                                    "Extra" : 15 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
@@ -1547,7 +1587,7 @@
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Plot_Plot01" 
+            "Focus" : "Editor_initialize_model" 
         },
         "Recent" : {
             "MRUMagic" : [ 
