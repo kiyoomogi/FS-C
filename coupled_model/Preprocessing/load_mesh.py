@@ -22,4 +22,4 @@ tf.zone.import_mesh(mesh, prune_duplicates=True)
 #tf.zone.export_tough("/home/manuus/Desktop/FS-C/model/coupled_model/MESH")
 
 # Export to f3grid
-#tf.zone.export_flac("../mesh.f3grid")
+tf.zone.export_flac("../mesh.f3grid")
