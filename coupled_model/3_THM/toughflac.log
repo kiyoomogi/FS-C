@@ -1,0 +1,8 @@
+2026-01-20 23:08:51,841: ERROR - Traceback (most recent call last):
+  File "/opt/itascasoftware/subscription/python310/lib/python3.10/site-packages/toughflac/coupling/_logging.py", line 27, in __call__
+    self.func(*args, **kwargs)
+  File "/opt/itascasoftware/subscription/python310/lib/python3.10/site-packages/toughflac/coupling/run.py", line 239, in _run
+    it.command("model solve mech ratio {}".format(mechanical_ratio))
+ValueError: Processing interrupted by user.
+    While processing line 0 of source Python interpreter.
+
