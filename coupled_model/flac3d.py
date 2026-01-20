@@ -143,9 +143,9 @@ def printer_function(
     group_name="FAULT",
     *,
     # --- add these so we can recompute bel ---
-    br=20e-6,
+    br=2e-6,
     bmax=500e-6,
-    alpha=0.55,                      # MPa^-1 (same as your input)
+    alpha=0.45,                      # MPa^-1 (same as your input)
     n_vector=np.array([0.47, -0.60, 0.64]),
     joint=True,
 ):
