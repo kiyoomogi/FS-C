@@ -17,10 +17,11 @@
  SUMMARY OF DISK FILES
 
  FILE *MESH*  EXISTS --- OPEN AS AN OLD FILE
- FILE *INCON* DOES NOT EXIST --- OPEN AS A NEW FILE
- FILE *GENER* DOES NOT EXIST --- OPEN AS A NEW FILE
- FILE *SAVE* DOES NOT EXIST --- OPEN AS A NEW FILE
- FILE *TABLE* DOES NOT EXIST --- OPEN AS A NEW FILE
+ WARNING: FILES *MESHA* AND *MESHB* EXIST --- information in file MESH or ELEME and CONNE blocks in input file will be ignored
+ FILE *INCON* EXISTS --- OPEN AS AN OLD FILE
+ FILE *GENER* EXISTS --- OPEN AS AN OLD FILE
+ FILE *SAVE*  EXISTS --- OPEN AS AN OLD FILE
+ FILE *TABLE* EXISTS --- OPEN AS AN OLD FILE
 
  ===================================================================================================================================
 
@@ -58,9 +59,6 @@
                         ************************************************************************************
 
  
-
- ALL NCON = 105833 CONNECTIONS READ FROM FILE *MESH* REFERENCE KNOWN ELEMENTS
-
 
  *****  ERROR  *****
  * Material '1001 ' not found in TOUGH input file, block ROCKS.1!
