@@ -33,7 +33,7 @@ zone gridpoint initialize temperature 15
 
 ;SUBI
 zone property cohesion 2e8    ;3.1 ENSI matrix
-zone property young 7e9         ;NAGRA, Xu
+zone property young 5e9         ;NAGRA, Xu
 zone property poisson 0.25      ;NAGRA, Xu
 zone property dilation 0        ;NAGRA, Xu
 zone property friction 29       ;ENSI matrix
@@ -51,10 +51,10 @@ zone property joint-friction 18
 zone property joint-tension 0.5e6
 
 table 'fric-j' add (0.0e+00 18) (2e-5 12) ;was 18
-table 'coh-j' add (0.0e+00 0.5e6) (2e-5 0.0e6) 
+;table 'coh-j' add (0.0e+00 0.0e6) (2e-5 0.0e6) 
 
 zone property table-joint-friction 'fric-j' 
-zone property table-joint-cohesion 'coh-j' 
+;zone property table-joint-cohesion 'coh-j' 
 
 
 
@@ -77,7 +77,7 @@ zone face apply velocity-normal=0 range group 'Bottom'
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 2.4e-8
+model solve mech ratio 1e-8
 
 ; Save model
 model save '../tf_in.f3sav'

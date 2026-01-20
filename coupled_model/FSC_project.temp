@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-20T23:07:36" ,
+        "DateTime" : "2026-01-20T23:22:36" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
+                "SaveFile" : "tf_in.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -1042,9 +1042,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 9.012802165505391e+05 ,
-                                        "Maximum" : 3.610006551263376e+06 ,
-                                        "Interval" : 2.500000000000000e+05 ,
+                                        "Minimum" : 9.037361378971436e+05 ,
+                                        "Maximum" : 1.293435283487327e+06 ,
+                                        "Interval" : 5.000000000000000e+04 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
