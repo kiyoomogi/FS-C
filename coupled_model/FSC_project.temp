@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-21T02:25:36" ,
+        "DateTime" : "2026-01-21T03:31:36" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -1047,11 +1047,11 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 0.000000000000000e+00 ,
-                                        "Maximum" : 5.000000000000000e-15 ,
-                                        "Interval" : 5.000000000000000e-16 ,
+                                        "Minimum" : 9.019000000000000e+05 ,
+                                        "Maximum" : 1.294300000000000e+06 ,
+                                        "Interval" : 5.000000000000000e+04 ,
                                         "MinAuto" : true ,
-                                        "MaxAuto" : false ,
+                                        "MaxAuto" : true ,
                                         "IntAuto" : true ,
                                         "Reversed" : false ,
                                         "AboveAuto" : true ,
@@ -1085,7 +1085,7 @@
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : true ,
-                                                "Keyword" : "extra" ,
+                                                "Keyword" : "pore-pressure" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 2 ,
@@ -1094,7 +1094,7 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Keyword" : "pore-pressure" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
@@ -1106,19 +1106,19 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Keyword" : "" ,
                                                     "Property" : "strain-tensile-plastic-joint" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
                                                     "Tolerance" : 1.000000000000000e-07 ,
                                                     "HideNull" : true 
                                                 },
-                                                "Source" : 0 
+                                                "Source" : 1 
                                             }
                                         ],
                                         "Gp" : {
@@ -1133,7 +1133,7 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Keyword" : "pore-pressure" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 }
@@ -1151,7 +1151,7 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Keyword" : "" ,
                                                     "Property" : "strain-tensile-plastic-joint" ,
                                                     "PropType" : 0 
                                                 }
@@ -1176,7 +1176,7 @@
                                             "Tolerance" : 1.000000000000000e-07 
                                         },
                                         "CompressionPositive" : false ,
-                                        "Source" : 0 
+                                        "Source" : 1 
                                     },
                                     "ColorMap" : {
                                         "Active" : true ,
@@ -2299,7 +2299,7 @@
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Editor_initialize_model" 
+            "Focus" : "Plot_Plot01" 
         },
         "Recent" : {
             "MRUMagic" : [ 
