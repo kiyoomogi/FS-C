@@ -206,7 +206,7 @@ permeability_func = {
         g,
         k0 = k0_fault,
         phi0 = 0.14,
-        n = 1,
+        n = 0.4,
         w = 1.8,
         br = 10e-6,     #was 20e-6
         bmax = 50e-6,  #was 500e-6
@@ -219,7 +219,7 @@ permeability_func = {
         g,
         k0 = k0_edz,
         phi0 = 0.14,
-        n = 1,
+        n = 0.4,
         w = 1.8,
         br = 7e-7,     #was 20e-6
         bmax = 5e-6,  #was 500e-6
