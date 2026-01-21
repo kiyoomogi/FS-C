@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-21T18:52:36" ,
+        "DateTime" : "2026-01-21T20:43:36" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/f1.100d.f3sav" ,
+                "SaveFile" : "tf_in.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -534,7 +534,7 @@
                         "Type" : "Plane" ,
                         "Name" : "Default" ,
                         "Detail" : {
-                            "Origin" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : -1.000000000000000e-02 } ,
+                            "Origin" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
                             "OriginCaption" : {
                                 "Active" : true ,
                                 "Enabled" : true ,
@@ -566,8 +566,8 @@
                                 "Text" : "" 
                             },
                             "SyncName" : "Default" ,
-                            "Normal" : { "x" : 5.043203561029898e-01  , "y" : -6.455006197386552e-01  , "z" : 5.735764363510462e-01 } ,
-                            "NormalIncrement" : 3.060816258404313e+00 ,
+                            "Normal" : { "x" : 0.000000000000000e+00  , "y" : 1.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                            "NormalIncrement" : 3.585158280424070e-01 ,
                             "AutoNormalIncrement" : true ,
                             "TargetNormalIncrement" : 5.000000000000000e-02 
                         }
@@ -578,9 +578,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : -3.542606322778691e-01  , "y" : -4.390910154829422e+00  , "z" : 3.662431922069282e-01 } ,
-                            "ViewCenter" : { "x" : -4.281605440538285e-01  , "y" : -6.355155965859218e-01  , "z" : -2.989674373698440e-01 } ,
-                            "Up" : { "x" : -1.664249048675099e-03  , "y" : 1.743874701987894e-01  , "z" : 9.846757032204920e-01 } ,
+                            "EyePosition" : { "x" : 1.480899821087284e-01  , "y" : -2.455151545091138e+00  , "z" : 2.935848374388270e-01 } ,
+                            "ViewCenter" : { "x" : 1.093794481137950e-01  , "y" : -1.705289871397891e+00  , "z" : 1.717895893589852e-01 } ,
+                            "Up" : { "x" : 8.479285648629917e-02  , "y" : 1.640085277536225e-01  , "z" : 9.828079030578576e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -887,66 +887,6 @@
                                                                     
                                                                     {
                                                                         "First" : "Default" ,
-                                                                        "Second" : "CLAY " 
-                                                                    }
-                                                                ],
-                                                                "And" : true ,
-                                                                "Only" : false ,
-                                                                "Matches" : 1 ,
-                                                                "CheckBy" : false 
-                                                            }
-                                                        }, 
-                                                        {
-                                                            "Type" : 1283546004 ,
-                                                            "Element" : {
-                                                                "Not" : true ,
-                                                                "Extent" : false ,
-                                                                "By" : "" ,
-                                                                "ByAll" : false ,
-                                                                "Entries" : [ 
-                                                                    
-                                                                    {
-                                                                        "First" : "Default" ,
-                                                                        "Second" : "BNDTO" 
-                                                                    }
-                                                                ],
-                                                                "And" : true ,
-                                                                "Only" : false ,
-                                                                "Matches" : 1 ,
-                                                                "CheckBy" : false 
-                                                            }
-                                                        }, 
-                                                        {
-                                                            "Type" : 1283546004 ,
-                                                            "Element" : {
-                                                                "Not" : true ,
-                                                                "Extent" : false ,
-                                                                "By" : "" ,
-                                                                "ByAll" : false ,
-                                                                "Entries" : [ 
-                                                                    
-                                                                    {
-                                                                        "First" : "Default" ,
-                                                                        "Second" : "BNDBO" 
-                                                                    }
-                                                                ],
-                                                                "And" : true ,
-                                                                "Only" : false ,
-                                                                "Matches" : 1 ,
-                                                                "CheckBy" : false 
-                                                            }
-                                                        }, 
-                                                        {
-                                                            "Type" : 1283546004 ,
-                                                            "Element" : {
-                                                                "Not" : true ,
-                                                                "Extent" : false ,
-                                                                "By" : "" ,
-                                                                "ByAll" : false ,
-                                                                "Entries" : [ 
-                                                                    
-                                                                    {
-                                                                        "First" : "Default" ,
                                                                         "Second" : "EDZ" 
                                                                     }
                                                                 ],
@@ -1011,7 +951,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 1 ,
+                                    "ColorScheme" : 0 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -1069,9 +1009,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.400000000000000e+01 ,
-                                        "Maximum" : 2.000000000000000e+01 ,
-                                        "Interval" : 1.000000000000000e+00 ,
+                                        "Minimum" : 1.797693134862316e+308 ,
+                                        "Maximum" : -1.797693134862316e+308 ,
+                                        "Interval" : 0.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1096,7 +1036,7 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : true ,
+                                        "Active" : false ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
@@ -1106,8 +1046,8 @@
                                                 "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : true ,
-                                                "Keyword" : "property" ,
+                                                "Active" : false ,
+                                                "Keyword" : "displacement" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 2 ,
@@ -1115,8 +1055,8 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "displacement" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
@@ -1127,20 +1067,20 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "property" ,
-                                                    "Property" : "joint-friction" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "" ,
+                                                    "Property" : "young" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
                                                     "Tolerance" : 1.000000000000000e-07 ,
                                                     "HideNull" : true 
                                                 },
-                                                "Source" : 0 
+                                                "Source" : 1 
                                             }
                                         ],
                                         "Gp" : {
@@ -1154,8 +1094,8 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "displacement" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 }
@@ -1172,9 +1112,9 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "property" ,
-                                                    "Property" : "joint-friction" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "" ,
+                                                    "Property" : "young" ,
                                                     "PropType" : 0 
                                                 }
                                             ]
@@ -1198,7 +1138,7 @@
                                             "Tolerance" : 1.000000000000000e-07 
                                         },
                                         "CompressionPositive" : false ,
-                                        "Source" : 0 
+                                        "Source" : 1 
                                     },
                                     "ColorMap" : {
                                         "Active" : true ,
@@ -1215,7 +1155,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "None" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1260,7 +1200,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1509,9 +1449,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 1.466832643036415e+00  , "y" : -9.858317742054870e+00  , "z" : 1.809951620322654e+00 } ,
-                            "ViewCenter" : { "x" : 1.466832643036415e+00  , "y" : 4.383217822001687e+00  , "z" : 1.809951620322654e+00 } ,
-                            "Up" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
+                            "EyePosition" : { "x" : 3.858703552298546e+00  , "y" : -8.042305317975039e+00  , "z" : -1.415143891471036e+00 } ,
+                            "ViewCenter" : { "x" : -1.144759228540540e+01  , "y" : 2.254294296510036e+01  , "z" : 8.128097101812449e-01 } ,
+                            "Up" : { "x" : 2.640829309731599e-02  , "y" : -5.947371347556737e-02  , "z" : 9.978804935768173e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -1678,9 +1618,9 @@
                                         "Text" : "" 
                                     },
                                     "CutPlaneInfo" : {
-                                        "Active" : false ,
+                                        "Active" : true ,
                                         "On" : true ,
-                                        "Front" : false ,
+                                        "Front" : true ,
                                         "Back" : false ,
                                         "Caption" : {
                                             "Active" : true ,
@@ -1692,9 +1632,48 @@
                                             "Bool" : true ,
                                             "Text" : "" 
                                         },
-                                        "TypeName" : "None" ,
-                                        "SyncName" : "" ,
-                                        "Plane" : [  ]
+                                        "TypeName" : "Plane" ,
+                                        "SyncName" : "Default" ,
+                                        "Plane" : [ 
+                                            {
+                                                "Origin" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                                                "OriginCaption" : {
+                                                    "Active" : true ,
+                                                    "Enabled" : true ,
+                                                    "Size" : 44 ,
+                                                    "Family" : "Arial" ,
+                                                    "Style" : 0 ,
+                                                    "Color" : "#000000FF" ,
+                                                    "Bool" : false ,
+                                                    "Text" : "" 
+                                                },
+                                                "NormalCaption" : {
+                                                    "Active" : true ,
+                                                    "Enabled" : true ,
+                                                    "Size" : 44 ,
+                                                    "Family" : "Arial" ,
+                                                    "Style" : 0 ,
+                                                    "Color" : "#000000FF" ,
+                                                    "Bool" : false ,
+                                                    "Text" : "" 
+                                                },
+                                                "DipCaption" : {
+                                                    "Active" : true ,
+                                                    "Enabled" : true ,
+                                                    "Size" : 44 ,
+                                                    "Family" : "Arial" ,
+                                                    "Style" : 0 ,
+                                                    "Color" : "#000000FF" ,
+                                                    "Bool" : false ,
+                                                    "Text" : "" 
+                                                },
+                                                "SyncName" : "Default" ,
+                                                "Normal" : { "x" : 0.000000000000000e+00  , "y" : 1.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                                                "NormalIncrement" : 3.585158280424070e-01 ,
+                                                "AutoNormalIncrement" : true ,
+                                                "TargetNormalIncrement" : 5.000000000000000e-02 
+                                            }
+                                        ]
                                     },
                                     "ClipBoxInfo" : {
                                         "Active" : false ,
@@ -1716,7 +1695,28 @@
                                             "RenderModeSpecific" : true ,
                                             "ExtentModel" : true ,
                                             "Type" : 1283546101 ,
-                                            "RangePlotItem" : [  ],
+                                            "RangePlotItem" : [ 
+                                                {
+                                                    "Active" : true ,
+                                                    "Type" : 0 ,
+                                                    "PIActive" : true ,
+                                                    "ShowCaption" : true ,
+                                                    "Title" : {
+                                                        "Active" : true ,
+                                                        "Enabled" : true ,
+                                                        "Size" : 55 ,
+                                                        "Family" : "Times New Roman" ,
+                                                        "Style" : 1 ,
+                                                        "Color" : "#000000FF" ,
+                                                        "Bool" : true ,
+                                                        "Text" : "" 
+                                                    },
+                                                    "Transparency" : 90 ,
+                                                    "TransActive" : true ,
+                                                    "TransLocked" : true ,
+                                                    "Range" : [  ]
+                                                }
+                                            ],
                                             "Range" : [ 
                                                 {
                                                     "SelfIndex" : 0 ,
@@ -1920,10 +1920,10 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 8.537217000960791e-18 ,
-                                        "Maximum" : 5.000000000000000e-13 ,
-                                        "Interval" : 5.000000000000000e-14 ,
-                                        "MinAuto" : true ,
+                                        "Minimum" : 1.000000000000000e-17 ,
+                                        "Maximum" : 2.000000000000000e+01 ,
+                                        "Interval" : 2.500000000000000e+00 ,
+                                        "MinAuto" : false ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
                                         "Reversed" : false ,
@@ -1958,7 +1958,7 @@
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : true ,
-                                                "Keyword" : "extra" ,
+                                                "Keyword" : "property" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
@@ -1979,8 +1979,8 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
-                                                    "Property" : "" ,
+                                                    "Keyword" : "property" ,
+                                                    "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
@@ -2024,8 +2024,8 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
-                                                    "Property" : "" ,
+                                                    "Keyword" : "property" ,
+                                                    "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 }
                                             ]
@@ -2283,6 +2283,60 @@
                 ]
             }, 
             {
+                "Key" : "Face Groups" ,
+                "Value" : [ 
+                    {
+                        "Key" : "Skin=South" ,
+                        "Value" : {
+                            "Color" : "#00ffffFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Skin=East" ,
+                        "Value" : {
+                            "Color" : "#ff0000FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Skin=North" ,
+                        "Value" : {
+                            "Color" : "#2e8b56FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Skin=West" ,
+                        "Value" : {
+                            "Color" : "#ff00d5FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "None" ,
+                        "Value" : {
+                            "Color" : "#b7001fFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Skin=Top" ,
+                        "Value" : {
+                            "Color" : "#ff4000FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Skin=Bottom" ,
+                        "Value" : {
+                            "Color" : "#0080ffFF" ,
+                            "Alias" : "" 
+                        }
+                    }
+                ]
+            }, 
+            {
                 "Key" : "State By Average" ,
                 "Value" : [ 
                     {
@@ -2321,7 +2375,7 @@
                 
                 {
                     "Name" : "Viewer-ROOT #2" ,
-                    "Geom" : [ 941 ,1699  ],
+                    "Geom" : [ 896 ,1744  ],
                     "Child1" : "Editor_initialize_model" ,
                     "Child2" : "CloseableSplitter #4" ,
                     "Hor" : true ,
@@ -2332,7 +2386,7 @@
                 , 
                 {
                     "Name" : "CloseableSplitter #4" ,
-                    "Geom" : [ 849 ,848  ],
+                    "Geom" : [ 871 ,871  ],
                     "Child1" : "Plot_Plot01" ,
                     "Child2" : "Plot_Plot02" ,
                     "Hor" : true ,
@@ -2341,7 +2395,7 @@
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Editor_initialize_model" 
+            "Focus" : "Plot_Plot01" 
         },
         "Recent" : {
             "MRUMagic" : [ 
