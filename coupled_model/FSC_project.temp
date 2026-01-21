@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-20T23:49:36" ,
+        "DateTime" : "2026-01-21T00:34:36" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "tf_in.f3sav" ,
+                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -571,9 +571,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 2.758510532318767e+01  , "y" : -9.119274191956167e+01  , "z" : 2.503251314427230e+01 } ,
-                            "ViewCenter" : { "x" : -1.201807510762121e+01  , "y" : -2.643526873117448e+00  , "z" : 6.082174184198580e-01 } ,
-                            "Up" : { "x" : -8.524651414059935e-02  , "y" : 2.293192069262049e-01  , "z" : 9.696111247101145e-01 } ,
+                            "EyePosition" : { "x" : 7.608414934734859e+00  , "y" : -4.155233066577397e+01  , "z" : 4.551643754278206e+00 } ,
+                            "ViewCenter" : { "x" : 7.608414934734859e+00  , "y" : 1.427632787527948e+01  , "z" : 4.551643754278206e+00 } ,
+                            "Up" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -1042,11 +1042,11 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 9.037361378971436e+05 ,
-                                        "Maximum" : 1.293435283487327e+06 ,
-                                        "Interval" : 5.000000000000000e+04 ,
+                                        "Minimum" : 1.076645100624064e-19 ,
+                                        "Maximum" : 1.000000000000000e-13 ,
+                                        "Interval" : 1.000000000000000e-14 ,
                                         "MinAuto" : true ,
-                                        "MaxAuto" : true ,
+                                        "MaxAuto" : false ,
                                         "IntAuto" : true ,
                                         "Reversed" : false ,
                                         "AboveAuto" : true ,
@@ -1080,7 +1080,7 @@
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : true ,
-                                                "Keyword" : "pore-pressure" ,
+                                                "Keyword" : "extra" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
@@ -1101,7 +1101,7 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "pore-pressure" ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "strain-tensile-plastic-joint" ,
                                                     "PropType" : 0 
                                                 },
@@ -1146,7 +1146,7 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "pore-pressure" ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "strain-tensile-plastic-joint" ,
                                                     "PropType" : 0 
                                                 }
@@ -1587,7 +1587,7 @@
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Editor_initialize_model" 
+            "Focus" : "Plot_Plot01" 
         },
         "Recent" : {
             "MRUMagic" : [ 
