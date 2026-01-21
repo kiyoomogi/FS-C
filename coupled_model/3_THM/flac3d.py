@@ -128,25 +128,11 @@ def stress_on_plane(tough_time):
     return
 
 
-def normal_stress(stress_tensor, n_vector):
-    """
-    stress_tensor: (N,3,3) total stress tensor (compression negative in FLAC convention if you pass -stress)
-    n_vector:      (3,) unit normal
-    returns:       (N,) normal stress sigma_n = n · sigma · n
-    """
-    n = np.asarray(n_vector, dtype=float)
-    # sigma_n = n_i * sigma_ij * n_j
-    return np.einsum("i, nij, j -> n", n, stress_tensor, n)
 
 def printer_function(
     tough_time,
     group_name="FAULT",
     *,
-    # --- add these so we can recompute bel ---
-    br=1.2e-6,
-    bmax=4.8e-5,
-    alpha=0.55,                      # MPa^-1 (same as your input)
-    n_vector=np.array([0.47, -0.60, 0.64]),
     joint=True,
 ):
     tought, tstep = tough_time
@@ -170,32 +156,6 @@ def printer_function(
     pp_group = tza.pp()[group]
 
     # ============================================================
-    #   Recompute b_el like in rinaldi2019()
-    # ============================================================
-
-    # --- stress tensor for the group
-    # za.stress_flat()[group] gives (N,6) with ordering:
-    # [sxx, syy, szz, sxy, syz, sxz]  (based on your use)
-    stresses = za.stress_flat()[group]
-    stress_tensor = np.empty((stresses.shape[0], 3, 3), dtype=float)
-
-    stress_tensor[:, 0, 0] = stresses[:, 0]
-    stress_tensor[:, 1, 1] = stresses[:, 1]
-    stress_tensor[:, 2, 2] = stresses[:, 2]
-    stress_tensor[:, 0, 1] = stress_tensor[:, 1, 0] = stresses[:, 3]
-    stress_tensor[:, 1, 2] = stress_tensor[:, 2, 1] = stresses[:, 4]
-    stress_tensor[:, 0, 2] = stress_tensor[:, 2, 0] = stresses[:, 5]
-
-    # IMPORTANT: you do "-stress_tensor" to convert compressive sign convention
-    sigma_n_total = normal_stress(-stress_tensor, n_vector)   # Pa
-    sigma_n_eff   = sigma_n_total - pp_group                  # Pa
-
-    # alpha conversion: MPa^-1  ->  Pa^-1  (same as alpha/(1e6) in your function)
-    alpha_pa = alpha / 1.0e6
-
-    bel = br + bmax * np.exp(-alpha_pa * sigma_n_eff)
-
-    # ============================================================
     #   Existing diagnostics (your original stuff)
     # ============================================================
 
@@ -214,7 +174,8 @@ def printer_function(
 
     print(f"=== printer debug ({group_name}) tstep={tstep} t={tought} ===")
     print("k (2nd highest)       :", k[idx_second, :])
-    print("k (min, failed only)  :", k[idx_min_failed, :])
+    print("k (min, failed only)        :", k[idx_min_failed, :])
+    print("strain_shear @min k failed  :", float(strain_shear[idx_min_failed]))
     print("Index (2nd max k)     :", idx_second)
     print("Index (min k failed)  :", idx_min_failed)
     print("strain_tens @2nd max  :", float(strain_tensile[idx_second]))
@@ -223,17 +184,6 @@ def printer_function(
     print("strain_shear@min fail :", float(strain_shear[idx_min_failed]))
     print("pp 2nd max            : {:.3f} MPa".format(pp_second * 1e-6))
     print("failed zones          : {} / {}".format(np.count_nonzero(failed_mask), strain_shear.size))
-
-    # ============================================================
-    #   NEW prints: elastic aperture b_el stats
-    # ============================================================
-    print("--- aperture diagnostics ---")
-    print("max b_el              : {:.3e} m".format(float(np.max(bel))))
-    print("min b_el              : {:.3e} m".format(float(np.min(bel))))
-    print("mean b_el             : {:.3e} m".format(float(np.mean(bel))))
-    print("b_el @2nd max k        : {:.3e} m".format(float(bel[idx_second])))
-    print("b_el @min failed zone  : {:.3e} m".format(float(bel[idx_min_failed])))
-
     print("==============================================")
 
 # Extra Python functions as a list of callables
