@@ -34,7 +34,7 @@ zone gridpoint initialize temperature 15
 ;SUBI
 zone property cohesion 2e8    ;3.1 ENSI matrix
 zone property young 7e9         ;NAGRA, Xu
-zone property young 70e9 range group 'FAULT'        ;NAGRA, Xu
+zone property young 7e9 range group 'FAULT'        ;NAGRA, Xu
 zone property poisson 0.25      ;NAGRA, Xu
 zone property dilation 0        ;NAGRA, Xu
 zone property friction 29       ;ENSI matrix
@@ -78,7 +78,8 @@ zone face apply velocity-normal=0 range group 'Bottom'
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 3e-8
+model solve mech ratio 3.4e-8
 
+zone property young 70e9 range group 'FAULT'
 ; Save model
 model save '../tf_in.f3sav'
