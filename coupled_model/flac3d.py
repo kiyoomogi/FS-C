@@ -215,18 +215,6 @@ permeability_func = {
         joint = True, 
 
     ),
-    "EDZ": lambda g: rinaldi2019(
-        g,
-        k0 = k0_edz,
-        phi0 = 0.14,
-        n = 0.4,
-        w = 1.8,
-        br = 7e-7,     #was 20e-6
-        bmax = 5e-6,  #was 500e-6
-        alpha = 1.5, 
-        n_vector = np.array([0.47, -0.60, 0.64]),
-        joint = True, 
-    ),
     "CLAY": lambda g: constant(
         g,
         k0=k0_clay,
