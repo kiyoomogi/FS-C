@@ -131,9 +131,9 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.14,
     },
-    "EDZ": {
-        "porosity": 0.14,
-    },
+#    "EDZ": {
+#        "porosity": 0.14,
+#    },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
 }
