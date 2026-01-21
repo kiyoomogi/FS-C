@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-21T04:19:36" ,
+        "DateTime" : "2026-01-21T17:07:36" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "tf_in.f3sav" ,
+                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -576,8 +576,8 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 3.082445031209161e+01  , "y" : -1.064331573194946e+02  , "z" : 1.901405349019160e+01 } ,
-                            "ViewCenter" : { "x" : 1.002464574492246e+01  , "y" : 5.888493570532397e+00  , "z" : -1.528923819906088e+00 } ,
+                            "EyePosition" : { "x" : 4.241537246909135e+00  , "y" : -4.380086291544040e+01  , "z" : 6.786034582038196e+00 } ,
+                            "ViewCenter" : { "x" : -3.224393788500263e+00  , "y" : -3.483863944598519e+00  , "z" : -5.877102704137163e-01 } ,
                             "Up" : { "x" : -1.470873581301974e-01  , "y" : 1.515317095179466e-01  , "z" : 9.774474155108539e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
@@ -933,6 +933,26 @@
                                                                 "Matches" : 1 ,
                                                                 "CheckBy" : false 
                                                             }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "ByAll" : false ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "EDZ" 
+                                                                    }
+                                                                ],
+                                                                "And" : true ,
+                                                                "Only" : false ,
+                                                                "Matches" : 1 ,
+                                                                "CheckBy" : false 
+                                                            }
                                                         }
                                                     ]
                                                 }
@@ -989,7 +1009,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 1 ,
+                                    "ColorScheme" : 0 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -1047,11 +1067,11 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 9.019000000000000e+05 ,
-                                        "Maximum" : 1.294300000000000e+06 ,
-                                        "Interval" : 5.000000000000000e+04 ,
+                                        "Minimum" : 1.797693134862316e+308 ,
+                                        "Maximum" : 1.993680000000000e-14 ,
+                                        "Interval" : 0.000000000000000e+00 ,
                                         "MinAuto" : true ,
-                                        "MaxAuto" : true ,
+                                        "MaxAuto" : false ,
                                         "IntAuto" : true ,
                                         "Reversed" : false ,
                                         "AboveAuto" : true ,
@@ -1074,7 +1094,7 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : true ,
+                                        "Active" : false ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
@@ -1084,8 +1104,8 @@
                                                 "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : true ,
-                                                "Keyword" : "pore-pressure" ,
+                                                "Active" : false ,
+                                                "Keyword" : "extra" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 2 ,
@@ -1093,8 +1113,8 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "pore-pressure" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
@@ -1105,8 +1125,8 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "strain-tensile-plastic-joint" ,
                                                     "PropType" : 0 
                                                 },
@@ -1118,7 +1138,7 @@
                                                     "Tolerance" : 1.000000000000000e-07 ,
                                                     "HideNull" : true 
                                                 },
-                                                "Source" : 1 
+                                                "Source" : 0 
                                             }
                                         ],
                                         "Gp" : {
@@ -1132,8 +1152,8 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "pore-pressure" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 }
@@ -1150,8 +1170,8 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "strain-tensile-plastic-joint" ,
                                                     "PropType" : 0 
                                                 }
@@ -1176,7 +1196,7 @@
                                             "Tolerance" : 1.000000000000000e-07 
                                         },
                                         "CompressionPositive" : false ,
-                                        "Source" : 1 
+                                        "Source" : 0 
                                     },
                                     "ColorMap" : {
                                         "Active" : true ,
@@ -1193,7 +1213,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "None" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1238,7 +1258,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1256,7 +1276,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p j-tension-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1487,8 +1507,8 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 2.108367752007748e+01  , "y" : -7.058999710989254e+01  , "z" : 1.117361618491683e+01 } ,
-                            "ViewCenter" : { "x" : 2.956662644519322e+00  , "y" : -4.389217877575200e+00  , "z" : -7.954129287656492e+00 } ,
+                            "EyePosition" : { "x" : 7.688593829563461e+00  , "y" : -2.160785509720091e+01  , "z" : 4.449744858123552e+00 } ,
+                            "ViewCenter" : { "x" : 1.786957926330292e+00  , "y" : -5.478095777084442e-02  , "z" : -1.777700212330641e+00 } ,
                             "Up" : { "x" : -2.217503555665398e-02  , "y" : 2.719037809969698e-01  , "z" : 9.620689173222535e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
@@ -1820,7 +1840,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 0 ,
+                                    "ColorScheme" : 1 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -1878,9 +1898,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.797693134862316e+308 ,
-                                        "Maximum" : -1.797693134862316e+308 ,
-                                        "Interval" : 0.000000000000000e+00 ,
+                                        "Minimum" : 9.012802119864508e+05 ,
+                                        "Maximum" : 6.217122839721651e+06 ,
+                                        "Interval" : 5.000000000000000e+05 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1905,7 +1925,7 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : false ,
+                                        "Active" : true ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
@@ -1915,8 +1935,8 @@
                                                 "Extra" : 1 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : false ,
-                                                "Keyword" : "displacement" ,
+                                                "Active" : true ,
+                                                "Keyword" : "pore-pressure" ,
                                                 "GpData" : {
                                                     "Component" : 3 ,
                                                     "Quantity" : 0 ,
@@ -1924,8 +1944,8 @@
                                                     "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "displacement" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
@@ -1936,20 +1956,20 @@
                                                     "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "pore-pressure" ,
                                                     "Property" : "" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
                                                     "Tolerance" : 1.000000000000000e-07 ,
                                                     "HideNull" : true 
                                                 },
-                                                "Source" : 1 
+                                                "Source" : 0 
                                             }
                                         ],
                                         "Gp" : {
@@ -1963,8 +1983,8 @@
                                                     "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "displacement" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 }
@@ -1981,8 +2001,8 @@
                                                     "Extra" : 1 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "pore-pressure" ,
                                                     "Property" : "" ,
                                                     "PropType" : 0 
                                                 }
@@ -2007,7 +2027,7 @@
                                             "Tolerance" : 1.000000000000000e-07 
                                         },
                                         "CompressionPositive" : false ,
-                                        "Source" : 1 
+                                        "Source" : 0 
                                     },
                                     "ColorMap" : {
                                         "Active" : true ,
@@ -2024,7 +2044,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "None" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -2299,7 +2319,7 @@
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Editor_initialize_model" 
+            "Focus" : "Plot_Plot01" 
         },
         "Recent" : {
             "MRUMagic" : [ 
