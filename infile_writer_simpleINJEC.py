@@ -33,7 +33,7 @@ elif hydr_test == False and stage == 11:
 
 elif stage == 0:
     time_zero =  94878 
-    time_final = 94878 + 3600 * 4
+    time_final = 95100 #94878 + 3600 * 4
     time_step = 0.5
     time_max = 2
 elif stage == 2:
@@ -95,16 +95,14 @@ unique_materials = set((materials).tolist())
 mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", incon=True)
 mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
-times_list1 = np.arange(time_zero, time_zero+30, 5)
-times_list2 = np.arange(time_zero + 31, time_final, 240)
-times_list = np.append(times_list1, times_list2)
+times_list = np.linspace(time_zero, time_final-1, 6)
 
 parameters = {
     "title": "injection model",
     "eos": "eco2n",
     "isothermal": True,
     "start": True,
-    #"times": times_list, 
+    "times": times_list, 
 }
 
 
@@ -135,7 +133,7 @@ parameters["default"] = {
     "permeability": [3e-18,3e-18,3e-18], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
-    "compressibility": 5e-9,             #Pa^-1
+    #"compressibility": 5e-9,             #Pa^-1
     "expansivity": 1.4e-5,                #°C^-1
     "conductivity_dry": 2.0,              #W/m/K
 
@@ -178,7 +176,7 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.14,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [5e-17, 5e-17, 1e-17]
+        "permeability": [1e-17, 1e-17, 5e-18]
         #"permeability": [6.5e-17,5e-17,5e-17]
     },
 

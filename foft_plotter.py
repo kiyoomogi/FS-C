@@ -19,8 +19,8 @@ bfsb2_path = foft_dir / "BFSB2_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_bot_stem = "FOFT_A16_3"  # goes to middle panel
-special_mid_stem = "FOFT_ADT90"  # goes to bottom panel
+special_bot_stem = "FOFT_ACV28"  # goes to middle panel
+special_mid_stem = "FOFT_ACX45"  # goes to bottom panel
 
 # ---------------- measured injection series ----------------
 rates_csv = pd.read_csv(
@@ -96,7 +96,7 @@ for f in foft_files:
 
 ax_top.set_ylabel("Pressure [MPa]")
 ax_top.set_ylim(0, 16)
-ax_top.axhline(4.4, color='black', alpha=0.3, ls=':')
+ax_top.axhline(6.1, color='black', alpha=0.3, ls=':')
 ax_top.legend(loc="upper right", ncol=2, fontsize=14)
 ax_top.set_title("BFSB2")
 
