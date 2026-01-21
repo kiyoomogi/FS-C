@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-21T17:07:36" ,
+        "DateTime" : "2026-01-21T18:52:36" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
+                "SaveFile" : "3_THM/f3out/f1.100d.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -32,7 +32,9 @@
                     "Files" : [ 
                         "Postprocessing/tf_fi.f3sav" ,
                         "3_THM/f3out/tf_fi.f3sav" ,
-                        "tf_in.f3sav" 
+                        "tf_in.f3sav" ,
+                        "3_THM/f3out/f1.099d.f3sav" ,
+                        "3_THM/f3out/f1.100d.f3sav" 
                     ]
                 },
                 "ResultFiles" : {
@@ -576,9 +578,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 4.241537246909135e+00  , "y" : -4.380086291544040e+01  , "z" : 6.786034582038196e+00 } ,
-                            "ViewCenter" : { "x" : -3.224393788500263e+00  , "y" : -3.483863944598519e+00  , "z" : -5.877102704137163e-01 } ,
-                            "Up" : { "x" : -1.470873581301974e-01  , "y" : 1.515317095179466e-01  , "z" : 9.774474155108539e-01 } ,
+                            "EyePosition" : { "x" : -3.542606322778691e-01  , "y" : -4.390910154829422e+00  , "z" : 3.662431922069282e-01 } ,
+                            "ViewCenter" : { "x" : -4.281605440538285e-01  , "y" : -6.355155965859218e-01  , "z" : -2.989674373698440e-01 } ,
+                            "Up" : { "x" : -1.664249048675099e-03  , "y" : 1.743874701987894e-01  , "z" : 9.846757032204920e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -1009,7 +1011,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 0 ,
+                                    "ColorScheme" : 1 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -1067,11 +1069,11 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.797693134862316e+308 ,
-                                        "Maximum" : 1.993680000000000e-14 ,
-                                        "Interval" : 0.000000000000000e+00 ,
+                                        "Minimum" : 1.400000000000000e+01 ,
+                                        "Maximum" : 2.000000000000000e+01 ,
+                                        "Interval" : 1.000000000000000e+00 ,
                                         "MinAuto" : true ,
-                                        "MaxAuto" : false ,
+                                        "MaxAuto" : true ,
                                         "IntAuto" : true ,
                                         "Reversed" : false ,
                                         "AboveAuto" : true ,
@@ -1094,7 +1096,7 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : false ,
+                                        "Active" : true ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
@@ -1104,8 +1106,8 @@
                                                 "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : false ,
-                                                "Keyword" : "extra" ,
+                                                "Active" : true ,
+                                                "Keyword" : "property" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 2 ,
@@ -1113,7 +1115,7 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1125,13 +1127,13 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "extra" ,
-                                                    "Property" : "strain-tensile-plastic-joint" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "property" ,
+                                                    "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
@@ -1152,7 +1154,7 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1170,9 +1172,9 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "extra" ,
-                                                    "Property" : "strain-tensile-plastic-joint" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "property" ,
+                                                    "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 }
                                             ]
@@ -1213,7 +1215,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "None" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1258,7 +1260,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1276,7 +1278,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p j-tension-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1507,9 +1509,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 7.688593829563461e+00  , "y" : -2.160785509720091e+01  , "z" : 4.449744858123552e+00 } ,
-                            "ViewCenter" : { "x" : 1.786957926330292e+00  , "y" : -5.478095777084442e-02  , "z" : -1.777700212330641e+00 } ,
-                            "Up" : { "x" : -2.217503555665398e-02  , "y" : 2.719037809969698e-01  , "z" : 9.620689173222535e-01 } ,
+                            "EyePosition" : { "x" : 1.466832643036415e+00  , "y" : -9.858317742054870e+00  , "z" : 1.809951620322654e+00 } ,
+                            "ViewCenter" : { "x" : 1.466832643036415e+00  , "y" : 4.383217822001687e+00  , "z" : 1.809951620322654e+00 } ,
+                            "Up" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -1784,6 +1786,26 @@
                                                                 "Matches" : 1 ,
                                                                 "CheckBy" : false 
                                                             }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "ByAll" : false ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "EDZ" 
+                                                                    }
+                                                                ],
+                                                                "And" : true ,
+                                                                "Only" : false ,
+                                                                "Matches" : 1 ,
+                                                                "CheckBy" : false 
+                                                            }
                                                         }
                                                     ]
                                                 }
@@ -1898,9 +1920,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 9.012802119864508e+05 ,
-                                        "Maximum" : 6.217122839721651e+06 ,
-                                        "Interval" : 5.000000000000000e+05 ,
+                                        "Minimum" : 8.537217000960791e-18 ,
+                                        "Maximum" : 5.000000000000000e-13 ,
+                                        "Interval" : 5.000000000000000e-14 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1929,19 +1951,19 @@
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
-                                                "Component" : 3 ,
+                                                "Component" : 0 ,
                                                 "Quantity" : 0 ,
-                                                "Type" : 0 ,
-                                                "Extra" : 1 ,
+                                                "Type" : 1 ,
+                                                "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : true ,
-                                                "Keyword" : "pore-pressure" ,
+                                                "Keyword" : "extra" ,
                                                 "GpData" : {
-                                                    "Component" : 3 ,
+                                                    "Component" : 0 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 1 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
@@ -1950,14 +1972,14 @@
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
                                                 "ZoneData" : {
-                                                    "Component" : 3 ,
+                                                    "Component" : 0 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 1 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "pore-pressure" ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "" ,
                                                     "PropType" : 0 
                                                 },
@@ -1977,10 +1999,10 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 3 ,
+                                                    "Component" : 0 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 1 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
@@ -1995,14 +2017,14 @@
                                             "Enabled" : true ,
                                             "Data" : [ 
                                                 {
-                                                    "Component" : 3 ,
+                                                    "Component" : 0 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 1 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "pore-pressure" ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "" ,
                                                     "PropType" : 0 
                                                 }
@@ -2299,7 +2321,7 @@
                 
                 {
                     "Name" : "Viewer-ROOT #2" ,
-                    "Geom" : [ 766 ,1874  ],
+                    "Geom" : [ 941 ,1699  ],
                     "Child1" : "Editor_initialize_model" ,
                     "Child2" : "CloseableSplitter #4" ,
                     "Hor" : true ,
@@ -2310,7 +2332,7 @@
                 , 
                 {
                     "Name" : "CloseableSplitter #4" ,
-                    "Geom" : [ 936 ,936  ],
+                    "Geom" : [ 849 ,848  ],
                     "Child1" : "Plot_Plot01" ,
                     "Child2" : "Plot_Plot02" ,
                     "Hor" : true ,
@@ -2319,7 +2341,7 @@
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Plot_Plot01" 
+            "Focus" : "Editor_initialize_model" 
         },
         "Recent" : {
             "MRUMagic" : [ 
