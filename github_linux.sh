@@ -12,6 +12,7 @@ repo_dir="/home/manuus/Desktop/FS-C/model"
 
 cd "$repo_dir" || { echo "Dir not found: $repo_dir" >&2; exit 1; }
 
+
 # Make sure it's a git repo
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   echo "Error: $repo_dir is not a Git repository." >&2
