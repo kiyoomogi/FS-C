@@ -206,11 +206,11 @@ permeability_func = {
         g,
         k0 = k0_fault,
         phi0 = 0.14,
-        n = 0.4,
+        n = 1.8,
         w = 1.8,
-        br = 10e-6,     #was 20e-6
-        bmax = 50e-6,  #was 500e-6
-        alpha = 1, 
+        br = 20e-6,     #was 20e-6
+        bmax = 45e-6,  #was 500e-6
+        alpha = 0.55, 
         n_vector = np.array([0.47, -0.60, 0.64]),
         joint = True, 
 
