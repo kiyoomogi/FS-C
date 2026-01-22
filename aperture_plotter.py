@@ -25,7 +25,7 @@ sigma_ni = 4.2          # MPa  (initial effective normal stress)
 e_pT = 0             # tensile plastic strain (scalar)
 e_pS = np.array([0.0, 1e-4, 1e-3])  # shear plastic strain cases
 psi = 11.0              # degrees
-n = 0.8
+n = 1.8
 w = 1.8                 # m
 k0 = 1e-17              # m^2
 
@@ -69,13 +69,13 @@ for i, eps_s in enumerate(e_pS):
     label = f"εpS = {eps_s:.1e}"
 
     # 1) Aperture vs effective stress
-    ax[0].plot(b_um[i, :], sigma_n, label=label)
+    ax[0].plot(b_um[i, :], sigma_n, label=label, linewidth=2.5)
 
     # 2) Permeability vs aperture
-    ax[1].plot(b_um[i, :], k[i, :], label=label)
+    ax[1].plot(b_um[i, :], k[i, :], label=label, linewidth=2.5)
 
     # 3) Permeability vs effective stress
-    ax[2].plot(sigma_n, k[i, :], label=label)
+    ax[2].plot(sigma_n, k[i, :], label=label, linewidth=2.5)
 
 # ---- plot formatting ----
 ax[0].invert_yaxis()

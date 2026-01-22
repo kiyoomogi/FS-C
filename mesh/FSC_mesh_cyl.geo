@@ -1,11 +1,11 @@
 SetFactory("OpenCASCADE");
 
 WidthCube    = 50;
-HeightCube   = 40;
-zTop         = 10;  // keep this as the original top elevation
+HeightCube   = 50;
+zTop         = 20;  // keep this as the original top elevation
 Dip      = 50*Pi/180;
 Strike  =  -52 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
-FaultThick   = 1.8;
+FaultThick   = 2.5;
 
 
 Point(999) = {0,0,0, 0.05};
@@ -20,8 +20,9 @@ Rectangle(101) = {-100, -100, 0, 200, 200};
 // ---- parameters
 Icl = 55*Pi/180;      // inclination from vertical
 Az  = -52*Pi/180;     // azimuth, clockwise from North
-Len = 0.5;            // borehole length in model unitsQ
-R   = 0.25;        // radius
+Len = 0.8;            // borehole length in model unitsQ
+R   = 0.45;        // radius
+
 // direction cosines (X=East, Y=North, Z=Up)
 ux = Sin(Icl)*Sin(Az);
 uy = Sin(Icl)*Cos(Az);
@@ -110,13 +111,13 @@ Extrude {0,0, -0.5} {
 }
 
 // Pick your target sizes (in model units)
-h_fault = 1.5;   // fine near/inside the fault
+h_fault = 4;   // fine near/inside the fault
 h_out   = 15;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
-Field[1].SurfacesList = {31,9,33,28};
+Field[1].SurfacesList = {33,10,34,29,35};
 
 Field[2] = Threshold;
 Field[2].InField = 1;
@@ -132,10 +133,10 @@ Field[3].PointsList = {999};
 
 Field[4] = Threshold;
 Field[4].InField  = 3;
-Field[4].SizeMin  = 0.25;
-Field[4].SizeMax  = 5;
+Field[4].SizeMin  = 0.5;
+Field[4].SizeMax  = 10;
 Field[4].DistMin  = 0.75;
-Field[4].DistMax  = ramp*2;
+Field[4].DistMax  = ramp*8;
 
 Field[99] = Min;
 Field[99].FieldsList = {2,4};

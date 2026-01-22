@@ -19,8 +19,8 @@ bfsb2_path = foft_dir / "BFSB2_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_bot_stem = "FOFT_A4M24"  # goes to middle panel
-special_mid_stem = "FOFT_A2528"  # goes to bottom panel
+special_bot_stem = "FOFT_ACV28"  # goes to middle panel
+special_mid_stem = "FOFT_ACX45"  # goes to bottom panel
 
 # ---------------- measured injection series ----------------
 rates_csv = pd.read_csv(
@@ -63,7 +63,7 @@ rates_csv = pd.read_csv(
     "/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/FSC_injecrates.csv",
     delimiter=",",
     index_col=0,
-)
+) 
 
 # Parse to datetime and remove timezone info (keep it in UTC numerically)
 rates_csv["UTC"] = pd.to_datetime(rates_csv["UTC"], utc=True, errors="coerce").dt.tz_localize(None)
@@ -140,7 +140,7 @@ ax_mid.plot(
 )
 
 ax_mid.set_ylabel("Pressure [MPa]")
-ax_mid.set_ylim(0, 4)
+ax_mid.set_ylim(0, 8)
 ax_mid.legend(loc="upper right", ncol=2, fontsize=14)
 ax_mid.set_title("BFSB1")
 
@@ -183,7 +183,7 @@ ax_bot.plot(
 
 ax_bot.set_xlabel("Date")
 ax_bot.set_ylabel("Pressure [MPa]")
-ax_bot.set_ylim(0, 4)
+ax_bot.set_ylim(0, 8)
 ax_bot.legend(loc="upper right", ncol=2, fontsize=14)
 ax_bot.set_title("BFSB12")
 
