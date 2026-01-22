@@ -82,21 +82,21 @@ parts[] = BooleanFragments{
 };
 
 
-//Cylinder(1001) = {x0, y0, z0,  dx, dy, dz,  R};
+Cylinder(1001) = {x0, y0, z0,  dx, dy, dz,  R};
 
 // --- intersect cylinder ONLY with the fault zone inside the box
-//cyl_fault[] = BooleanIntersection{
-//  Volume{1001}; Delete;        // delete original full cylinder
-//}{
-//  Volume{fault_in[]};         // only keep part inside the fault
-//};
+cyl_fault[] = BooleanIntersection{
+  Volume{1001}; Delete;        // delete original full cylinder
+}{
+  Volume{fault_in[]};         // only keep part inside the fault
+};
 
 // --- now fragment box + faults + fault cylinder together
-//parts[] = BooleanFragments{
-//  Volume{parts[]}; Delete;
-//}{
-//  Volume{ fault_in[], cyl_fault[]}; Delete;
-//};
+parts[] = BooleanFragments{
+  Volume{parts[]}; Delete;
+}{
+  Volume{ fault_in[], cyl_fault[]}; Delete;
+};
 
 surfAbove[] = Surface In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
 surfBelow[] = Surface In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -29.9};
@@ -116,7 +116,7 @@ ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
-Field[1].SurfacesList = {11,9,12,7,13};
+Field[1].SurfacesList = {31,9,33,28};
 
 Field[2] = Threshold;
 Field[2].InField = 1;
@@ -144,9 +144,10 @@ Background Field = 99;
 volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
 volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -29.9};
 
-//Physical Volume("EDZ") = {1001};
+Physical Volume("EDZ") = {1001};
 Physical Volume("CLAY") = {3,4};
-Physical Volume("FAULT") = {2};
+Physical Volume("FAULT") = {1002};
 Physical Volume("BNDTO") = {volAbove[]};
 Physical Volume("BNDBO") = {volBelow[]};
+
 
