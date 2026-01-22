@@ -169,10 +169,10 @@ parameters["rocks"] = {
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
 
-    #"EDZ": {
-    #    "porosity": 0.14, #-, (4) 
-    #    "permeability": [1e-13, 1e-13, 1e-13],
-    #},
+    "EDZ": {
+        "porosity": 0.14, #-, (4) 
+        "permeability": [1e-13, 1e-13, 1e-13],
+    },
     "FAULT": {
         "porosity": 0.14,
         #"compressibility": 8e-9,             #Pa^-1
