@@ -49,11 +49,11 @@ zone property dip-direction 142
 
 ;joint 
 zone property joint-cohesion 0e6
-zone property joint-dilation 11
+zone property joint-dilation 7
 zone property joint-friction 20
 zone property joint-tension 0.5e6
 
-table 'fric-j' add (0.0e+00 20) (0.0004 15) ;was 18
+table 'fric-j' add (0.0e+00 20) (0.0004 17) ;was 18
 ;table 'coh-j' add (0.0e+00 0.0e6) (2e-5 0.0e6) 
 
 zone property table-joint-friction 'fric-j' 
