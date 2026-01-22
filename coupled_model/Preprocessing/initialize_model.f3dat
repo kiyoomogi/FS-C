@@ -35,11 +35,8 @@ zone gridpoint initialize temperature 15
 zone property cohesion 2e8    ;3.1 ENSI matrix
 zone property young 7e9         ;NAGRA, Xu
 zone property young 70e9 range group 'FAULT'        ;NAGRA, Xu
-<<<<<<< HEAD
-=======
 zone property young 70e9 range group 'EDZ'        ;NAGRA, Xu
 
->>>>>>> a825da9c090313aa860908b03ef90ef40b1dfb7a
 zone property poisson 0.25      ;NAGRA, Xu
 zone property dilation 0        ;NAGRA, Xu
 zone property friction 29       ;ENSI matrix
