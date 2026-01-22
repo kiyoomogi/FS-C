@@ -78,7 +78,7 @@ zone face apply velocity-normal=0 range group 'Bottom'
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 3.4e-8
+model solve mech ratio 1e-8
 
 
 ; Save model
