@@ -111,7 +111,7 @@ Extrude {0,0, -0.5} {
 }
 
 // Pick your target sizes (in model units)
-h_fault = 4;   // fine near/inside the fault
+h_fault = 3;   // fine near/inside the fault
 h_out   = 15;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
