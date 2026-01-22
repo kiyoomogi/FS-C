@@ -1,11 +1,11 @@
 SetFactory("OpenCASCADE");
 
 WidthCube    = 50;
-HeightCube   = 50;
-zTop         = 20;  // keep this as the original top elevation
+HeightCube   = 40;
+zTop         = 17;  // keep this as the original top elevation
 Dip      = 50*Pi/180;
 Strike  =  -52 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
-FaultThick   = 2.5;
+FaultThick   = 2.4;
 
 
 Point(999) = {0,0,0, 0.05};
@@ -117,7 +117,7 @@ ramp    = 10;   // distance over which to transition to h_out
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
-Field[1].SurfacesList = {33,10,34,29,35};
+Field[1].SurfacesList = {9, 28,29,30,31,32,33};
 
 Field[2] = Threshold;
 Field[2].InField = 1;
