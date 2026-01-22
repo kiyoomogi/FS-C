@@ -95,7 +95,7 @@ unique_materials = set((materials).tolist())
 mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", incon=True)
 mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
-times_list = np.linspace(time_zero, time_final-1, 6)
+times_list = np.linspace(time_zero, time_final-10, 20)
 
 parameters = {
     "title": "injection model",
@@ -227,7 +227,7 @@ mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model
 def relative_volumes():
     idx = mesh.near((0, 0.1, 0))  # nearest cell in whole mesh
 
-    if materials[idx] == 'FAULT':
+    if materials[idx] == 'EDZ':
         
         return mesh.labels[idx]
 
