@@ -100,7 +100,7 @@ parts[] = BooleanFragments{
 };
 
 surfAbove[] = Surface In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
-surfBelow[] = Surface In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -29.9};
+surfBelow[] = Surface In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -22.9};
 
 Extrude {0,0, 0.5} {   
   Surface{surfAbove[]}; Layers{1}; Recombine;
