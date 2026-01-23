@@ -256,7 +256,7 @@ def generators():
 
 rates, times = generators() 
 
-ref_points = [injec_label]
+ref_points = [mesh.labels[mesh.near((0, 0, 0))]]
 ref_points.append(str(mesh.labels[mesh.near((7.669, 8.135, 1.860))]))
 print(str(mesh.labels[mesh.near((7.434, 8.137, -0.900))]))
 ref_points.append(str(mesh.labels[mesh.near((10.288, 4.482, -4.541))]))
