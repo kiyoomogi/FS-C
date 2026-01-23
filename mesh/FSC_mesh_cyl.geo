@@ -143,7 +143,7 @@ Field[99].FieldsList = {2,4};
 Background Field = 99;
 
 volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
-volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -29.9};
+volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -22.9};
 
 Physical Volume("EDZ") = {1001};
 Physical Volume("CLAY") = {3,4};
