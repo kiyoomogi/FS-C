@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 # Inputs
 # -------------------------------------------------
 br = 20e-6              # m
-bmax = 50e-6            # m
+bmax = 150e-6            # m
 alpha = 1.5             # 1/MPa  (works with sigma in MPa)
 sigma_n = np.linspace(0, 7.2, 100)  # MPa
 sigma_ni = 4.2          # MPa  (initial effective normal stress)
