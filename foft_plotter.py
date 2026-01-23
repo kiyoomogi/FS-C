@@ -19,8 +19,8 @@ bfsb2_path = foft_dir / "BFSB2_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_bot_stem = "FOFT_ACV28"  # goes to middle panel
-special_mid_stem = "FOFT_ACX45"  # goes to bottom panel
+special_mid_stem = "FOFT_A1R17"  # goes to middle panel
+special_bot_stem = "FOFT_AAQ17"  # goes to bottom panel
 
 # ---------------- measured injection series ----------------
 rates_csv = pd.read_csv(
@@ -47,16 +47,19 @@ def load_foft_to_kpa(path: Path, start_time) -> pd.DataFrame:
 
     secs  = pd.to_numeric(df.iloc[:, 0], errors="coerce")
     p_kPa = pd.to_numeric(df.iloc[:, 1], errors="coerce") / 1e6  # Pa -> kPa
+    p_norm = p_kPa - p_kPa[0]
     t_utc = start_time + pd.to_timedelta(secs, unit="s")
     m = secs.notna() & p_kPa.notna() & t_utc.notna()
 
-    return pd.DataFrame({"t_utc": t_utc[m], "p_kPa": p_kPa[m]})
+    return pd.DataFrame({"t_utc": t_utc[m], "p_kPa": p_kPa[m], "p_norm": p_norm[m]})
 
 
 # ---------------- figure with three subplots ----------------
 fig, (ax_top, ax_mid, ax_bot) = plt.subplots(
     3, 1, sharex=True, figsize=(10, 9), dpi=150
 )
+
+
 
 # ---------------- TOP: measured + all FOFTs except A5Y21 & A6O67 ----------------
 rates_csv = pd.read_csv(
@@ -69,6 +72,26 @@ rates_csv = pd.read_csv(
 rates_csv["UTC"] = pd.to_datetime(rates_csv["UTC"], utc=True, errors="coerce").dt.tz_localize(None)
 
 dates = rates_csv["UTC"]  # already datetime, no need to convert again
+
+xmin = dates[91000]
+xmax = dates[134000]
+
+def normalize_by_first_visible(t, y, xmin):
+    """
+    Normalize y by subtracting the first y-value whose time t is >= xmin.
+    t and y are 1D arrays/Series already filtered for NaNs.
+    """
+    t = pd.Series(t).reset_index(drop=True)
+    y = pd.Series(y).reset_index(drop=True)
+
+    idx = (t >= xmin).idxmax()  # index of first True
+    if not (t >= xmin).any():
+        # If nothing is inside the window, return unchanged
+        return y
+
+    return y - y.iloc[idx]
+
+
 
 ax_top.plot(
     dates,
@@ -109,7 +132,7 @@ for f in foft_files:
         if not df_mid.empty:
             ax_mid.plot(
                 df_mid["t_utc"],
-                df_mid["p_kPa"],
+                df_mid["p_norm"],
                 "-",
                 lw=3,
                 alpha=0.95,
@@ -130,16 +153,25 @@ y_bfs1_bar = pd.to_numeric(bfsb1.iloc[:, 4], errors="coerce")  # bar
 y_bfs1_kPa = y_bfs1_bar / 10
 
 m_bfs1 = t_bfs1.notna() & y_bfs1_kPa.notna()
+# Make timezone consistent with "dates" (tz-naive)
+t_bfs1_naive = t_bfs1.dt.tz_localize(None)
+
+t_plot = t_bfs1_naive[m_bfs1]
+y_plot = y_bfs1_kPa[m_bfs1]
+
+y_plot_norm = normalize_by_first_visible(t_plot, y_plot, xmin)
+
 ax_mid.plot(
-    t_bfs1[m_bfs1],
-    y_bfs1_kPa[m_bfs1],
+    t_plot,
+    y_plot_norm,
     ".-",
     lw=0.8,
     color="grey",
-    label="BFSB1 measured"
+    label="BFSB1 measured (normalized)"
 )
 
-ax_mid.set_ylabel("Pressure [MPa]")
+
+ax_mid.set_ylabel("$\Delta$P [MPa]")
 ax_mid.set_ylim(0, 8)
 ax_mid.legend(loc="upper right", ncol=2, fontsize=14)
 ax_mid.set_title("BFSB1")
@@ -153,7 +185,7 @@ for f in foft_files:
         if not df_bot.empty:
             ax_bot.plot(
                 df_bot["t_utc"],
-                df_bot["p_kPa"],
+                df_bot["p_norm"],
                 "-",
                 lw=3,
                 alpha=0.95,
@@ -172,27 +204,34 @@ t12 = pd.to_datetime(
 p12_kPa = pd.to_numeric(bfsb12["downhole pressure [kPa]"], errors="coerce") /1e3
 m12 = t12.notna() & p12_kPa.notna()
 
+t12_naive = t12.dt.tz_localize(None)
+
+t_plot = t12_naive[m12]
+y_plot = p12_kPa[m12]
+
+y_plot_norm = normalize_by_first_visible(t_plot, y_plot, xmin)
+
 ax_bot.plot(
-    t12[m12],
-    p12_kPa[m12],
+    t_plot,
+    y_plot_norm,
     ".-",
     lw=0.9,
     color="grey",
-    label="BFSB12 measured"
+    label="BFSB12 measured (normalized)"
 )
 
+
 ax_bot.set_xlabel("Date")
-ax_bot.set_ylabel("Pressure [MPa]")
+ax_bot.set_ylabel("$\Delta$P [MPa]")
 ax_bot.set_ylim(0, 8)
 ax_bot.legend(loc="upper right", ncol=2, fontsize=14)
 ax_bot.set_title("BFSB12")
 
 
 # ---------------- shared x-limits & tidy ----------------
-xmin = date_series.min()
-xmax = date_series.max()
-xmin = dates[91000]
-xmax = dates[134000]
+#xmin = date_series.min()
+#xmax = date_series.max()
+
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
 fig.autofmt_xdate()
