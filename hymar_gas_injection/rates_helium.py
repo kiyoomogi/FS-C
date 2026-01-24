@@ -59,7 +59,8 @@ df1000["GasRate_kg_s"] = df1000["GasMass_kg"].diff() / df1000["TimeElapsed"].dif
 # Optional: replace NaN in first row with 0
 df1000["GasRate_kg_s"] = df1000["GasRate_kg_s"].fillna(0.0)
 df1000 = df1000[df1000["GasRate_kg_s"] >= 0].reset_index(drop=True)
-
+t0 = df1000["TimeElapsed"].iloc[0]
+df1000["TimeElapsed"] = df1000["TimeElapsed"] - t0
 
 plt.figure(figsize=(8,5))
 plt.plot(df1000["TimeElapsed"], df1000["GasRate_kg_s"], marker="o", linestyle="-")
