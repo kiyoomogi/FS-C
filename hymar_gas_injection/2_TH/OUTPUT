@@ -17,10 +17,11 @@
  SUMMARY OF DISK FILES
 
  FILE *MESH*  EXISTS --- OPEN AS AN OLD FILE
- FILE *INCON* DOES NOT EXIST --- OPEN AS A NEW FILE
- FILE *GENER* DOES NOT EXIST --- OPEN AS A NEW FILE
- FILE *SAVE* DOES NOT EXIST --- OPEN AS A NEW FILE
- FILE *TABLE* DOES NOT EXIST --- OPEN AS A NEW FILE
+ WARNING: FILES *MESHA* AND *MESHB* EXIST --- information in file MESH or ELEME and CONNE blocks in input file will be ignored
+ FILE *INCON* EXISTS --- OPEN AS AN OLD FILE
+ FILE *GENER* EXISTS --- OPEN AS AN OLD FILE
+ FILE *SAVE*  EXISTS --- OPEN AS AN OLD FILE
+ FILE *TABLE* EXISTS --- OPEN AS AN OLD FILE
 
  ===================================================================================================================================
 
@@ -51,9 +52,6 @@
 (Reading INDOM block)
 (Reading TIMES block)
 (Reading FOFT  block)
-(Reading GENER block)
-     
- WRITE FILE *GENER* FROM INPUT DATA
 (Reading OUTPU block)
 (Reading ENDCY block)
 
@@ -69,9 +67,6 @@
                         ************************************************************************************
 
  
-
- ALL NCON =  18871 CONNECTIONS READ FROM FILE *MESH* REFERENCE KNOWN ELEMENTS
-
 
 
  PARAMETERS FOR FLEXIBLE DIMENSIONING OF MAJOR ARRAYS (MAIN PROGRAM) ARE AS FOLLOWS
@@ -90,7 +85,7 @@
  GENER HAS     1 SINKS/SOURCES
 
 
-END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.1130 SECONDS
+END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.0023 SECONDS
 
  
  ***********************************************************************************************************************************
@@ -8848,13 +8843,13 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.1130 SECONDS
  TOUGH STATUS: Write SAVE file for time =    17812600.000000000     
  EEE  
  EEE  Number of processors =           20
- EEE Time perform model computation  =   0.13317016093060374     
+ EEE Time perform model computation  =   0.13113940693438053     
  EEE   of which spent in lin. solv. =    0.0000000000000000     
- EEE   and spent on other           =   0.13317016093060374     
+ EEE   and spent on other           =   0.13113940693438053     
  EEE  
  EEE Total number of time steps =            1
  EEE Average time in solver per time step =    0.0000000000000000     
- EEE Average time spent on other per time step =   0.13317016093060374     
+ EEE Average time spent on other per time step =   0.13113940693438053     
  EEE  
  EEE Total number Newton steps =            0
  EEE Average number of Newton steps per time step   0.0000000000000000     
@@ -8871,7 +8866,7 @@ END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.1130 SECONDS
 
 
 END OF TOUGH3 SIMULATION RUN
-ELAPSED TIME =      0.278 SEC
-DISTRIBUTION + CALCULATION TIME =      0.165 SEC
-DATA INPUT TIME =    0.113 SEC
+ELAPSED TIME =      0.162 SEC
+DISTRIBUTION + CALCULATION TIME =      0.160 SEC
+DATA INPUT TIME =    0.002 SEC
  
