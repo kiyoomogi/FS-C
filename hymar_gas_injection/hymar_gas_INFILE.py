@@ -14,7 +14,7 @@ import toughio
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/filtered_rates_kgs.csv", delimiter=',')
 
 
-time_zero =  rates_csv['TimeElapsed'][0] - 10 
+time_zero =  rates_csv['TimeElapsed'][0]
 time_final = rates_csv['TimeElapsed'].iloc[-1] + 10
 
 time_step = 0.5
@@ -211,7 +211,7 @@ def generators():
 
     parameters['generators'] = []
     
-    rates = (rates_csv['GasRate_kg_s'] / 1e4).to_list()
+    rates = (rates_csv['GasRate_kg_s']).to_list()
     times = rates_csv['TimeElapsed'].to_list()
 
     generator = {
