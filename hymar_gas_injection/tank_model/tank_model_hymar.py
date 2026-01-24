@@ -207,6 +207,7 @@ parameters["element_history"] = list(labels)
 
 
 mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/mesh.pickle")
+mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/mesh.vtk")
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/INFILE", parameters)  
 mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/MESH", incon=True)
 
