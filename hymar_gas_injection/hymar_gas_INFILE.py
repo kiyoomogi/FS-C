@@ -92,9 +92,9 @@ parameters["default"] = {
 parameters["rocks"] = {
     "PPINJ": {
         "density": 2500,
-        "porosity": 0.98, 
+        "porosity": 0.05, 
         "initial_condition": [ini_pore_pressure,1,temperature],
-        "permeability": [1e-18, 1e-18, 1e-18],
+        "permeability": [1e-16, 1e-16, 1e-16],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         "relative_permeability": {
             "id": 3, #van genuchten 
@@ -221,13 +221,7 @@ def generators():
         "rates": rates,
         "specific_enthalpy": list(np.zeros(len(times))),
     }
-    generator = {
-        "label": injec_label,
-        "type": "COM2",
-        "times": times,
-        "rates": rates,
-        "specific_enthalpy": list(np.zeros(len(times))),
-    }   
+ 
     
     parameters['generators'].append(generator)
     
