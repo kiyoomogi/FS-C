@@ -211,7 +211,7 @@ def generators():
 
     parameters['generators'] = []
     
-    rates = (rates_csv['GasRate_kg_s']).to_list()
+    rates = (rates_csv['GasRate_kg_s'] / 1e4).to_list()
     times = rates_csv['TimeElapsed'].to_list()
 
     generator = {
@@ -221,7 +221,7 @@ def generators():
         "rates": rates,
         "specific_enthalpy": list(np.zeros(len(times))),
     }
-    #parameters['generators'].append(generator)
+    parameters['generators'].append(generator)
     
     return rates, times
 
