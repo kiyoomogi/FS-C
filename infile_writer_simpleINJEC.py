@@ -240,7 +240,7 @@ def generators():
 
     parameters['generators'] = []
     
-    rates = (rates_csv['net flow cor [kg/s]']).to_list()
+    rates = (rates_csv['net flow cor [kg/s]'] / 1e4).to_list()
     times = rates_csv['TimeElapsed'].to_list()
 
     generator = {
