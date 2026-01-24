@@ -206,7 +206,13 @@ parameters["output"] = {
 parameters["element_history"] = list(labels)
 
 
-mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/mesh.pickle")
-mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/mesh.vtk")
-toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/INFILE", parameters)  
+mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/mesh.pickle")
+mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/mesh.vtk")
+toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/INFILE", parameters)  
+mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/MESH")
+
+mesh_dict = toughio.read_input("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/MESH")
+mesh_dict["connections"]['A11 0A11 1']['interface_area'] = interface_area
+
+toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/MESH", mesh_dict)  
 
