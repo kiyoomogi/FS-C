@@ -93,7 +93,7 @@ parameters["rocks"] = {
     "PPINJ": {
         "density": 2500,
         "porosity": 0.05, 
-        "initial_condition": [ini_pore_pressure,0.01,temperature],
+        "initial_condition": [ini_pore_pressure,10.01,temperature],
         "permeability": [1e-16, 1e-16, 1e-16],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         #"relative_permeability": {
