@@ -221,7 +221,7 @@ def generators():
         "rates": rates,
         "specific_enthalpy": list(np.zeros(len(times))),
     }
-    #parameters['generators'].append(generator)
+    parameters['generators'].append(generator)
     
     return rates, times
 
@@ -230,7 +230,7 @@ rates, times = generators()
 L = 0.074
 z_vals = np.linspace(0.0, L, 12)[1:-1]  # 10 internal points
 ref_points = [str(mesh.labels[mesh.near((0, 0, float(z)))]) for z in z_vals]
-
+ref_points.append(str(injec_label))
 
 parameters["element_history"] = ref_points
 
