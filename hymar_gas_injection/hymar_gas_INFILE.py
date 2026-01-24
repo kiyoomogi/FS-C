@@ -14,8 +14,8 @@ import toughio
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/filtered_rates_kgs.csv", delimiter=',')
 
 
-time_zero =  rates_csv['TimeElapsed'][0] 
-time_final = rates_csv['TimeElapsed'].iloc[-1] 
+time_zero =  rates_csv['TimeElapsed'][0] - 10 
+time_final = rates_csv['TimeElapsed'].iloc[-1] + 10
 
 time_step = 0.5
 time_max = 2
@@ -221,6 +221,14 @@ def generators():
         "rates": rates,
         "specific_enthalpy": list(np.zeros(len(times))),
     }
+    generator = {
+        "label": injec_label,
+        "type": "COM2",
+        "times": times,
+        "rates": rates,
+        "specific_enthalpy": list(np.zeros(len(times))),
+    }   
+    
     parameters['generators'].append(generator)
     
     return rates, times
