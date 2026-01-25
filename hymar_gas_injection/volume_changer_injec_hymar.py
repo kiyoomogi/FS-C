@@ -9,6 +9,51 @@ mesh = toughio.read_input(
 )
 
 elements = mesh["elements"]
+connections = mesh["connections"]
+
+# -------------------------
+# 1) Collect element labels by material
+# -------------------------
+ppinj_elems = [e for e, info in elements.items() if info.get("material") == "PPINJ"]
+steel_elems = [e for e, info in elements.items() if info.get("material") == "STEEL"]
+
+print(f"Number of PPINJ elements: {len(ppinj_elems)}")
+print(f"Number of STEEL elements: {len(steel_elems)}")
+
+ppinj_set = set(ppinj_elems)
+steel_set = set(steel_elems)
+
+# -------------------------
+# 2) Find + count PPINJ–STEEL connections
+# -------------------------
+to_remove = []
+
+for key in connections.keys():
+
+    # Typical TOUGH connection key = 2 element names concatenated
+    # Example: "A1A10A1A11" -> e1="A1A10", e2="A1A11"
+    e1 = key[:5]
+    e2 = key[5:10]
+
+    # Check if it's between PPINJ and STEEL (either direction)
+    is_ppinj_steel = ((e1 in ppinj_set and e2 in steel_set) or
+                      (e2 in ppinj_set and e1 in steel_set))
+
+    if is_ppinj_steel:
+        to_remove.append(key)
+
+print(f"Connections PPINJ <-> STEEL found: {len(to_remove)}")
+
+# -------------------------
+# 3) Remove them from dictionary
+# -------------------------
+for k in to_remove:
+    del connections[k]
+
+print(f"Removed {len(to_remove)} connections.")
+print(f"Remaining connections: {len(connections)}")
+
+
 
 # --- collect PPINJ element labels + volumes ---
 ppinj_labels = []
