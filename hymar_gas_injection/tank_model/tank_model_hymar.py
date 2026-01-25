@@ -32,7 +32,7 @@ starttimes = {1:[rates_dummy['TimeElapsed'].values[0], 8.80613e+06],    #refill
               }
 
 time_zero = 203 * (60 * 60 * 24)
-time_final = 39103605
+time_final = rates_dummy['TimeElapsed'].iloc[-2]
 
 parameters = {
     "title": "meshmaker-dummy",
