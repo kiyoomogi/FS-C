@@ -74,7 +74,9 @@ Pmax = 1e12 #Pa, guessed from (2),
 icp11 = [1.67, 18e7, 0, 0.0, 0.0, 0.0, 0.01]
 irp11 = [0.5, 0.0, 0]
 
-icp7 = [0.57, 0.05, 5e-10, 1e12, 1]
+icp7 = [0.457, 0.05, 5e-10, 1e12, 1]
+irp7 = [0.457, 0.05, 1, 0.05]
+
 irp3 = [0.1,0.1]
 
 parameters["default"] = {
@@ -89,8 +91,8 @@ parameters["default"] = {
 
     "initial_condition": [ini_pore_pressure, ini_gas_content,temperature],
     "relative_permeability": {
-        "id": 3, #Modified van genuchtn 
-        "parameters": irp3,
+        "id": 7, #Modified van genuchtn 
+        "parameters": irp7,
     },
     "capillarity": {
         "id": 11, #Modified van genuchten 
