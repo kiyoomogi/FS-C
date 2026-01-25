@@ -25,8 +25,8 @@ rates_csv = rates_csv.sort_values("TimeElapsed").reset_index(drop=True)
 time_zero =  rates_csv['TimeElapsed'][0]
 time_final = rates_csv['TimeElapsed'].iloc[-2]
 
-time_step = 5
-time_max = 150
+time_step = 1500
+time_max = 15000
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/mesh stuff/gas_injec_tough.msh")
 
@@ -74,7 +74,7 @@ Pmax = 1e12 #Pa, guessed from (2),
 icp11 = [1.67, 18e7, 0, 0.0, 0.0, 0.0, 0.01]
 irp11 = [0.5, 0.0, 0]
 
-icp7 = [0.457, 0.05, 5e-10, 1e12, 1]
+icp7 = [0.457, 0.05, 1e-7, 1e12, 1]
 irp7 = [0.457, 0.05, 1, 0.05]
 
 irp3 = [0.1,0.1]
