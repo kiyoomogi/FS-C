@@ -93,8 +93,8 @@ parameters["default"] = {
         "parameters": irp3,
     },
     "capillarity": {
-        "id": 7, #Modified van genuchten 
-        "parameters": icp7,
+        "id": 11, #Modified van genuchten 
+        "parameters": icp11,
     },
 }
 
