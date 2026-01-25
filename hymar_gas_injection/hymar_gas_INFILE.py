@@ -121,14 +121,7 @@ parameters["rocks"] = {
         "porosity": 0.16, 
     },    
     "STEEL": {
-        "relative_permeability": {
-            "id": 11, #Modified van genuchtn 
-            "parameters": [1, 0.0, 0],
-        },
-        "capillarity": {
-            "id": 11, #Modified van genuchten 
-            "parameters": [1.67, 1.8e60, 0, 0.0, 0.0, 0.0, 0],
-        },
+        "porosity": 0.1,
     },
 
     "GRD_B": {
