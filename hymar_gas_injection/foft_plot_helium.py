@@ -101,6 +101,7 @@ ax2.set_xlabel("Time (days)")
 ax2.set_ylabel("Gas Saturation SAT_G (-)")
 ax2.set_title("SAT_G vs Time (days)")
 ax2.grid(True)
+ax2.set_yscale('log')
 
 # Legend combine ax1 + ax1b
 lines1, labels1 = ax1.get_legend_handles_labels()
