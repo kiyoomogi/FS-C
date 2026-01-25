@@ -8,10 +8,11 @@ import matplotlib.pyplot as plt
 
 folder = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/2_TH"
 
-# ✅ injection rate file
 rate_file = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/filtered_gasrate_from_conne.csv"
+obs_file  = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/obs_pressure_filtered.csv"
 
-# Find all FOFT*.csv files
+SEC_PER_DAY = 86400.0
+
 files = sorted(glob.glob(os.path.join(folder, "FOFT*.csv")))
 if not files:
     raise FileNotFoundError(f"No FOFT*.csv files found in: {folder}")
@@ -32,11 +33,30 @@ for f in files:
 
     label = os.path.basename(f).replace(".csv", "")
 
-    ax1.plot(df["TIME(S)"], df["PRES"] / 1e6, label=label)
-    ax2.plot(df["TIME(S)"], df["SAT_G"], label=label)
+    ax1.plot(df["TIME(S)"] / SEC_PER_DAY, df["PRES"] / 1e6, label=label)
+    ax2.plot(df["TIME(S)"] / SEC_PER_DAY, df["SAT_G"], label=label)
 
 # =========================
-# 2) Plot injection rate (same plot as pressure)
+# 2) Plot OBS pressure
+# =========================
+obs = pd.read_csv(obs_file)
+obs.columns = obs.columns.str.strip()
+
+obs["TimeElapsed"] = pd.to_numeric(obs["TimeElapsed"], errors="coerce")
+obs["Pressure_MPa"] = pd.to_numeric(obs["Pressure_MPa"], errors="coerce")
+obs = obs.dropna(subset=["TimeElapsed", "Pressure_MPa"]).reset_index(drop=True)
+
+ax1.plot(
+    obs["TimeElapsed"] / SEC_PER_DAY,
+    obs["Pressure_MPa"],
+    marker="x",
+    linestyle="None",
+    markersize=6,
+    label="OBS Pressure"
+)
+
+# =========================
+# 3) Plot injection rate (twin axis)
 # =========================
 rates = pd.read_csv(rate_file)
 rates.columns = rates.columns.str.strip()
@@ -47,7 +67,7 @@ rates = rates.dropna(subset=["TimeElapsed", "GAS_INJEC"]).reset_index(drop=True)
 
 ax1b = ax1.twinx()
 ax1b.plot(
-    rates["TimeElapsed"],
+    rates["TimeElapsed"] / SEC_PER_DAY,
     rates["GAS_INJEC"],
     linestyle="--",
     linewidth=2,
@@ -59,13 +79,13 @@ ax1b.set_ylabel("Injection rate (kg/s)")
 # Formatting
 # =========================
 ax1.set_ylabel("Pressure (MPa)")
-ax1.set_title("TIME vs PRES (all FOFT files) + Injection rate")
+ax1.set_title("PRES vs Time (days) + OBS + Injection rate")
 ax1.grid(True)
 ax1.ticklabel_format(axis='y', style='plain', useOffset=False)
 
-ax2.set_xlabel("Time (s)")
+ax2.set_xlabel("Time (days)")
 ax2.set_ylabel("Gas Saturation SAT_G (-)")
-ax2.set_title("TIME vs SAT_G (all FOFT files)")
+ax2.set_title("SAT_G vs Time (days)")
 ax2.grid(True)
 
 # Legend combine ax1 + ax1b
@@ -75,10 +95,10 @@ ax1.legend(lines1 + linesb, labels1 + labelsb, fontsize=8, ncol=2)
 
 ax2.legend(fontsize=8, ncol=2)
 
-tmin = 1.8e7
-tmax = 2e7   # example
-
-ax1.set_xlim(tmin, tmax)   # sharex=True so this applies to both subplots
+# x limits now in DAYS
+tmin_days = 1.8e7 / SEC_PER_DAY
+tmax_days = 2.0e7 / SEC_PER_DAY
+ax1.set_xlim(tmin_days, tmax_days)
 
 plt.tight_layout()
 plt.show()
