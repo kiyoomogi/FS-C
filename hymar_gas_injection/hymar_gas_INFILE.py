@@ -95,8 +95,8 @@ parameters["default"] = {
         "parameters": irp7,
     },
     "capillarity": {
-        "id": 11, #Modified van genuchten 
-        "parameters": icp11,
+        "id": 7, #Modified van genuchten 
+        "parameters": icp7,
     },
 }
 
