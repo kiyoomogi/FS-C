@@ -20,13 +20,12 @@ rates_csv = rates_csv.dropna(subset=["TimeElapsed", "GAS_INJEC"]).reset_index(dr
 
 # sort + shift time to start at 0
 rates_csv = rates_csv.sort_values("TimeElapsed").reset_index(drop=True)
-rates_csv["TimeElapsed"] = rates_csv["TimeElapsed"] - rates_csv["TimeElapsed"].iloc[0]
 
 
-time_zero =  1.82287e+07 #rates_csv['TimeElapsed'][0]
-time_final = 0.3900E+08 #rates_csv['TimeElapsed'].iloc[-1] + 10
+time_zero =  rates_csv['TimeElapsed'][0]
+time_final = rates_csv['TimeElapsed'].iloc[-2]
 
-time_step = 40
+time_step = 5
 time_max = 150
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/mesh stuff/gas_injec_tough.msh")
@@ -59,7 +58,7 @@ parameters = {
 
 
 #INITIAL CONDITIONS 
-ini_pore_pressure = 2e6#0.432e6 #Pa, 
+ini_pore_pressure = 2.1e6#0.432e6 #Pa, 
 ini_gas_content = 0.0 #-, ...
 temperature = 19 #°C, (1)
 
