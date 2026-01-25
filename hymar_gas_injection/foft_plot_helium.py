@@ -115,6 +115,6 @@ ax2.legend(fontsize=8, ncol=2)
 if tmin_s is not None and tmax_s is not None:
     ax1.set_xlim(tmin_s / SEC_PER_DAY, tmax_s / SEC_PER_DAY)
 
-ax1.set_ylim(1.5,2.7)
+ax1.set_ylim(1.5,4.7)
 plt.tight_layout()
 plt.show()
