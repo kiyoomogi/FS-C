@@ -105,14 +105,14 @@ parameters["rocks"] = {
         "initial_condition": [ini_pore_pressure,1,temperature],
         "permeability": [1e-16, 1e-16, 1e-16],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        "relative_permeability": {
-            "id": 3, #van genuchten 
-            "parameters": [1,0],
-        },
-        "capillarity": {
-            "id": 8, #van genuchten 
-            "parameters": []
-        },  
+        #"relative_permeability": {
+        #    "id": 3, #van genuchten 
+        #    "parameters": [1,0],
+        #},
+        #"capillarity": {
+        #    "id": 8, #van genuchten 
+        #    "parameters": []
+        #},  
     },
     "PPOUT": {
         "porosity": 0.16, 
