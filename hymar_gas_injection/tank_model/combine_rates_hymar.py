@@ -1,67 +1,63 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Mar 31 11:56:13 2025
+Created on Sat Jan 24 15:27:10 2026
 
-@author: matthijs
+@author: matthijsnuus
 """
 
-import os
+# -*- coding: utf-8 -*-
+
 import pandas as pd
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 
-# Directory containing the CSV files
-directory = r"C:\Users\matthijs\simple_model\meshmaker_dummy\safe_states"
+# ---- path to the single file ----
+file_path = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/OUTPUT_CONNE.csv"
 
-# List to store DataFrames
-dfs = []
+# Read the CSV (skip first row if it's an extra header line)
+df = pd.read_csv(file_path, skiprows=1)
 
-# Iterate over the files in the directory
-for filename in os.listdir(directory):
+# Clean column names
+df = df.rename(columns=lambda x: x.strip())
 
-    if filename.endswith('CONNE.csv'):
-        # Read the CSV file
-        df = pd.read_csv(os.path.join(directory, filename), skiprows=1)
-        df = df.rename(columns=lambda x: x.strip())
-        df.iloc[:, 0] = df.iloc[:, 0].shift(1)
-        df = df.dropna()
-        df = df.iloc[:, [0, -2]]
-        df.iloc[:, 0] = df.iloc[:, 0].str.split(' ').str[-1].astype(float)
-        # Append the DataFrame to the list
-        dfs.append(df)
+# Shift first column down by 1 and drop NaNs (same as original logic)
+df.iloc[:, 0] = df.iloc[:, 0].shift(1)
+df = df.dropna().reset_index(drop=True)
 
-# Combine all DataFrames in the list into a single DataFrame
-combined_df = pd.concat(dfs, ignore_index=True)
-combined_df = combined_df.sort_values(by=combined_df.columns[0])
-combined_df = combined_df.rename(columns={combined_df.columns[0]: 'TimeElapsed', combined_df.columns[-1]: 'GAS_INJEC'})
-combined_df.GAS_INJEC = combined_df.GAS_INJEC * -1
+# Keep only: first column (time) and second-to-last column (rate)
+df = df.iloc[:, [0, -2]].copy()
 
-initial_date = pd.to_datetime('2022-07-11 07:47:00')
+# Convert time column:
+# if values look like "TIME  12345", take last token
+df.iloc[:, 0] = df.iloc[:, 0].astype(str).str.split().str[-1]
+df.iloc[:, 0] = pd.to_numeric(df.iloc[:, 0], errors="coerce")
 
-# Calculate the corresponding date for each value in the "TIME_S" column
-combined_df['Date'] = initial_date + pd.to_timedelta(combined_df['TimeElapsed'], unit='s')
-# Export the DataFrame to a CSV file
-combined_df.to_csv(r"C:\Users\matthijs\simple_model\meshmaker_dummy\safe_states\combined_gasrates_2-1L_lessrefill.csv", index=False)
+# Convert rate column to numeric
+df.iloc[:, 1] = pd.to_numeric(df.iloc[:, 1], errors="coerce")
 
-plt.plot(combined_df.TimeElapsed, combined_df.GAS_INJEC, '-o')
-plt.yscale('log')
+# Drop any remaining bad rows
+df = df.dropna().reset_index(drop=True)
 
-# Load the second CSV
-second_df = pd.read_csv(r"C:\Users\matthijs\simple_model\meshmaker\safe-states\combined_gasrates_v4.csv")
+# Rename columns
+df = df.rename(columns={df.columns[0]: "TimeElapsed", df.columns[1]: "GAS_INJEC"})
 
-# Ensure column names match and are clean (adjust if needed)
-second_df = second_df.rename(columns=lambda x: x.strip())
-if 'TimeElapsed' not in second_df.columns:
-    second_df = second_df.rename(columns={second_df.columns[0]: 'TimeElapsed', second_df.columns[-1]: 'GAS_INJEC'})
+# Flip sign (same as your previous script)
+df["GAS_INJEC"] = df["GAS_INJEC"] * -1
 
-# Plot the second dataset on the same figure
-plt.plot(second_df['TimeElapsed'], second_df['GAS_INJEC'], '-s', label='V4 Gas Rate')
+# Sort by time
+df = df.sort_values("TimeElapsed").reset_index(drop=True)
 
-# Final touches
-plt.yscale('log')
+# ---- Plot ----
+plt.figure(figsize=(8, 5))
+plt.plot(df["TimeElapsed"], df["GAS_INJEC"], "-o")
+plt.yscale("log")
 plt.xlabel("Time Elapsed [s]")
 plt.ylabel("Gas Injection Rate")
-plt.legend(["2-1L less refill", "V4 gas rate"])
 plt.grid(True)
-plt.title("Comparison of Gas Injection Rates")
+plt.title("Gas Injection Rate from OUTPUT_CONNE.csv")
 plt.tight_layout()
 plt.show()
+
+out_path = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/filtered_gasrate_from_conne.csv"
+df.to_csv(out_path, index=False)
+print("Saved:", out_path)

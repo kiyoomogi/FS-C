@@ -23,7 +23,7 @@ rates_csv = rates_csv.sort_values("TimeElapsed").reset_index(drop=True)
 rates_csv["TimeElapsed"] = rates_csv["TimeElapsed"] - rates_csv["TimeElapsed"].iloc[0]
 
 
-time_zero =  rates_csv['TimeElapsed'][0]
+time_zero =  1.82287e+07 #rates_csv['TimeElapsed'][0]
 time_final = rates_csv['TimeElapsed'].iloc[-1] + 10
 
 time_step = 0.5
