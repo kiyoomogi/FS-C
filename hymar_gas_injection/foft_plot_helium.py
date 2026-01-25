@@ -75,7 +75,7 @@ ax1.legend(lines1 + linesb, labels1 + labelsb, fontsize=8, ncol=2)
 
 ax2.legend(fontsize=8, ncol=2)
 
-tmin = 1.5e7
+tmin = 1.8e7
 tmax = 2e7   # example
 
 ax1.set_xlim(tmin, tmax)   # sharex=True so this applies to both subplots
