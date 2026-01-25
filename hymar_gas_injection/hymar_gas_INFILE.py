@@ -10,8 +10,17 @@ import pandas as pd
 import toughio
 
 
+rates_csv = pd.read_csv(
+    "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/filtered_gasrate_from_conne.csv"
+)
 
-rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/filtered_rates_kgs.csv", delimiter=',')
+rates_csv["TimeElapsed"] = pd.to_numeric(rates_csv["TimeElapsed"], errors="coerce")
+rates_csv["GAS_INJEC"] = pd.to_numeric(rates_csv["GAS_INJEC"], errors="coerce")
+rates_csv = rates_csv.dropna(subset=["TimeElapsed", "GAS_INJEC"]).reset_index(drop=True)
+
+# sort + shift time to start at 0
+rates_csv = rates_csv.sort_values("TimeElapsed").reset_index(drop=True)
+rates_csv["TimeElapsed"] = rates_csv["TimeElapsed"] - rates_csv["TimeElapsed"].iloc[0]
 
 
 time_zero =  rates_csv['TimeElapsed'][0]
@@ -211,8 +220,9 @@ def generators():
 
     parameters['generators'] = []
     
-    rates = (rates_csv['GasRate_kg_s']).to_list()
-    times = rates_csv['TimeElapsed'].to_list()
+    times = rates_csv["TimeElapsed"].to_list()
+    rates = rates_csv["GAS_INJEC"].to_list()   # <-- from your new CSV
+
 
     generator = {
         "label": injec_label,
