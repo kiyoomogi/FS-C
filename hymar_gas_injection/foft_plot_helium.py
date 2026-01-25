@@ -79,15 +79,15 @@ rates["TimeElapsed"] = pd.to_numeric(rates["TimeElapsed"], errors="coerce")
 rates["GAS_INJEC"] = pd.to_numeric(rates["GAS_INJEC"], errors="coerce")
 rates = rates.dropna(subset=["TimeElapsed", "GAS_INJEC"]).reset_index(drop=True)
 
-ax1b = ax1.twinx()
-ax1b.plot(
-    rates["TimeElapsed"] / SEC_PER_DAY,
-    rates["GAS_INJEC"],
-    linestyle="--",
-    linewidth=2,
-    label="Injection rate"
-)
-ax1b.set_ylabel("Injection rate (kg/s)")
+#ax1b = ax1.twinx()
+#ax1b.plot(
+#    rates["TimeElapsed"] / SEC_PER_DAY,
+#    rates["GAS_INJEC"],
+#    linestyle="--",
+#    linewidth=2,
+#    label="Injection rate"
+#)
+#ax1b.set_ylabel("Injection rate (kg/s)")
 
 # =========================
 # Formatting
@@ -104,8 +104,8 @@ ax2.grid(True)
 
 # Legend combine ax1 + ax1b
 lines1, labels1 = ax1.get_legend_handles_labels()
-linesb, labelsb = ax1b.get_legend_handles_labels()
-ax1.legend(lines1 + linesb, labels1 + labelsb, fontsize=8, ncol=2)
+#linesb, labelsb = ax1b.get_legend_handles_labels()
+ax1.legend(lines1 , labels1 , fontsize=8, ncol=2)
 
 ax2.legend(fontsize=8, ncol=2)
 
@@ -115,5 +115,6 @@ ax2.legend(fontsize=8, ncol=2)
 if tmin_s is not None and tmax_s is not None:
     ax1.set_xlim(tmin_s / SEC_PER_DAY, tmax_s / SEC_PER_DAY)
 
+ax1.set_ylim(1.5,2.7)
 plt.tight_layout()
 plt.show()
