@@ -107,7 +107,7 @@ ini_pres = 2.101e6
 parameters["rocks"] = {
 
     "INJEC": {
-        "initial_condition": [ini_pres,10.68,temperature],
+        "initial_condition": [ini_pres,1,temperature],
         "compressibility": 0,
         "relative_permeability": {
             "id": 3, #van genuchten 
