@@ -71,7 +71,7 @@ P0 = 18e6 #1.47e7 #Pa, R.Senger
 Pmax = 1e12 #Pa, guessed from (2),
 
 #values from Antonio for ICP & IRP
-icp11 = [1.67, 1.8e7, 0, 0.0, 0.0, 0.0, 0.01]
+icp11 = [1.67, 18e7, 0, 0.0, 0.0, 0.0, 0.01]
 irp11 = [0.5, 0.0, 0]
 
 
@@ -123,11 +123,11 @@ parameters["rocks"] = {
     "STEEL": {
         "relative_permeability": {
             "id": 11, #Modified van genuchtn 
-            "parameters": [0.5, 0.0, 0],
+            "parameters": [1, 0.0, 0],
         },
         "capillarity": {
             "id": 11, #Modified van genuchten 
-            "parameters": [1.67, 1.8e10, 0, 0.0, 0.0, 0.0, 0.01],
+            "parameters": [1.67, 1.8e60, 0, 0.0, 0.0, 0.0, 0],
         },
     },
 
