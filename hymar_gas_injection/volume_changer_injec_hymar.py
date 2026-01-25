@@ -27,7 +27,7 @@ print(f"Number of PPINJ elements: {len(ppinj_labels)}")
 print(f"Current total PPINJ volume = {V_current:.6e} m³ ({V_current_ml:.6f} mL)")
 
 # --- target volume = 300 mL ---
-V_target_ml = 30
+V_target_ml = 26
 V_target = V_target_ml * 1e-6  # m³
 
 # --- scale factor ---
