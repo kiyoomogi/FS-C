@@ -74,6 +74,8 @@ Pmax = 1e12 #Pa, guessed from (2),
 icp11 = [1.67, 18e7, 0, 0.0, 0.0, 0.0, 0.01]
 irp11 = [0.5, 0.0, 0]
 
+icp7 = [0.57, 0.05, 5e-10, 1e12, 1]
+irp3 = [0.1,0.1]
 
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
@@ -87,12 +89,12 @@ parameters["default"] = {
 
     "initial_condition": [ini_pore_pressure, ini_gas_content,temperature],
     "relative_permeability": {
-        "id": 11, #Modified van genuchtn 
-        "parameters": irp11,
+        "id": 3, #Modified van genuchtn 
+        "parameters": irp3,
     },
     "capillarity": {
-        "id": 11, #Modified van genuchten 
-        "parameters": icp11,
+        "id": 7, #Modified van genuchten 
+        "parameters": icp7,
     },
 }
 
