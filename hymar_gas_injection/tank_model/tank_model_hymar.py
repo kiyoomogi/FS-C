@@ -10,21 +10,28 @@ import matplotlib.pyplot as plt
 import numpy as np 
 import toughio 
 
-dummy_rates = False
+
 interface_area = 1.26E-5
-model_run = 9
 
 rates_dummy = pd.read_csv(
-    "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/filtered_water_rate_kgs.csv"
+    "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/filtered_water_pressure_rate.csv"
 )
-rates_dummy = rates_dummy.rename(columns={"WaterRate_kg_s": "Rate"})
+
+# Clean column names (just in case)
+rates_dummy.columns = rates_dummy.columns.str.strip()
+
+# Rename your rate column so your model always uses "Rate"
+rates_dummy = rates_dummy.rename(columns={
+    "Water Injection Rate (kg/s)": "Rate",
+    "Gas Pressure (MPa)": "GasPressure_MPa"
+})
 
 
 starttimes = {1:[rates_dummy['TimeElapsed'].values[0], 8.80613e+06],    #refill
               2:[8.80613e+06, 1.15730e+07],
               }
 
-time_zero = 0.0
+time_zero = 203 * (60 * 60 * 24)
 time_final = 39103605
 
 parameters = {
@@ -78,7 +85,7 @@ mesh.add_material("INJEC", 2)
 materials = mesh.materials
 
 #INITIAL CONDITIONS 
-temperature = 15. #°C, (1)
+temperature = 19. #°C, (1)
 
 
 parameters["default"] = {
@@ -93,14 +100,14 @@ parameters["default"] = {
 
 }
 
-ini_pres = 2e6 
+ini_pres = 2.101e6 
 
 
 #Rock parameters
 parameters["rocks"] = {
 
     "INJEC": {
-        "initial_condition": [ini_pres,1,temperature],
+        "initial_condition": [ini_pres,10.68,temperature],
         "compressibility": 0,
         "relative_permeability": {
             "id": 3, #van genuchten 
@@ -212,7 +219,7 @@ toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/
 mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/MESH")
 
 mesh_dict = toughio.read_input("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/MESH")
-mesh_dict["connections"]['A11 0A11 1']['interface_area'] = interface_area
+#mesh_dict["connections"]['A11 0A11 1']['interface_area'] = interface_area
 
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/MESH", mesh_dict)  
 
