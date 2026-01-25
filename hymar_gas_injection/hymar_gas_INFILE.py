@@ -197,6 +197,8 @@ parameters["output"] = {
     "variables": [
         {"name": "absolute", "options": 0},
         {"name": "coordinate"},
+        {"name": "pressure"},
+        {"name": "saturation"},
     ],
 }
 
