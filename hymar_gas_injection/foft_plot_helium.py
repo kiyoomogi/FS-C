@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 folder = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/2_TH"
 
 rate_file = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/filtered_gasrate_from_conne.csv"
-obs_file  = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/obs_pressure_filtered.csv"
+pressure_file = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/filtered_water_pressure_rate.csv"
 
 SEC_PER_DAY = 86400.0
 
@@ -18,6 +18,10 @@ if not files:
     raise FileNotFoundError(f"No FOFT*.csv files found in: {folder}")
 
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+
+# Track global FOFT time range
+tmin_s = None
+tmax_s = None
 
 # =========================
 # 1) Plot FOFT curves
@@ -31,28 +35,38 @@ for f in files:
     df["SAT_G"] = pd.to_numeric(df["SAT_G"], errors="coerce")
     df = df.dropna(subset=["TIME(S)", "PRES", "SAT_G"])
 
+    if df.empty:
+        continue
+
+    # Update global time range
+    this_min = df["TIME(S)"].min()
+    this_max = df["TIME(S)"].max()
+    tmin_s = this_min if tmin_s is None else min(tmin_s, this_min)
+    tmax_s = this_max if tmax_s is None else max(tmax_s, this_max)
+
     label = os.path.basename(f).replace(".csv", "")
 
     ax1.plot(df["TIME(S)"] / SEC_PER_DAY, df["PRES"] / 1e6, label=label)
     ax2.plot(df["TIME(S)"] / SEC_PER_DAY, df["SAT_G"], label=label)
 
 # =========================
-# 2) Plot OBS pressure
+# 2) Plot tank pressure (from filtered_water_pressure_rate.csv)
 # =========================
-obs = pd.read_csv(obs_file)
-obs.columns = obs.columns.str.strip()
+tank = pd.read_csv(pressure_file)
+tank.columns = tank.columns.str.strip()
 
-obs["TimeElapsed"] = pd.to_numeric(obs["TimeElapsed"], errors="coerce")
-obs["Pressure_MPa"] = pd.to_numeric(obs["Pressure_MPa"], errors="coerce")
-obs = obs.dropna(subset=["TimeElapsed", "Pressure_MPa"]).reset_index(drop=True)
+# expected columns: "TimeElapsed" (seconds) and "Gas Pressure (MPa)"
+tank["TimeElapsed"] = pd.to_numeric(tank["TimeElapsed"], errors="coerce")
+tank["Gas Pressure (MPa)"] = pd.to_numeric(tank["Gas Pressure (MPa)"], errors="coerce")
+tank = tank.dropna(subset=["TimeElapsed", "Gas Pressure (MPa)"]).reset_index(drop=True)
 
 ax1.plot(
-    obs["TimeElapsed"] / SEC_PER_DAY,
-    obs["Pressure_MPa"],
+    tank["TimeElapsed"] / SEC_PER_DAY,
+    tank["Gas Pressure (MPa)"],
     marker="x",
     linestyle="None",
     markersize=6,
-    label="OBS Pressure"
+    label="Tank Pressure (MPa)"
 )
 
 # =========================
@@ -79,7 +93,7 @@ ax1b.set_ylabel("Injection rate (kg/s)")
 # Formatting
 # =========================
 ax1.set_ylabel("Pressure (MPa)")
-ax1.set_title("PRES vs Time (days) + OBS + Injection rate")
+ax1.set_title("PRES vs Time (days) + Tank Pressure + Injection rate")
 ax1.grid(True)
 ax1.ticklabel_format(axis='y', style='plain', useOffset=False)
 
@@ -95,10 +109,11 @@ ax1.legend(lines1 + linesb, labels1 + labelsb, fontsize=8, ncol=2)
 
 ax2.legend(fontsize=8, ncol=2)
 
-# x limits now in DAYS
-tmin_days = 1.8e7 / SEC_PER_DAY
-tmax_days = 2.0e7 / SEC_PER_DAY
-ax1.set_xlim(tmin_days, tmax_days)
+# =========================
+# 4) xlim based on FOFT time range
+# =========================
+if tmin_s is not None and tmax_s is not None:
+    ax1.set_xlim(tmin_s / SEC_PER_DAY, tmax_s / SEC_PER_DAY)
 
 plt.tight_layout()
 plt.show()
