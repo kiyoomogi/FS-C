@@ -24,10 +24,10 @@ rates_csv["TimeElapsed"] = rates_csv["TimeElapsed"] - rates_csv["TimeElapsed"].i
 
 
 time_zero =  1.82287e+07 #rates_csv['TimeElapsed'][0]
-time_final = 0.3901E+08 #rates_csv['TimeElapsed'].iloc[-1] + 10
+time_final = 0.3900E+08 #rates_csv['TimeElapsed'].iloc[-1] + 10
 
-time_step = 0.5
-time_max = 2
+time_step = 40
+time_max = 150
 
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/mesh stuff/gas_injec_tough.msh")
 
@@ -102,7 +102,7 @@ parameters["rocks"] = {
     "PPINJ": {
         "density": 2500,
         "porosity": 0.98, 
-        "initial_condition": [ini_pore_pressure,10.999,temperature],
+        "initial_condition": [ini_pore_pressure,1,temperature],
         "permeability": [1e-16, 1e-16, 1e-16],
         "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
         "relative_permeability": {
