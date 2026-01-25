@@ -66,7 +66,7 @@ temperature = 19 #°C, (1)
 pore_size_distr_index =0.5 #-, (2), symbol: λ
 S_lr = 0.1 #-, (2), total trapped water 
 S_ls = 1 #-, (2), liquid saturation  
-S_gr = 0.0 #-, Guess?, total trapped gas 
+S_gr = 0.01 #-, Guess?, total trapped gas 
 P0 = 18e8 #1.47e7 #Pa, R.Senger
 Pmax = 1e12 #Pa, guessed from (2),
 
