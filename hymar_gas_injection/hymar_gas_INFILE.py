@@ -166,7 +166,7 @@ parameters["rocks"] = {
 
 parameters["options"] = {
     "n_iteration": 9,
-    "n_cycle": 999999,
+    "n_cycle": -19,
     "n_cycle_print": 9999,
     "t_ini": time_zero,
     "t_max": time_final,
