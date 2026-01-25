@@ -50,7 +50,7 @@ df = df.sort_values("TimeElapsed").reset_index(drop=True)
 # ---- Plot ----
 plt.figure(figsize=(8, 5))
 plt.plot(df["TimeElapsed"], df["GAS_INJEC"], "-o")
-plt.yscale("log")
+#plt.yscale("log")
 plt.xlabel("Time Elapsed [s]")
 plt.ylabel("Gas Injection Rate")
 plt.grid(True)
