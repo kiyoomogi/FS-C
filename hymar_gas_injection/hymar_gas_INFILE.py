@@ -82,7 +82,7 @@ irp3 = [0.1,0.1]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.12 ,                    #- 
-    "permeability": [1e-20,1e-20,3e-20], #m2  
+    "permeability": [1e-20,1e-20,5e-20], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
     #"compressibility": 5e-9,             #Pa^-1
