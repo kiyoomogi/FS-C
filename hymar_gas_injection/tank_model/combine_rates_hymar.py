@@ -47,18 +47,26 @@ df["GAS_INJEC"] = df["GAS_INJEC"] * -1
 # Sort by time
 df = df.sort_values("TimeElapsed").reset_index(drop=True)
 
+FS = 18  # font size
+
 # ---- Plot ----
 plt.figure(figsize=(8, 5))
-plt.plot(df["TimeElapsed"], df["GAS_INJEC"], "-o")
+plt.plot(df["TimeElapsed"], df["GAS_INJEC"], "-o", color="red")
 
-plt.axvline(22593785)
-#plt.yscale("log")
-plt.xlabel("Time Elapsed [s]")
-plt.ylabel("Gas Injection Rate")
+# plt.axvline(22593785)
+# plt.yscale("log")
+
+plt.xlabel("Time Elapsed [s] * 1e7", fontsize=FS)
+plt.ylabel("Gas Injection Rate [kg/s] * 1e-11", fontsize=FS)
+
+plt.xticks(fontsize=FS)
+plt.yticks(fontsize=FS)
+
 plt.grid(True)
-plt.title("Gas Injection Rate from OUTPUT_CONNE.csv")
 plt.tight_layout()
+plt.savefig("/Users/matthijsnuus/Desktop/helium_injec.pdf")
 plt.show()
+
 
 out_path = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/filtered_gasrate_from_conne.csv"
 df.to_csv(out_path, index=False)
