@@ -4,7 +4,7 @@ model large-strain off
 model configure thermal
 model thermal active off
 
-zone import "/home/manuus/Desktop/FS-C/model/hymar_gas_injection/mesh_tough.f3grid"
+zone import "/home/manuus/Desktop/FS-C/model/hymar_gas_injection/mesh.f3grid"
 zone face skin
 
 zone cmodel assign columnar-basalt
