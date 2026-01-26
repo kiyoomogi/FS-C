@@ -39,12 +39,11 @@ model gravity 0 0 -9.81
 
 ; In situ stress
 zone initialize stress xx [sig_H] yy [sig_H] zz [sig_v] xy 0 xz 0 yz 0
-zone face apply velocity-z 0 range group 'Bottom'
-zone face apply stress-normal [sig_v] range group 'Top'
-zone gridpoint fix velocity-y 0 range position-z 0.077846 0.080846
-zone gridpoint fix velocity-x 0 range position-z 0.077846 0.080846
-zone face apply stress-normal [sig_H] range group 'East' or 'West'
-
+zone face apply velocity-z 0 range position-z 0.077846 0.158692
+zone gridpoint fix velocity-y 0 range position-z 0.077846 0.158692
+zone gridpoint fix velocity-x 0 range position-z 0.077846 0.158692
+zone face apply stress-normal [sig_H] range position-z 0 0.077846 ;'East2'
+zone face apply stress-normal [sig_v] range group 'Bottom'
 
 ;mechanical parameters
 zone initialize density 2600
