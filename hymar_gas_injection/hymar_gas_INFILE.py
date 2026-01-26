@@ -28,7 +28,7 @@ time_final = rates_csv['TimeElapsed'].iloc[-2]
 time_step = 1500
 time_max = 15000
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/mesh stuff/gas_injec_tough.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/mesh.f3grid")
 
 
 back_BC = 2e6 
