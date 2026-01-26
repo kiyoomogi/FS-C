@@ -13,12 +13,12 @@ import csv
 
 
 # FLAC3D solver parameters
-model_save = "tf_in_tough.f3sav"
+model_save = "tf_in.f3sav"
 deterministic = False
 damping = "combined"
 mechanical_ratio = 1.0e-7
 n_threads = 20
-thermal = True
+thermal = False
 
 # Output parameters
 savedir = "f3out"
@@ -265,7 +265,7 @@ if __name__ == "__main__":
         damping=damping,
         mechanical_ratio=mechanical_ratio,
         n_threads=n_threads,
-        thermal=thermal,
+        thermal=False,
         permeability_func=permeability_func,
         callback_tough=python_func_tough,
         callback_flac=python_func_flac,

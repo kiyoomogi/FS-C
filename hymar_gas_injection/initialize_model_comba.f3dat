@@ -1,7 +1,8 @@
 model new
 ;call 'flac_python.py'
 model large-strain off
-;model configure thermal
+model configure thermal
+model thermal active off
 
 zone import "/home/manuus/Desktop/FS-C/model/hymar_gas_injection/mesh_tough.f3grid"
 zone face skin
@@ -52,6 +53,9 @@ zone property friction 15
 zone property tension 3e8
 zone property young [young]
 zone property poisson [poisson]
+
+;thermal parameters
+;zone property conductivity 1.6 specific-heat 0.2
 
 ;joint parameters
 zone property dip-1 [dip]
@@ -105,4 +109,4 @@ zone property flag-matrix-plastic on
 model solve mech ratio 1e-8
 
 ; Save model
-model save 'tf_in_tough.f3sav'
+model save 'tf_in.f3sav'
