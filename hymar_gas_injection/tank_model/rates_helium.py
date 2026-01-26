@@ -71,35 +71,49 @@ df["InjectionPressure_MPa"] = df[pres_col] / 1000.0  # kPa -> MPa
 # =========================
 # 5) Plot: Water pumped + Pressure + Rate
 # =========================
+FS = 16  # ✅ font size everywhere
+
 fig, ax1 = plt.subplots(figsize=(10, 6))
 
 # --- Left axis: cumulative water injected (ml) ---
-ax1.plot(df["TimeElapsed_days"], df[water_col], "-o", label="Water pumped (ml)", color='red')
-ax1.set_xlabel("Time elapsed (days)")
-ax1.set_ylabel("Water pumped (ml)", color='red')
-ax1.tick_params(axis="y", colors="red")   #left ticks red
+ax1.plot(df["TimeElapsed_days"], df[water_col], "-o",
+         label="Water pumped (ml)", color="red")
+
+ax1.set_xlabel("Time elapsed (days)", fontsize=FS)
+ax1.set_ylabel("Water pumped (ml)", color="red", fontsize=FS)
+
+ax1.tick_params(axis="x", labelsize=FS)
+ax1.tick_params(axis="y", labelsize=FS, colors="red")
 ax1.grid(True)
 
 # --- Right axis: injection pressure (MPa) ---
 ax2 = ax1.twinx()
 ax2.plot(df["TimeElapsed_days"], df["InjectionPressure_MPa"], "--s",
-         label="Injection pressure (MPa)", color='green')
-ax2.set_ylabel("Injection pressure (MPa)", color="green")
-ax2.tick_params(axis="y", colors="green")  #right ticks green
+         label="Injection pressure (MPa)", color="green")
+
+ax2.set_ylabel("Injection pressure (MPa)", color="green", fontsize=FS)
+ax2.tick_params(axis="y", labelsize=FS, colors="green")
 
 # --- Third axis: water injection rate (kg/s) ---
 ax3 = ax1.twinx()
 ax3.spines["right"].set_position(("outward", 60))
+
 ax3.plot(df["TimeElapsed_days"], df["WaterRate_kg_s"], ":^",
-         label="Water rate (kg/s)", color='blue')
-ax3.set_ylabel("Water injection rate (kg/s)", color="blue")
-ax3.tick_params(axis="y", colors="blue")   #outer-right ticks blue
-ax3.spines["right"].set_color("blue")      #spine blue (nice touch)
+         label="Water rate (kg/s)", color="blue")
 
+ax3.set_ylabel("Water injection rate (kg/s)", color="blue", fontsize=FS)
+ax3.tick_params(axis="y", labelsize=FS, colors="blue")
+ax3.spines["right"].set_color("blue")
 
-ax1.set_xlim(200, 250)   # applies to both because sharex=True (or same x-axis)
+# --- Title (optional) ---
+# ax1.set_title("Water pumped + Injection pressure + Water injection rate", fontsize=FS)
+
+ax1.set_xlim(200, 250)
+
 plt.tight_layout()
+plt.savefig("/Users/matthijsnuus/Desktop/water_injec.pdf")
 plt.show()
+
 
 # =========================
 # 6) Export filtered data to CSV

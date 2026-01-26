@@ -6,7 +6,7 @@ import glob
 import pandas as pd
 import matplotlib.pyplot as plt
 
-folder = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/2_TH"
+folder = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/3_THM"
 
 rate_file = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/model_run/filtered_gasrate_from_conne.csv"
 pressure_file = "/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/tank_model/filtered_water_pressure_rate.csv"
@@ -116,6 +116,6 @@ ax2.legend(fontsize=8, ncol=2)
 if tmin_s is not None and tmax_s is not None:
     ax1.set_xlim(tmin_s / SEC_PER_DAY, tmax_s / SEC_PER_DAY)
 
-ax1.set_ylim(1.5,4.7)
+ax1.set_ylim(1.5,5.7)
 plt.tight_layout()
 plt.show()
