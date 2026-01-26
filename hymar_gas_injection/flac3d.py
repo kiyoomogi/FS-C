@@ -13,7 +13,7 @@ import csv
 
 
 # FLAC3D solver parameters
-model_save = "tf_in.f3sav"
+model_save = "tf_in_tough.f3sav"
 deterministic = False
 damping = "combined"
 mechanical_ratio = 1.0e-7
@@ -54,7 +54,7 @@ def stress_on_plane(tough_time):
     num_zones = len(zones)
 
     # Normal vector to the plane
-    n = np.asarray([0.50432, -0.645501, 0.573576])
+    n = np.asarray([0, -0.838671, 0.040423])
 
     # Pore pressure per zone
     pp = np.asarray([z.pp() for z in zones])
@@ -77,24 +77,24 @@ def stress_on_plane(tough_time):
     if tstep == 1:
         init_pp, init_ss, init_sn = pp, ss, sn
 
-    # Boolean mask for 'FAULT' cells
-    fault_bool = za.in_group('FAULT')  # shape (N,)
-    valid_idx = np.where(fault_bool)[0]  # indices of FAULT cells
+    # Boolean mask for 'CLAY' cells
+    fault_bool = za.in_group('CLAY')  # shape (N,)
+    valid_idx = np.where(fault_bool)[0]  # indices of CLAY cells
 
-    # Subset values for FAULT cells
+    # Subset values for CLAY cells
     pp_injec = pp[valid_idx]
     sn_injec = sn[valid_idx]
     ss_injec = ss[valid_idx]
 
-    # Principal stresses for FAULT cells
+    # Principal stresses for CLAY cells
     prin_stresses_all = np.linalg.eigvalsh(eff_stress)  # shape (N, 3)
-    prin_stresses = prin_stresses_all[valid_idx]        # shape (N_fault, 3)
+    prin_stresses = prin_stresses_all[valid_idx]        # shape (N_clay, 3)
 
     # If you only want max principal stress, uncomment:
     # s1_injec = prin_stresses[:, -1]
 
     # File path
-    csv_file_path = r"/home/manuus/Desktop/FS-C/model/traction_file.csv"
+    csv_file_path = r"/home/manuus/Desktop/FS-C/model/hymar_gas_injection/traction_file.csv"
 
     # Text mode for Python 3 CSV
     mode = "w" if tstep == 1 else "a"
@@ -188,63 +188,49 @@ def printer_function(
 
 # Extra Python functions as a list of callables
 python_func_tough = ()  # Before mechanical analysis
-python_func_flac = (printer_function,) #(stress_on_plane,)  # After mechanical analysis
+python_func_flac = (stress_on_plane,) #(stress_on_plane,)  # After mechanical analysis
 
 # Extra FISH functions as a list of strings
 fish_func_tough = ()  # Before mechanical analysis
 fish_func_flac = ()  # After mechanical analysis
 
-k0_fault = np.array([5.0e-17, 5.0e-17, 1.0e-17], dtype=float)
-k0_clay = np.array([5.0e-18, 5.0e-18, 1.0e-18], dtype=float)
-k0_edz = np.array([5.0e-13, 5.0e-13, 1.0e-12], dtype=float)
-k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
+k0_clay = np.array([1.0e-20, 1.0e-20, 5.0e-20], dtype=float)
+k0_INJ = np.array([1.0e-17, 1.0e-17, 1.0e-17], dtype=float)
 
 a_fault = 500
 
 permeability_func = {
-    "FAULT": lambda g: rinaldi2019(
-        g,
-        k0 = k0_fault,
-        phi0 = 0.14,
-        n = 1,
-        w = 2.4,
-        br = 20e-6,     #was 20e-6
-        bmax = 60e-6,  #was 500e-6
-        alpha = 1.5, 
-        n_vector = np.array([0.47, -0.60, 0.64]),
-        joint = True, 
-
-    ),
-    "EDZ": lambda g: constant(
-        g,
-        k0=k0_edz,
-        phi0=0.14,
-    ),
     "CLAY": lambda g: constant(
         g,
-        k0=k0_clay,
-        phi0=0.12,
+        k0=np.tile(k0_clay, (g.sum(), 1)),
+        phi0=0.16,   
     ),
-    "BNDTO": lambda g: constant(
+    "GRD_B": lambda g: constant(
         g,
-        k0=np.tile(k0_bnd, (g.sum(), 1)),
-        phi0=0.12,   
-    ),
-    "BNDBO": lambda g: constant(
-        g,
-        k0=np.tile(k0_bnd, (g.sum(), 1)),
+        k0=np.tile(k0_clay, (g.sum(), 1)),
         phi0=0.12,    
     ),
+    "GRD_T": lambda g: constant(
+        g,
+        k0=np.tile(k0_clay, (g.sum(), 1)),
+        phi0=0.12,    
+    ),
+    "PPINJ": lambda g: constant(
+        g,
+        k0=np.tile(k0_INJ, (g.sum(), 1)),
+        phi0=0.98,    
+    ),
+    "PPOUT": lambda g: constant(
+        g,
+        k0=np.tile(k0_clay, (g.sum(), 1)),
+        phi0=0.16,    
+    ),
+    "STEEL": lambda g: constant(
+        g,
+        k0=np.tile(k0_clay, (g.sum(), 1)),
+        phi0=0.1,
+    ),
 }
-
-#permeability_func = {
-#    "FAULT": lambda g: rutqvist2002(
-#        g,
-#        k0   = 1.0e-16,
-#        phi0 = 0.12,
-#    ),
-#}
-
 
 # History variables
 history_func = {}
