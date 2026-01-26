@@ -3,7 +3,7 @@ import toughflac as tf
 
 
 
-mesh = toughio.read_mesh("/home/manuus/Desktop/FS-C/model/hymar_gas_injection/mesh stuff/gas_injec_flac.msh")
+mesh = toughio.read_mesh("/home/manuus/Desktop/FS-C/model/hymar_gas_injection/mesh stuff/gas_injec_tough.msh")
 #mesh = toughio.read_mesh("/home/TOUGH3-FLAC3D/toughflac/examples/2DSEP5V6/Preprocessing/gmsh/mesh.msh")
 #mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
@@ -22,4 +22,4 @@ tf.zone.import_mesh(mesh, prune_duplicates=True)
 #tf.zone.export_tough("/home/manuus/Desktop/FS-C/model/coupled_model/MESH")
 
 # Export to f3grid
-tf.zone.export_flac("../mesh1.f3grid")
+tf.zone.export_flac("../mesh.f3grid")
