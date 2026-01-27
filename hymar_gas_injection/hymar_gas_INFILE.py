@@ -242,6 +242,7 @@ z_vals = np.linspace(0.0, L, 12)[1:-1]  # 10 internal points
 ref_points = [str(mesh.labels[mesh.near((0, 0, float(z)))]) for z in z_vals]
 ref_points.append(str(injec_label))
 
+
 parameters["element_history"] = ref_points
 
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/hymar_gas_injection/2_TH/INFILE", parameters)  
