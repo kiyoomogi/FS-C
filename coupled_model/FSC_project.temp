@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-27T04:58:45" ,
+        "DateTime" : "2026-01-27T15:31:45" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "tf_in.f3sav" ,
+                "SaveFile" : "3_THM/f3out/f1.372d.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -30,7 +30,9 @@
                 },
                 "SaveFiles" : {
                     "Files" : [ 
-                        "tf_in.f3sav" 
+                        "tf_in.f3sav" ,
+                        "3_THM/f3out/f1.235d.f3sav" ,
+                        "3_THM/f3out/f1.372d.f3sav" 
                     ]
                 },
                 "ResultFiles" : {
@@ -568,9 +570,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : -3.152458192380788e+01  , "y" : -5.962919134420117e+01  , "z" : 1.184186493802512e+01 } ,
-                            "ViewCenter" : { "x" : 2.091646081052603e+01  , "y" : 4.016622364493893e+01  , "z" : 1.366127159326073e+01 } ,
-                            "Up" : { "x" : 6.316356229202634e-04  , "y" : -1.856013648271276e-02  , "z" : 9.998275463149547e-01 } ,
+                            "EyePosition" : { "x" : 5.133123898485705e+01  , "y" : -2.160156083840811e+02  , "z" : 3.195280262145970e+01 } ,
+                            "ViewCenter" : { "x" : 4.923131881377896e+00  , "y" : -1.110355986064863e+00  , "z" : -6.733811868396727e+00 } ,
+                            "Up" : { "x" : -3.787540148056843e-02  , "y" : 1.691140649647599e-01  , "z" : 9.848684617723226e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -999,9 +1001,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : -4.590941356657763e+06 ,
-                                        "Maximum" : -3.138083028814960e+06 ,
-                                        "Interval" : 2.000000000000000e+05 ,
+                                        "Minimum" : 0.000000000000000e+00 ,
+                                        "Maximum" : 0.000000000000000e+00 ,
+                                        "Interval" : 1.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1033,20 +1035,20 @@
                                                 "Component" : 0 ,
                                                 "Quantity" : 8 ,
                                                 "Type" : 0 ,
-                                                "Extra" : 14 ,
+                                                "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : true ,
-                                                "Keyword" : "stress" ,
+                                                "Keyword" : "extra" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 8 ,
                                                     "Type" : 0 ,
-                                                    "Extra" : 14 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Keyword" : "extra" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
@@ -1054,23 +1056,23 @@
                                                     "Component" : 0 ,
                                                     "Quantity" : 8 ,
                                                     "Type" : 0 ,
-                                                    "Extra" : 14 ,
-                                                    "Stress" : true ,
+                                                    "Extra" : 11 ,
+                                                    "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "stress" ,
+                                                    "Keyword" : "" ,
                                                     "Property" : "joint-cohesion" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
                                                     "Tolerance" : 1.000000000000000e-07 ,
                                                     "HideNull" : true 
                                                 },
-                                                "Source" : 0 
+                                                "Source" : 1 
                                             }
                                         ],
                                         "Gp" : {
@@ -1081,11 +1083,11 @@
                                                     "Component" : 0 ,
                                                     "Quantity" : 8 ,
                                                     "Type" : 0 ,
-                                                    "Extra" : 14 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Keyword" : "extra" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 }
@@ -1099,11 +1101,11 @@
                                                     "Component" : 0 ,
                                                     "Quantity" : 8 ,
                                                     "Type" : 0 ,
-                                                    "Extra" : 14 ,
-                                                    "Stress" : true ,
+                                                    "Extra" : 11 ,
+                                                    "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "stress" ,
+                                                    "Keyword" : "" ,
                                                     "Property" : "joint-cohesion" ,
                                                     "PropType" : 0 
                                                 }
@@ -1128,7 +1130,7 @@
                                             "Tolerance" : 1.000000000000000e-07 
                                         },
                                         "CompressionPositive" : false ,
-                                        "Source" : 0 
+                                        "Source" : 1 
                                     },
                                     "ColorMap" : {
                                         "Active" : true ,
@@ -1662,7 +1664,7 @@
     },
     "Layout3" : {
         "PaneAction" : [  ],
-        "State" : "AAAA/wAAAAD9AAAAAQAAAAAAAAvQAAAHPvwCAAAAAfsAAAAaAFcAbwByAGsAcwBwAGEAYwBlAEQAbwBjAGsBAAAAKAAABz4AAAFnAP///gAAAAAAAAc+AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAwAE0AYQBpAG4AVwBpAG4AZABvAHcAQwBhAHAAdABpAG8AbgBXAHIAYQBwAHAAZQByAQAAAAD/////AAAAAAAAAAA=" ,
+        "State" : "AAAA/wAAAAD9AAAAAQAAAAAAAAvQAAAHPvwCAAAAAfsAAAAaAFcAbwByAGsAcwBwAGEAYwBlAEQAbwBjAGsBAAAAKAAABz4AAAFFAP///gAAAAAAAAc+AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAwAE0AYQBpAG4AVwBpAG4AZABvAHcAQwBhAHAAdABpAG8AbgBXAHIAYQBwAHAAZQByAQAAAAD/////AAAAAAAAAAA=" ,
         "Splitter1" : "AAAA/wAAAAEAAAACAAAAzgAACv0A/////wEAAAABAA==" ,
         "Splitter2" : "AAAA/wAAAAEAAAACAAAGFQAAASQA/////wEAAAACAA==" ,
         "Splitter3" : "AAAA/wAAAAEAAAADAAAFYAAAAQ0AAAAYAP////8BAAAAAQA=" ,
@@ -1671,12 +1673,12 @@
                 
                 {
                     "Name" : "Viewer-ROOT #2" ,
-                    "Geom" : [ 1174 ,1173  ],
-                    "Child1" : "Editor_initialize_model" ,
-                    "Child2" : "Plot_Plot01" ,
+                    "Geom" : [ 2349  ],
+                    "Child1" : "Plot_Plot01" ,
+                    "Child2" : "" ,
                     "Hor" : true ,
-                    "Added" : 1 ,
-                    "Ext1" : "f3dat" ,
+                    "Added" : -1 ,
+                    "Ext1" : "" ,
                     "Ext2" : "" 
                 }
             ],
@@ -1684,6 +1686,7 @@
         },
         "Recent" : {
             "MRUMagic" : [ 
+                "Edit /home/manuus/Desktop/FS-C/model/coupled_model/Preprocessing/initialize_model.f3dat" ,
                 "Edit /home/manuus/Desktop/FS-C/model/coupled_model/Preprocessing/load_mesh.py" 
             ]
         },
