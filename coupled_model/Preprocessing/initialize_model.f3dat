@@ -34,8 +34,8 @@ zone gridpoint initialize temperature 15
 ;SUBI
 zone property cohesion 2e8    ;3.1 ENSI matrix
 zone property young 7e9         ;NAGRA, Xu
-zone property young 8e9 range group 'FAULT'        ;NAGRA, Xu
-zone property young 8e9 range group 'EDZ'        ;NAGRA, Xu
+zone property young 7.8e9 range group 'FAULT'        ;NAGRA, Xu
+;zone property young 8e9 range group 'EDZ'        ;NAGRA, Xu
 
 zone property poisson 0.25      ;NAGRA, Xu
 zone property dilation 0        ;NAGRA, Xu
@@ -54,9 +54,10 @@ zone property joint-friction 18
 zone property joint-tension 0.5e6
 
 table 'fric-j' add (0.0e+00 18) (0.001 16) ;was 18
-;table 'coh-j' add (0.0e+00 0.5e6) (0.001 0.1e6) 
+table 'fric-edz' add (0.0e+00 0.5e6) (0.001 0.1e6) 
 
 zone property table-joint-friction 'fric-j' 
+
 ;zone property table-joint-cohesion 'coh-j' 
 
 
@@ -65,22 +66,22 @@ model gravity 0 0 -9.81
 ; In situ pressure and temperature  
 zone gridpoint initialize pore-pressure 1e6 gradient(0,0,-9.81e3)
 
-
-zone initialize stress-principal ...
-    direction-maximum (-0.615661, -0.788011, 0) maximum -3.8e6 gradient (0,0,24.525e3) ...
-    direction-minimum (0,0,-1) minimum -5.5e6 gradient (0,0,16.945e3) ...
-    direction-intermediate (-0.788, 0.61566,0) intermediate -4.8e6 gradient (0,0,20.958e3)
-
 zone face apply stress-normal=-3.8e6, gradient=(0,0,16.945e3) range group 'North' or 'South'
 zone face apply stress-normal=-4.7e6, gradient=(0,0,20.958e3) range group 'East' or 'West'
 zone face apply stress-normal=-5.5e6 range group 'Top' 
 zone face apply velocity-normal=0 range group 'Bottom'
 
+zone initialize stress-principal ...
+    direction-maximum (-0.615661, -0.788011, 0) maximum      -3.06e6 gradient (0,0,21.0e3)    origin (0,0,37) ...
+    direction-intermediate (-0.788, 0.61566, 0) intermediate -3.90e6 gradient (0,0,22.5e3)    origin (0,0,37) ...
+    direction-minimum (0,0,-1)                 minimum      -5.5e6  gradient (0,0,27.125e3)  origin (0,0,37) ...
+
+
 ; Disable large strain (only FLAC3D v7)
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 2e-8
+model solve mech ratio 4e-8
 
 
 ; Save model
