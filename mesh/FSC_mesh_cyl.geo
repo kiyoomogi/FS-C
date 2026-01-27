@@ -83,20 +83,20 @@ parts[] = BooleanFragments{
 };
 
 
-//Cylinder(1001) = {x0, y0, z0,  dx, dy, dz,  R};
+Cylinder(1001) = {x0, y0, z0,  dx, dy, dz,  R};
 
-//// --- intersect cylinder ONLY with the fault zone inside the box
-//cyl_fault[] = BooleanIntersection{
-//  Volume{1001}; Delete;        // delete original full cylinder
-//}{
-//  Volume{fault_in[]};         // only keep part inside the fault
-//};
+// --- intersect cylinder ONLY with the fault zone inside the box
+cyl_fault[] = BooleanIntersection{
+  Volume{1001}; Delete;        // delete original full cylinder
+}{
+  Volume{fault_in[]};         // only keep part inside the fault
+};
 
 // --- now fragment box + faults + fault cylinder together
 parts[] = BooleanFragments{
   Volume{parts[]}; Delete;
 }{
-  Volume{ fault_in[]}; Delete; //cyl_fault[] should be there if it is created
+  Volume{ fault_in[], cyl_fault[]}; Delete; 
 };
 
 surfAbove[] = Surface In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
@@ -139,15 +139,15 @@ Field[4].DistMin  = 0.75;
 Field[4].DistMax  = ramp*8;
 
 Field[99] = Min;
-Field[99].FieldsList = {4};  //was 2,4 before
+Field[99].FieldsList = {2,4};  //was 2,4 before
 Background Field = 99;
 
 volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
 volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -32.9};
 
-//Physical Volume("EDZ") = {1001};
+Physical Volume("EDZ") = {1001};
 Physical Volume("CLAY") = {3,4};
-Physical Volume("FAULT") = {2};
+Physical Volume("FAULT") = {1002};
 Physical Volume("BNDTO") = {volAbove[]};
 Physical Volume("BNDBO") = {volBelow[]};
 
