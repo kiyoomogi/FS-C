@@ -2,7 +2,6 @@ import toughio
 import toughflac as tf
 
 
-
 mesh = toughio.read_mesh("/home/manuus/Desktop/FS-C/model/mesh/FSC_mesh_cyl.msh")
 #mesh = toughio.read_mesh("/home/TOUGH3-FLAC3D/toughflac/examples/2DSEP5V6/Preprocessing/gmsh/mesh.msh")
 #mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
