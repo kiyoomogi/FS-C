@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-01-27T15:31:45" ,
+        "DateTime" : "2026-01-28T16:40:45" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/f1.372d.f3sav" ,
+                "SaveFile" : "3_THM/f3out/f1.266d.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -32,7 +32,13 @@
                     "Files" : [ 
                         "tf_in.f3sav" ,
                         "3_THM/f3out/f1.235d.f3sav" ,
-                        "3_THM/f3out/f1.372d.f3sav" 
+                        "3_THM/f3out/f1.372d.f3sav" ,
+                        "3_THM/f3out/f1.296d.f3sav" ,
+                        "3_THM/f3out/f1.220d.f3sav" ,
+                        "3_THM/f3out/tf_fi.f3sav" ,
+                        "3_THM/f3out/f1.174d.f3sav" ,
+                        "3_THM/f3out/f1.113d.f3sav" ,
+                        "3_THM/f3out/f1.266d.f3sav" 
                     ]
                 },
                 "ResultFiles" : {
@@ -570,8 +576,8 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 5.133123898485705e+01  , "y" : -2.160156083840811e+02  , "z" : 3.195280262145970e+01 } ,
-                            "ViewCenter" : { "x" : 4.923131881377896e+00  , "y" : -1.110355986064863e+00  , "z" : -6.733811868396727e+00 } ,
+                            "EyePosition" : { "x" : 5.081419512986163e+01  , "y" : -1.984785742652400e+02  , "z" : 3.625792880046883e+01 } ,
+                            "ViewCenter" : { "x" : 6.615997888452927e+00  , "y" : 6.193094685251838e+00  , "z" : -5.864659517755269e-01 } ,
                             "Up" : { "x" : -3.787540148056843e-02  , "y" : 1.691140649647599e-01  , "z" : 9.848684617723226e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
@@ -1001,12 +1007,12 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 0.000000000000000e+00 ,
-                                        "Maximum" : 0.000000000000000e+00 ,
-                                        "Interval" : 1.000000000000000e+00 ,
-                                        "MinAuto" : true ,
-                                        "MaxAuto" : true ,
-                                        "IntAuto" : true ,
+                                        "Minimum" : 1.000000000000000e-17 ,
+                                        "Maximum" : 5.000000000000000e-15 ,
+                                        "Interval" : 1.000000000000000e-17 ,
+                                        "MinAuto" : false ,
+                                        "MaxAuto" : false ,
+                                        "IntAuto" : false ,
                                         "Reversed" : false ,
                                         "AboveAuto" : true ,
                                         "BelowAuto" : true ,
@@ -1034,7 +1040,7 @@
                                             {
                                                 "Component" : 0 ,
                                                 "Quantity" : 8 ,
-                                                "Type" : 0 ,
+                                                "Type" : 1 ,
                                                 "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
@@ -1043,36 +1049,36 @@
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 8 ,
-                                                    "Type" : 0 ,
+                                                    "Type" : 1 ,
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 },
                                                 "ZoneData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 8 ,
-                                                    "Type" : 0 ,
+                                                    "Type" : 1 ,
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "joint-cohesion" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
                                                     "Tolerance" : 1.000000000000000e-07 ,
                                                     "HideNull" : true 
                                                 },
-                                                "Source" : 1 
+                                                "Source" : 0 
                                             }
                                         ],
                                         "Gp" : {
@@ -1082,12 +1088,12 @@
                                                 {
                                                     "Component" : 0 ,
                                                     "Quantity" : 8 ,
-                                                    "Type" : 0 ,
+                                                    "Type" : 1 ,
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
                                                 }
@@ -1100,12 +1106,12 @@
                                                 {
                                                     "Component" : 0 ,
                                                     "Quantity" : 8 ,
-                                                    "Type" : 0 ,
+                                                    "Type" : 1 ,
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "" ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "joint-cohesion" ,
                                                     "PropType" : 0 
                                                 }
@@ -1130,7 +1136,7 @@
                                             "Tolerance" : 1.000000000000000e-07 
                                         },
                                         "CompressionPositive" : false ,
-                                        "Source" : 1 
+                                        "Source" : 0 
                                     },
                                     "ColorMap" : {
                                         "Active" : true ,
