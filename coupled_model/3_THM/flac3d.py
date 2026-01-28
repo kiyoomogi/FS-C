@@ -194,9 +194,9 @@ python_func_flac = (printer_function,) #(stress_on_plane,)  # After mechanical a
 fish_func_tough = ()  # Before mechanical analysis
 fish_func_flac = ()  # After mechanical analysis
 
-k0_fault = np.array([2.0e-17, 2.0e-17, 4.0e-18], dtype=float)
-k0_clay = np.array([5.0e-18, 5.0e-18, 1.0e-18], dtype=float)
-k0_edz = np.array([2.0e-13, 2.0e-13, 2.0e-13], dtype=float)
+k0_fault = np.array([1.0e-17, 1.0e-17, 5.0e-18], dtype=float)
+k0_clay = np.array([5.0e-19, 5.0e-19, 1.0e-19], dtype=float)
+k0_edz = np.array([1.0e-14, 1.0e-14, 1.0e-14], dtype=float)
 k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
 
 a_fault = 500
@@ -208,8 +208,8 @@ permeability_func = {
         phi0 = 0.14,
         n = 1.0,
         w = 2.4,
-        br = 10e-6,     #was 20e-6
-        bmax = 40e-6,  #was 500e-6
+        br = 5e-6,     #was 20e-6
+        bmax = 30e-6,  #was 500e-6
         alpha = 1.5, 
         n_vector = np.array([0.47, -0.60, 0.64]),
         joint = True, 
