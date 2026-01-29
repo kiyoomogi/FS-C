@@ -1,0 +1,1207 @@
+ 
+       @@@@@   @@   @  @   @@@  @  @   @@       @@@  @  @   @  @  @  @      @@   @@@@@  @   @@   @   @     @@@   @  @  @   @
+         @    @  @  @  @  @     @  @  @  @     @     @  @@ @@  @  @  @     @  @    @    @  @  @  @@  @     @  @  @  @  @@  @
+         @    @  @  @  @  @ @@  @@@@    @       @@   @  @ @ @  @  @  @     @@@@    @    @  @  @  @ @ @     @@@   @  @  @ @ @
+         @    @  @  @  @  @  @  @  @  @  @        @  @  @   @  @  @  @     @  @    @    @  @  @  @  @@     @ @   @  @  @  @@
+         @     @@    @@    @@@  @  @   @@      @@@   @  @   @   @@   @@@@  @  @    @    @   @@   @   @     @  @   @@   @   @
+
+
+                    TOUGH3 IS A PROGRAM FOR MULTIPHASE MULTICOMPONENT FLOW IN PERMEABLE MEDIA, INCLUDING HEAT FLOW.
+              IT IS A MEMBER OF THE MULKOM FAMILY OF CODES, DEVELOPED  AT LAWRENCE BERKELEY LABORATORY BY KARSTEN PRUESS ET AL.
+
+                          ********************************************************************************
+                          **********************   TOUGH VER. 3.1.0 (July 2020)  *********************
+                          ********************************************************************************
+
+
+ SUMMARY OF DISK FILES
+
+ FILE *MESH*  EXISTS --- OPEN AS AN OLD FILE
+ FILE *INCON* EXISTS --- OPEN AS AN OLD FILE
+ FILE *GENER* DOES NOT EXIST --- OPEN AS A NEW FILE
+ FILE *SAVE* DOES NOT EXIST --- OPEN AS A NEW FILE
+ FILE *TABLE* DOES NOT EXIST --- OPEN AS A NEW FILE
+
+ ===================================================================================================================================
+
+     PROBLEM TITLE:  injection model                                                                 
+
+
+(Reading ROCKS block)
+
+ DOMAIN NO.  1     MATERIAL NAME -- CLAY 
+
+ DOMAIN NO.  2     MATERIAL NAME -- EDZ  
+
+ DOMAIN NO.  3     MATERIAL NAME -- FAULT
+
+ DOMAIN NO.  4     MATERIAL NAME -- BNDTO
+
+ DOMAIN NO.  5     MATERIAL NAME -- BNDBO
+(Reading RPCAP block)
+(Reading FLAC  block)
+ HAVE READ UNKNOWN BLOCK LABEL "     " --- IGNORE THIS, AND CONTINUE READING INPUT DATA
+(Reading RESDT block)
+(Reading MULTI block)
+(Reading START block)
+(Reading PARAM block)
+(Reading INDOM block)
+(Reading TIMES block)
+(Reading FOFT  block)
+(Reading GENER block)
+     
+ WRITE FILE *GENER* FROM INPUT DATA
+(Reading OUTPU block)
+(Reading ENDCY block)
+
+                        ************************************************************************************
+                        *                       EVALUATE FLOATING POINT ARITHMETIC                         *
+                        ************************************************************************************
+                        *                                                                                  *
+                        * FLOATING POINT PROCESSOR HAS APPROXIMATELY 15 SIGNIFICANT DIGITS                 *
+                        *                                                                                  *
+                        * DEFAULT VALUE OF INCREMENT FACTOR FOR NUMERICAL DERIVATIVES IS DFAC = 0.1490E-07 *
+                        * DEFAULT VALUE FOR DFAC WILL BE USED                                              *
+                        *                                                                                  *
+                        ************************************************************************************
+
+ 
+
+ ALL NCON = 117192 CONNECTIONS READ FROM FILE *MESH* REFERENCE KNOWN ELEMENTS
+
+
+
+ PARAMETERS FOR FLEXIBLE DIMENSIONING OF MAJOR ARRAYS (MAIN PROGRAM) ARE AS FOLLOWS
+
+ MNEL =  58946  MNCON =  117192  MNEQ =  3  MNK =  3   MNPH =  3   MNB =  6   MNOGN =    1   MGTAB =  231
+ ===================================================================================================================================
+
+ MAXIMUM NUMBER OF VOLUME ELEMENTS (GRID BLOCKS):            MNEL  =   58946
+ MAXIMUM NUMBER OF CONNECTIONS (INTERFACES):                 MNCON =  117192
+ MAXIMUM LENGTH OF PRIMARY VARIABLE ARRAYS:                  MPRIM =  235784
+ MAXIMUM NUMBER OF GENERATION ITEMS (SINKS/SOURCES):         MNOGN =      1
+ MAXIMUM NUMBER OF TABULAR (TIME-DEPENDENT) GENERATION DATA: MGTAB =    231
+ LENGTH OF SECONDARY PARAMETER ARRAY:                        MNSEC  =     6837736
+
+ MESH HAS    58946 ELEMENTS AND   117192 CONNECTIONS (INTERFACES) BETWEEN THEM
+ GENER HAS     1 SINKS/SOURCES
+
+
+END OF PART 1 INPUT JOB --- ELAPSED TIME =   0.6288 SECONDS
+
+ 
+ ***********************************************************************************************************************************
+ *          ARRAY *MOP* ALLOWS TO GENERATE MORE PRINTOUT IN VARIOUS SUBROUTINES, AND TO MAKE SOME CALCULATIONAL CHOICES.           *
+ ***********************************************************************************************************************************
+
+   MOP(1)  = 1 *** ALLOWS TO GENERATE A SHORT PRINTOUT FOR EACH NEWTON-RAPHSON ITERATION
+           = 0, 1, OR 2: GENERATE 0, 1, OR 2 LINES OF PRINTOUT
+
+            MORE PRINTOUT IS GENERATED FOR MOP(I) > 0 IN THE FOLLOWING SUBROUTINES (THE LARGER MOP IS, THE MORE WILL BE PRINTED).
+
+   MOP(2)  = 2 *** CYCIT       MOP(3) = 1 *** MULTI       MOP(4) = 1 *** QU       MOP(5) = 5 *** EOS       MOP(6) = 0 *** LINEQ    
+
+   MOP(7)  = 0 *** IF UNEQUAL ZERO, WILL GENERATE A PRINTOUT OF INPUT DATA
+
+            CALCULATIONAL CHOICES OFFERED BY MOP ARE AS FOLLOWS:
+
+   MOP(8)  = 0 *** IF ISOT IS NEGATIVE, CHOOSES OPTION FOR REDUCING FRACTURE-MATRIX INTERFACE AREA.
+
+   MOP(9)  = 0 *** CHOOSES FLUID COMPOSITION ON WITHDRAWAL (PRODUCTION).
+           = 0: ACCORDING TO RELATIVE MOBILITIES.
+           = 1: ACCORDING TO COMPOSITION IN PRODUCING ELEMENT.
+
+   MOP(10) = 0 *** CHOOSES INTERPOLATION FORMULA FOR DEPENDENCE OF THERMAL CONDUCTIVITY ON LIQUID SATURATION (SL).
+           = 0: K = KDRY + SQRT(SL)*(KWET-KDRY)
+           = 1: K = KDRY + SL*(KWET-KDRY)
+           = 2: K = C0+C1*T+C2*Sw+C3*POR
+
+   MOP(11) = 2 *** CHOOSES EVALUATION OF MOBILITY AND ABSOLUTE PERMEABILITY AT INTERFACES.
+           = 0: MOBILITIES ARE UPSTREAM WEIGHTED WITH WUP. (DEFAULT IS WUP = 1.0). PERMEABILITY IS UPSTREAM WEIGHTED.
+           = 1: MOBILITIES ARE AVERAGED BETWEEN ADJACENT ELEMENTS. PERMEABILITY IS UPSTREAM WEIGHTED.
+           = 2: MOBILITIES ARE UPSTREAM WEIGHTED WITH WUP. (DEFAULT IS WUP = 1.0). PERMEABILITY IS HARMONIC WEIGHTED.
+           = 3: MOBILITIES ARE AVERAGED BETWEEN ADJACENT ELEMENTS. PERMEABILITY IS HARMONIC WEIGHTED.
+           = 4: MOBILITY * PERMEABILITY PRODUCT IS HARMONIC WEIGHTED.
+
+   MOP(12) = 2 *** CHOOSES PROCEDURE FOR INTERPOLATING GENERATION RATES FROM A TIME TABLE.
+           = 0: TRIPLE LINEAR INTERPOLATION.
+           = 1: "STEP FUNCTION" OPTION.
+           = 2: RIGOROUS STEP RATE OPTION.
+
+   MOP(13) = 0 *** DEFINES CONTENT OF INCON AND SAVE FILE.
+           = 0: STANDARD CONTENT.
+           = 2: READS PARAMETERS OF HYSTERESIS MODEL FROM FILE INCON.
+
+   MOP(15) = 0 *** ALLOWS TO SELECT A SEMI-ANALYTICAL HEAT EXCHANGE CALCULATION WITH CONFINING BEDS.
+           = 0: NO SEMI-ANALYTICAL HEAT EXCHANGE.
+           = 1: SEMI-ANALYTICAL LINEAR HEAT EXCHANGE ENGAGED. INITIAL TEMPERATURE OF CONFINING BEDS IS UNIFORM.
+           = 2: SEMI-ANALYTICAL LINEAR HEAT EXCHANGE ENGAGED. INITIAL TEMPERATURE OF CONFINING LAYERS IS NOT UNIFORM.
+           = 5: SEMI-ANALYTICAL RADIAL HEAT EXCHANGE WITH PROPERTIES GIVEN IN MATERIAL QLOSS
+           = 6: SEMI-ANALYTICAL RADIAL HEAT EXCHANGE WITH DEPTH-DEPENDENT PROPERTIES (DEPTH, RADIUS, TEMPERATURE,
+                CONDUCTIVITY, DENSITY, CAPACITY) PROVIDED ON FILE radqloss.dat
+
+   MOP(16) = 0 *** PERMITS TO CHOOSE TIME STEP SELECTION OPTION
+           = 0: AUTOMATIC TIME STEPPING BASED ON MAXIMUM CHANGE IN SATURATION.
+           = 1: AUTOMATIC TIME STEPPING BASED ON NUMBER OF ITERATIONS NEEDED FOR CONVERGENCE.
+           > 1: INCREASE TIME STEP BY AT LEAST A FACTOR 2, IF CONVERGENCE OCCURS IN .LE. MOP(16) ITERATIONS.
+
+   MOP(17) = 9 *** HANDLES TIME STEPPING AFTER LINEAR EQUATION SOLVER FAILURE.
+           = 0: NO TIME STEP REDUCTION DESPITE LINEAR EQUATION SOLUTION FAILURE.
+           = 9: REDUCE TIME STEP AFTER LINEAR EQUATION SOLUTION FAILURE.
+
+   MOP(18) = 0 *** ALLOWS TO SELECT HANDLING OF INTERFACE DENSITY.
+           = 0: PERFORM UPSTREAM WEIGHTING FOR INTERFACE DENSITY.
+           > 0: COMPUTE INTERFACE DENSITY AS AVERAGE OF THE TWO GRID BLOCK DENSITIES.
+                HOWEVER, WHEN ONE OF THE TWO PHASE SATURATIONS IS ZERO, DO UPSTREAM WEIGHTING.
+
+   MOP(21) = 8 *** PERMITS TO SELECT LINEAR EQUATION SOLVER FROM PACKAGE 
+           < 2: DEFAULTS TO MOP(21) = 3
+           = 2: DSLUBC: BI-CONJUGATE GRADIENT SOLVER; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 3: DSLUCS: BI-CONJUGATE GRADIENT SOLVER - LANCZOS TYPE; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 4: DSLUGM: GENERALIZED MINIMUM RESIDUAL CONJUGATE GRADIENTS; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 5: DLUSTB: STABILIZED BI-CONJUGATE GRADIENT SOLVER; PRECONDITIONER: INCOMPLETE LU FACTORIZATION
+           = 6: LUBAND: DIRECT SOLVER USING LU DECOMPOSITION
+           = 7: AZTEC: PARALLEL ITERATIVE SOLVER
+           = 8: PETSc: PARALLEL ITERATIVE SOLVER
+
+   MOP(24) = 0 *** PERMITS TO SELECT HANDLING OF MULTIPHASE DIFFUSIVE FLUXES AT INTERFACES
+           = 0: HARMONIC WEIGHTING OF FULLY-COUPLED EFFECTIVE MULTIPHASE DIFFUSIVITY
+           = 1: SEPARATE HARMONIC WEIGHTING  FOR EACH PHASE FLUX 
+
+ ***********************************************************************************************************************************
+
+ ***********************************************************************************************************************************
+
+
+ 
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&   Summary of capabilities for random permeability modification   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+ Modification of absolute permeability on a grid block-by-grid block basis will be made when a domain "SEED " is present in data
+ block "ROCKS", as follows.
+                                    k    --->    k' = k*m
+
+ Here, k is the absolute permeability specified for the reservoir domain to which the grid block belongs. Parameter m is a
+ "permeability modifier" which can be internally generated or externally prescribed by the user on a block-by-block basis.
+
+ When permeability modification is in effect, the strength of capillary pressure will, following Leverett (1941), automatically be
+ scaled as   Pcap ---> Pcap' = Pcap/SQRT(m).
+
+ User-supplied permeability modifiers have to be entered as parameter "PMX" in columns 41-50 of an ELEMEnt record.
+ Permeability modification options are selected through parameters in data block "ROCKS".
+
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ Summary of available permeability modification options
+          (with s - random number between 0 and 1; PMX - user-supplied modifiers in data block "ELEME"):
+      (1) externally supplied:        m = PMX - PER(2)
+      (2) "linear"      (DROK.ne.0):  m = PER(1) * s - PER(2)
+      (3) "logarithmic" (DROK.eq.0):  m = exp(- PER(1) * s) - PER(2)
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+            &&&& if a domain "SEED " is present, permeability modification will be made
+            &&&& if no domain "SEED " is present, no permeability modification will be made
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>  domain = "SEED " is not present, no permeability modification will be made  <<<<<<<<<<<<<<<<<<<<<<<<<<
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+ Data provided in domain "SEED " are used to select the following options.
+
+ DROK   = *** random number seed for internal generation of "linear" permeability modifiers.
+        = 0: (default) no internal generation of "linear" permeability modifiers.
+        > 0: perform "linear" permeability modification; random modifiers are generated internally with DROK as seed.
+
+ POR    = *** random number seed for internal generation of "logarithmic" permeability modifiers,
+        = 0: (default) no internal generation of "logarithmic" permeability modifiers.
+        > 0: perform "logarithmic" permeability modification; random modifiers are generated internally with POR as seed.
+
+            &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            &&&&& note: if both DROK and POR are specified as non-zero, DROK takes precedence                                  &&&&&
+            &&&&&       if both DROK and POR are zero, permeability modifiers as supplied through "ELEME" data will be used    &&&&&
+            &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+ PER(1) = *** scale factor (optional) for internally generated  permeability modifiers.
+        = 0: (defaults to PER(1) = 1): permeability modifiers are generated as random numbers in the interval (0, 1).
+        > 0: permeability modifiers are generated as random numbers in the interval (0, PER(1)).
+
+ PER(2) = *** shift (optional) for internal or external permeability modifiers.
+        = 0: (default) no shift is applied to permeability modifiers.
+        > 0: permeability modifiers are shifted according to m' = m - PER(2). All m' < 0 are set equal to zero.
+
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   0,  0]
+
+ FILE *CO2TAB*  EXISTS --- OPEN AS AN OLD FILE
+                               *************************************************
+                               *     CO2 PROPERTIES READ FROM FILE CO2TAB      *
+                               *         NPK=127;  NTK= 51                     *
+                               *  P(1) = 0.100000E+06;  P(127) = 0.600000E+08  *
+                               *  T(1) = 0.304000E+01;  T( 51) = 0.103040E+03  *
+                               *************************************************
+ 
+ ***********************************************************************************************************************************
+ *                                ECO2: EQUATION OF STATE FOR MIXTURES OF WATER/SODIUM CHLORIDE/CO2                                *
+ ***********************************************************************************************************************************
+
+    OPTIONS SELECTED ARE: (NK,NEQ,NPH,NB) = (3,3,3, 6)
+
+                          NK  =  3   - NUMBER OF FLUID COMPONENTS
+                          NEQ =  3   - NUMBER OF EQUATIONS PER GRID BLOCK
+                          NPH =  3   - NUMBER OF PHASES THAT CAN BE PRESENT
+                          NB  =  6   - NUMBER OF SECONDARY PARAMETERS (OTHER THAN COMPONENT MASS FRACTIONS)
+
+                   FOR NB = 6, DIFFUSION IS "OFF", FOR NB = 8, DIFFUSION IS "ON"
+
+
+    AVAILABLE OPTIONS: (NK,NEQ,NPH,NB)=(3,4,3,6 OR 8) -WATER, NACL, CO2; NON-ISOTHERMAL;      VAR. (P, XS OR SS+10, X3 OR SG+10, T)
+                                       (3,3,3,6 OR 8) -WATER, NACL, CO2; ISOTHERMAL;          VAR. (P, XS OR SS+10, X3 OR SG+10, T)
+
+    DEFAULT OPTIONS ARE (3,4,3,6) - NON-ISOTHERMAL, DIFFUSION "OFF"
+
+ ***********************************************************************************************************************************
+
+
+ THE PRIMARY VARIABLES ARE
+  P   - PRESSURE
+  XSM - SALT MASS FRACTION IN TWO-COMPONENT H2O-NaCl (XS)  OR SOLID SATURATION  (SS+10.)
+  X3  - CO2 MASS FRACTION  OR  SG+10. - GAS PHASE SATURATION + 10.
+  T   - TEMPERATURE
+
+ ******************************                                        *********************************************************
+ *         COMPONENTS         *                                        *   FLUID PHASE CONDITION        PRIMARY VARIABLES      *
+ ******************************                                        *********************************************************
+ *                            *                                        *                                                       *
+ *       # 1  -  WATER        *                                        *   SINGLE-PHASE GAS           P,     XSM,      X3,   T *
+ *                            *                                        *                                                       *
+ *       # 2  -  NACL         *                                        *   SINGLE-PHASE AQUEOUS       P,     XSM,      X3,   T *
+ *                            *                                        *                                                       *
+ *       # 3  -  CO2          *                                        *   TWO-PHASE                  P,     XSM,  SG+10.,   T *
+ *                            *                                        *                                                       *
+ *       # 4  -  HEAT         *                                        *********************************************************
+ *                            *
+ ******************************
+
+ ***********************************************************************************************************************************
+ *                           ARRAY *IE*  ALLOWS TO MAKE CHOICES AMONG DIFFERENT EOS OPTIONS                                        *
+ ***********************************************************************************************************************************
+
+    IE(1)  = 0: *** NUMBER OF ADDITIONAL RECORDS READ IN DATA BLOCK SELEC.
+
+    IE(3) = 0: *** ALLOWS CHOICE OF OPTIONS FOR CALCULATION OF BRINE VISCOSITY.
+           = 0: PHILLIPS ET AL. (1981) (DEFAULT).
+           = 1: PALLISER AND MCKIBBIN (1998).
+           = 2: MAO AND SUN (2006)
+           = 3: POTTER (1976).
+
+    IE(4)  = 1: *** ALLOWS TO CHOOSE AMONG DIFFERENT CORRELATIONS FOR THE DENSITY OF COMPRESSED BRINE.
+           = 1: ANDERSEN ET AL. (1992). (DEFAULT=0)
+           = 2: PRITCHETT (1993). 
+           = 3: BRINE COMPRESSIBILITY EQUAL TO WATER COMPRESSIBILITY AT THE SAME REDUCED TEMPERATURE.
+           = 4: BRINE COMPRESSIBILITY EQUAL TO WATER COMPRESSIBILITY AT THE SAME TEMPERATURE
+           = 5: BATZLE AND WANG (1992). 
+           = 6: DRIESNER (2007).
+
+    IE(11) = 0: *** ALLOWS CHOICE OF DEPENDENCE OF PERMEABILITY ON ACTIVE FLOW POROSITY.
+           = 0: PERMEABILITY DOES NOT VARY WITH FLOW POROSITY.
+           = 1: PERMEABILITY VARIES AS PHIF**FE(1).
+           = 2: SERIES FRACTURE MODEL.
+           = 3: SERIES TUBE MODEL.
+
+    IE(12) = 0: *** ALLOWS CHOICE OF MODEL FOR WATER SOLUBILITY IN CO2.
+           = 0: AFTER SPYCHER AND PRUESS (2005).
+           = 1: EVAPORATION MODEL (WATER DENSITY IN GAS BASED ON DENSITY OF VAPOR IN EQUILIBRIUM WITH BRINE).
+
+    IE(13) = 0: *** ALLOWS CHOICE OF DEPENDENCE OF BRINE DENSITY ON DISSOLVED CO2.
+           = 0: BRINE DENSITY VARIES WITH DISSOLVED CO2, ACCORDING TO THE CORRELATION FOR CO2 MOLAR VOLUME IN SOLUTION
+                FROM J. GARCIA (LBNL-49023).
+           = 1: BRINE DENSITY IS INDEPENDENT OF CO2 CONCENTRATION.
+
+    IE(14) = 0: *** ALLOWS CHOICE OF TREATMENT OF THERMOPHYSICAL PROPERTIES DEPENDENCE ON SALT CONTENT.
+           = 0: FULL DEPENDENCE (DEFAULT).
+           > 0: SUPPRESSION OF ALL THERMOPHYSICAL PROPERTIES DEPENDENCE OTHER THAN SALT SOLUBILITY.
+
+    IE(15) = 4: *** ALLOWS CHOICE OF CORRELATION FOR  VAPOR SATURATED BRINE ENTHALPY.
+           = 1: MICHAELIDES (1981).
+           = 2: MILLER (1978). (OBSOLETE)
+           = 3: PHILLIPS ET AL. (1981).
+           = 4: LORENZ, MARIC AND RIRSHL (2000). (DEFAULT=0)
+           = 5: DRIESNER (2007).
+
+
+ ***********************************************************************************************************************************
+
+ 
+ ********** VOLUME- AND MASS-BALANCES ********************************************************************************************
+
+ ********** [KCYC,ITER] = [   0,  0] *****                                  THE TIME IS  0.94878E+05 SECONDS, OR  0.10981E+01 DAYS
+
+
+ Balances for domain #  1, *CLAY *
+
+                          PHASES PRESENT                                        COMPONENT MASS IN PLACE (kg)
+ ********************************************************* ************************************************************************
+ PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
+ ********************************************************* ************************************************************************
+            *                                              PHASES     *
+ VOL. (m^3) * 0.00000000E+00 0.13455015E+06 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ MASS (kg)  * 0.00000000E+00 0.13445366E+09 0.00000000E+00 AQUEOUS    * 0.13445366E+09 0.00000000E+00 0.00000000E+00 0.92998655E+13
+ ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.37445308E+14
+                                                           TOTAL      * 0.13445366E+09 0.00000000E+00 0.00000000E+00 0.46745173E+14
+                                                           ************************************************************************
+
+ **********************************************************************************************************************************
+
+
+ Balances for domain #  2, *EDZ  *
+
+                          PHASES PRESENT                                        COMPONENT MASS IN PLACE (kg)
+ ********************************************************* ************************************************************************
+ PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
+ ********************************************************* ************************************************************************
+            *                                              PHASES     *
+ VOL. (m^3) * 0.00000000E+00 0.11772810E+00 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ MASS (kg)  * 0.00000000E+00 0.11764254E+03 0.00000000E+00 AQUEOUS    * 0.11764254E+03 0.00000000E+00 0.00000000E+00 0.81372385E+07
+ ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.44677816E+07
+                                                           TOTAL      * 0.11764254E+03 0.00000000E+00 0.00000000E+00 0.12605020E+08
+                                                           ************************************************************************
+
+ **********************************************************************************************************************************
+
+
+ Balances for domain #  3, *FAULT*
+
+                          PHASES PRESENT                                        COMPONENT MASS IN PLACE (kg)
+ ********************************************************* ************************************************************************
+ PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
+ ********************************************************* ************************************************************************
+            *                                              PHASES     *
+ VOL. (m^3) * 0.00000000E+00 0.43047579E+04 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ MASS (kg)  * 0.00000000E+00 0.43016707E+07 0.00000000E+00 AQUEOUS    * 0.43016707E+07 0.00000000E+00 0.00000000E+00 0.29753715E+12
+ ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.10035313E+13
+                                                           TOTAL      * 0.43016707E+07 0.00000000E+00 0.00000000E+00 0.13010685E+13
+                                                           ************************************************************************
+
+ **********************************************************************************************************************************
+
+
+ Balances for domain #  4, *BNDTO*
+
+                          PHASES PRESENT                                        COMPONENT MASS IN PLACE (kg)
+ ********************************************************* ************************************************************************
+ PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
+ ********************************************************* ************************************************************************
+            *                                              PHASES     *
+ VOL. (m^3) * 0.00000000E+00 0.00000000E+00 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ MASS (kg)  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 AQUEOUS    * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           TOTAL      * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           ************************************************************************
+
+ **********************************************************************************************************************************
+
+
+ Balances for domain #  5, *BNDBO*
+
+                          PHASES PRESENT                                        COMPONENT MASS IN PLACE (kg)
+ ********************************************************* ************************************************************************
+ PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
+ ********************************************************* ************************************************************************
+            *                                              PHASES     *
+ VOL. (m^3) * 0.00000000E+00 0.00000000E+00 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ MASS (kg)  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 AQUEOUS    * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           TOTAL      * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           ************************************************************************
+
+ **********************************************************************************************************************************
+
+
+ Balances for entire system
+
+                          PHASES PRESENT                                        COMPONENT MASS IN PLACE (kg)
+ ********************************************************* ************************************************************************
+ PHASES     *      GAS          AQUEOUS        SOLID       COMPONENTS *     WATER          SALT             CO2           HEAT
+ ********************************************************* ************************************************************************
+            *                                              PHASES     *
+ VOL. (m^3) * 0.00000000E+00 0.13885503E+06 0.00000000E+00 GAS PHASE  * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+ MASS (kg)  * 0.00000000E+00 0.13875545E+09 0.00000000E+00 AQUEOUS    * 0.13875545E+09 0.00000000E+00 0.00000000E+00 0.95974108E+13
+ ********************************************************* SOLID SALT * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00
+                                                           ROCK       * 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.38448843E+14
+                                                           TOTAL      * 0.13875545E+09 0.00000000E+00 0.00000000E+00 0.48046254E+14
+                                                           ************************************************************************
+
+ **********************************************************************************************************************************
+
+
+ CYCIT ..........  KC =   1  KCYC =   1  DELT = 0.500000E+00  SUMTIM = 0.948780E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   1,  1]
+ AF768(    1, 1) ST = 0.948785E+05 DT = 0.500000E+00
+
+ CYCIT ..........  KC =   2  KCYC =   2  DELT = 0.250000E+01  SUMTIM = 0.948785E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   2,  1]
+ ...ITERATING... AT [    2, 1] --- DELTEX = 0.250000E+01  MAX. RES. = 0.379976E-07 AT ELEMENT AF768  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   2,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   2,  2]
+ AF787(    2, 2) ST = 0.948810E+05 DT = 0.250000E+01
+
+ CYCIT ..........  KC =   3  KCYC =   3  DELT = 0.100000E+02  SUMTIM = 0.948810E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  1]
+ ...ITERATING... AT [    3, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.326955E-01 AT ELEMENT AF793  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   3,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  2]
+ ...ITERATING... AT [    3, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.115838E-03 AT ELEMENT AF793  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   3,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   3,  3]
+ AF778(    3, 3) ST = 0.948910E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =   4  KCYC =   4  DELT = 0.100000E+02  SUMTIM = 0.948910E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   4,  1]
+ ...ITERATING... AT [    4, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.210591E+00 AT ELEMENT AFA97  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   4,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   4,  2]
+ ...ITERATING... AT [    4, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.546888E-03 AT ELEMENT AFA97  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   4,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   4,  3]
+ AF784(    4, 3) ST = 0.949010E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =   5  KCYC =   5  DELT = 0.100000E+02  SUMTIM = 0.949010E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   5,  1]
+ ...ITERATING... AT [    5, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.174689E+02 AT ELEMENT AFB40  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   5,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   5,  2]
+ ...ITERATING... AT [    5, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.156204E-01 AT ELEMENT AFB40  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   5,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   5,  3]
+ ...ITERATING... AT [    5, 3] --- DELTEX = 0.100000E+02  MAX. RES. = 0.910130E-07 AT ELEMENT AFB40  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   5,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   5,  4]
+ AF778(    5, 4) ST = 0.949110E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =   6  KCYC =   6  DELT = 0.100000E+02  SUMTIM = 0.949110E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   6,  1]
+ ...ITERATING... AT [    6, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.757712E+01 AT ELEMENT AH1 9  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   6,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   6,  2]
+ ...ITERATING... AT [    6, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.655430E-02 AT ELEMENT AH1 9  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   6,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   6,  3]
+ ...ITERATING... AT [    6, 3] --- DELTEX = 0.100000E+02  MAX. RES. = 0.289272E-07 AT ELEMENT AH1 9  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   6,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   6,  4]
+ AFB 1(    6, 4) ST = 0.949210E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =   7  KCYC =   7  DELT = 0.100000E+02  SUMTIM = 0.949210E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   7,  1]
+ ...ITERATING... AT [    7, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.295538E+01 AT ELEMENT AH1 5  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   7,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   7,  2]
+ ...ITERATING... AT [    7, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.371199E-02 AT ELEMENT AHA58  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   7,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   7,  3]
+ ...ITERATING... AT [    7, 3] --- DELTEX = 0.100000E+02  MAX. RES. = 0.225295E-07 AT ELEMENT AH1 9  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   7,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   7,  4]
+ AFA91(    7, 4) ST = 0.949310E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =   8  KCYC =   8  DELT = 0.100000E+02  SUMTIM = 0.949310E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   8,  1]
+ ...ITERATING... AT [    8, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.128366E+01 AT ELEMENT AFB33  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   8,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   8,  2]
+ ...ITERATING... AT [    8, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.276002E-02 AT ELEMENT AFB33  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   8,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   8,  3]
+ ...ITERATING... AT [    8, 3] --- DELTEX = 0.100000E+02  MAX. RES. = 0.327351E-07 AT ELEMENT AH1 9  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   8,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   8,  4]
+ AFB39(    8, 4) ST = 0.949410E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =   9  KCYC =   9  DELT = 0.100000E+02  SUMTIM = 0.949410E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   9,  1]
+ ...ITERATING... AT [    9, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.396445E+01 AT ELEMENT AFB52  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   9,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   9,  2]
+ ...ITERATING... AT [    9, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.512808E-02 AT ELEMENT AH517  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   9,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   9,  3]
+ ...ITERATING... AT [    9, 3] --- DELTEX = 0.100000E+02  MAX. RES. = 0.386090E-07 AT ELEMENT AH113  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [   9,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [   9,  4]
+ AH1 9(    9, 4) ST = 0.949510E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  10  KCYC =  10  DELT = 0.100000E+02  SUMTIM = 0.949510E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  10,  1]
+ ...ITERATING... AT [   10, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.188859E+01 AT ELEMENT AH9 0  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  10,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  10,  2]
+ ...ITERATING... AT [   10, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.866728E-03 AT ELEMENT AH976  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  10,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  10,  3]
+ AFB 4(   10, 3) ST = 0.949610E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  11  KCYC =  11  DELT = 0.100000E+02  SUMTIM = 0.949610E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  11,  1]
+ ...ITERATING... AT [   11, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.382657E+00 AT ELEMENT AH796  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  11,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  11,  2]
+ ...ITERATING... AT [   11, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.188799E-03 AT ELEMENT AH795  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  11,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  11,  3]
+ AFB52(   11, 3) ST = 0.949710E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  12  KCYC =  12  DELT = 0.100000E+02  SUMTIM = 0.949710E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  12,  1]
+ ...ITERATING... AT [   12, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.183425E+00 AT ELEMENT AH973  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  12,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  12,  2]
+ ...ITERATING... AT [   12, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.119896E-03 AT ELEMENT AH8 3  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  12,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  12,  3]
+ AF815(   12, 3) ST = 0.949810E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  13  KCYC =  13  DELT = 0.100000E+02  SUMTIM = 0.949810E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  13,  1]
+ ...ITERATING... AT [   13, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.412483E+00 AT ELEMENT AH733  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  13,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  13,  2]
+ ...ITERATING... AT [   13, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.786632E-04 AT ELEMENT AH733  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  13,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  13,  3]
+ AH1 9(   13, 3) ST = 0.949910E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  14  KCYC =  14  DELT = 0.100000E+02  SUMTIM = 0.949910E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  14,  1]
+ ...ITERATING... AT [   14, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.126935E+00 AT ELEMENT AGI38  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  14,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  14,  2]
+ ...ITERATING... AT [   14, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.453737E-04 AT ELEMENT AGI36  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  14,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  14,  3]
+ AFB65(   14, 3) ST = 0.950010E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  15  KCYC =  15  DELT = 0.100000E+02  SUMTIM = 0.950010E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  15,  1]
+ ...ITERATING... AT [   15, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.661943E+00 AT ELEMENT AF823  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  15,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  15,  2]
+ ...ITERATING... AT [   15, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.176628E-03 AT ELEMENT AF823  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  15,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  15,  3]
+ AFB11(   15, 3) ST = 0.950110E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  16  KCYC =  16  DELT = 0.100000E+02  SUMTIM = 0.950110E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  16,  1]
+ ...ITERATING... AT [   16, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.323670E-01 AT ELEMENT AH837  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  16,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  16,  2]
+ ...ITERATING... AT [   16, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.243310E-04 AT ELEMENT AHC91  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  16,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  16,  3]
+ AFB65(   16, 3) ST = 0.950210E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  17  KCYC =  17  DELT = 0.100000E+02  SUMTIM = 0.950210E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  17,  1]
+ ...ITERATING... AT [   17, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.727423E-01 AT ELEMENT AGU10  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  17,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  17,  2]
+ ...ITERATING... AT [   17, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.252196E-04 AT ELEMENT AGU 7  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  17,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  17,  3]
+ AH113(   17, 3) ST = 0.950310E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  18  KCYC =  18  DELT = 0.100000E+02  SUMTIM = 0.950310E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  18,  1]
+ ...ITERATING... AT [   18, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.682115E-01 AT ELEMENT AG636  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  18,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  18,  2]
+ ...ITERATING... AT [   18, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.254344E-04 AT ELEMENT AG632  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  18,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  18,  3]
+ AF815(   18, 3) ST = 0.950410E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  19  KCYC =  19  DELT = 0.100000E+02  SUMTIM = 0.950410E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  19,  1]
+ ...ITERATING... AT [   19, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.898293E-01 AT ELEMENT AHC16  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  19,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  19,  2]
+ ...ITERATING... AT [   19, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.863792E-04 AT ELEMENT AHC16  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  19,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  19,  3]
+ AH113(   19, 3) ST = 0.950510E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  20  KCYC =  20  DELT = 0.100000E+02  SUMTIM = 0.950510E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  20,  1]
+ ...ITERATING... AT [   20, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.418840E-01 AT ELEMENT AFB61  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  20,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  20,  2]
+ ...ITERATING... AT [   20, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.130297E-04 AT ELEMENT AHE 8  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  20,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  20,  3]
+ AFB65(   20, 3) ST = 0.950610E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  21  KCYC =  21  DELT = 0.100000E+02  SUMTIM = 0.950610E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  21,  1]
+ ...ITERATING... AT [   21, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.225892E+00 AT ELEMENT AH784  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  21,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  21,  2]
+ ...ITERATING... AT [   21, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.667804E-04 AT ELEMENT AHE15  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  21,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  21,  3]
+ AH1 9(   21, 3) ST = 0.950710E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  22  KCYC =  22  DELT = 0.100000E+02  SUMTIM = 0.950710E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  22,  1]
+ ...ITERATING... AT [   22, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.427019E-01 AT ELEMENT AGU31  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  22,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  22,  2]
+ ...ITERATING... AT [   22, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.186634E-04 AT ELEMENT AHA60  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  22,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  22,  3]
+ AH1 9(   22, 3) ST = 0.950810E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  23  KCYC =  23  DELT = 0.100000E+02  SUMTIM = 0.950810E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  23,  1]
+ ...ITERATING... AT [   23, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.103168E-01 AT ELEMENT AH864  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  23,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  23,  2]
+ ...ITERATING... AT [   23, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.618295E-05 AT ELEMENT AH267  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  23,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  23,  3]
+ AH113(   23, 3) ST = 0.950910E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  24  KCYC =  24  DELT = 0.100000E+02  SUMTIM = 0.950910E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  24,  1]
+ ...ITERATING... AT [   24, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.168021E-01 AT ELEMENT AGI27  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  24,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  24,  2]
+ ...ITERATING... AT [   24, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.780604E-05 AT ELEMENT AG964  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  24,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  24,  3]
+ AH1 9(   24, 3) ST = 0.951010E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  25  KCYC =  25  DELT = 0.100000E+02  SUMTIM = 0.951010E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  25,  1]
+ ...ITERATING... AT [   25, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.313032E-01 AT ELEMENT AGF29  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  25,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  25,  2]
+ ...ITERATING... AT [   25, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.129072E-04 AT ELEMENT AGF26  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  25,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  25,  3]
+ AFB 1(   25, 3) ST = 0.951110E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  26  KCYC =  26  DELT = 0.100000E+02  SUMTIM = 0.951110E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  26,  1]
+ ...ITERATING... AT [   26, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.803829E-01 AT ELEMENT AHF94  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  26,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  26,  2]
+ ...ITERATING... AT [   26, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.130031E-04 AT ELEMENT AFB49  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  26,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  26,  3]
+ AH1 9(   26, 3) ST = 0.951210E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  27  KCYC =  27  DELT = 0.100000E+02  SUMTIM = 0.951210E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  27,  1]
+ ...ITERATING... AT [   27, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.563452E-01 AT ELEMENT AFB68  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  27,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  27,  2]
+ ...ITERATING... AT [   27, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.157651E-04 AT ELEMENT AHA31  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  27,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  27,  3]
+ AFB11(   27, 3) ST = 0.951310E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  28  KCYC =  28  DELT = 0.100000E+02  SUMTIM = 0.951310E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  28,  1]
+ ...ITERATING... AT [   28, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.558211E-01 AT ELEMENT AHD19  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  28,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  28,  2]
+ ...ITERATING... AT [   28, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.274331E-04 AT ELEMENT AHC47  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  28,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  28,  3]
+ AF815(   28, 3) ST = 0.951410E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  29  KCYC =  29  DELT = 0.100000E+02  SUMTIM = 0.951410E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  29,  1]
+ ...ITERATING... AT [   29, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.605594E-01 AT ELEMENT AG997  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  29,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  29,  2]
+ ...ITERATING... AT [   29, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.243518E-04 AT ELEMENT AG987  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  29,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  29,  3]
+ AH1 9(   29, 3) ST = 0.951510E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  30  KCYC =  30  DELT = 0.100000E+02  SUMTIM = 0.951510E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  30,  1]
+ ...ITERATING... AT [   30, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.447465E-01 AT ELEMENT AHB63  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  30,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  30,  2]
+ ...ITERATING... AT [   30, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.126813E-04 AT ELEMENT AHB64  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  30,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  30,  3]
+ AF815(   30, 3) ST = 0.951610E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  31  KCYC =  31  DELT = 0.100000E+02  SUMTIM = 0.951610E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  31,  1]
+ ...ITERATING... AT [   31, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.965226E-01 AT ELEMENT AH236  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  31,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  31,  2]
+ ...ITERATING... AT [   31, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.171643E-04 AT ELEMENT AHG48  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  31,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  31,  3]
+ AH1 9(   31, 3) ST = 0.951710E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  32  KCYC =  32  DELT = 0.100000E+02  SUMTIM = 0.951710E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  32,  1]
+ ...ITERATING... AT [   32, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.374969E-01 AT ELEMENT AHF 3  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  32,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  32,  2]
+ ...ITERATING... AT [   32, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.687634E-05 AT ELEMENT AH995  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  32,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  32,  3]
+ AFB65(   32, 3) ST = 0.951810E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  33  KCYC =  33  DELT = 0.100000E+02  SUMTIM = 0.951810E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  33,  1]
+ ...ITERATING... AT [   33, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.297781E-01 AT ELEMENT AHD75  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  33,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  33,  2]
+ ...ITERATING... AT [   33, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.589208E-05 AT ELEMENT AHG80  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  33,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  33,  3]
+ AFB65(   33, 3) ST = 0.951910E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  34  KCYC =  34  DELT = 0.100000E+02  SUMTIM = 0.951910E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  34,  1]
+ ...ITERATING... AT [   34, 1] --- DELTEX = 0.100000E+02  MAX. RES. = 0.308341E-01 AT ELEMENT AGA 4  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  34,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  34,  2]
+ ...ITERATING... AT [   34, 2] --- DELTEX = 0.100000E+02  MAX. RES. = 0.150462E-04 AT ELEMENT AG989  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  34,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  34,  3]
+ AH113(   34, 3) ST = 0.952010E+05 DT = 0.100000E+02
+
+ CYCIT ..........  KC =  35  KCYC =  35  DELT = 0.100000E+02  SUMTIM = 0.952010E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  35,  1]
+ ...ITERATING... AT [   35, 1] --- DELTEX = 0.500000E+00  MAX. RES. = 0.313621E-02 AT ELEMENT AGO94  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  35,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  35,  2]
+ ...ITERATING... AT [   35, 2] --- DELTEX = 0.500000E+00  MAX. RES. = 0.657166E-06 AT ELEMENT AGO94  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  35,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  35,  3]
+ AH113(   35, 3) ST = 0.952015E+05 DT = 0.500000E+00
+
+ CYCIT ..........  KC =  36  KCYC =  36  DELT = 0.250000E+01  SUMTIM = 0.952015E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  36,  1]
+ ...ITERATING... AT [   36, 1] --- DELTEX = 0.250000E+01  MAX. RES. = 0.397585E-02 AT ELEMENT AHG53  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  36,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  36,  2]
+ ...ITERATING... AT [   36, 2] --- DELTEX = 0.250000E+01  MAX. RES. = 0.874850E-06 AT ELEMENT AH998  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  36,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  36,  3]
+ AH113(   36, 3) ST = 0.952040E+05 DT = 0.250000E+01
+
+ CYCIT ..........  KC =  37  KCYC =  37  DELT = 0.125000E+02  SUMTIM = 0.952040E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  37,  1]
+ ...ITERATING... AT [   37, 1] --- DELTEX = 0.125000E+02  MAX. RES. = 0.127685E-01 AT ELEMENT AH865  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  37,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  37,  2]
+ ...ITERATING... AT [   37, 2] --- DELTEX = 0.125000E+02  MAX. RES. = 0.680895E-05 AT ELEMENT AH1 9  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  37,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  37,  3]
+ AFB65(   37, 3) ST = 0.952165E+05 DT = 0.125000E+02
+
+ CYCIT ..........  KC =  38  KCYC =  38  DELT = 0.600000E+02  SUMTIM = 0.952165E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  38,  1]
+ ...ITERATING... AT [   38, 1] --- DELTEX = 0.600000E+02  MAX. RES. = 0.978600E-01 AT ELEMENT AGT56  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  38,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  38,  2]
+ ...ITERATING... AT [   38, 2] --- DELTEX = 0.600000E+02  MAX. RES. = 0.596496E-04 AT ELEMENT AH1 9  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  38,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  38,  3]
+ ...ITERATING... AT [   38, 3] --- DELTEX = 0.600000E+02  MAX. RES. = 0.206904E-07 AT ELEMENT AH1 9  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  38,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  38,  4]
+ AFB19(   38, 4) ST = 0.952765E+05 DT = 0.600000E+02
+
+ CYCIT ..........  KC =  39  KCYC =  39  DELT = 0.600000E+02  SUMTIM = 0.952765E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  39,  1]
+ ...ITERATING... AT [   39, 1] --- DELTEX = 0.600000E+02  MAX. RES. = 0.694707E+00 AT ELEMENT AHG99  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  39,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  39,  2]
+ ...ITERATING... AT [   39, 2] --- DELTEX = 0.600000E+02  MAX. RES. = 0.273622E-03 AT ELEMENT AHG36  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  39,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  39,  3]
+ ...ITERATING... AT [   39, 3] --- DELTEX = 0.600000E+02  MAX. RES. = 0.306059E-07 AT ELEMENT AFB11  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  39,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  39,  4]
+ AH1 9(   39, 4) ST = 0.953365E+05 DT = 0.600000E+02
+
+ CYCIT ..........  KC =  40  KCYC =  40  DELT = 0.600000E+02  SUMTIM = 0.953365E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  40,  1]
+ ...ITERATING... AT [   40, 1] --- DELTEX = 0.600000E+02  MAX. RES. = 0.497073E+00 AT ELEMENT AHG17  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  40,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  40,  2]
+ ...ITERATING... AT [   40, 2] --- DELTEX = 0.600000E+02  MAX. RES. = 0.208257E-03 AT ELEMENT AG871  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  40,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  40,  3]
+ ...ITERATING... AT [   40, 3] --- DELTEX = 0.600000E+02  MAX. RES. = 0.293939E-07 AT ELEMENT AH1 9  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  40,  3]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  40,  4]
+ AH1 9(   40, 4) ST = 0.953965E+05 DT = 0.600000E+02
+
+ CYCIT ..........  KC =  41  KCYC =  41  DELT = 0.600000E+02  SUMTIM = 0.953965E+05
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  41,  1]
+ ...ITERATING... AT [   41, 1] --- DELTEX = 0.600000E+02  MAX. RES. = 0.271441E+01 AT ELEMENT AHE83  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  41,  1]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  41,  2]
+ ...ITERATING... AT [   41, 2] --- DELTEX = 0.600000E+02  MAX. RES. = 0.109826E-02 AT ELEMENT AHE83  EQUATION   1
+
+ %%%%%%%%%% E O S %%%%%%%%%% E O S %%%%%%%%%%  [KCYC,ITER] = [  41,  2]
+
+
+ QQQQQQQQQQ SUBROUTINE QU QQQQQQQQQQQQQQQQQQQQ --- [KCYC,ITER] = [  41,  3]
+ ...ITERATING... AT [   41, 3] --- DELTEX = 0.600000E+02  MAX. RES. = 0.383613E-07 AT ELEMENT AH1 9  EQUATION   1
