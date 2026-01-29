@@ -146,6 +146,9 @@ def printer_function(
     k_all = tza.permeability()       # (nzone_total, 3)
     k = k_all[group, :]              # (nzone_group, 3)
 
+    # --- Read porosity 
+    phi = tza.porosity()[group] 
+
     # --- Read strains for this group
     suffix = "-joint" if joint else ""
     strain_shear   = za.prop_scalar(f"strain-shear-plastic{suffix}")[group]
@@ -153,7 +156,8 @@ def printer_function(
     failed_mask = strain_shear > 0.0
 
     # --- pore pressure for this group (Pa)
-    pp_group = tza.pp()[group]
+    edz_group = za.in_group("EDZ")
+    pp_group = tza.pp()[edz_group]
 
     # ============================================================
     #   Existing diagnostics (your original stuff)
@@ -169,10 +173,11 @@ def printer_function(
     else:
         idx_min_failed = int(idx_sorted[-1])
 
-    pp_sorted = np.sort(pp_group)
-    pp_second = float(pp_sorted[-2]) if pp_sorted.size >= 2 else float(pp_sorted[-1])
+    #pp_sorted = np.sort(pp_group)
+    #pp_second = float(pp_sorted[-2]) if pp_sorted.size >= 2 else float(pp_sorted[-1])
 
     print(f"=== printer debug ({group_name}) tstep={tstep} t={tought} ===")
+    print("porosity (highest)    :", float(np.amax(phi)))
     print("k (2nd highest)       :", k[idx_second, :])
     print("k (min, failed only)        :", k[idx_min_failed, :])
     print("strain_shear @min k failed  :", float(strain_shear[idx_min_failed]))
@@ -182,7 +187,7 @@ def printer_function(
     print("strain_shear @2nd max :", float(strain_shear[idx_second]))
     print("strain_tens @min fail :", float(strain_tensile[idx_min_failed]))
     print("strain_shear@min fail :", float(strain_shear[idx_min_failed]))
-    print("pp 2nd max            : {:.3f} MPa".format(pp_second * 1e-6))
+    print("pp edz                : {:.3f} MPa".format(np.amax(pp_group * 1e-6)))
     print("failed zones          : {} / {}".format(np.count_nonzero(failed_mask), strain_shear.size))
     print("==============================================")
 
