@@ -19,8 +19,8 @@ bfsb2_path = foft_dir / "BFSB2_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_mid_stem = "FOFT_A1R17"  # goes to middle panel
-special_bot_stem = "FOFT_AAQ17"  # goes to bottom panel
+special_mid_stem = "FOFT_A2328"  # goes to middle panel
+special_bot_stem = "FOFT_AGJ24"  # goes to bottom panel
 
 # ---------------- measured injection series ----------------
 rates_csv = pd.read_csv(
@@ -119,7 +119,7 @@ for f in foft_files:
 
 ax_top.set_ylabel("Pressure [MPa]")
 ax_top.set_ylim(0, 16)
-ax_top.axhline(6.1, color='black', alpha=0.3, ls=':')
+ax_top.axhline(6.0, color='black', alpha=0.3, ls=':')
 ax_top.legend(loc="upper right", ncol=2, fontsize=14)
 ax_top.set_title("BFSB2")
 
@@ -233,6 +233,14 @@ ax_bot.set_title("BFSB12")
 #xmax = date_series.max()
 
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
+
+mark = (start_utc + pd.to_timedelta(1.12, unit="D")).tz_localize(None)
+# or explicitly: mark = pd.Timestamp("2023-05-08 11:02:43.700000")
+
+for a in (ax_top, ax_mid, ax_bot):
+    a.axvline(mark, color="k", ls="--", lw=2, alpha=0.8)
+    # optional label:
+    # a.text(mark, a.get_ylim()[1]*0.95, "day 1.113", rotation=90, va="top")
 
 fig.autofmt_xdate()
 plt.tight_layout()

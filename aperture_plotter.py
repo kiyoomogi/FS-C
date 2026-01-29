@@ -16,18 +16,18 @@ import matplotlib.pyplot as plt
 # -------------------------------------------------
 # Inputs
 # -------------------------------------------------
-br = 20e-6              # m
-bmax = 40e-6            # m
-alpha = 1.5             # 1/MPa  (works with sigma in MPa)
+br = 50e-6              # m
+bmax = 80e-6            # m
+alpha = 0.8             # 1/MPa  (works with sigma in MPa)
 sigma_n = np.linspace(0, 7.2, 100)  # MPa
 sigma_ni = 4.2          # MPa  (initial effective normal stress)
 
 e_pT = 0             # tensile plastic strain (scalar)
-e_pS = np.array([0.0, 1e-4, 1e-3])  # shear plastic strain cases
-psi = 11.0              # degrees
-n = 2.4
+e_pS = np.array([0.0, 1e-4, 5e-4, 1e-3, 1.5e-3])  # shear plastic strain cases
+psi = 5.0              # degrees
+n = 1
 w = 2.4                 # m
-k0 = 1e-17              # m^2
+k0 = 2e-18              # m^2
 
 sf = n / w              # fracture spacing factor
 
@@ -63,18 +63,15 @@ b_um = b * 1e6                                  # (3,100)
 # -------------------------------------------------
 # Plot: 3x1
 # -------------------------------------------------
+plt.rcParams.update({"font.size": 17})  # global default
+
 fig, ax = plt.subplots(1, 3, figsize=(13, 8), sharex=False)
 
 for i, eps_s in enumerate(e_pS):
     label = f"εpS = {eps_s:.1e}"
 
-    # 1) Aperture vs effective stress
     ax[0].plot(b_um[i, :], sigma_n, label=label, linewidth=2.5)
-
-    # 2) Permeability vs aperture
     ax[1].plot(b_um[i, :], k[i, :], label=label, linewidth=2.5)
-
-    # 3) Permeability vs effective stress
     ax[2].plot(sigma_n, k[i, :], label=label, linewidth=2.5)
 
 # ---- plot formatting ----
@@ -97,7 +94,6 @@ ax[2].grid(True, linestyle=":")
 ax[2].set_title("Permeability vs Effective Stress")
 
 for a in ax:
-    a.legend()
+    a.legend(fontsize=17)  # keep legends consistent
 
 plt.tight_layout()
-plt.show()

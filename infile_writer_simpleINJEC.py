@@ -133,7 +133,7 @@ parameters["default"] = {
     "permeability": [1e-18,1e-18,1e-18], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
-    #"compressibility": 5e-9,             #Pa^-1
+    "compressibility": 2e-9,             #Pa^-1
     "expansivity": 1.4e-5,                #°C^-1
     "conductivity_dry": 2.0,              #W/m/K
 
@@ -170,6 +170,7 @@ parameters["rocks"] = {
     },
 
     "EDZ": {
+
         "porosity": 0.14, #-, (4) 
         "permeability": [1e-13, 1e-13, 1e-13],
     },
