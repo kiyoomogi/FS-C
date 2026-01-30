@@ -1,0 +1,139 @@
+SetFactory("OpenCASCADE");
+
+WidthCube    = 120;
+HeightCube   = 80;
+zTop         = 37;  // keep this as the original top elevation
+Dip      = 50*Pi/180;
+Strike  =  -52 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
+FaultThick   = 2.4;
+
+
+Point(999) = {0,0,0, 0.05};
+Box(1) = { -WidthCube/2, -WidthCube/2, zTop - HeightCube,
+            WidthCube,    WidthCube,    HeightCube };
+Rotate {{0, 0, 1}, {0, 0, 0}, 50*Pi/180} {
+  Volume{1};
+}
+Rectangle(101) = {-100, -100, 0, 200, 200};
+Disk(102) = {0, 0, 0, 7};
+
+disturbed[] = BooleanFragments{ Surface{101}; Delete;}{ Surface{102}; Delete; };
+
+// ---- parameters
+Icl = 55*Pi/180;      // inclination from vertical
+Az  = -52*Pi/180;     // azimuth, clockwise from North
+Len = 1;            // borehole length in model unitsQ
+R   = Len/2;        // radius
+
+// direction cosines (X=East, Y=North, Z=Up)
+ux = Sin(Icl)*Sin(Az);
+uy = Sin(Icl)*Cos(Az);
+uz = -Cos(Icl);
+
+// start point chosen so the cylinder is centered at the origin
+dx = Len*ux;
+dy = Len*uy;
+dz = Len*uz;
+
+x0 = -0.5*dx;
+y0 = -0.5*dy;
+z0 = -0.5*dz;
+
+
+
+Rotate { {1, 0, 0}, {0, 0, 0}, Dip } {
+  Surface{103,102};  
+}
+Rotate { {0, 0, 1}, {0, 0, 0}, 90 * Pi/180 } {  //let it dip to east with strike to 0N
+  Surface{103,102};  
+}
+Rotate { {0, 0, 1}, {0, 0, 0}, Strike } {  //let it strike 60°N
+  Surface{103,102};  
+}
+
+
+// ---- Normal components that match the actual rotated plane
+sinDip = Sin(Dip);
+cosDip = Cos(Dip);
+sinStr = Sin(Strike);
+cosStr = Cos(Strike);
+
+nx =  sinDip * cosStr;
+ny =  sinDip * sinStr;
+nz =  cosDip;
+
+// Extrude orthogonal to the plane by FaultThick
+out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
+  Surface{103,102}; 
+};
+
+
+Point(789) = {7.434, 8.137, -0.900}; //B1
+Point(790) = {1.904, 5.158, 7.779};
+Point(791) = {10.1119, 5.72288, -3.66476};
+
+
+// --- clip both tools to the box (keep only inside-the-box parts)
+fault_in[] = BooleanIntersection{ Volume{1,3}; }{ Volume{ out[1] }; Delete; };
+//cyl_in[]   = BooleanIntersection{ Volume{1,2}; }{ Volume{3};     Delete; };
+
+// --- fragment box, fault, and cylinder together (no overlaps; conformal interfaces)
+parts[] = BooleanFragments{
+  Volume{1,3}; Delete;
+}{
+  Volume{ fault_in[]}; Delete;
+};
+
+
+surfAbove[] = Surface In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
+surfBelow[] = Surface In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -32.9};
+
+Extrude {0,0, 0.5} {   
+  Surface{surfAbove[]}; Layers{1}; Recombine;
+}
+
+Extrude {0,0, -0.5} {   
+  Surface{surfBelow[]}; Layers{1}; Recombine; 
+}
+
+// Pick your target sizes (in model units)
+h_fault = 3;   // fine near/inside the fault
+h_out   = 15;   // coarser elsewhere
+ramp    = 10;   // distance over which to transition to h_out
+
+// ---- your distance field near the fault faces
+Field[1] = Distance;
+Field[1].SurfacesList = {102};
+
+Field[2] = Threshold;
+Field[2].InField = 1;
+Field[2].SizeMin = h_fault;   // fine near the fault
+Field[2].SizeMax = h_out;     // coarse far away
+Field[2].DistMin = 1.0;
+Field[2].DistMax = ramp;
+
+// ---- your distance field near the injection cylinder
+
+Field[3] = Distance;
+Field[3].PointsList = {999};
+
+Field[4] = Threshold;
+Field[4].InField  = 3;
+Field[4].SizeMin  = 0.5;
+Field[4].SizeMax  = 10;
+Field[4].DistMin  = 0.75;
+Field[4].DistMax  = ramp*8;
+
+Field[99] = Min;
+Field[99].FieldsList = {4};  //was 2,4 before
+Background Field = 99;
+
+volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
+volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -32.9};
+
+Physical Volume("EDZ") = {3};
+Physical Volume("CLAY") = {4, 5};
+Physical Volume("FAULT") = {2};
+Physical Volume("BNDTO") = {volAbove[]};
+Physical Volume("BNDBO") = {volBelow[]};
+
