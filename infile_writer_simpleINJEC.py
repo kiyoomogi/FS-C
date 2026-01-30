@@ -130,10 +130,9 @@ irp11 = [0.5, 0.0, 0]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.12 ,                    #- 
-    "permeability": [1e-18,1e-18,1e-18], #m2  
+    "permeability": [5e-19,5e-19,1e-19], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
-    "compressibility": 2e-9,             #Pa^-1
     "expansivity": 1.4e-5,                #°C^-1
     "conductivity_dry": 2.0,              #W/m/K
 
@@ -166,19 +165,19 @@ parameters["rocks"] = {
 #    },
     "CLAY": {
         #"tortuosity": 0.8, #-, (4) 
-        #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
+        "compressibility": 1e-10,             #Pa^-1
     },
 
     "EDZ": {
 
-        "porosity": 0.14, #-, (4) 
-        "permeability": [1e-13, 1e-13, 1e-13],
+        "porosity": 0.99, #-, (4) 
+        "permeability": [1e-8, 1e-8, 1e-8],
     },
     "FAULT": {
         "porosity": 0.14,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [1e-17, 1e-17, 5e-18]
-        #"permeability": [6.5e-17,5e-17,5e-17]
+        "permeability": [1e-18, 1e-18, 5e-19],
+        "compressibility": 1e-10,             #Pa^-1
     },
 
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
@@ -225,15 +224,55 @@ parameters["output"] = {
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
 
 
-def relative_volumes():
-    idx = mesh.near((0, 0.1, 0))  # nearest cell in whole mesh
+# def relative_volumes():
+#     idx = mesh.near((0, 0.1, 0))  # nearest cell in whole mesh
 
-    if materials[idx] == 'EDZ':
+#     if materials[idx] == 'EDZ':
         
-        return mesh.labels[idx]
+#         return mesh.labels[idx]
 
-injec_label = relative_volumes()
+# injec_label = relative_volumes()
 
+
+
+# def generators():
+
+
+#     parameters['generators'] = []
+    
+#     rates = (rates_csv['net flow cor [kg/s]']).to_list()
+#     times = rates_csv['TimeElapsed'].to_list()
+
+#     generator = {
+#         "label": injec_label,
+#         "type": "COM1",
+#         "times": times,
+#         "rates": rates,
+#         "specific_enthalpy": list(np.zeros(len(times))),
+#     }
+
+#     parameters['generators'].append(generator)
+    
+#     return rates, times
+
+# rates, times = generators() 
+
+def relative_volumes():
+    injec_labels = []
+    volume_list = []
+    for i in (range(len(materials))):
+        if materials[i] == 'EDZ':
+            label = mesh.labels[i]
+            volume = mesh.volumes[i]
+
+            injec_labels.append(str(label))
+            volume_list.append(volume)
+        
+    rel_volumes =   np.array(volume_list) / sum(volume_list)  
+
+    return rel_volumes,injec_labels, volume_list
+
+rel_volumes,injec_labels, volume_list = relative_volumes()
 
 
 def generators():
@@ -241,24 +280,41 @@ def generators():
 
     parameters['generators'] = []
     
-    rates = (rates_csv['net flow cor [kg/s]']).to_list()
-    times = rates_csv['TimeElapsed'].to_list()
+    rates = None  # Initialize rates
+    times = None  # Initialize times
 
-    generator = {
-        "label": injec_label,
-        "type": "COM1",
-        "times": times,
-        "rates": rates,
-        "specific_enthalpy": list(np.zeros(len(times))),
-    }
+    for i in range(len(rel_volumes)): 
+        rel_vol = rel_volumes[i]
+        rates = (rates_csv['net flow cor [kg/s]'] * rel_vol * 1).to_list()
+        rates_co2 = (rates_csv['CO2 rate [kg/s]'] * rel_vol).to_list()
+        times = rates_csv['TimeElapsed'].to_list()
 
-    parameters['generators'].append(generator)
-    
+        generator = {
+            "label": injec_labels[i],
+            "type": "COM1",
+            "times": times,
+            "rates": rates,
+            "specific_enthalpy": list(np.zeros(len(times))),
+        }
+        parameters['generators'].append(generator)
+        
+        generator = {
+            "label": injec_labels[i],
+            "type": "COM3",
+            "times": times,
+            "rates": rates_co2,
+            "specific_enthalpy": list(np.zeros(len(times))),
+        }
+        parameters['generators'].append(generator)
+
     return rates, times
 
 rates, times = generators() 
 
-ref_points = [mesh.labels[mesh.near((0, 0, 0))]]
+
+
+ref_points = [str(mesh.labels[mesh.near((0, 0, -0.05))])]
+
 ref_points.append(str(mesh.labels[mesh.near((7.669, 8.135, 1.860))]))
 print(str(mesh.labels[mesh.near((7.434, 8.137, -0.900))]))
 ref_points.append(str(mesh.labels[mesh.near((10.288, 4.482, -4.541))]))
