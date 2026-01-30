@@ -16,18 +16,18 @@ import matplotlib.pyplot as plt
 # -------------------------------------------------
 # Inputs
 # -------------------------------------------------
-br = 50e-6              # m
-bmax = 80e-6            # m
+br = 20e-6              # m
+bmax = 25e-6            # m
 alpha = 0.8             # 1/MPa  (works with sigma in MPa)
 sigma_n = np.linspace(0, 7.2, 100)  # MPa
 sigma_ni = 4.2          # MPa  (initial effective normal stress)
 
 e_pT = 0             # tensile plastic strain (scalar)
 e_pS = np.array([0.0, 1e-4, 5e-4, 1e-3, 1.5e-3])  # shear plastic strain cases
-psi = 5.0              # degrees
+psi = 11             # degrees
 n = 1
 w = 2.4                 # m
-k0 = 2e-18              # m^2
+k0 = 1e-17             # m^2
 
 sf = n / w              # fracture spacing factor
 
