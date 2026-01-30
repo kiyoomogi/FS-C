@@ -20,8 +20,8 @@ Rectangle(101) = {-100, -100, 0, 200, 200};
 // ---- parameters
 Icl = 55*Pi/180;      // inclination from vertical
 Az  = -52*Pi/180;     // azimuth, clockwise from North
-Len = 0.35;            // borehole length in model unitsQ
-R   = 0.175;        // radius
+Len = 1;            // borehole length in model unitsQ
+R   = Len/2;        // radius
 
 // direction cosines (X=East, Y=North, Z=Up)
 ux = Sin(Icl)*Sin(Az);
