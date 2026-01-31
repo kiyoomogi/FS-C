@@ -9,3 +9,4 @@ coupled_model/3_THM/OUTPUT_ELEME.csv
 # ignore big outputs
 injection_model/OUTPUT*
 *.csv
+OUTPUT_ELEME.csv
