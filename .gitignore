@@ -10,3 +10,4 @@ coupled_model/3_THM/OUTPUT_ELEME.csv
 injection_model/OUTPUT*
 *.csv
 OUTPUT_ELEME.csv
+OUTPUT
