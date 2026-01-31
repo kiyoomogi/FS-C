@@ -15,7 +15,7 @@ zone face skin
 zone fluid cmodel assign anisotropic
 ; Mechanical parameters
 zone cmodel assign softening-ubiquitous
-zone cmodel assign elastic range group 'EDZ'
+;zone cmodel assign elastic range group 'EDZ'
 ;zone fluid biot on
 
 zone fluid property biot 1

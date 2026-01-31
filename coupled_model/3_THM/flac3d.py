@@ -146,9 +146,6 @@ def printer_function(
     k_all = tza.permeability()       # (nzone_total, 3)
     k = k_all[group, :]              # (nzone_group, 3)
 
-    # --- Read porosity 
-    phi = tza.porosity()[group] 
-
     # --- Read strains for this group
     suffix = "-joint" if joint else ""
     strain_shear   = za.prop_scalar(f"strain-shear-plastic{suffix}")[group]
@@ -158,6 +155,9 @@ def printer_function(
     # --- pore pressure for this group (Pa)
     edz_group = za.in_group("EDZ")
     pp_group = tza.pp()[edz_group]
+
+    # --- Read porosity 
+    phi = tza.porosity()[edz_group] 
 
     # ============================================================
     #   Existing diagnostics (your original stuff)
@@ -213,8 +213,8 @@ permeability_func = {
         phi0 = 0.14,
         n = 1.0,
         w = 2.4,
-        br = 15e-6,     #was 20e-6
-        bmax = 19e-6,  #was 500e-6
+        br = 25e-6,     #was 20e-6
+        bmax = 29e-6,  #was 500e-6
         alpha = 0.8, 
         n_vector = np.array([0.47, -0.60, 0.64]),
         psi = 11,
