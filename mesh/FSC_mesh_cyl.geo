@@ -1,8 +1,8 @@
 SetFactory("OpenCASCADE");
 
 WidthCube    = 120;
-HeightCube   = 80;
-zTop         = 37;  // keep this as the original top elevation
+HeightCube   = 70;
+zTop         = 23;  // keep this as the original top elevation
 Dip      = 50*Pi/180;
 Strike  =  -52 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
 FaultThick   = 2.4;
