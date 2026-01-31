@@ -1,9 +1,14 @@
-# TOUGH/FLAC saves & outputs
 *.f3sav
 f3out/
 *.f3out
+*.f3sav
+*.f3sav
+coupled_model/3_THM/OUTPUT_ELEME.csv
+coupled_model/3_THM/OUTPUT_ELEME.csv
 
-# Big outputs that break GitHub pushes
-**/OUTPUT_ELEME.csv
-**/OUTPUT*
+# ignore big outputs
+injection_model/OUTPUT*
+*.csv
+OUTPUT_ELEME.csv
+OUTPUT
 
