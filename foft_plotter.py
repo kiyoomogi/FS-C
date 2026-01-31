@@ -119,7 +119,7 @@ for f in foft_files:
 
 ax_top.set_ylabel("Pressure [MPa]")
 ax_top.set_ylim(0, 16)
-ax_top.axhline(6.3, color='black', alpha=0.3, ls=':')
+ax_top.axhline(1, color='black', alpha=0.3, ls=':')
 ax_top.legend(loc="upper right", ncol=2, fontsize=14)
 ax_top.set_title("BFSB2")
 
