@@ -25,9 +25,9 @@ sigma_ni = 4.2          # MPa  (initial effective normal stress)
 e_pT = 0             # tensile plastic strain (scalar)
 e_pS = np.array([0.0, 1e-4, 5e-4, 1e-3, 1.5e-3])  # shear plastic strain cases
 psi = 11             # degrees
-n = 1
+n = 5
 w = 2.4                 # m
-k0 = 3e-17             # m^2
+k0 = 5e-17             # m^2
 
 sf = n / w              # fracture spacing factor
 
