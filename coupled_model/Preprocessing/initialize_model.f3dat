@@ -55,7 +55,7 @@ zone property joint-dilation 1 range group 'FAULT'
 zone property joint-friction 18
 zone property joint-tension 0.5e6
 
-table 'fric-j' add (0.0e+00 18) (8.0e-4 17) (1.2e-3 14)  ;was 18
+table 'fric-j' add (0.0e+00 18) (1.0e-4 12) ;(1.2e-3 14)  ;was 18
 table 'fric-m' add (0 28) (1e-3 28)
 table 'coh-m' add (0 0.5e6) (1e-3 0.5e6)
 table 'coh-j' add (0 0.e6) (1e-3 0.0e6)
@@ -70,7 +70,7 @@ zone property table-joint-friction 'fric-j' range group 'FAULT'
 
 model gravity 0 0 -9.81
 ; In situ pressure and temperature  
-zone gridpoint initialize pore-pressure 0.25e6 gradient(0,0,-9.81e3)
+zone gridpoint initialize pore-pressure 1e6 gradient(0,0,-9.81e3)
 
 zone face apply stress-normal=-3.8e6, gradient=(0,0,16.945e3) range group 'North' or 'South'
 zone face apply stress-normal=-4.7e6, gradient=(0,0,20.958e3) range group 'East' or 'West'
