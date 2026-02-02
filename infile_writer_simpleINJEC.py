@@ -170,7 +170,7 @@ parameters["rocks"] = {
 
     "EDZ": {
 
-        "porosity": 0.6, #-, (4) 
+        "porosity": 0.96, #-, (4) 
         "permeability": [1e-8, 1e-8, 1e-8],
     },
     "FAULT": {
@@ -314,7 +314,7 @@ rates, times = generators()
 
 
 ref_points = [str(mesh.labels[mesh.near((0, 0, -0.05))])]
-
+ref_points.append(str(injec_labels[0]))
 ref_points.append(str(mesh.labels[mesh.near((7.669, 8.135, 1.860))]))
 print(str(mesh.labels[mesh.near((7.434, 8.137, -0.900))]))
 ref_points.append(str(mesh.labels[mesh.near((10.288, 4.482, -4.541))]))
