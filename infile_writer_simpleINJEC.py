@@ -165,7 +165,7 @@ parameters["rocks"] = {
 #    },
     "CLAY": {
         #"tortuosity": 0.8, #-, (4) 
-        "compressibility": 1e-10,             #Pa^-1
+        #"compressibility": 1e-10,             #Pa^-1
     },
 
     "EDZ": {
@@ -176,8 +176,8 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.14,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [1e-18, 1e-18, 5e-19],
-        "compressibility": 1e-10,             #Pa^-1
+        "permeability": [1e-14, 1e-14, 5e-15],
+        #"compressibility": 1e-10,             #Pa^-1
     },
 
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},

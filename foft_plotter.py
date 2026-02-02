@@ -19,24 +19,24 @@ bfsb2_path = foft_dir / "BFSB2_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_mid_stem = "FOFT_A23_9"  # goes to middle panel
-special_bot_stem = "FOFT_AGM12"  # goes to bottom panel
+special_mid_stem = "FOFT_A2818"  # goes to middle panel
+special_bot_stem = "FOFT_AEN57"  # goes to bottom panel
 
 # ---------------- measured injection series ----------------
-rates_csv = pd.read_csv(
+rates_csv1 = pd.read_csv(
     "/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv",
     delimiter=",", index_col=0
 )
 
 date_series = pd.to_datetime(
-    rates_csv["UTC"].str.slice(0, 19),
+    rates_csv1["UTC"].str.slice(0, 19),
     utc=True,
     errors="coerce"
 )
-rates_csv["new dates"] = date_series
+rates_csv1["new dates"] = date_series
 
 # FOFT time zero
-start_utc = rates_csv["new dates"].iloc[0]
+start_utc = rates_csv1["new dates"].iloc[0]
 
 
 def load_foft_to_kpa(path: Path, start_time) -> pd.DataFrame:
@@ -91,7 +91,7 @@ def normalize_by_first_visible(t, y, xmin):
 
     return y - y.iloc[idx]
 
-
+ 
 
 ax_top.plot(
     dates,
@@ -99,6 +99,17 @@ ax_top.plot(
     ".-",
     color="grey",
     label="Measured",
+)
+
+ax_top2 = ax_top.twinx()
+
+ax_top2.plot(
+    date_series,
+    rates_csv1.iloc[:,1],
+    ":",
+    color="black",
+    label="injection rates",
+    alpha=0.5,
 )
 
 
@@ -119,7 +130,7 @@ for f in foft_files:
 
 ax_top.set_ylabel("Pressure [MPa]")
 ax_top.set_ylim(0, 16)
-ax_top.axhline(1, color='black', alpha=0.3, ls=':')
+#ax_top.axhline(1, color='black', alpha=0.3, ls=':')
 ax_top.legend(loc="upper right", ncol=2, fontsize=14)
 ax_top.set_title("BFSB2")
 
