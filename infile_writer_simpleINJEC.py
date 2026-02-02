@@ -170,7 +170,7 @@ parameters["rocks"] = {
 
     "EDZ": {
 
-        "porosity": 0.99, #-, (4) 
+        "porosity": 0.6, #-, (4) 
         "permeability": [1e-8, 1e-8, 1e-8],
     },
     "FAULT": {
