@@ -65,6 +65,8 @@ zone property table-joint-cohesion 'coh-m'
 
 zone property table-joint-cohesion 'coh-j' range group 'FAULT'
 zone property table-joint-friction 'fric-j' range group 'FAULT'
+zone property table-joint-cohesion 'coh-j' range group 'EDZ'
+zone property table-joint-friction 'fric-j' range group 'EDZ'
 
 
 
