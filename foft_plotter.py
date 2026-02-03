@@ -74,8 +74,8 @@ rates_csv["UTC"] = pd.to_datetime(rates_csv["UTC"], utc=True, errors="coerce").d
 
 dates = rates_csv["UTC"]  # already datetime, no need to convert again
 
-xmin = dates[91000]
-xmax = dates[134000]
+xmin = dates[92250]
+xmax = dates[92500]
 
 def normalize_by_first_visible(t, y, xmin):
     """
@@ -93,47 +93,71 @@ def normalize_by_first_visible(t, y, xmin):
     return y - y.iloc[idx]
 
  
+# ---------------- TOP: measured + FOFTs as ΔP ----------------
+
+# Measured series (absolute pressure) -> normalize to ΔP
+rates_csv["UTC"] = pd.to_datetime(rates_csv["UTC"], utc=True, errors="coerce").dt.tz_localize(None)
+dates = rates_csv["UTC"]
+
+p_meas = pd.to_numeric(rates_csv.iloc[:, 1], errors="coerce")  # measured pressure column
+m_meas = dates.notna() & p_meas.notna()
+
+dates_meas = dates[m_meas]
+p_meas = p_meas[m_meas]
+
+# normalize by first visible point (so ΔP=0 at xmin)
+p_meas_norm = normalize_by_first_visible(dates_meas, p_meas, xmin)
 
 ax_top.plot(
-    dates,
-    rates_csv.iloc[:, 1],
+    dates_meas,
+    p_meas_norm,
     ".-",
     color="grey",
-    label="Measured",
+    label="Measured (ΔP)"
 )
 
+# OPTIONAL: if you want to keep injection rates on the twin axis, keep this block
 ax_top2 = ax_top.twinx()
-
 ax_top2.plot(
-    date_series,
-    rates_csv1.iloc[:,1],
+    date_series.dt.tz_localize(None),   # make tz-naive to match dates_meas
+    pd.to_numeric(rates_csv1.iloc[:, 1], errors="coerce"),
     ":",
     color="black",
-    label="injection rates",
-    alpha=0.5,
+    label="Injection rates",
+    alpha=0.5
 )
+ax_top2.set_ylabel("Injection rate")  # adjust if units known
 
-
+# FOFT curves: use p_norm instead of p_kPa
 for f in foft_files:
     stem = f.stem
     if stem in (special_mid_stem, special_bot_stem):
-        continue  # skip; those go to mid/bot
-    df_foft = load_foft_to_kpa(f, start_utc)
+        continue
+
+    df_foft = load_foft_to_kpa(f, start_utc)  # returns p_kPa and p_norm
     if not df_foft.empty:
         ax_top.plot(
-            df_foft["t_utc"],
-            df_foft["p_kPa"],
+            df_foft["t_utc"].dt.tz_localize(None),  # make tz-naive to match axis
+            df_foft["p_norm"],
             "-",
             lw=3.0,
             alpha=0.9,
             label=stem
         )
 
-ax_top.set_ylabel("Pressure [MPa]")
-ax_top.set_ylim(0, 16)
-#ax_top.axhline(1, color='black', alpha=0.3, ls=':')
-ax_top.legend(loc="upper right", ncol=2, fontsize=14)
+ax_top.set_ylabel("ΔP [MPa]")
 ax_top.set_title("BFSB2")
+ax_top.grid(True)
+
+# pick sensible y-lims for ΔP (change as you like)
+ax_top.set_ylim(0, 12)
+
+# keep your xlim window
+ax_top.set_xlim(xmin, xmax)
+
+# legend: only for ax_top (not the twin axis)
+ax_top.legend(loc="upper right", ncol=2, fontsize=14)
+
 
 
 # ---------------- MIDDLE: FOFT_A5Y21 + BFSB1_meas ----------------
