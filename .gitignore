@@ -7,13 +7,13 @@ coupled_model/3_THM/OUTPUT_ELEME.csv
 coupled_model/3_THM/OUTPUT_ELEME.csv
 
 # ignore big outputs
-#injection_model/OUTPUT*
-#*.csv
+injection_model/OUTPUT*
+*.csv
 
 # keep FOFT csv files (important)
 !FOFT_*.csv
 !**/FOFT_*.csv
 
-#OUTPUT_ELEME.csv
-#OUTPUT
+OUTPUT_ELEME.csv
+OUTPUT
 
