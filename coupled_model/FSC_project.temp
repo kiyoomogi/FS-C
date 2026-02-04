@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-02-04T22:54:22" ,
+        "DateTime" : "2026-02-04T23:12:22" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/f1.099d.f3sav" ,
+                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -570,9 +570,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 4.990080620519269e+00  , "y" : -2.822068539620658e+01  , "z" : -6.278064743328115e+00 } ,
-                            "ViewCenter" : { "x" : 3.967850476478213e+00  , "y" : 1.296647750941325e+01  , "z" : 7.007290503147551e+00 } ,
-                            "Up" : { "x" : 1.466978253942785e-03  , "y" : -3.069521768703936e-01  , "z" : 9.517238092478979e-01 } ,
+                            "EyePosition" : { "x" : 5.083402877478964e+01  , "y" : -5.410090367788960e+01  , "z" : -1.881287318518129e+01 } ,
+                            "ViewCenter" : { "x" : 5.805467375477404e+00  , "y" : 2.758209465565639e+01  , "z" : 1.502072446402024e+01 } ,
+                            "Up" : { "x" : -3.099585105464547e-02  , "y" : -3.970305292970984e-01  , "z" : 9.172818629099041e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -983,7 +983,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 0 ,
+                                    "ColorScheme" : 1 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -1041,9 +1041,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.797693134862316e+308 ,
-                                        "Maximum" : -1.797693134862316e+308 ,
-                                        "Interval" : 0.000000000000000e+00 ,
+                                        "Minimum" : 4.999793641652409e-17 ,
+                                        "Maximum" : 1.000000000000000e-14 ,
+                                        "Interval" : 1.000000000000000e-15 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1068,7 +1068,7 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : false ,
+                                        "Active" : true ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
@@ -1078,8 +1078,8 @@
                                                 "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : false ,
-                                                "Keyword" : "property" ,
+                                                "Active" : true ,
+                                                "Keyword" : "extra" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
@@ -1087,7 +1087,7 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1099,13 +1099,13 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "property" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
@@ -1126,7 +1126,7 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
+                                                    "Active" : true ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1144,8 +1144,8 @@
                                                     "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : false ,
-                                                    "Keyword" : "property" ,
+                                                    "Active" : true ,
+                                                    "Keyword" : "extra" ,
                                                     "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 }
@@ -1187,7 +1187,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "None" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1232,7 +1232,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1250,7 +1250,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p j-tension-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : true ,
+                                                            "Used2" : false ,
                                                             "Default" : false 
                                                         }
                                                         , 
