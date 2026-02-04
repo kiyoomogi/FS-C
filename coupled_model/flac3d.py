@@ -217,7 +217,7 @@ permeability_func = {
         bmax = 13e-6,  #was 500e-6
         alpha = 0.8, 
         n_vector = np.array([0.47, -0.60, 0.64]),
-        psi = 11,
+        psi = 10,
         joint = True, 
 
     ),
