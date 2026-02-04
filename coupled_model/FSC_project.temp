@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-02-04T21:15:22" ,
+        "DateTime" : "2026-02-04T21:36:22" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/f1.099d.f3sav" ,
+                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -569,9 +569,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : -1.358496275654230e+00  , "y" : -2.659748722961852e+01  , "z" : -5.747596748680562e+00 } ,
-                            "ViewCenter" : { "x" : -4.358732772620725e+00  , "y" : -4.128208405084754e+00  , "z" : -2.156009669734000e+00 } ,
-                            "Up" : { "x" : 4.599041052185147e-02  , "y" : -1.516827795514969e-01  , "z" : 9.873587071209549e-01 } ,
+                            "EyePosition" : { "x" : -3.224515325140749e-01  , "y" : -4.879554116379839e+00  , "z" : -1.100660436470578e+00 } ,
+                            "ViewCenter" : { "x" : -2.471957124985547e-01  , "y" : 2.116467334880338e+00  , "z" : 2.105622043907732e-01 } ,
+                            "Up" : { "x" : -4.619883743174098e-04  , "y" : -1.842115945389614e-01  , "z" : 9.828865015881312e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -982,7 +982,7 @@
                                         }
                                     },
                                     "NullFacesOnly" : false ,
-                                    "ColorScheme" : 1 ,
+                                    "ColorScheme" : 0 ,
                                     "ColorBy" : {
                                         "Active" : true ,
                                         "Enabled" : true ,
@@ -1040,9 +1040,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 1.400000000000000e-01 ,
-                                        "Maximum" : 1.400000000000000e-01 ,
-                                        "Interval" : 1.000000000000000e+00 ,
+                                        "Minimum" : 0.000000000000000e+00 ,
+                                        "Maximum" : 1.071672966575439e-03 ,
+                                        "Interval" : 0.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1067,26 +1067,26 @@
                                         "Format" : 0 
                                     },
                                     "Data" : {
-                                        "Active" : true ,
+                                        "Active" : false ,
                                         "Enabled" : true ,
                                         "Data" : [ 
                                             {
                                                 "Component" : 0 ,
                                                 "Quantity" : 0 ,
-                                                "Type" : 0 ,
-                                                "Extra" : 12 ,
+                                                "Type" : 1 ,
+                                                "Extra" : 11 ,
                                                 "Stress" : false ,
                                                 "Log" : false ,
-                                                "Active" : true ,
-                                                "Keyword" : "extra" ,
+                                                "Active" : false ,
+                                                "Keyword" : "property" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 12 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1094,17 +1094,17 @@
                                                 "ZoneData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 12 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "property" ,
                                                     "Property" : "strain-shear-plastic-joint" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Method" : 0 ,
                                                     "RadRatio" : 7.500000000000000e-01 ,
                                                     "Power" : 3.000000000000000e+00 ,
@@ -1121,11 +1121,11 @@
                                                 {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 12 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
+                                                    "Active" : false ,
                                                     "Keyword" : "" ,
                                                     "VelLimit" : 1.000000000000000e-04 ,
                                                     "Datum" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } 
@@ -1139,12 +1139,12 @@
                                                 {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
-                                                    "Type" : 0 ,
-                                                    "Extra" : 12 ,
+                                                    "Type" : 1 ,
+                                                    "Extra" : 11 ,
                                                     "Stress" : false ,
                                                     "Log" : false ,
-                                                    "Active" : true ,
-                                                    "Keyword" : "extra" ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "property" ,
                                                     "Property" : "strain-shear-plastic-joint" ,
                                                     "PropType" : 0 
                                                 }
@@ -1186,7 +1186,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "None" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1231,7 +1231,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
@@ -1249,7 +1249,7 @@
                                                             "Alias" : "" ,
                                                             "Label" : "j-shear-p j-tension-p" ,
                                                             "Bool" : true ,
-                                                            "Used2" : false ,
+                                                            "Used2" : true ,
                                                             "Default" : false 
                                                         }
                                                         , 
