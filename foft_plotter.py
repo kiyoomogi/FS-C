@@ -8,8 +8,8 @@ import matplotlib as mpl
 mpl.rcParams.update({"font.size": 14})
 
 # ---------------- paths ----------------
-#folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
-folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/")
+folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
+#folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/")
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
@@ -270,11 +270,11 @@ ax_bot.set_title("BFSB12")
 
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
-mark = (start_utc + pd.to_timedelta(1.266, unit="D")).tz_localize(None)
+mark = (start_utc + pd.to_timedelta(1.099, unit="D")).tz_localize(None)
 # or explicitly: mark = pd.Timestamp("2023-05-08 11:02:43.700000")
 
-#for a in (ax_top, ax_mid, ax_bot):
-#    a.axvline(mark, color="k", ls="--", lw=2, alpha=0.8)
+for a in (ax_top, ax_mid, ax_bot):
+    a.axvline(mark, color="k", ls="--", lw=2, alpha=0.8)
     # optional label:
     # a.text(mark, a.get_ylim()[1]*0.95, "day 1.113", rotation=90, va="top")
 

@@ -31,7 +31,7 @@ uz = -Cos(Icl);
 // start point chosen so the cylinder is centered at the origin
 dx = Len*ux;
 dy = Len*uy;
-dz = Len*uz;
+dz = 1.5 * Len*uz;
 
 x0 = -0.5*dx;
 y0 = -0.5*dy;
