@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-02-04T21:36:22" ,
+        "DateTime" : "2026-02-04T21:54:22" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
+                "SaveFile" : "3_THM/f3out/f1.099d.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -569,9 +569,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : -3.224515325140749e-01  , "y" : -4.879554116379839e+00  , "z" : -1.100660436470578e+00 } ,
-                            "ViewCenter" : { "x" : -2.471957124985547e-01  , "y" : 2.116467334880338e+00  , "z" : 2.105622043907732e-01 } ,
-                            "Up" : { "x" : -4.619883743174098e-04  , "y" : -1.842115945389614e-01  , "z" : 9.828865015881312e-01 } ,
+                            "EyePosition" : { "x" : 4.990080620519269e+00  , "y" : -2.822068539620658e+01  , "z" : -6.278064743328115e+00 } ,
+                            "ViewCenter" : { "x" : 3.967850476478213e+00  , "y" : 1.296647750941325e+01  , "z" : 7.007290503147551e+00 } ,
+                            "Up" : { "x" : 1.466978253942785e-03  , "y" : -3.069521768703936e-01  , "z" : 9.517238092478979e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -1040,8 +1040,8 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 0.000000000000000e+00 ,
-                                        "Maximum" : 1.071672966575439e-03 ,
+                                        "Minimum" : 1.797693134862316e+308 ,
+                                        "Maximum" : 1.797693134862316e+308 ,
                                         "Interval" : 0.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
@@ -1100,7 +1100,7 @@
                                                     "Log" : false ,
                                                     "Active" : false ,
                                                     "Keyword" : "property" ,
-                                                    "Property" : "strain-shear-plastic-joint" ,
+                                                    "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
@@ -1145,7 +1145,7 @@
                                                     "Log" : false ,
                                                     "Active" : false ,
                                                     "Keyword" : "property" ,
-                                                    "Property" : "strain-shear-plastic-joint" ,
+                                                    "Property" : "joint-friction" ,
                                                     "PropType" : 0 
                                                 }
                                             ]
