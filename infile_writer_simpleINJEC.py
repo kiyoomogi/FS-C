@@ -172,7 +172,7 @@ parameters["rocks"] = {
 
         "porosity": 0.96, #-, (4) 
         "permeability": [1e-13, 1e-13, 1e-13],
-        "compressibility": 1.8e-6
+        "compressibility": 18e-7
     },
     "FAULT": {
         "porosity": 0.14,
