@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-02-04T19:09:22" ,
+        "DateTime" : "2026-02-04T19:15:22" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
+                "SaveFile" : "tf_in.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -32,7 +32,8 @@
                     "Files" : [ 
                         "3_THM/f3out/tf_fi.f3sav" ,
                         "3_THM/f3out/f1.098d.f3sav" ,
-                        "3_THM/f3out/f1.099d.f3sav" 
+                        "3_THM/f3out/f1.099d.f3sav" ,
+                        "tf_in.f3sav" 
                     ]
                 },
                 "ResultFiles" : {
@@ -64,7 +65,12 @@
             "Name" : "Editor" ,
             "Entry" : {
                 "DataFiles" : {
-                    "Files" : [  ]
+                    "Files" : [ 
+                        "Preprocessing/load_mesh.py" ,
+                        "../../../../../../tmp/tmpoxuzpher/mesh.f3grid" ,
+                        "Preprocessing/initialize_model.f3dat" ,
+                        "mesh.f3grid" 
+                    ]
                 },
                 "OpenFiles" : [  ]
             }
@@ -1035,8 +1041,8 @@
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
                                         "Minimum" : 0.000000000000000e+00 ,
-                                        "Maximum" : 1.253006545599690e-03 ,
-                                        "Interval" : 2.000000000000000e-04 ,
+                                        "Maximum" : 0.000000000000000e+00 ,
+                                        "Interval" : 1.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1561,7 +1567,7 @@
     },
     "Layout3" : {
         "PaneAction" : [  ],
-        "State" : "AAAA/wAAAAD9AAAAAQAAAAAAAA1wAAAFMvwCAAAAAfsAAAAaAFcAbwByAGsAcwBwAGEAYwBlAEQAbwBjAGsBAAAAKAAABTIAAAFZAP///gAAAAAAAAUyAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAwAE0AYQBpAG4AVwBpAG4AZABvAHcAQwBhAHAAdABpAG8AbgBXAHIAYQBwAHAAZQByAQAAAAD/////AAAAAAAAAAA=" ,
+        "State" : "AAAA/wAAAAD9AAAAAQAAAAAAAA1wAAAFMvwCAAAAAfsAAAAaAFcAbwByAGsAcwBwAGEAYwBlAEQAbwBjAGsBAAAAKAAABTIAAAFnAP///gAAAAAAAAUyAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAwAE0AYQBpAG4AVwBpAG4AZABvAHcAQwBhAHAAdABpAG8AbgBXAHIAYQBwAHAAZQByAQAAAAD/////AAAAAAAAAAA=" ,
         "Splitter1" : "AAAA/wAAAAEAAAACAAABPgAABKUA/////wEAAAABAA==" ,
         "Splitter2" : "AAAA/wAAAAEAAAACAAACvQAAAPoA/////wEAAAACAA==" ,
         "Splitter3" : "AAAA/wAAAAEAAAADAAAFYAAAAQ0AAAAYAP////8BAAAAAQA=" ,
@@ -1571,17 +1577,21 @@
                 {
                     "Name" : "Viewer-ROOT #2" ,
                     "Geom" : [ 835 ,1426  ],
-                    "Child1" : "Placeholder #2 dock" ,
+                    "Child1" : "Editor_initialize_model" ,
                     "Child2" : "Plot_Plot01" ,
                     "Hor" : true ,
                     "Added" : 1 ,
-                    "Ext1" : "" ,
+                    "Ext1" : "f3dat" ,
                     "Ext2" : "" 
                 }
             ],
-            "Focus" : "Plot_Plot01" 
+            "Focus" : "Editor_initialize_model" 
         },
-        "Recent" : { },
+        "Recent" : {
+            "MRUMagic" : [ 
+                "Edit /home/manuus/Desktop/FS-C/model/coupled_model/Preprocessing/load_mesh.py" 
+            ]
+        },
         "ProjVis" : true ,
         "ConsVis" : true ,
         "Splitter4" : "AAAA/wAAAAEAAAACAAACpAAAAPoA/////wEAAAABAA==" ,
