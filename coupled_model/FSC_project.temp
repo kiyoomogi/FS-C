@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-02-04T19:00:22" ,
+        "DateTime" : "2026-02-04T19:09:22" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -15,7 +15,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "3_THM/f3out/f1.099d.f3sav" ,
+                "SaveFile" : "3_THM/f3out/tf_fi.f3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -563,9 +563,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : 1.464377021476817e+01  , "y" : -1.341004084474569e+01  , "z" : 8.183818971834272e+00 } ,
-                            "ViewCenter" : { "x" : -2.166740634635503e+00  , "y" : 1.010916706170065e+00  , "z" : 1.467051735366006e+00 } ,
-                            "Up" : { "x" : -1.974616727555080e-01  , "y" : 2.152680116529609e-01  , "z" : 9.563830670560712e-01 } ,
+                            "EyePosition" : { "x" : 5.825015088575523e+00  , "y" : -4.341245681368195e+00  , "z" : 5.243835398913777e+00 } ,
+                            "ViewCenter" : { "x" : 1.507750755759923e+00  , "y" : 1.343015903388528e+00  , "z" : -4.954631299911964e-01 } ,
+                            "Up" : { "x" : -5.231493609014893e-01  , "y" : 3.752511507372355e-01  , "z" : 7.651805800324156e-01 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -1034,9 +1034,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
-                                        "Minimum" : 4.527685738381954e-17 ,
-                                        "Maximum" : 1.000000000000000e-14 ,
-                                        "Interval" : 1.000000000000000e-15 ,
+                                        "Minimum" : 0.000000000000000e+00 ,
+                                        "Maximum" : 1.253006545599690e-03 ,
+                                        "Interval" : 2.000000000000000e-04 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1072,7 +1072,7 @@
                                                 "Stress" : false ,
                                                 "Log" : false ,
                                                 "Active" : true ,
-                                                "Keyword" : "extra" ,
+                                                "Keyword" : "property" ,
                                                 "GpData" : {
                                                     "Component" : 0 ,
                                                     "Quantity" : 0 ,
@@ -1093,8 +1093,8 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
-                                                    "Property" : "joint-dilation" ,
+                                                    "Keyword" : "property" ,
+                                                    "Property" : "strain-shear-plastic-joint" ,
                                                     "PropType" : 0 
                                                 },
                                                 "ZoneInterp" : {
@@ -1138,8 +1138,8 @@
                                                     "Stress" : false ,
                                                     "Log" : false ,
                                                     "Active" : true ,
-                                                    "Keyword" : "extra" ,
-                                                    "Property" : "joint-dilation" ,
+                                                    "Keyword" : "property" ,
+                                                    "Property" : "strain-shear-plastic-joint" ,
                                                     "PropType" : 0 
                                                 }
                                             ]
