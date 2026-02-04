@@ -5,7 +5,7 @@ HeightCube   = 70;
 zTop         = 32;  // keep this as the original top elevation
 Dip      = 50*Pi/180;
 Strike  =  -52 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
-FaultThick   = 2.4;
+FaultThick   = 1.8;
 
 
 Point(999) = {0,0,0, 0.05};
