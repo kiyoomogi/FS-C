@@ -7,7 +7,7 @@
         "Revision" : 42 ,
         "Source" : "33b011c0a7" ,
         "Binary" : false ,
-        "DateTime" : "2026-02-04T21:57:22" ,
+        "DateTime" : "2026-02-04T22:00:22" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -69,7 +69,8 @@
                         "Preprocessing/load_mesh.py" ,
                         "../../../../../../tmp/tmpoxuzpher/mesh.f3grid" ,
                         "Preprocessing/initialize_model.f3dat" ,
-                        "mesh.f3grid" 
+                        "mesh.f3grid" ,
+                        "../../../../../../tmp/tmpy0kw21b5/mesh.f3grid" 
                     ]
                 },
                 "OpenFiles" : [  ]
@@ -1041,7 +1042,7 @@
                                         "Enabled" : true ,
                                         "RampKeyword" : "rainbow" ,
                                         "Minimum" : 1.797693134862316e+308 ,
-                                        "Maximum" : 1.797693134862316e+308 ,
+                                        "Maximum" : -1.797693134862316e+308 ,
                                         "Interval" : 0.000000000000000e+00 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
