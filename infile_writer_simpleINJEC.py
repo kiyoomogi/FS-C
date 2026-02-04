@@ -54,7 +54,9 @@ elif stage == 4:
 
 
 if incon == 'ns': 
-    ns = toughio.read_output(f"/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE{stage}")
+    #ns = toughio.read_output(f"/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE{stage}")
+    ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/natural_state/SAVE")
+    
     #ns.data['X1'][ns.data['porosity'] == 0.99] = 0.3e6
     incon1 = ns.data
     print()
