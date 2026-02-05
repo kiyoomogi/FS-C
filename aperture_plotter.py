@@ -16,17 +16,17 @@ import matplotlib.pyplot as plt
 # -------------------------------------------------
 # Inputs
 # -------------------------------------------------
-br = 10e-6              # m
-bmax = 30e-6            # m
-alpha = 0.8             # 1/MPa  (works with sigma in MPa)
+br = 40e-6              # m
+bmax = 80e-6            # m
+alpha = 1.3             # 1/MPa  (works with sigma in MPa)
 sigma_n = np.linspace(0, 7.2, 100)  # MPa
 sigma_ni = 4.2          # MPa  (initial effective normal stress)
 
 e_pT = 0             # tensile plastic strain (scalar)
 e_pS = np.array([0.0, 1e-4, 5e-4, 1e-3, 1.5e-3])  # shear plastic strain cases
-psi = 6             # degrees
-n = 3
-w = 2.4                 # m
+psi = 10             # degrees
+n = 1
+w = 1.8                 # m
 k0 = 5e-17             # m^2
 
 sf = n / w              # fracture spacing factor
@@ -40,10 +40,15 @@ bel = br + bmax * np.exp(-alpha * sigma_n)      # (100,) (m)
 # -------------------------------------------------
 # Tensile + shear aperture contributions
 # -------------------------------------------------
-bop = e_pT * w                                  # scalar (m)
+bop = e_pT * w  # scalar (m)
 
-# shear aperture shift for each e_pS (3,) in m
-bsh = e_pS * np.tan(np.deg2rad(psi)) / sf       # (3,)
+# shear aperture shift for each e_pS in m
+bsh = e_pS * np.tan(np.deg2rad(psi)) / sf  # (len(e_pS),)
+
+# ---- cap shear aperture at 100 µm ----
+bsh_max = 100e-6  # m
+bsh = np.clip(bsh, 0.0, bsh_max)  # keep it non-negative and <= 100 µm
+
 
 # -------------------------------------------------
 # Total aperture for each shear case
