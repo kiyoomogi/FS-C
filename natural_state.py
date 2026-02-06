@@ -126,12 +126,12 @@ parameters["rocks"] = {
    # },
     "CLAY": {
         "porosity": 0.12, #-, (4) 
-        #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
+        "initial_condition": [BFSB1_value,ini_gas_content,temperature],
 
     },
     "BFSB1": {
         "porosity": 0.5, #-, (4) 
-        #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
+        "initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
     "FAULT": {
         "porosity": 0.14,
