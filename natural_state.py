@@ -89,7 +89,7 @@ irp7 = [pore_size_distr_index, S_lr, S_ls, S_gr]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.14 ,                    #- 
-    "permeability": [1e-15, 1e-15,1e-15], #m2  
+    "permeability": [1e-11, 1e-11,1e-11], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
     "compressibility": 1e-99,             #Pa^-1
