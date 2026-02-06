@@ -87,7 +87,7 @@ if incon == 'ns':
 
 
 materials = (mesh.materials )
-bcond = (materials == "BNDTO").astype(int) + (materials == "BNDBO").astype(int) 
+bcond = (materials == "BNDTO").astype(int) + (materials == "BNDBO").astype(int) + (materials == "BFSB1").astype(int) 
 mesh.add_cell_data("boundary_condition", bcond)
 
 
@@ -167,6 +167,10 @@ parameters["rocks"] = {
 #    },
     "CLAY": {
         #"tortuosity": 0.8, #-, (4) 
+        #"compressibility": 1e-10,             #Pa^-1
+    },
+    "BFSB1": {
+        "porosity": 0.5, #-, (4) 
         #"compressibility": 1e-10,             #Pa^-1
     },
 
