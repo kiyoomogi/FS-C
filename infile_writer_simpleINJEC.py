@@ -71,6 +71,9 @@ bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
 BFSB1_value = 0.38e6
 
+bfsb1_incon1 = incon1['porosity'] == 0.5
+incon1['X1'][bfsb1_incon1] = BFSB1_value
+
 #Add material
 #mesh.add_material("EDZ  ", 1)
 #mesh.add_material("CLAY ", 2)

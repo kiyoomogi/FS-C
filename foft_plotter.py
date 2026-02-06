@@ -8,8 +8,8 @@ import matplotlib as mpl
 mpl.rcParams.update({"font.size": 14})
 
 # ---------------- paths ----------------
-#folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
-folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/")
+folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
+#folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/")
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
@@ -20,8 +20,8 @@ bfsb2_path = foft_dir / "BFSB2_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_mid_stem = "FOFT_AEJ_0"  # goes to middle panel
-special_bot_stem = "FOFT_AFO61"  # goes to bottom panel
+special_mid_stem = "FOFT_A8M89"  # goes to middle panel
+special_bot_stem = "FOFT_A9V68"  # goes to bottom panel
 
 # ---------------- measured injection series ----------------
 rates_csv1 = pd.read_csv(
@@ -75,7 +75,7 @@ rates_csv["UTC"] = pd.to_datetime(rates_csv["UTC"], utc=True, errors="coerce").d
 dates = rates_csv["UTC"]  # already datetime, no need to convert again
 
 xmin = dates[92200]
-xmax = dates[93400]
+xmax = dates[97400]
 
 def normalize_by_first_visible(t, y, xmin):
     """
