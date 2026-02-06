@@ -69,6 +69,7 @@ mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/m
 
 bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
+BFSB1_value = 0.38e6
 
 #Add material
 #mesh.add_material("EDZ  ", 1)
@@ -171,7 +172,7 @@ parameters["rocks"] = {
     },
     "BFSB1": {
         "porosity": 0.5, #-, (4) 
-        #"compressibility": 1e-10,             #Pa^-1
+        "initial_condition": [BFSB1_value, ini_NACL, ini_gas_content, temperature]
     },
 
     "EDZ": {
