@@ -36,7 +36,7 @@ dist_bot = abs(z_bot - z_bfsb1)
 
 bot_BC_value = p0 + 1000 * 9.81 * dist_bot
 top_BC_value = p0 - 1000 * 9.81 * dist_top
-
+BFSB1_value = 0.38e6
 
 #Add material
 #mesh.add_material("EDZ  ", 1)
@@ -47,7 +47,7 @@ top_BC_value = p0 - 1000 * 9.81 * dist_top
 
 
 materials = (mesh.materials )
-bcond = (materials == "BNDTO").astype(int) #+ (materials == "BNDBO").astype(int) 
+bcond = (materials == "BNDTO").astype(int) + (materials == "BFSB1").astype(int) 
 mesh.add_cell_data("boundary_condition", bcond)
 
 
