@@ -4,7 +4,7 @@ Created on Fri Jul 12 16:59:18 2024
 @author: matthijsnuus
 """
 # Define the values
-NRES = 2
+NRES = 3
 MDN = 1
 RESTIM = [94878, 95200, 94878 + 3600 * 4]
 DTM = [1, 30, 60]

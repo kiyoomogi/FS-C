@@ -27,7 +27,7 @@ e_pS = np.array([0.0, 1e-4, 5e-4, 1e-3, 1.5e-3])  # shear plastic strain cases
 psi = 10             # degrees
 n = 1
 w = 1.8                 # m
-k0 = 5e-17             # m^2
+k0 = 1e-17             # m^2
 
 sf = n / w              # fracture spacing factor
 
@@ -46,7 +46,7 @@ bop = e_pT * w  # scalar (m)
 bsh = e_pS * np.tan(np.deg2rad(psi)) / sf  # (len(e_pS),)
 
 # ---- cap shear aperture at 100 µm ----
-bsh_max = 100e-6  # m
+bsh_max = 200e-6  # m
 bsh = np.clip(bsh, 0.0, bsh_max)  # keep it non-negative and <= 100 µm
 
 

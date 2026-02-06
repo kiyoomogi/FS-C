@@ -115,6 +115,18 @@ h_fault = 3;   // fine near/inside the fault
 h_out   = 15;   // coarser elsewhere
 ramp    = 10;   // distance over which to transition to h_out
 
+
+Point(409) = {7.79, 8.134, 3.285};
+Cylinder(2001) = {7.79, 8.134, 3.285,  0, 0, 0.4,  0.4};
+
+u() = BooleanFragments{
+  Volume{3}; Delete;
+}{
+  Volume{2001}; Delete;
+};
+
+
+
 // ---- your distance field near the fault faces
 Field[1] = Distance;
 Field[1].SurfacesList = {24};
@@ -146,9 +158,9 @@ volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
 volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -32.9};
 
 Physical Volume("EDZ") = {1001};
-Physical Volume("CLAY") = {3,4};
+Physical Volume("CLAY") = {2002,4};
 Physical Volume("FAULT") = {1002};
 Physical Volume("BNDTO") = {volAbove[]};
 Physical Volume("BNDBO") = {volBelow[]};
-
+Physical Volume("BFSB1") = {2001};
 
