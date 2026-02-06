@@ -49,7 +49,7 @@ zone property dip-direction 142
 
 ;joint 
 zone property joint-cohesion 0e6
-zone property dilation 5 range group 'CLAY'
+zone property dilation 1 range group 'CLAY'
 zone property joint-dilation 10 range group 'FAULT'
 
 zone property joint-friction 18
