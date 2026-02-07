@@ -55,7 +55,7 @@ zone property joint-dilation 10 range group 'FAULT'
 zone property joint-friction 18
 zone property joint-tension 0.5e6
 
-table 'fric-j' add (0.0e+00 20) (1.0e-4 16) ;(1.2e-3 14)  ;was 18
+table 'fric-j' add (0.0e+00 20) (1.0e-4 19) ;(1.2e-3 14)  ;was 18
 table 'fric-m' add (0 28) (1e-3 28)
 table 'coh-m' add (0 0.5e6) (1e-3 0.5e6)
 table 'coh-j' add (0 0.0e6) (1e-3 0.0e6)
@@ -89,7 +89,7 @@ zone initialize stress-principal ...
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 3e-8
+model solve mech ratio 2e-8
 
 
 ; Save model
