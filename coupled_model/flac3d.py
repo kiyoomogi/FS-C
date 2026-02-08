@@ -214,8 +214,8 @@ permeability_func = {
         n = 1.0,
         w = 1.8,
         br = 10e-6,     #was 20e-6
-        bmax = 200e-6,  #was 500e-6
-        bshear_max = 100e-6,
+        bmax = 400e-6,  #was 500e-6
+        bshear_max = 200e-6,
         alpha = 0.8, 
         n_vector = np.array([0.47, -0.60, 0.64]),
         psi = 10,
@@ -225,7 +225,7 @@ permeability_func = {
     "EDZ": lambda g: constant(
         g,
         k0=k0_edz,
-        phi0=0.95,
+        phi0=0.25,
     ),
     "CLAY": lambda g: constant(
         g,
