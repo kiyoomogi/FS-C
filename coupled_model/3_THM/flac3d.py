@@ -1,7 +1,7 @@
 from toughflac.coupling import extra, run
 from toughflac.coupling.permeability import constant
 from toughflac.coupling.permeability import nuus2025
-from toughflac.coupling.permeability import rinaldi2019
+from toughflac.coupling.permeability import rinaldi2019_v2
 import itasca as it
 
 from toughflac.coupling import extra, run
@@ -208,7 +208,7 @@ k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
 a_fault = 500
 
 permeability_func = {
-    "FAULT": lambda g: rinaldi2019(
+    "FAULT": lambda g: rinaldi2019_v2(
         g,
         k0 = k0_fault,
         phi0 = 0.14,
