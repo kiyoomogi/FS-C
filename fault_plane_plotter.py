@@ -20,7 +20,7 @@ b1_df  = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B1_loc
 b2_df  = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B2_location.csv',  sep=r'\s+')
 b12_df = pd.read_csv('/Users/matthijsnuus/Desktop/FS-C/borehole_locations/B12_location.csv', sep=r'\s+')
 
-view_angle = -60  # azimuth angle for 3D view
+view_angle = -160  # azimuth angle for 3D view
 MD_target_B1  = 42     # measured distance along B1 from collar [m]
 MD_target_B12 = 43.565   # measured distance along B12 from collar [m]
 

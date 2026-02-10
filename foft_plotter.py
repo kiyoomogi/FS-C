@@ -20,8 +20,8 @@ bfsb2_path = foft_dir / "BFSB2_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))  # e.g. FOFT_A*.csv
 
 # special FOFTs
-special_mid_stem = "FOFT_A8M89"  # goes to middle panel
-special_bot_stem = "FOFT_A9V68"  # goes to bottom panel
+special_mid_stem =  "FOFT_A9V68"   # goes to middle panel
+special_bot_stem = "FOFT_A8M89" # goes to bottom panel
 
 # ---------------- measured injection series ----------------
 rates_csv1 = pd.read_csv(
@@ -75,7 +75,7 @@ rates_csv["UTC"] = pd.to_datetime(rates_csv["UTC"], utc=True, errors="coerce").d
 dates = rates_csv["UTC"]  # already datetime, no need to convert again
 
 xmin = dates[92200]
-xmax = dates[97400]
+xmax = dates[105000]
 
 def normalize_by_first_visible(t, y, xmin):
     """
@@ -270,7 +270,7 @@ ax_bot.set_title("BFSB12")
 
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
-mark = (start_utc + pd.to_timedelta(1.30, unit="D")).tz_localize(None)
+mark = (start_utc + pd.to_timedelta(0, unit="D")).tz_localize(None)
 # or explicitly: mark = pd.Timestamp("2023-05-08 11:02:43.700000")
 
 for a in (ax_top, ax_mid, ax_bot):
