@@ -270,7 +270,7 @@ ax_bot.set_title("BFSB12")
 
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
-mark = (start_utc + pd.to_timedelta(1.135, unit="D")).tz_localize(None)
+mark = (start_utc + pd.to_timedelta(1.107, unit="D")).tz_localize(None)
 # or explicitly: mark = pd.Timestamp("2023-05-08 11:02:43.700000")
 
 for a in (ax_top, ax_mid, ax_bot):
