@@ -16,13 +16,13 @@ import matplotlib.pyplot as plt
 # -------------------------------------------------
 # Inputs
 # -------------------------------------------------
-br = 15e-6              # m
-bmax = 200e-6            # m
+br = 20e-6              # m
+bmax = 600e-6            # m
 alpha = 0.8             # 1/MPa  (works with sigma in MPa)
 sigma_n = np.linspace(0, 7.2, 100)  # MPa
 sigma_ni = 4.2          # MPa  (initial effective normal stress)
 
-e_pT = 3.6e-5         # tensile plastic strain (scalar)
+e_pT = 0        # tensile plastic strain (scalar)
 e_pS = np.array([0.0, 1e-4, 5e-4, 1e-3, 2.5e-3])  # shear plastic strain cases
 psi = 10             # degrees
 n = 1
@@ -46,7 +46,7 @@ bop = e_pT * w  # scalar (m)
 bsh = e_pS * np.tan(np.deg2rad(psi)) / sf  # (len(e_pS),)
 
 # ---- cap shear aperture at 100 µm ----
-bsh_max = 500e-6  # m
+bsh_max = 200e-6  # m
 bsh = np.clip(bsh, 0.0, bsh_max)  # keep it non-negative and <= 100 µm
 
 

@@ -75,7 +75,7 @@ rates_csv["UTC"] = pd.to_datetime(rates_csv["UTC"], utc=True, errors="coerce").d
 dates = rates_csv["UTC"]  # already datetime, no need to convert again
 
 xmin = dates[92200]
-xmax = dates[105000]
+xmax = dates[106000]
 
 def normalize_by_first_visible(t, y, xmin):
     """
@@ -270,7 +270,7 @@ ax_bot.set_title("BFSB12")
 
 ax_top.set_xlim(xmin, xmax)   # applies to all panels (sharex=True)
 
-mark = (start_utc + pd.to_timedelta(1.145, unit="D")).tz_localize(None)
+mark = (start_utc + pd.to_timedelta(1.135, unit="D")).tz_localize(None)
 # or explicitly: mark = pd.Timestamp("2023-05-08 11:02:43.700000")
 
 for a in (ax_top, ax_mid, ax_bot):
