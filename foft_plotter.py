@@ -9,7 +9,7 @@ mpl.rcParams.update({"font.size": 14})
 
 # ---------------- paths ----------------
 folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
-#folder2   = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/")
+#folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/")
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
@@ -75,7 +75,7 @@ rates_csv["UTC"] = pd.to_datetime(rates_csv["UTC"], utc=True, errors="coerce").d
 dates = rates_csv["UTC"]  # already datetime, no need to convert again
 
 xmin = dates[92200]
-xmax = dates[106000]
+xmax = dates[103000]
 
 def normalize_by_first_visible(t, y, xmin):
     """
@@ -281,6 +281,6 @@ for a in (ax_top, ax_mid, ax_bot):
 fig.autofmt_xdate()
 plt.tight_layout()
 out_png = folder / "results_three_panel_all_fofts.png"
-plt.savefig(out_png, bbox_inches="tight")
+#plt.savefig(out_png, bbox_inches="tight")
 plt.show()
 print("Saved:", out_png)
