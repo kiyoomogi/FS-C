@@ -51,12 +51,12 @@ zone property dip-direction 142
 zone property joint-cohesion 0e6
 zone property dilation 3 range group 'CLAY'
 zone property joint-dilation 3
-zone property joint-dilation 3.9 range group 'FAULT'
+zone property joint-dilation 10 range group 'FAULT'
 
 zone property joint-friction 18
 zone property joint-tension 0.5e6
 
-table 'fric-j' add (0.0e+00 22) (1.0e-4 4) ;(1.2e-3 14)  ;was 18
+table 'fric-j' add (0.0e+00 22) (1.0e-4 15) ;(1.2e-3 14)  ;was 18
 table 'fric-m' add (0 28) (1e-3 28)
 table 'coh-m' add (0 0.5e6) (1e-3 0.5e6)
 table 'coh-j' add (0 0.0e6) (1e-3 0.0e6)
