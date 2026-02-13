@@ -1,6 +1,6 @@
 from toughflac.coupling import extra, run
 from toughflac.coupling.permeability import constant
-from toughflac.coupling.permeability import nuus2025
+from toughflac.coupling.permeability import rinaldi2019_v3
 from toughflac.coupling.permeability import rinaldi2019_v1
 import itasca as it
 
@@ -208,20 +208,20 @@ k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
 a_fault = 500
 
 permeability_func = {
-#    "FAULT": lambda g: rinaldi2019_v2(
-#        g,
-#        k0 = k0_fault,
-#        phi0 = 0.14,
-#        n = 1.0,
-#        w = 1.8,
-#        br = 20e-6,     #was 20e-6
-#        bmax = 500e-6,  #was 500e-6
-#        bshear_max = 100e-6,
-#        alpha = 0.8,
-#        n_vector = np.array([0.47, -0.60, 0.64]),
-#        psi = 10,
-#        joint = True,
-#    ),
+    "FAULT": lambda g: rinaldi2019_v3(
+        g,
+        k0 = k0_fault,
+        phi0 = 0.14,
+        n = 1.0,
+        w = 1.8,
+        br = 20e-6,     #was 20e-6
+        bmax = 500e-6,  #was 500e-6
+        bshear_max = 100e-6,
+        alpha = 0.8,
+        n_vector = np.array([0.47, -0.60, 0.64]),
+        psi = 10,
+        joint = True,
+    ),
 #   "EDZ": lambda g: rinaldi2019_v2(
 #        g,
 #        k0 = k0_fault,
@@ -236,11 +236,11 @@ permeability_func = {
 #        psi = 10,
  #       joint = True,
  #  ),
-    "FAULT": lambda g: constant(
-        g,
-        k0=k0_fault,
-        phi0=0.14,
-    ),
+#    "FAULT": lambda g: constant(
+#        g,
+#        k0=k0_fault,
+#        phi0=0.14,
+#    ),
     "EDZ": lambda g: constant(
         g,
         k0=k0_edz,
