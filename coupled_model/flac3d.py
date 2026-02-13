@@ -1,7 +1,7 @@
 from toughflac.coupling import extra, run
 from toughflac.coupling.permeability import constant
 from toughflac.coupling.permeability import nuus2025
-from toughflac.coupling.permeability import rinaldi2019_v2
+from toughflac.coupling.permeability import rinaldi2019_v1
 import itasca as it
 
 from toughflac.coupling import extra, run
@@ -199,8 +199,8 @@ python_func_flac = (printer_function,) #(stress_on_plane,)  # After mechanical a
 fish_func_tough = ()  # Before mechanical analysis
 fish_func_flac = ()  # After mechanical analysis
 
-#k0_fault = np.array([8.0e-15, 8.0e-15, 1.0e-18], dtype=float)
-k0_fault = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
+k0_fault = np.array([8.0e-15, 8.0e-15, 1.0e-18], dtype=float)
+#k0_fault = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
 k0_clay = np.array([5.0e-19, 5.0e-19, 1.0e-19], dtype=float)
 k0_edz = np.array([1.0e-10, 1.0e-10, 1.0e-10], dtype=float)
 k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
@@ -208,44 +208,44 @@ k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
 a_fault = 500
 
 permeability_func = {
-    "FAULT": lambda g: rinaldi2019_v2(
+#    "FAULT": lambda g: rinaldi2019_v2(
+#        g,
+#        k0 = k0_fault,
+#        phi0 = 0.14,
+#        n = 1.0,
+#        w = 1.8,
+#        br = 20e-6,     #was 20e-6
+#        bmax = 500e-6,  #was 500e-6
+#        bshear_max = 100e-6,
+#        alpha = 0.8,
+#        n_vector = np.array([0.47, -0.60, 0.64]),
+#        psi = 10,
+#        joint = True,
+#    ),
+#   "EDZ": lambda g: rinaldi2019_v2(
+#        g,
+#        k0 = k0_fault,
+#        phi0 = 0.14,
+#        n = 1.0,
+#        w = 1.8,
+#        br = 15e-6,     #was 20e-6
+#        bmax = 600e-6,  #was 500e-6
+#        bshear_max = 200e-6,
+#        alpha = 0.8,
+#        n_vector = np.array([0.47, -0.60, 0.64]),
+#        psi = 10,
+ #       joint = True,
+ #  ),
+    "FAULT": lambda g: constant(
         g,
-        k0 = k0_fault,
-        phi0 = 0.14,
-        n = 1.0,
-        w = 1.8,
-        br = 20e-6,     #was 20e-6
-        bmax = 500e-6,  #was 500e-6
-        bshear_max = 100e-6,
-        alpha = 0.8,
-        n_vector = np.array([0.47, -0.60, 0.64]),
-        psi = 10,
-        joint = True,
+        k0=k0_fault,
+        phi0=0.14,
     ),
-    "EDZ": lambda g: rinaldi2019_v2(
+    "EDZ": lambda g: constant(
         g,
-        k0 = k0_fault,
-        phi0 = 0.14,
-        n = 1.0,
-        w = 1.8,
-        br = 15e-6,     #was 20e-6
-        bmax = 600e-6,  #was 500e-6
-        bshear_max = 200e-6,
-        alpha = 0.8,
-        n_vector = np.array([0.47, -0.60, 0.64]),
-        psi = 10,
-        joint = True,
-   ),
-   # "FAULT": lambda g: constant(
-   #     g,
-   #     k0=k0_fault,
-   #     phi0=0.14,
-   # ),
-   # "EDZ": lambda g: constant(
-   #     g,
-   #     k0=k0_edz,
-   #     phi0=0.25,
-   # ),
+        k0=k0_edz,
+        phi0=0.25,
+    ),
     "CLAY": lambda g: constant(
         g,
         k0=k0_clay,
