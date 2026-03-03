@@ -4,7 +4,7 @@
 model new
 
 ; Load mesh
-zone import "/home/manuus/Desktop/FS-C/model/coupled_model/mesh.f3grid"
+zone import "/home/manuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid"
 
 model configure thermal
 model configure fluid 
@@ -99,7 +99,7 @@ zone initialize stress-principal ...
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 2.3e-8
+model solve mech ratio 2e-7
 
 
 ; Save model
