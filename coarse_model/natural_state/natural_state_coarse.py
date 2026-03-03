@@ -109,10 +109,6 @@ parameters["rocks"] = {
         #"initial_condition": [BFSB1_value,ini_gas_content,temperature],
 
     },
-    "BFSB1": {
-        "porosity": 0.5, #-, (4) 
-        #"initial_condition": [BFSB1_value, ini_NACL, ini_gas_content, temperature],
-    },
     "FAULT": {
         "porosity": 0.14,
     },
