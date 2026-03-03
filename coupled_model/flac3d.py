@@ -208,7 +208,7 @@ k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
 a_fault = 500
 
 permeability_func = {
-    "FAULT": lambda g: rinaldi2019_v3(
+    "FAULT": lambda g: rinaldi2019_v1(
         g,
         k0 = k0_fault,
         phi0 = 0.14,
