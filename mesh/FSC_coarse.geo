@@ -117,14 +117,6 @@ ramp    = 6;   // distance over which to transition to h_out
 
 
 Point(409) = {7.79, 8.134, 3.285};
-Cylinder(2001) = {7.79, 8.134, 3.285,  0, 0, 0.4,  0.4};
-
-u() = BooleanFragments{
-  Volume{3}; Delete;
-}{
-  Volume{2001}; Delete;
-};
-
 
 
 // ---- your distance field near the fault faces
@@ -145,8 +137,8 @@ Field[3].PointsList = {999};
 
 Field[4] = Threshold;
 Field[4].InField  = 3;
-Field[4].SizeMin  = 4;
-Field[4].SizeMax  = 10;
+Field[4].SizeMin  = 6;
+Field[4].SizeMax  = 14;
 Field[4].DistMin  = 0.25;
 Field[4].DistMax  = ramp*8;
 
@@ -158,9 +150,8 @@ volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
 volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -32.9};
 
 Physical Volume("EDZ") = {1001};
-Physical Volume("CLAY") = {2002,4};
+Physical Volume("CLAY") = {3,4};
 Physical Volume("FAULT") = {1002};
 Physical Volume("BNDTO") = {volAbove[]};
 Physical Volume("BNDBO") = {volBelow[]};
-Physical Volume("BFSB1") = {2001};
 
