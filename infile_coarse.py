@@ -19,7 +19,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 
 
 time_zero =  94880
-time_final = 94978 + 3600 * 5
+time_final = 100000
 time_step = 1
 time_max = 10
 
@@ -63,7 +63,7 @@ parameters = {
     "eos": "eco2n",
     "isothermal": True,
     "start": True,
-    #"times": times_list, 
+    "times": times_list, 
 }
 
 
