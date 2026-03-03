@@ -19,7 +19,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 
 
 time_zero =  94880
-time_final = 100000
+time_final = 94880 + 3600 * 7
 time_step = 1
 time_max = 10
 
@@ -123,7 +123,7 @@ parameters["rocks"] = {
     "FAULT": {
         "porosity": 0.14,
         #"compressibility": 8e-9,             #Pa^-1
-        "permeability": [5e-18, 5e-18, 5e-18]
+        "permeability": [2e-18, 2e-18, 2e-18]
         #"permeability": [6.5e-17,5e-17,5e-17]
     },
 
@@ -181,8 +181,8 @@ def relative_volumes():
 rel_volumes,injec_labels, volume_list = relative_volumes()
 
 rates2 = rates_csv.copy()
-rates2.loc[rates2["TimeElapsed"] < 50000, "net flow cor [kg/s]"] = 0
-rates2.loc[rates2["net flow cor [kg/s]"] >= 0.01, "net flow cor [kg/s]"] = 0.09
+#rates2.loc[rates2["TimeElapsed"] < 50000, "net flow cor [kg/s]"] = 0
+#rates2.loc[rates2["net flow cor [kg/s]"] >= 0.01, "net flow cor [kg/s]"] = 0.09
 
 def generators():
 
