@@ -21,7 +21,7 @@ Rectangle(101) = {-100, -100, 0, 200, 200};
 Icl = 55*Pi/180;      // inclination from vertical
 Az  = -52*Pi/180;     // azimuth, clockwise from North
 Len = 1;            // borehole length in model unitsQ
-R   = Len/2;        // radius
+R   = 0.15;        // radius
 
 // direction cosines (X=East, Y=North, Z=Up)
 ux = Sin(Icl)*Sin(Az);
@@ -31,7 +31,7 @@ uz = -Cos(Icl);
 // start point chosen so the cylinder is centered at the origin
 dx = Len*ux;
 dy = Len*uy;
-dz = 1.5 * Len*uz;
+dz = Len*uz;
 
 x0 = -0.5*dx;
 y0 = -0.5*dy;
