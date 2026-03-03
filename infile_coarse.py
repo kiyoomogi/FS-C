@@ -16,12 +16,9 @@ incon = 'ns' #simulation_point or ns
 rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/filtered_FSC_injecrates.csv", delimiter=',', index_col=[0])
 #rates_csv.loc[rates_csv.index[0], "net flow [kg/s]"] = 0.0
 
-hydr_test = False
-stage = 0 #0, 1, 2
-sec_stage_1 = 15
 
 
-time_zero =  94878 
+time_zero =  94880
 time_final = 94978 + 3600 * 5
 time_step = 1
 time_max = 10
@@ -29,25 +26,16 @@ time_max = 10
 
 
 if incon == 'ns': 
-    ns = toughio.read_output(f"/Users/matthijsnuus/Desktop/FS-C/model/incons/SAVE{stage}")
+    ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/natural_state/SAVE")
     incon1 = ns.data
 
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid")
 
-
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/mesh.f3grid")
-
-#mesh.cell_data['material'] = mesh.cell_data['material'].ravel()
 
 
 bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
 
-#Add material
-mesh.add_material("EDZ", 1)
-mesh.add_material("CLAY", 2)
-mesh.add_material("FAULT", 3)
-mesh.add_material("BNDTO", 4)
-mesh.add_material("BNDBO", 5)
 
 if incon == 'ns':
     incon = np.full((len(incon1['X1']), 4), -1.0e9)
@@ -63,11 +51,8 @@ bcond = (materials == "BNDTO").astype(int) + (materials == "BNDBO").astype(int)
 mesh.add_cell_data("boundary_condition", bcond)
 
 
-unique_materials = set((materials).tolist())
-
-
-mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH", incon=True)
-mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
+mesh.write_tough("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/MESH", incon=True)
+mesh.write("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/mesh.pickle")
 
 times_list1 = np.arange(time_zero, time_zero+30, 5)
 times_list2 = np.arange(time_zero + 31, time_final, 240)
@@ -82,6 +67,7 @@ parameters = {
 }
 
 
+unique_materials = set((materials).tolist())
 
 
 
@@ -126,20 +112,6 @@ parameters["default"] = {
 
 #Rock parameters
 parameters["rocks"] = {
-#    "INJEC": {
-#        "density": 2500,
-#        "porosity": 0.98, 
-#        "permeability": [1e-13, 1e-13, 1e-13],
-#        "specific_heat":920e20, #constant temperature in injection well by making heat capacity huge
-        #"relative_permeability": {
-        #    "id": 3, #van genuchten 
-        #    "parameters": [1,0],
-        #},
-        #"capillarity": {
-        #    "id": 8, #van genuchten 
-        #    "parameters": []
-        #},  
-#    },
     "CLAY": {
         #"tortuosity": 0.8, #-, (4) 
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
@@ -191,34 +163,11 @@ parameters['extra_options'] = {
 
 
 
-#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/mesh.pickle")
-
-
-def find_injec():
-    mesh = toughio.read_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/MESH")
-    elements    = mesh["elements"]
-    connections = mesh["connections"]
-    
-    # INJEC element names
-    injec = {ename for ename, edata in elements.items() if edata.get("material") == "INJEC"}
-    
-    # element-name length (TOUGH classic: 5)
-    elem_len = len(next(iter(elements)))
-    e1_list = []
-    for cname, cdata in elements.items():
-        e1 = cname[:elem_len]
-    
-        if (e1 in injec):
-            e1_list.append(str(e1))
-    return e1_list
-
-#e1_list = find_injec()
-
 def relative_volumes():
     injec_labels = []
     volume_list = []
     for i in (range(len(materials))):
-        if materials[i] == 'INJEC':
+        if materials[i] == 'EDZ':
             label = mesh.labels[i]
             volume = mesh.volumes[i]
 
@@ -231,6 +180,9 @@ def relative_volumes():
 
 rel_volumes,injec_labels, volume_list = relative_volumes()
 
+rates2 = rates_csv.copy()
+rates2.loc[rates2["TimeElapsed"] < 50000, "net flow cor [kg/s]"] = 0
+rates2.loc[rates2["net flow cor [kg/s]"] >= 0.01, "net flow cor [kg/s]"] = 0.09
 
 def generators():
 
@@ -242,9 +194,9 @@ def generators():
 
     for i in range(len(rel_volumes)): 
         rel_vol = rel_volumes[i]
-        rates = (rates_csv['net flow cor [kg/s]'] * rel_vol * 1).to_list()
-        rates_co2 = (rates_csv['CO2 rate [kg/s]'] * rel_vol).to_list()
-        times = rates_csv['TimeElapsed'].to_list()
+        rates = (rates2['net flow cor [kg/s]'] * rel_vol * 1).to_list()
+        rates_co2 = (rates2['CO2 rate [kg/s]'] * rel_vol * 0).to_list()
+        times = rates2['TimeElapsed'].to_list()
 
         generator = {
             "label": injec_labels[i],
@@ -268,17 +220,15 @@ def generators():
 
 rates, times = generators() 
 
-ref_points = injec_labels[::40]
-ref_points.append(str(mesh.labels[mesh.near((7.434, 8.137, -0.900))]))
-ref_points.append(str(mesh.labels[mesh.near((1.904, 5.158, 7.779))]))
 
-print("B1 label = ", str(mesh.labels[mesh.near((7.434, 8.137, -0.900))]))
+ref_points = [str(mesh.labels[mesh.near((0, 0, -0.05))])]
+ref_points.append(str(injec_labels[0]))
+ref_points.append(str(mesh.labels[mesh.near((7.669, 8.135, 1.860))]))
+print(str(injec_labels[0]))
+ref_points.append(str(mesh.labels[mesh.near((10.288, 4.482, -4.541))]))
+
 
 parameters["element_history"] = ref_points
 
-#label = mesh.labels[mesh.near((10.576, 8.696, -1.559))]
+toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/INFILE", parameters)  
 
-
-toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/injection_model/INFILE", parameters)  
- 
-toughio.write_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/mesh.f3grid", mesh, file_format="flac3d")
