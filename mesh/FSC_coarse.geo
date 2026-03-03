@@ -1,6 +1,6 @@
 SetFactory("OpenCASCADE");
 
-WidthCube    = 70;
+WidthCube    = 100;
 HeightCube   = 70;
 zTop         = 32;  // keep this as the original top elevation
 Dip      = 50*Pi/180;
@@ -111,9 +111,9 @@ Extrude {0,0, -0.5} {
 }
 
 // Pick your target sizes (in model units)
-h_fault = 10;   // fine near/inside the fault
+h_fault = 8;   // fine near/inside the fault
 h_out   = 40;   // coarser elsewhere
-ramp    = 7;   // distance over which to transition to h_out
+ramp    = 6;   // distance over which to transition to h_out
 
 
 Point(409) = {7.79, 8.134, 3.285};
