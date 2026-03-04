@@ -16,7 +16,7 @@ import csv
 model_save = "tf_in.f3sav"
 deterministic = False
 damping = "combined"
-mechanical_ratio = 1.0e-7
+mechanical_ratio = 3.0e-7
 n_threads = 20
 thermal = True
 
@@ -218,7 +218,7 @@ permeability_func = {
         bmax = 4100e-6,  #was 500e-6
         bshear_max = 200e-6,
         alpha = 0.8,
-        n_vector = np.array([0.47, -0.60, 0.64]),
+        n_vector = np.array([0.409576, -0.709406, 0.573576]),
         psi = 10,
         joint = True,
     ),
