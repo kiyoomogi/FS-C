@@ -228,6 +228,7 @@ print(str(injec_labels[0]))
 ref_points.append(str(mesh.labels[mesh.near((10.288, 4.482, -4.541))]))
 
 
+
 parameters["element_history"] = ref_points
 
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/INFILE", parameters)  
