@@ -3,8 +3,8 @@ SetFactory("OpenCASCADE");
 WidthCube    = 140;
 HeightCube   = 90;
 zTop         = 32;  // keep this as the original top elevation
-Dip      = 50*Pi/180;
-Strike  =  -52 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
+Dip      = 55*Pi/180;
+Strike  =  -60 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
 FaultThick   = 2.0;
 
 
@@ -14,7 +14,7 @@ Box(1) = { -WidthCube/2, -WidthCube/2, zTop - HeightCube,
 Rotate {{0, 0, 1}, {0, 0, 0}, 50*Pi/180} {
   Volume{1};
 }
-Rectangle(101) = {-100, -100, 0, 200, 200};
+Rectangle(101) = {-100, -100, 0.3, 200, 200};
 
 
 // ---- parameters
@@ -66,9 +66,8 @@ out[] = Extrude { -nx*FaultThick, -ny*FaultThick, -nz*FaultThick } {
 };
 
 
-Point(789) = {7.434, 8.137, -0.900}; //B1
-Point(790) = {1.904, 5.158, 7.779};
-Point(791) = {10.1119, 5.72288, -3.66476};
+Point(790) = {11.8685315  , 9.058115   , 2.72817964};
+Point(791) = {9.55383428 , 5.01474972 ,-0.61983978};
 
 
 // --- clip both tools to the box (keep only inside-the-box parts)
@@ -116,8 +115,6 @@ h_out   = 40;   // coarser elsewhere
 ramp    = 6;   // distance over which to transition to h_out
 
 
-Point(409) = {7.79, 8.134, 3.285};
-
 
 // ---- your distance field near the fault faces
 Field[1] = Distance;
@@ -133,13 +130,13 @@ Field[2].DistMax = ramp;
 // ---- your distance field near the injection cylinder
 
 Field[3] = Distance;
-Field[3].PointsList = {999};
+Field[3].SurfacesList = {23,24,25};
 
 Field[4] = Threshold;
 Field[4].InField  = 3;
-Field[4].SizeMin  = 6;
-Field[4].SizeMax  = 14;
-Field[4].DistMin  = 0.25;
+Field[4].SizeMin  = 2;
+Field[4].SizeMax  = 17;
+Field[4].DistMin  = 0.3;
 Field[4].DistMax  = ramp*8;
 
 Field[99] = Min;

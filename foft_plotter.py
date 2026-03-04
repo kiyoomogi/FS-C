@@ -19,8 +19,8 @@ bfsb2_path  = foft_dir / "BFSB2_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))
 
 # special FOFTs
-special_mid_stem = "FOFT_A2598"
-special_bot_stem = "FOFT_A2635"
+special_bot_stem = "FOFT_A3662"
+special_mid_stem = "FOFT_A3535"
 
 # ---------------- measured injection series (rates) ----------------
 rates_csv1 = pd.read_csv(
@@ -38,7 +38,7 @@ rates_csv1["new dates"] = pd.to_datetime(
 # FOFT time zero (UTC-aware)
 start_utc = rates_csv1["new dates"].iloc[0]
 
-# ---------------- helpers ----------------
+# ---------------- helpers ----------
 def load_foft_to_mpa(path: Path, start_time) -> pd.DataFrame:
     """Load a single FOFT CSV, convert seconds→UTC and Pa→MPa."""
     df = pd.read_csv(path)
@@ -80,6 +80,7 @@ dates = rates_csv["UTC"]
 # Choose your plotting window (this does NOT affect normalization)
 xmin = dates.iloc[92200]
 xmax = dates.iloc[115900]
+#xmax = dates.iloc[93000]
 
 # Fixed normalization reference index/time (this is what you asked for)
 ref_index = 92200
