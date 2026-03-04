@@ -200,7 +200,7 @@ fish_func_tough = ()  # Before mechanical analysis
 fish_func_flac = ()  # After mechanical analysis
 
 #k0_fault = np.array([8.0e-15, 8.0e-15, 1.0e-18], dtype=float)
-k0_fault = np.array([2.0e-18, 2.0e-18, 2.0e-18], dtype=float)
+k0_fault = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
 k0_clay = np.array([5.0e-19, 5.0e-19, 1.0e-19], dtype=float)
 k0_edz = np.array([1.0e-10, 1.0e-10, 1.0e-10], dtype=float)
 k0_bnd = np.array([1.0e-18, 1.0e-18, 1.0e-18], dtype=float)
@@ -214,7 +214,7 @@ permeability_func = {
         phi0 = 0.14,
         n = 1.0,
         w = 2.0,
-        br = 25e-6,     #was 20e-6
+        br = 22e-6,     #was 20e-6
         bmax = 4200e-6,  #was 500e-6
         bshear_max = 200e-6,
         alpha = 0.8,
