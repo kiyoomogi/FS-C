@@ -92,10 +92,10 @@ irp11 = [0.5, 0.0, 0]
 parameters["default"] = {
     "density": 2500.,                     #kg/m3
     "porosity": 0.12 ,                    #- 
-    "permeability": [3e-18,3e-18,3e-18], #m2  
+    "permeability": [5e-19,5e-19,5e-19], #m2  
     "conductivity": 2.0,                  #W/m/K
     "specific_heat": 920.,                #J/kg K
-    "compressibility": 5e-9,             #Pa^-1
+    #"compressibility": 5e-9,             #Pa^-1
     "expansivity": 1.4e-5,                #°C^-1
     "conductivity_dry": 2.0,              #W/m/K
 
@@ -118,11 +118,12 @@ parameters["rocks"] = {
     },
     "EDZ": {
         "porosity": 0.24, #-, (4) 
-        "permeability": [1e-14, 1e-14, 1e-14],
+        "permeability": [1e-11, 1e-11, 1e-11],
+        "compressibility": 1e-8,
     },
     "FAULT": {
         "porosity": 0.14,
-        #"compressibility": 8e-9,             #Pa^-1
+        "compressibility": 5e-9,             #Pa^-1
         "permeability": [2e-18, 2e-18, 2e-18]
         #"permeability": [6.5e-17,5e-17,5e-17]
     },
@@ -223,10 +224,9 @@ rates, times = generators()
 
 ref_points = [str(mesh.labels[mesh.near((0, 0, -0.05))])]
 ref_points.append(str(injec_labels[0]))
-ref_points.append(str(mesh.labels[mesh.near((7.669, 8.135, 1.860))]))
+ref_points.append(str(mesh.labels[mesh.near(( 9.55383428 , 5.01474972, -0.61983978))]))
 print(str(injec_labels[0]))
-ref_points.append(str(mesh.labels[mesh.near((10.288, 4.482, -4.541))]))
-
+ref_points.append(str(mesh.labels[mesh.near((11.8685315,   9.058115  ,  2.72817964))]))
 
 
 parameters["element_history"] = ref_points
