@@ -32,7 +32,6 @@ if incon == 'ns':
 mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid")
 
 
-
 bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
 
@@ -117,7 +116,7 @@ parameters["rocks"] = {
         #"initial_condition": [ini_pore_pressure,ini_gas_content,temperature],
     },
     "EDZ": {
-        "porosity": 0.24, #-, (4) 
+        "porosity": 0.95, #-, (4) 
         "permeability": [1e-11, 1e-11, 1e-11],
         "compressibility": 1e-8,
     },
