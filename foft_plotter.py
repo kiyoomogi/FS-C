@@ -9,7 +9,8 @@ mpl.rcParams.update({"font.size": 14})
 
 # ---------------- paths ----------------
 #folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
-folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/3_THM/")
+#folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/3_THM/")
+folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/")
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
@@ -19,8 +20,9 @@ bfsb2_path  = foft_dir / "BFSB2_meas.csv"
 foft_files = sorted(folder.glob("FOFT*.csv"))
 
 # special FOFTs
-special_bot_stem = "FOFT_A2G_6"
-special_mid_stem = "FOFT_A2F80"
+special_bot_stem = "FOFT_A1489"
+special_mid_stem = "FOFT_A1499" #"FOFT_A2F80"
+
 
 # ---------------- measured injection series (rates) ----------------
 rates_csv1 = pd.read_csv(
@@ -80,7 +82,7 @@ dates = rates_csv["UTC"]
 # Choose your plotting window (this does NOT affect normalization)
 xmin = dates.iloc[92200]
 xmax = dates.iloc[115900]
-#xmax = dates.iloc[93000]
+#xmax = dates.iloc[95000]
 
 # Fixed normalization reference index/time (this is what you asked for)
 ref_index = 92200
