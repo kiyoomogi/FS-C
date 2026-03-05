@@ -163,68 +163,41 @@ parameters['extra_options'] = {
 
 
 
-def relative_volumes():
-    injec_labels = []
-    volume_list = []
-    for i in (range(len(materials))):
-        if materials[i] == 'EDZ':
-            label = mesh.labels[i]
-            volume = mesh.volumes[i]
-
-            injec_labels.append(str(label))
-            volume_list.append(volume)
-        
-    rel_volumes =   np.array(volume_list) / sum(volume_list)  
-
-    return rel_volumes,injec_labels, volume_list
-
-rel_volumes,injec_labels, volume_list = relative_volumes()
 
 rates2 = rates_csv.copy()
 #rates2.loc[rates2["TimeElapsed"] < 50000, "net flow cor [kg/s]"] = 0
 #rates2.loc[rates2["net flow cor [kg/s]"] >= 0.01, "net flow cor [kg/s]"] = 0.09
 
-def generators():
+
+parameters['generators'] = []
+rates = None  # Initialize rates
+times = None  # Initialize times
 
 
-    parameters['generators'] = []
-    
-    rates = None  # Initialize rates
-    times = None  # Initialize times
+rates = (rates2['net flow cor [kg/s]']  * 1).to_list()
+rates_co2 = (rates2['CO2 rate [kg/s]']  * 0).to_list()
+times = rates2['TimeElapsed'].to_list()
 
-    for i in range(len(rel_volumes)): 
-        rel_vol = rel_volumes[i]
-        rates = (rates2['net flow cor [kg/s]'] * rel_vol * 1).to_list()
-        rates_co2 = (rates2['CO2 rate [kg/s]'] * rel_vol * 0).to_list()
-        times = rates2['TimeElapsed'].to_list()
 
-        generator = {
-            "label": injec_labels[i],
-            "type": "COM1",
-            "times": times,
-            "rates": rates,
-            "specific_enthalpy": list(np.zeros(len(times))),
-        }
-        parameters['generators'].append(generator)
+
+injec_label = mesh.labels[-1][0:-1] + str(int(mesh.labels[-1][-1]) + 1)
+
+generator = {
+    "label": injec_label,
+    "type": "COM1",
+    "times": times,
+    "rates": rates,
+    "specific_enthalpy": list(np.zeros(len(times))),
+}
+parameters['generators'].append(generator)
         
-        generator = {
-            "label": injec_labels[i],
-            "type": "COM3",
-            "times": times,
-            "rates": rates_co2,
-            "specific_enthalpy": list(np.zeros(len(times))),
-        }
-        parameters['generators'].append(generator)
 
-    return rates, times
 
-rates, times = generators() 
 
 
 ref_points = [str(mesh.labels[mesh.near((0, 0, -0.05))])]
-ref_points.append(str(injec_labels[0]))
+ref_points.append(str(injec_label))
 ref_points.append(str(mesh.labels[mesh.near(( 9.55383428 , 5.01474972, -0.61983978))]))
-print(str(injec_labels[0]))
 ref_points.append(str(mesh.labels[mesh.near((11.8685315,   9.058115  ,  2.72817964))]))
 
 
