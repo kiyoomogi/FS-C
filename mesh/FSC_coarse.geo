@@ -1,7 +1,7 @@
 SetFactory("OpenCASCADE");
 
 WidthCube    = 140;
-HeightCube   = 90;
+HeightCube   = 70;
 zTop         = 32;  // keep this as the original top elevation
 Dip      = 55*Pi/180;
 Strike  =  -60 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
