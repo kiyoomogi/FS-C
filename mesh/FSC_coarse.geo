@@ -155,13 +155,6 @@ volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
 volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -32.9};
 
 Physical Volume("CLAY") = {3,4};
-Physical Volume("FAULT") = {5};
+Physical Volume("FAULT") = {2};
 Physical Volume("BNDTO") = {volAbove[]};
 Physical Volume("BNDBO") = {volBelow[]};
-
-//+
-Show "*";
-//+
-Hide {
-  Point{1008}; Point{1009}; Point{1010}; Point{1011}; Point{1012}; Point{1013}; Point{1014}; Point{1015}; Point{1016}; Point{1017}; Point{1018}; Point{1019}; Point{1020}; Point{1021}; Point{1022}; Point{1023}; Point{1024}; Point{1027}; Point{1028}; Point{1029}; Curve{14}; Curve{16}; Curve{17}; Curve{19}; Curve{20}; Curve{21}; Curve{23}; Curve{24}; Curve{25}; Curve{26}; Curve{27}; Curve{28}; Curve{29}; Curve{30}; Curve{31}; Curve{32}; Curve{33}; Curve{34}; Curve{35}; Curve{36}; Curve{37}; Curve{38}; Curve{39}; Curve{40}; Curve{41}; Curve{46}; Curve{48}; Curve{49}; Curve{50}; Curve{51}; Curve{52}; Curve{53}; Surface{9}; Surface{11}; Surface{13}; Surface{14}; Surface{15}; Surface{16}; Surface{17}; Surface{18}; Surface{19}; Surface{20}; Surface{21}; Surface{22}; Surface{26}; Surface{28}; Surface{29}; Surface{30}; Surface{31}; Volume{3}; Volume{4}; Volume{6}; 
-}
