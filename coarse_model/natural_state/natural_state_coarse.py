@@ -113,7 +113,7 @@ parameters["rocks"] = {
         "porosity": 0.14,
     },
     "EDZ": {
-        "porosity": 0.14,
+        "porosity": 0.95,
     },
     "BNDTO": {"initial_condition": [top_BC_value, ini_NACL, ini_gas_content, temperature]},
     "BNDBO": {"initial_condition": [bot_BC_value, ini_NACL, ini_gas_content, temperature]},
@@ -154,3 +154,5 @@ parameters['elements'] = {}
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/natural_state/INFILE", parameters)  
  
 
+injec_point = str(mesh.labels[mesh.near((0, 0, -0.05))])
+print("injec point = ", injec_point)
