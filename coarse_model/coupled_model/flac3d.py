@@ -14,7 +14,7 @@ import csv
 
 # FLAC3D solver parameters
 model_save = "tf_in.f3sav"
-deterministic = False
+deterministic = True
 damping = "combined"
 mechanical_ratio = 5.0e-7
 n_threads = 20
