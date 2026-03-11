@@ -155,6 +155,9 @@ def printer_function(
     # --- Read porosity 
     phi = tza.porosity()[group] 
 
+    # --- Read pressure
+    pp = tza.pp()[group]
+
     # ============================================================
     #   Existing diagnostics (your original stuff)
     # ============================================================
@@ -173,6 +176,7 @@ def printer_function(
     #pp_second = float(pp_sorted[-2]) if pp_sorted.size >= 2 else float(pp_sorted[-1])
 
     print(f"=== printer debug ({group_name}) tstep={tstep} t={tought} ===")
+    print("max pore pressure     :", float(np.amax(pp)))
     print("porosity (highest)    :", float(np.amax(phi)))
     print("k (2nd highest)       :", k[idx_second, :])
     print("k (min, failed only)        :", k[idx_min_failed, :])
