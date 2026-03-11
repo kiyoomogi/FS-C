@@ -16,7 +16,7 @@ import csv
 model_save = "tf_in.f3sav"
 deterministic = False
 damping = "combined"
-mechanical_ratio = 5.0e-7
+mechanical_ratio = 3.0e-6
 n_threads = 20
 thermal = True
 
