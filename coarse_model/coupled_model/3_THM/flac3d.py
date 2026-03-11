@@ -245,16 +245,6 @@ permeability_func = {
         k0=k0_clay,
         phi0=0.12,
     ),
-    "BNDTO": lambda g: constant(
-        g,
-        k0=np.tile(k0_bnd, (g.sum(), 1)),
-        phi0=0.12,   
-    ),
-    "BNDBO": lambda g: constant(
-        g,
-        k0=np.tile(k0_bnd, (g.sum(), 1)),
-        phi0=0.12,    
-    ),
 }
 
 #permeability_func = {
