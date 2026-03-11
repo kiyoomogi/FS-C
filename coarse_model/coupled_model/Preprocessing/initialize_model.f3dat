@@ -50,7 +50,7 @@ zone property dip-direction 150
 ;joint 
 zone property joint-cohesion 2e6
 zone property joint-dilation 0
-zone property joint-dilation 10 range group 'FAULT'
+zone property joint-dilation 1 range group 'FAULT'
 
 zone property joint-friction 18
 zone property joint-tension 0.5e6
