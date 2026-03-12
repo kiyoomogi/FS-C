@@ -12,7 +12,7 @@ tf.zone.import_mesh(mesh , prune_duplicates=True)
 tf.zone.export_flac("../mesh.f3grid")
 
 tf.model.new()
-tf.zone.import_mesh(mesh_coarse, prune_duplicates=True)
+tf.zone.import_mesh(mesh_coarse)
 tf.zone.export_flac("/home/manuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid")
 
 # Export MESH
