@@ -19,7 +19,7 @@ rates_csv = pd.read_csv("/Users/matthijsnuus/Desktop/FS-C/model/injection_rates/
 
 
 time_zero =  94880
-time_final = 94880 + 3600 * 7
+time_final = 94880 + 3600 * 3
 time_step = 1
 time_max = 10
 

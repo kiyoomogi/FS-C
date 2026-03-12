@@ -10,7 +10,7 @@ mpl.rcParams.update({"font.size": 14})
 # ---------------- paths ----------------
 #folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
 folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/3_THM/")
-#folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/")
+folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/")
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
@@ -83,7 +83,7 @@ dates = rates_csv["UTC"]
 # Choose your plotting window (this does NOT affect normalization)
 xmin = dates.iloc[92200]
 xmax = dates.iloc[115900]
-xmax = dates.iloc[93000]
+#xmax = dates.iloc[93000]
 
 
 # Fixed normalization reference index/time (this is what you asked for)
