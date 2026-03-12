@@ -22,7 +22,7 @@ foft_files = sorted(folder.glob("FOFT*.csv"))
 # special FOFTs
 special_bot_stem = "FOFT_A1489"
 #special_mid_stem = "FOFT_A1499" #"FOFT_A2F80"
-special_mid_stem = "FOFT_A1F_9" #"FOFT_A2F80"
+special_mid_stem = "FOFT_A3F60" #"FOFT_A2F80"
 
 
 # ---------------- measured injection series (rates) ----------------
