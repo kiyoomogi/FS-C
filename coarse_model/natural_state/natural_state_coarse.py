@@ -21,8 +21,8 @@ time_final = 3600 * 24 * 365 * 50
 
 
 
-#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/failure_replicate.msh")
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_coarse.msh")
+#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid")
 
 z_centers = mesh.centers[:,2]
 z_top = np.amax(z_centers)
