@@ -29,8 +29,8 @@ if incon == 'ns':
     ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/natural_state/SAVE")
     incon1 = ns.data
 
-#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid")
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_coarse.msh")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid")
+#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_coarse.msh")
 
 bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
