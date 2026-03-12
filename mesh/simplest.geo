@@ -34,22 +34,6 @@ h_out   = 40;   // coarser elsewhere
 ramp    = 6;   // distance over which to transition to h_out
 
 
-Field[1] = Distance;
-Field[1].PointsList = {999};
-
-Field[2] = Threshold;
-Field[2].InField  = 1;
-Field[2].SizeMin  = 1;
-Field[2].SizeMax  = 8;
-Field[2].DistMin  = 2;
-Field[2].DistMax  = ramp*1;
-
-Field[99].FieldsList = {2};  //was 2,4 before
-Background Field = 99;
-
-volAbove[] = Volume In BoundingBox{-1e9, -1e9, 31.9, 1e9, 1e9, 1e9};
-volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -47.9};
-
 Physical Volume("CLAY") = {1};
-Physical Volume("BNDTO") = {volAbove[]};
-Physical Volume("BNDBO") = {volBelow[]};
+Physical Volume("BNDTO") = {2};
+Physical Volume("BNDBO") = {3};
