@@ -135,7 +135,7 @@ for f in foft_files:
 ax_top.set_ylabel(r"$\Delta P$ [MPa]")
 ax_top.set_title("BFSB2")
 ax_top.grid(True)
-ax_top.set_ylim(0, 35)
+ax_top.set_ylim(0, 15)
 ax_top.set_xlim(xmin, xmax)
 ax_top.legend(loc="upper right", ncol=2, fontsize=14)
 
