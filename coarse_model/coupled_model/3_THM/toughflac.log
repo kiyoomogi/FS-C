@@ -1,0 +1,7 @@
+2026-03-12 13:21:03,103: ERROR - Traceback (most recent call last):
+  File "/opt/itascasoftware/subscription/python310/lib/python3.10/site-packages/toughflac/coupling/_logging.py", line 27, in __call__
+    self.func(*args, **kwargs)
+  File "/opt/itascasoftware/subscription/python310/lib/python3.10/site-packages/toughflac/coupling/run.py", line 202, in _run
+    raise ValueError("Group '{}' does not exist.".format(group))
+ValueError: Group 'EDZ' does not exist.
+
