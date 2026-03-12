@@ -10,7 +10,7 @@ mpl.rcParams.update({"font.size": 14})
 # ---------------- paths ----------------
 #folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
 folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/3_THM/")
-
+folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/")
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
@@ -135,7 +135,7 @@ for f in foft_files:
 ax_top.set_ylabel(r"$\Delta P$ [MPa]")
 ax_top.set_title("BFSB2")
 ax_top.grid(True)
-ax_top.set_ylim(0, 15)
+ax_top.set_ylim(0, 40)
 ax_top.set_xlim(xmin, xmax)
 ax_top.legend(loc="upper right", ncol=2, fontsize=14)
 
