@@ -94,11 +94,11 @@ parts[] = BooleanFragments{
 //};
 
 // --- now fragment box + faults + fault cylinder together
-parts[] = BooleanFragments{
-  Volume{parts[]}; Delete;
-}{
-  Volume{ fault_in[]}; Delete; 
-};
+//parts[] = BooleanFragments{
+//  Volume{parts[]}; Delete;
+//}{
+//  Volume{ fault_in[]}; Delete; 
+//};
 
 
 //// --- now fragment box + faults + fault cylinder together
