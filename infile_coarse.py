@@ -29,8 +29,8 @@ if incon == 'ns':
     ns = toughio.read_output("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/natural_state/SAVE")
     incon1 = ns.data
 
-mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid")
-
+#mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/mesh.f3grid")
+mesh = toughio.read_mesh("/Users/matthijsnuus/Desktop/FS-C/model/mesh/FSC_coarse.msh")
 
 bot_BC_value = np.amax(incon1['X1'])
 top_BC_value = np.amin(incon1['X1'])
@@ -192,8 +192,11 @@ generator = {
 parameters['generators'].append(generator)
         
 
-
-
+parameters["output"] = {
+    "variables": [
+        {"name": "porosity"},
+    ],
+}
 
 ref_points = [str(mesh.labels[mesh.near((0, 0, -0.05))])]
 ref_points.append(str(injec_label))
@@ -205,3 +208,8 @@ parameters["element_history"] = ref_points
 
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/INFILE", parameters)  
 
+
+
+labels = mesh.labels
+a1f9 = labels == "A1F 9"
+quality = mesh.qualities[a1f9]

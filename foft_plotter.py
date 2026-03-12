@@ -9,8 +9,8 @@ mpl.rcParams.update({"font.size": 14})
 
 # ---------------- paths ----------------
 #folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
-#folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/3_THM/")
-folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/")
+folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/3_THM/")
+#folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/")
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
@@ -21,7 +21,8 @@ foft_files = sorted(folder.glob("FOFT*.csv"))
 
 # special FOFTs
 special_bot_stem = "FOFT_A1489"
-special_mid_stem = "FOFT_A1499" #"FOFT_A2F80"
+#special_mid_stem = "FOFT_A1499" #"FOFT_A2F80"
+special_mid_stem = "FOFT_A1F_9" #"FOFT_A2F80"
 
 
 # ---------------- measured injection series (rates) ----------------
@@ -82,7 +83,8 @@ dates = rates_csv["UTC"]
 # Choose your plotting window (this does NOT affect normalization)
 xmin = dates.iloc[92200]
 xmax = dates.iloc[115900]
-#xmax = dates.iloc[95000]
+xmax = dates.iloc[93000]
+
 
 # Fixed normalization reference index/time (this is what you asked for)
 ref_index = 92200
@@ -133,7 +135,7 @@ for f in foft_files:
 ax_top.set_ylabel(r"$\Delta P$ [MPa]")
 ax_top.set_title("BFSB2")
 ax_top.grid(True)
-ax_top.set_ylim(0, 15)
+ax_top.set_ylim(0, 35)
 ax_top.set_xlim(xmin, xmax)
 ax_top.legend(loc="upper right", ncol=2, fontsize=14)
 

@@ -9,6 +9,8 @@ FaultThick   = 2.0;
 
 
 Point(999) = {0,0,0, 0.05};
+Point(888) = {-7.7629759,1.007833e1,1.678793e1};
+
 Box(1) = { -WidthCube/2, -WidthCube/2, zTop - HeightCube,
             WidthCube,    WidthCube,    HeightCube };
 Rotate {{0, 0, 1}, {0, 0, 0}, 50*Pi/180} {
