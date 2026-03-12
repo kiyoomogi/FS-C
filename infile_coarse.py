@@ -183,7 +183,7 @@ times = rates2['TimeElapsed'].to_list()
 injec_label = mesh.labels[-1][0:-1] + str(int(mesh.labels[-1][-1]) + 1)
 
 generator = {
-    "label": injec_label,
+    "label": str(mesh.labels[mesh.near((0, 0, -0.05))]),
     "type": "COM1",
     "times": times,
     "rates": np.array(rates),
