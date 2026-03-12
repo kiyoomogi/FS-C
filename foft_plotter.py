@@ -10,7 +10,7 @@ mpl.rcParams.update({"font.size": 14})
 # ---------------- paths ----------------
 #folder   = Path("/Users/matthijsnuus/Desktop/FS-C/model/coupled_model/3_THM/")
 folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/coupled_model/3_THM/")
-folder = Path("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/")
+
 foft_dir = Path("/Users/matthijsnuus/Desktop/FS-C/model/previous_fofts")
 
 bfsb1_path  = foft_dir / "BFSB1_meas.csv"
