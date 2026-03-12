@@ -11,7 +11,7 @@ tf.zone.export_flac("../mesh.f3grid")
 
 
 # Export MESH and INCON
-tf.zone.export_tough("../MESH")
+tf.zone.export_tough("/home/manuus/Desktop/FS-C/model/coarse_model/coupled_model/MESH")
 
 # Export to f3grid
 tf.zone.export_flac("../mesh.f3grid", binary=True)
