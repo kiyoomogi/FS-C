@@ -1,7 +1,7 @@
 SetFactory("OpenCASCADE");
 
-WidthCube    = 140;
-HeightCube   = 70;
+WidthCube    = 100;
+HeightCube   = 80;
 zTop         = 32;  // keep this as the original top elevation
 Dip      = 55*Pi/180;
 Strike  =  -60 * Pi/180; //-66*Pi/180;   // strike measured clockwise from North
@@ -109,7 +109,7 @@ parts[] = BooleanFragments{
 //};
 
 surfAbove[] = Surface In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
-surfBelow[] = Surface In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -32.9};
+surfBelow[] = Surface In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -47.9};
 
 Extrude {0,0, 4} {   
   Surface{surfAbove[]}; Layers{1}; Recombine;
@@ -153,8 +153,8 @@ Field[99] = Min;
 Field[99].FieldsList = {2,4};  //was 2,4 before
 Background Field = 99;
 
-volAbove[] = Volume In BoundingBox{-1e9, -1e9, 9.9, 1e9, 1e9, 1e9};
-volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -32.9};
+volAbove[] = Volume In BoundingBox{-1e9, -1e9, 31.9, 1e9, 1e9, 1e9};
+volBelow[] = Volume In BoundingBox{-1e9, -1e9, -1e9, 1e9,  1e9, -47.9};
 
 Physical Volume("CLAY") = {3,4};
 Physical Volume("FAULT") = {2};
