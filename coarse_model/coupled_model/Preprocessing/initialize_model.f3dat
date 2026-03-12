@@ -23,7 +23,7 @@ zone fluid property permeability 1e-17
 ;zone fluid property permeability-yy 1e-17
 ;zone fluid property permeability-zz 1e-17
 zone fluid property porosity 0.12
-zone fluid property porosity 0.14 range group 'FAULT'
+;zone fluid property porosity 0.14 range group 'FAULT'
 
 ; Thermal parameters
 zone thermal cmodel assign isotropic
