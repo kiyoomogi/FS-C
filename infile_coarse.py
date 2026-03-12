@@ -117,13 +117,13 @@ parameters["rocks"] = {
     },
     "EDZ": {
         "porosity": 0.95, #-, (4) 
-        "permeability": [1e-11, 1e-11, 1e-11],
+        "permeability": [1e-12, 1e-12, 1e-12],
         "compressibility": 1e-8,
     },
     "FAULT": {
         "porosity": 0.14,
         "compressibility": 5e-9,             #Pa^-1
-        "permeability": [2e-18, 2e-18, 2e-18]
+        "permeability": [2e-18, 2e-18, 1e-12]
         #"permeability": [6.5e-17,5e-17,5e-17]
     },
 
@@ -195,6 +195,7 @@ parameters['generators'].append(generator)
 parameters["output"] = {
     "variables": [
         {"name": "porosity"},
+        {"name": "pressure"},
     ],
 }
 
@@ -209,7 +210,3 @@ parameters["element_history"] = ref_points
 toughio.write_input("/Users/matthijsnuus/Desktop/FS-C/model/coarse_model/injection_model/INFILE", parameters)  
 
 
-
-labels = mesh.labels
-a1f9 = labels == "A1F 9"
-quality = mesh.qualities[a1f9]
