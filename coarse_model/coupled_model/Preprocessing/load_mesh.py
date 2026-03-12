@@ -10,3 +10,8 @@ tf.zone.import_mesh(mesh) # , prune_duplicates=True)
 tf.zone.export_flac("../mesh.f3grid")
 
 
+# Export MESH and INCON
+tf.zone.export_tough("../MESH")
+
+# Export to f3grid
+tf.zone.export_flac("../mesh.f3grid", binary=True)
