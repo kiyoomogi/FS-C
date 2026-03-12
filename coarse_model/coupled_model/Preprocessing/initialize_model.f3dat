@@ -96,7 +96,7 @@ zone initialize stress-principal ...
 model largestrain off
 
 ; Solve model for mechanical equilibrium
-model solve mech ratio 5e-7
+model solve mech ratio 1.58e-7
 
 
 ; Save model

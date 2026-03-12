@@ -245,11 +245,6 @@ permeability_func = {
         k0=k0_clay,
         phi0=0.12,
     ),
-    "EDZ": lambda g: constant(
-        g,
-        k0=k0_clay,
-        phi0=0.12,
-    ),
     "BNDBO": lambda g: constant(
         g,
         k0=k0_clay,
