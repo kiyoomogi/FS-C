@@ -221,41 +221,11 @@ permeability_func = {
         psi = 0,
         joint = True,
     ),
-#   "EDZ": lambda g: rinaldi2019_v2(
+#    "FAULT": lambda g: constant(
 #        g,
-#        k0 = k0_fault,
-#        phi0 = 0.14,
-#        n = 1.0,
-#        w = 1.8,
-#        br = 15e-6,     #was 20e-6
-#        bmax = 600e-6,  #was 500e-6
-#        bshear_max = 200e-6,
-#        alpha = 0.8,
-#        n_vector = np.array([0.47, -0.60, 0.64]),
-#        psi = 10,
- #       joint = True,
- #  ),
-    "CLAY": lambda g: constant(
-        g,
-        k0=k0_clay,
-        phi0=0.12,
-    ),
-    "BNDBO": lambda g: constant(
-        g,
-        k0=k0_clay,
-        phi0=0.12,
-    ),
-    "BNDTO": lambda g: constant(
-        g,
-        k0=k0_clay,
-        phi0=0.12,
-    ),
-#    "EDZ": lambda g: constant(
-#        g,
-#        k0=k0_edz,
-#        phi0=0.95,
+#        k0=k0_fault,
+#        phi0=0.12,
 #    ),
-
 }
 
 #permeability_func = {
